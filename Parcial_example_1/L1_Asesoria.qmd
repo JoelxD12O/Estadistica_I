@@ -467,17 +467,34 @@ legend("topright",
 ```
 
 - El tiempo total, para cada nivel de servicio, está sesgado a la derecha.
+  rpta:
+[si cada uno esta sesgada a la derecha se cumple que media > mediana]
 
 - Hay una dependencia entre el tiempo total de viaje y el servicio reportado.
 
+rpta:
+[sii, mientas mejor sea el servicio es mejor menos tiempo]
+
 - Hay más viajes con servicio Bueno que de cualquiera de los otros tipos.
+rpta:
+[No se puede determinar si hay más viajes con servicio Bueno que de los otros tipos, ya que el boxplot no muestra frecuencias ni cantidades de observaciones por categoría.]
 
 - El viaje que más duró tuvo un servicio Malo.
+rpta:
+segun el grafico hubo un viaje que duro mucho pero fue calificado como bueno
 
 - Mientras mejor es el servicio, mayor es el tiempo total en general.
+falso, al contrario
 
 - Tres cuartas partes de los viajes buenos duran el promedio global del tiempo total de viaje o menos.
+  
+rpta:
+Sí, porque el tercer cuartil del servicio Bueno se encuentra por debajo o aproximadamente al nivel del promedio global.
 
 - El tiempo total más pequeño es de 2 segundos.
+  rpta: 
+  Falso, el eje vertical está expresado en minutos y el valor mínimo observado es cercano a 0 minutos.
 
 - El promedio global del tiempo total redondeado a dos decimales es de 1.47 minutos.
+
+No se puede concluir con exactitud usando únicamente el gráfico.

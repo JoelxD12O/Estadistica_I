@@ -3,7 +3,7 @@
     "path": "C:/Users/Joel/Desktop/2026-1/estadistica/Parcial_example_1/L1_Asesoria.qmd",
     "project_path": "L1_Asesoria.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "1233614249",
     "contents": "",
     "dirty": false,
     "created": 1778532308821.0,
@@ -12,8 +12,8 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "467,0",
-        "scrollLine": "460",
+        "cursorPosition": "498,0",
+        "scrollLine": "467",
         "rmdVisualMode": "false",
         "rmdVisualCollapsedChunks": "",
         "rmdVisualModeLocation": "3272:1817.5999755859375",
@@ -21,11 +21,11 @@
         "docOutlineVisible": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1778789522,
+    "lastKnownWriteTime": 1778795537,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1778789522975,
+    "last_content_update": 1778795537533,
     "read_only": false,
     "read_only_alternatives": []
 }
