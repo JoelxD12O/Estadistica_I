@@ -1,0 +1,214 @@
+---
+title: "Datos faltantes - Caso cuytopia"
+format: html
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+library(visdat)
+library(naniar)
+```
+
+La base de datos de la población de cuyes ***cuytopia_vf.csv*** tiene datos faltantes y se encuentra limpia, y la siguiente libreta de códigos.
+
+-   `Raza`: debería ser una de las especificadas en la siguiente lista; `abisinio`, `andino`, `híbrido`, `peruano`, `americano`, `rex` o `skinny`.
+
+-   `Sexo`: debería ser `hembra` o `macho`.
+
+-   `Color`: debería ser uno de los especificados en la siguiente lista; `negro`, `tricolor`, `blanco`, `pintado`, `rojizo`, `marrón`, `marrón oscuro`, `gris` o `rosa`
+
+-   `Peso`: en gramos, debería ser un número positivo con dos decimales, no mayor que 3000 gramos.
+
+-   `Largo`: en centímetros enteros, debería ser un número entero positivo entre 10 y 50 centímetros.
+
+-   `Cintura`: en centímetros enteros, debería ser un número entero positivo entre 10 y 30 centímetros.
+
+-   `Talla`: debería ser una de las especificadas en la siguiente lista; `flaco`, `sano`, `gordo`, `obeso`
+
+-   `Edad`: en meses enteros, debería ser un número entero positivo entre 8 y 72 meses.
+
+```{r}
+DF <- read_csv("cuytopia_vf.csv")
+```
+
+**Tamaño del Data Frame (DF)**
+
+```{r}
+dim(DF)
+```
+
+1,375 filas y 8 variables
+
+**Número de filas, unidades muestrales u observaciones**
+
+```{r}
+nrow(DF)
+```
+
+**Número de columnas o variables**
+
+```{r}
+ncol(DF)
+```
+
+**Visualizar las 10 primeras filas del Data Frame (DF)**
+
+```{r}
+head(DF, n=10)
+```
+
+**Visualizar las 10 últimas filas del Data Frame (DF)**
+
+```{r}
+tail(DF, n=10)
+```
+
+**Visualizar el Data Frame (DF) y los tipos de variables**
+
+```{r}
+str(DF)
+```
+
+**Descriptores numéricos de cada variable**
+
+**Variables categóricas:** Frecuencia absoluta o número de observaciones.
+
+**Variables numéricas:** Se muestra los siguientes descriptores: Min (mínimo de los valores), 1st Qu.(primer cuartil) , Median (mediana de los valores), Mean (promedio o media de los valores), 3rd Qu. (tercer cuartil), Max (máximo de los valores), NA's (cantidad de datos faltantes)
+
+```{r}
+summary(DF$Peso)
+```
+
+```{r}
+summary(DF)
+```
+
+**Cantidad de datos faltantes**
+
+Existen 1451 datos faltantes.
+
+```{r}
+sum(is.na(DF))
+```
+
+**Porcentaje de datos faltantes**
+
+\[ Número de datos faltantes / (número de filas x número de columnas) \] \* 100
+
+El 13.19% de los datos son faltantes.
+
+```{r}
+round(sum(is.na(DF))/(nrow(DF)*ncol(DF))*100,2)
+```
+
+**Porcentaje de datos completos**
+
+\[ (número de filas x número de columnas - Número de datos faltantes ) / (número de filas x número de columnas) \] \* 100
+
+```{r}
+round(( nrow(DF)*ncol(DF) - sum(is.na(DF)) )/(nrow(DF)*ncol(DF)) *100,2)
+```
+
+**Cantidad de datos faltantes por variable**
+
+```{r}
+colSums(is.na(DF))
+```
+
+**Porcentaje de datos faltantes por variable**
+
+```{r}
+round(colSums(is.na(DF))/nrow(DF)*100,2)
+```
+
+**Cantidad de datos faltantes por variable y Porcentaje de datos faltantes por variable ordenados en forma descendente**
+
+```{r}
+miss_var_summary(DF)
+```
+
+**Cantidad de observaciones o filas completas sin datos faltantes.**
+
+Existen 641 observaciones o filas completas.
+
+```{r}
+sum(complete.cases(DF))
+```
+
+**Porcentaje de observaciones o filas completas sin datos faltantes.**
+
+Existen 46.62% observaciones o filas completas.
+
+```{r}
+round(sum(complete.cases(DF))/nrow(DF)*100, 2)
+```
+
+**Cantidad de observaciones o filas incompletas con datos faltantes.**
+
+Existen 734 observaciones o filas incompletas.
+
+```{r}
+sum(!complete.cases(DF))
+```
+
+**Porcentaje de observaciones o filas incompletas con datos faltantes.**
+
+Existen 53.38% observaciones o filas incompletas.
+
+```{r}
+round(sum(!complete.cases(DF))/nrow(DF)*100, 2)
+```
+
+**Cantidad de datos faltantes por fila (observación)**
+
+```{r}
+table(rowSums(is.na(DF)))
+```
+
+El data frame tiene 641 filas sin datos faltantes.
+
+El data frame tiene 196 filas con 1 dato faltante.
+
+El data frame tiene 368 filas con 2 datos faltantes.
+
+El data frame tiene 161 filas con 3 datos faltantes.
+
+El data frame tiene 9 filas con 4 datos faltantes.
+
+**Promedio de datos faltantes por fila**
+
+```{r}
+round(mean(rowSums(is.na(DF))), 2)
+```
+
+**Promedio de datos faltantes por columna**
+
+```{r}
+round(mean(colSums(is.na(DF))),2)
+```
+
+**Mediana de datos faltantes por fila**
+
+```{r}
+round(median(rowSums(is.na(DF))), 2)
+```
+
+**Cantidad de datos faltantes por fila (observación) y Porcentaje de datos faltantes por fila (observación) ordenados en forma descendente**
+
+```{r}
+round(miss_case_table(DF),2)
+```
+
+**Gráfico de datos y porcentajes faltantes por variable**
+
+```{r}
+vis_miss(DF)
+```
+
+**Gráfico de datos faltantes por variable ordenados en forma descedente**
+
+```{r}
+gg_miss_var(DF)
+```

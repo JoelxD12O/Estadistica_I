@@ -1,0 +1,215 @@
+---
+title: "EA1"
+---
+
+```{r}
+library(readr)
+```
+
+```{r}
+DF<-read_csv("Lentejas.csv")
+```
+
+### 1
+
+observaciones sin limpiar la tabla y tal numero de variables luego un numero de datos faltantes y observaciones incompletas filas para observaciones columnas para variables luego con isna para los datos faltantes y luego sumarlos luego con completecases sum para sumar todos los casos donde hay observaciones incompletas
+
+```{r}
+nrow(DF)
+ncol(DF)
+sum(is.na(DF))
+sum(!complete.cases(DF))
+```
+
+### 2
+
+Grupo, Registro, Precio, Tienda, Lote, Vencimiento, Estado, Rojas, Azules, Verdes,Amarillas, Naranjas, Rosadas, Etapa, Neto, Postgrado responde Cuantas son numericas:9 entre las numericas tal numero son discretas: 7
+
+```{r}
+str(DF)
+```
+
+```{r}
+
+
+# 📌 IDENTIFICACIÓN DE VARIABLES
+
+# La función str(DF) permite ver la estructura del dataset y el tipo de cada variable:
+
+# - num → variable numérica
+
+# - chr → variable de texto (categórica)
+
+# - factor → variable categórica
+
+# ⚠️ IMPORTANTE:
+
+# No todas las variables numéricas (num) son cuantitativas útiles.
+
+# ✔ Variables cuantitativas:
+
+# - Discretas: toman valores enteros (conteos)
+
+# Ej: número de objetos (Rojas, Azules, etc.)
+
+# - Continuas: pueden tomar valores decimales
+
+# Ej: Precio, Peso, Largo
+
+# ❌ Variables que NO se consideran cuantitativas:
+
+# - Identificadores o códigos (ej: Grupo)
+
+# - Variables categóricas codificadas como números (ej: Etapa)
+
+# ✔ En resumen:
+
+# str(DF) ayuda a identificar el tipo de variable,
+
+# pero se necesita interpretación para clasificar correctamente
+
+# en discreta, continua o categórica.
+
+```
+
+### 3
+
+el tamaño de la muestra es
+
+```{r}
+# 📌 Tamaño total de la muestra (número de filas)
+nrow(DF)
+
+# Cantidad de valores NO NA por cada columna
+# is.na(DF) devuelve TRUE donde hay NA
+# !is.na(DF) devuelve TRUE donde NO hay NA
+# colSums(...) cuenta los TRUE por columna
+colSums(!is.na(DF))
+
+# Mínimo número de datos disponibles entre todas las variables
+# (la columna con más valores faltantes)
+min(colSums(!is.na(DF)))
+
+# Nombre de la variable con más datos faltantes
+# which.min(...) obtiene la posición del mínimo
+# names(...) devuelve el nombre de la columna
+names(which.min(colSums(!is.na(DF))))
+
+# Número de filas completas (sin ningún NA)
+# complete.cases(DF) devuelve TRUE si la fila no tiene NA
+# sum(...) cuenta cuántas filas están completas
+sum(complete.cases(DF))
+```
+
+### 4
+
+mediana ultimo
+
+```{r}
+# 📌 Mediana de la variable Rojas
+# median(...) calcula el valor central de los datos ordenados
+# na.rm = TRUE ignora los valores faltantes (NA)
+median(DF$Rojas, na.rm = TRUE)
+
+
+
+
+
+# 📌 (Extra) Coeficiente de variación de Rojas
+# sd(...) calcula la desviación estándar
+# mean(...) calcula el promedio
+# CV mide la variabilidad relativa
+cv_rojas <- (sd(DF$Rojas, na.rm = TRUE) / mean(DF$Rojas, na.rm = TRUE)) * 100
+
+# Redondeamos a 2 decimales
+round(cv_rojas, 2)
+```
+
+### 6
+
+ra.rm es para limpiarlo
+
+```{r}
+# 📌 Crear una nueva variable "Total"
+# Suma la cantidad de cada color por fila (observación)
+DF$Total <- DF$Rojas + DF$Azules + DF$Verdes + DF$Amarillas + DF$Naranjas
+
+# 📌 Contar cuántas filas tienen valores válidos (sin NA en Total)
+# is.na(...) detecta valores faltantes
+# !is.na(...) identifica valores válidos
+# sum(...) cuenta cuántos TRUE hay
+sum(!is.na(DF$Total))
+
+# 📌 Calcular el promedio del total de colores
+# mean(...) calcula el promedio
+# na.rm = TRUE ignora los valores NA
+# round(..., 2) redondea a 2 decimales
+round(mean(DF$Total, na.rm = TRUE), 2)
+```
+
+### 7
+
+```{r}
+# 📌 Número de valores atípicos (outliers) en Rojas
+length(boxplot.stats(DF$Rojas)$out)
+
+# 📌 Primer cuartil (Q1) de Rojas
+# 0.25 representa el 25% de los datos
+# na.rm = TRUE ignora valores faltantes
+quantile(DF$Rojas, 0.25, na.rm = TRUE)
+```
+
+### 8
+
+PP como neto/ total media
+
+```{r}
+# 📌 Crear la variable PP (proporción)
+DF$PP <- DF$Neto / DF$Total   # Calcula PP como Neto dividido entre Total (fila por fila)
+
+# 📌 Contar cuántos valores válidos tiene PP
+sum(!is.na(DF$PP))            # Cuenta cuántos valores NO son NA (datos disponibles)
+
+# 📌 Promedio (media)
+mean(DF$PP, na.rm = TRUE)     # Calcula el promedio de PP ignorando valores faltantes
+
+# 📌 Mediana
+median(DF$PP, na.rm = TRUE)   # Calcula el valor central de PP (50% de los datos)
+
+# 📌 Desviación estándar
+sd(DF$PP, na.rm = TRUE)       # Mide qué tan dispersos están los valores respecto al promedio
+
+# 📌 Varianza
+var(DF$PP, na.rm = TRUE)      # Mide la variabilidad total (es el cuadrado de la desviación estándar)
+
+# 📌 Cuartiles (Q1, Q2, Q3)
+quantile(DF$PP, probs = c(0.25, 0.5, 0.75), na.rm = TRUE)
+# 0.25 → Q1 (25%), 0.5 → mediana, 0.75 → Q3 (75%)
+
+# 📌 Rango (mínimo y máximo)
+range(DF$PP, na.rm = TRUE)    # Devuelve el valor mínimo y máximo de PP
+
+# 📌 Amplitud (rango numérico)
+diff(range(DF$PP, na.rm = TRUE))  
+# Calcula la diferencia entre máximo y mínimo
+
+# 📌 Outliers (valores atípicos)
+boxplot.stats(DF$PP)$out      # Extrae los valores atípicos
+length(boxplot.stats(DF$PP)$out)  
+# Cuenta cuántos outliers hay
+
+# 📌 Histograma (distribución)
+hist(DF$PP)                   # Muestra cómo se distribuyen los valores de PP
+
+# 📌 Resumen general
+summary(DF$PP)                # Da un resumen completo: min, Q1, mediana, media, Q3, max
+
+# 📌 Coeficiente de variación
+cv_pp <- (sd(DF$PP, na.rm = TRUE) / mean(DF$PP, na.rm = TRUE)) * 100  
+# Calcula la variabilidad relativa en porcentaje
+round(cv_pp, 2)               # Redondea a 2 decimales
+```
+
+```{r}
+View(DF)
+```

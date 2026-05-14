@@ -1,0 +1,6 @@
+"0","DF$Barco <- trimws(DF$Barco)"
+"0","min(table(DF$Barco))/100"
+"1","[1]"
+"1"," 9"
+"1","
+"

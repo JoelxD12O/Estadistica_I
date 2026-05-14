@@ -1,0 +1,92 @@
+---
+title: "QUIZZ1"
+format: html
+editor: visual
+---
+
+
+## Carga de librerías
+
+```{r}
+library(readr)
+library(dplyr)
+library(modeest)
+library(ggplot2)
+```
+
+## Carga de datos
+
+```{r}
+DF <- read_csv("Anchoveta_07_17.csv")
+```
+
+## Exploración
+
+```{r}
+str(DF)
+summary(DF)
+```
+
+\
+
+**Tamaño del Data Frame (DF)**
+
+```{r}
+dim(DF)
+```
+
+**Número de filas, unidades muestrales u observaciones**
+
+```{r}
+nrow(DF)
+```
+
+**Número de columnas o variables**
+
+```{r}
+ncol(DF)
+```
+**¿Cuántas veces participó el barco que menos veces participó en el estudio?**
+
+```{r}
+DF$Barco <- trimws(DF$Barco)
+min(table(DF$Barco))/100
+```
+
+**¿Cuál es el porcentaje de hembras en todo el estudio?**
+
+```{r}
+round(
+  sum(DF$Sexo == "Hembra" & DF$Estacion == "Verano") /
+  sum(DF$Estacion == "Verano") * 100,
+2)
+```
+
+**¿Cuánto es el largo promedio en centímetros de las anchovetas del estudio?**
+```{r}
+
+
+round(mean(DF$Largo),2)
+
+```
+
+
+**¿Cuál es la desviación estándar del largo en centímetros de las anchovetas del estudio?**
+
+```{r}
+
+round(sd(DF$Largo), 2)
+```
+**El rango de los pesos en gramos de las anchovetas del estudio es:**
+```{r}
+
+round(range(DF$Peso), 2)
+round(diff(range(DF$Peso)), 2)
+```
+```{r}
+hist(DF$Peso, breaks = seq(0, 250, 10))
+```
+
+```{r}
+round(sd(DF$Peso) / mean(DF$Peso), 2)
+```

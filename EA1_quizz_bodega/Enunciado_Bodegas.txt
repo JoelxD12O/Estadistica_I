@@ -1,0 +1,296 @@
+---
+title: "Enunciado_Bodegas"
+format: html
+editor: visual
+embed-resources: true
+---
+
+Explorar en **R** el [archivo de datos](https://drive.google.com/file/d/1XVrmMEkTSMdH2MTkGMLepIPM-H2W0b8h/view?usp=sharing) sobre bodegas en diversos distritos de Lima.
+
+En el archivo encontrarán los siguientes campos:
+
+- `Bodega:` una cadena de caracteres que representa a la bodega. El nombre real de la bodega ha sido ofuscado por razones de confidencialidad.
+
+- `Distrito:` una cadena de caracteres que representa el distrito donde está ubicada la bodega.
+
+- `Aforo:` un entero positivo con el aforo de la bodega.
+
+- `Productos:` un entero positivo con la cantidad de tipos de productos diferentes que manejó la bodega un mes. Marcas diferentes y presentaciones diferentes cuentan como productos diferentes. Los diversos tipos de verduras y frutas cuentan como tipos diferentes.
+
+- `Ventas1:` La cantidad total (en soles con céntimos) vendida por la bodega en la primera semana del estudio. No se toman en cuenta las devoluciones.
+
+- `Ventas2:` La cantidad total (en soles con céntimos) vendida por la bodega en la segunda semana del estudio. No se toman en cuenta las devoluciones.
+
+- `Ventas3:` La cantidad total (en soles con céntimos) vendida por la bodega en la tercera semana del estudio. No se toman en cuenta las devoluciones.
+
+- `Ventas4:` La cantidad total (en soles con céntimos) vendida por la bodega en la cuarta semana del estudio. No se toman en cuenta las devoluciones.
+
+El conjunto de datos está limpio, pero la limpieza generó algunos datos faltantes en las ventas, estos se reportan como NA.
+
+## Estructuras necesarias
+
+Para trabajar el presente laboratorio de práctica, necesitará los siguientes dataframes y los paquetes : *dplyr*, *readr* y *stringr*
+
+## El data frame DF
+
+Este data frame contiene todos los datos del archivo `BodegasEP.csv` y se debe cargar directamente mediante la función `read_csv` correspondiente al paquete *readr*. Para poder hacer esto deben tener el archivo en una ubicación conocida, preferiblemente el directorio de trabajo.
+
+Recuerden que la función `str` puede ser útil para entender los diversos detalles de una estructura en R.
+
+La función `complete.cases` también es conveniente pues permite detectar en donde hay datos faltantes, de manera similar a `is.na`.
+
+## El data frame DFT
+
+Este data frame se crea a partir de `DF` usando la función complete.cases para eliminar los registros con datos faltantes y usando la función `mutate` para generar una columna adicional donde se encuentra la suma de las columnas `Ventas1`, `Ventas2`, `Ventas3` y `Ventas4`.
+
+De esta manera `DFT` tiene una columna más que `DF` y algunas filas menos que `DF`.
+
+La función `str_length` podría ser útil para manipular algunas cosas relacionadas con DFT.
+
+## El data frame DFD
+
+Este data frame se obtiene a partir de `DFT` utilizando las funciones `group_by` y `summarize`.
+
+En `DFD` deberían haber solo dos columnas (dos variables). La primera es el Distrito, que es el valor que hemos utilizado para sumar las ventas mensuales. La segunda es Total Ventas y tiene los valores acumulados de las ventas, por distrito.
+
+En el caso de las filas, DFD también tiene pocas, ya que en realidad trabaja con el número de distritos disponibles en el estudio.
+
+## Carga de librerías
+
+```{r}
+library(readr)
+library(dplyr)
+library(modeest)
+library(ggplot2)
+library(stringr)
+```
+
+## Carga de datos
+
+```{r}
+DF <- read_csv("BodegasEP.csv")
+```
+
+```{r}
+summary(DF)
+
+```
+
+**En DF, ¿Cuántas bodegas participaron en el estudio?**
+
+```{r}
+length(unique(DF$Bodega))#cuenta los NA
+n_distinct(DF$Bodega)      #(ignora NA)
+
+```
+
+**En DF, ¿Cuántas bodegas tienen todos sus datos completos? Question Blank 1 of 1**
+
+```{r}
+DF_clean <- DF[complete.cases(DF), ]   # filtra filas completas
+
+n_distinct(DF_clean$Bodega)           # cuenta bodegas completas
+```
+
+**En DF, ¿Cuántas datos faltantes hay? \[ \] y ¿A cuántas bodegas afectan? \[ \]**
+
+```{r}
+# 📌 1. Calcular el número total de datos faltantes (NA) en todo el dataset
+na_total <- sum(is.na(DF))  
+# is.na(DF) detecta los valores faltantes
+# sum(...) cuenta cuántos NA hay en total
+
+# 📌 2. Identificar filas que tienen al menos un NA
+DF_na <- DF[!complete.cases(DF), ]  
+# complete.cases(DF) devuelve TRUE si la fila no tiene NA
+# !complete.cases(...) selecciona las filas que sí tienen NA
+
+# 📌 3. Contar cuántas bodegas están afectadas por datos faltantes
+bodegas_afectadas <- n_distinct(DF_na$Bodega)  
+# n_distinct(...) cuenta cuántas bodegas diferentes aparecen en esas filas
+
+# 📌 4. Mostrar resultados
+na_total              # Total de datos faltantes
+bodegas_afectadas     # Número de bodegas afectadas
+```
+
+**En DFT, ¿Cuál es el total de ventas en todos los distritos?**
+
+```{r}
+DFT <- DF %>%
+  filter(complete.cases(.)) %>%   
+  # Filtra solo las filas que NO tienen datos faltantes (NA)
+
+  mutate(Total = Ventas1 + Ventas2 + Ventas3 + Ventas4)  
+  # Crea una nueva variable "Total" sumando las ventas de las 4 semanas
+
+sum(DFT$Total)
+# Suma todas las ventas totales de cada bodega
+# Resultado = ventas totales en todos los distritos
+
+```
+
+
+
+**En DF o en DFT, ¿Cuántas bodegas, con todos sus datos completos, participaron en Breña?**
+
+```{r}
+sum(DFT$Distrito == "Breña")
+sum(DF$Distrito == "Breña" & complete.cases(DF))
+```
+
+
+
+**En DFT, ¿En qué distrito está la bodega con menor venta semanal? your answer...  ¿Cómo se llama esa bodega? your answer**
+
+```{r}
+
+pos_min <- which.min(pmin(DFT$Ventas1, DFT$Ventas2, DFT$Ventas3, DFT$Ventas4))  
+# posición del menor valor entre todas las semanas
+
+min_semanal <- pmin(DFT$Ventas1, DFT$Ventas2, DFT$Ventas3, DFT$Ventas4)[pos_min]  
+# valor mínimo semanal
+
+distrito <- DFT$Distrito[pos_min]   
+# distrito correspondiente
+
+nombre_bodega <- DFT$Bodega[pos_min]  
+# bodega correspondiente
+
+distrito
+nombre_bodega
+```
+**mensual**
+
+
+```{r}
+
+
+
+
+pos_min <- which.min(DFT$Total)   # posición del menor valor
+
+min_total <- DFT$Total[pos_min]   # valor mínimo
+distrito <- DFT$Distrito[pos_min] # distrito correspondiente
+nombre_bodega <- DFT$Bodega[pos_min] # bodega correspondiente
+
+distrito
+nombre_bodega
+```
+
+
+
+**creamos DFD**
+```{r}
+DFD <- DFT %>%
+  group_by(Distrito) %>%  
+  # agrupa por distrito
+
+  summarize(Total_Ventas = sum(Total))  
+  # calcula el total de ventas por distrito
+
+```
+
+**En DFD ¿Qué distrito tiene las menores ventas en el estudio?**
+``` {r}
+
+minimo <- min(DFD$Total_Ventas)
+distrito <- DFD$Distrito[DFD$Total_Ventas == minimo]
+
+
+distrito
+```
+
+**En DFT ¿Qué bodega tiene el nombre más largo? type your answer... ¿Cuánto vendió? your answer**
+
+
+```{r}
+
+largo_nombre <- str_length(DFT$Bodega)  
+# calcula la cantidad de caracteres
+
+max_largo <- max(largo_nombre)  
+# obtiene el máximo
+
+nombre_bodega <- DFT$Bodega[largo_nombre == max_largo]  
+# bodega con nombre más largo
+
+cuanto_vendio <- DFT$Total[largo_nombre == max_largo]  
+# ventas de esa misma bodega
+
+nombre_bodega
+cuanto_vendio
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+
+# 📌 MANEJO DE VALORES FALTANTES (NA) EN R
+
+# En R, los valores faltantes se representan como NA (Not Available).
+
+# 🔹 is.na()
+# Se usa para detectar valores faltantes.
+# Devuelve TRUE si el valor es NA y FALSE en caso contrario.
+# Ejemplo:
+# is.na(DF$Ventas1)
+
+# 🔹 !is.na()
+# Se usa para obtener los valores que NO son NA.
+# Ejemplo:
+# DF[!is.na(DF$Ventas1), ]
+
+# 🔹 complete.cases()
+# Identifica filas completas (sin ningún NA en todas las variables).
+# Ejemplo:
+# DF[complete.cases(DF), ]
+
+# 🔹 na.rm = TRUE
+# Se usa dentro de funciones estadísticas para ignorar los NA.
+# Ejemplo:
+# mean(DF$Ventas1, na.rm = TRUE)
+# sum(DF$Ventas1, na.rm = TRUE)
+# sd(DF$Ventas1, na.rm = TRUE)
+
+# ⚠️ IMPORTANTE:
+# Si no se usa na.rm = TRUE, muchas funciones devuelven NA si existe al menos un valor faltante.
+
+# ❌ Error común:
+# is.na = TRUE   # Esto es incorrecto
+
+# ✔ Resumen:
+# - is.na() → detectar NA
+# - !is.na() → filtrar datos válidos
+# - complete.cases() → filas completas
+# - na.rm = TRUE → ignorar NA en cálculos
+
+```

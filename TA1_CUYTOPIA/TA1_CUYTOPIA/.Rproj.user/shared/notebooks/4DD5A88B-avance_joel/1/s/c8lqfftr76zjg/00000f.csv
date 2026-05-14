@@ -1,0 +1,7 @@
+"0",""
+"0","# 1. Filtrar datos del grupo 8"
+"0","DF_grupo8 <- DF %>%"
+"0","  filter(`¿Qué grupo te envió la encuesta?` == 8)"
+"0",""
+"0","# 2. Ver las primeras filas (opcional)"
+"0","head(DF_grupo8)"

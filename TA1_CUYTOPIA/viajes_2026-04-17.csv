@@ -1,0 +1,3 @@
+N°,Tipo,Conductor,Placa,Origen,Destino,Fecha Salida,Km recorrido,Combustible (gal),Estado,Ida N°,Ida Origen,Ida Destino,Ida Fecha,Ida Hora,Ida Km,Ida Combustible (gal),Vuelta N°,Vuelta Origen,Vuelta Destino,Vuelta Fecha,Vuelta Hora,Vuelta Km,Vuelta Combustible (gal)
+TRIP-1776442491077-OQFY18UWI,Ida y vuelta,driver 2,BFF850,PLaza NOrte,—,2026-04-17,500,—,en_progreso,TRIP-1776442491077-OQFY18UWI,PLaza NOrte,Izaguirre,2026-04-17,11:14:00,500,—,TRIP-1776442706266-5RD7ZT39B,Izaguirre,—,2026-04-18,11:17:00,—,—
+TRIP-1776443121490-4S9BHZGDO,Viaje simple,driver1,CMF135,Taller,Taller,2026-04-17,623939,—,completado,TRIP-1776443121490-4S9BHZGDO,Taller,Taller,2026-04-17,11:14:00,623939,—,,,,,,,

@@ -1,0 +1,215 @@
+---
+title: "Impacto del consumo de bebidas energéticas en la vida académica de los universitarios de UTEC Barranco en el presente ciclo 2026-1"
+author: "Tu nombre"
+date: today
+format:
+  html:
+    toc: true
+    theme: cosmo
+---
+
+# PROYECTO: SALUD Y ESTILO DE VIDA EN ESTUDIANTES UTEC
+
+------------------------------------------------------------------------
+
+## TEMA GENERAL
+
+Relación de la salud de los estudiantes universitarios con su estilo de vida y alimentación.
+
+------------------------------------------------------------------------
+
+## OBJETIVO GENERAL
+
+Analizar la relación de la salud de los estudiantes universitarios con sus hábitos de estilo de vida (actividad física, horas de sueño, etc.) y también la relación con su alimentación.
+
+------------------------------------------------------------------------
+
+## TEMA DEL GRUPO
+
+Impacto del consumo de bebidas energéticas en la vida académica de los universitarios de UTEC Barranco en el ciclo 2026-1.
+
+------------------------------------------------------------------------
+
+# OBJETIVOS ESPECÍFICOS
+
+1.  Determinar la relación entre la frecuencia de consumo de bebidas energéticas en días por semana y las horas de sueño diarias de los estudiantes de UTEC Barranco en 2026.
+
+2.  Analizar la relación entre el nivel de estrés autopercibido y la frecuencia de consumo de bebidas energéticas en días por semana en estudiantes de UTEC Barranco en 2026.
+
+3.  Evaluar la relación entre el tipo de actividad física realizada y la calidad de sueño autopercibida en estudiantes de UTEC Barranco en 2026.
+
+------------------------------------------------------------------------
+
+# VARIABLES DEL ESTUDIO
+
+## Variables cuantitativas continuas
+
+### Horas de sueño diarias
+
+-   Tipo: Cuantitativa continua\
+-   Definición: Cantidad promedio de horas que duerme el estudiante por noche\
+-   Medición: Valor decimal (ej. 5.5, 7.0, 8.5)\
+-   Rango: 0 a 12 horas\
+-   Relación: Objetivo específico 1\
+-   Pregunta: ¿Cuántas horas duermes en promedio por noche?
+
+### Horas de ejercicio por semana
+
+-   Tipo: Cuantitativa continua\
+-   Definición: Cantidad de horas de actividad física semanal\
+-   Medición: Valor decimal\
+-   Rango: 0 a 20 horas\
+-   Relación: Variable de contexto\
+-   Pregunta: ¿Cuántas horas haces ejercicio a la semana?
+
+------------------------------------------------------------------------
+
+## Variables cuantitativas discretas
+
+### Frecuencia de consumo de bebidas energéticas
+
+-   Tipo: Cuantitativa discreta\
+-   Definición: Número de días por semana que consume\
+-   Rango: 0 a 7 días\
+-   Relación: Objetivos 1 y 2\
+-   Pregunta: ¿Cuántos días consumes bebidas energéticas?
+
+### Número de unidades por ocasión
+
+-   Tipo: Cuantitativa discreta\
+-   Definición: Cantidad de bebidas consumidas por ocasión\
+-   Rango: 0 a 5\
+-   Relación: Variable de contexto\
+-   Pregunta: ¿Cuántas unidades consumes?
+
+------------------------------------------------------------------------
+
+## Variables cualitativas
+
+### Actividad física
+
+-   Tipo: Nominal\
+-   Categorías: Gimnasio, Deporte, Caminar, Ninguna
+
+### Alimentación habitual
+
+-   Tipo: Nominal\
+-   Categorías: Completo, Ligero, No come
+
+### Nivel de estrés autopercibido
+
+-   Tipo: Ordinal\
+-   Categorías: Muy bajo, Bajo, Regular, Alto, Muy alto
+
+### Calidad de sueño autopercibida
+
+-   Tipo: Ordinal\
+-   Categorías: Muy mala, Mala, Regular, Buena, Muy buena
+
+------------------------------------------------------------------------
+
+# INSTRUMENTO DE RECOLECCIÓN
+
+-   Población: Estudiantes universitarios de UTEC Barranco (2026-1)\
+-   Unidad muestral: Cada estudiante encuestado
+
+## Variables en encuesta
+
+-   Horas de sueño\
+-   Horas de ejercicio\
+-   Frecuencia de consumo\
+-   Unidades consumidas\
+-   Actividad física\
+-   Alimentación\
+-   Estrés\
+-   Calidad de sueño
+
+------------------------------------------------------------------------
+
+# FORMA DE RECOLECCIÓN
+
+-   Método: Encuesta\
+-   Tipo: Autorreporte\
+-   Gadget: No\
+-   Observador: No
+
+**Descripción:**\
+No se realiza observación directa, no se usan gadgets ni mediciones externas. La información proviene del autorreporte del estudiante, basado en su percepción y memoria.
+
+------------------------------------------------------------------------
+
+# TIPO DE MEDICIÓN
+
+-   Horas de sueño: Estimación numérica personal\
+-   Horas de ejercicio: Estimación numérica personal\
+-   Consumo: Frecuencia declarada\
+-   Estrés: Percepción subjetiva\
+-   Calidad de sueño: Percepción subjetiva
+
+------------------------------------------------------------------------
+
+# FORMA DE LAS PREGUNTAS
+
+Categorías de frecuencia: - 0 días\
+- 1-2 días\
+- 3-4 días\
+- 5-6 días\
+- 7 días
+
+**Descripción:**\
+Algunas variables cuantitativas se presentan como categorías para facilitar la respuesta, convirtiéndose en ordinales.
+
+------------------------------------------------------------------------
+
+# JUSTIFICACIÓN
+
+El uso de categorías facilita la respuesta, reduce errores y estandariza los datos, aunque implica una ligera pérdida de precisión.
+
+------------------------------------------------------------------------
+
+# RELEVAMIENTO DE VARIABLES
+
+## Variable 1: Horas de sueño
+
+-   Tipo original: Cuantitativa continua\
+-   Método: Autorreporte\
+-   Instrumento: Pregunta abierta\
+-   Resultado: Se mantiene continua
+
+## Variable 2: Horas de ejercicio
+
+-   Tipo original: Cuantitativa continua\
+-   Método: Autorreporte\
+-   Resultado: Se mantiene continua
+
+## Variable 3: Frecuencia de consumo
+
+-   Tipo original: Cuantitativa discreta\
+-   Forma: 0 días, 1-2 días, 3-4 días, 5-6 días, 7 días\
+-   Resultado: Se vuelve ordinal
+
+## Variable 4: Unidades consumidas
+
+-   Tipo original: Cuantitativa discreta\
+-   Forma: 0, 1, 2, 3, 4, 5 o más\
+-   Resultado: Se vuelve ordinal
+
+## Variable 5: Actividad física
+
+-   Tipo: Nominal\
+-   Resultado: Se mantiene nominal
+
+## Variable 6: Alimentación
+
+-   Tipo: Nominal\
+-   Resultado: Se mantiene nominal
+
+## Variable 7: Estrés
+
+-   Tipo: Ordinal\
+-   Resultado: Escala ordinal
+
+## Variable 8: Calidad de sueño
+
+-   Tipo: Ordinal\
+-   Resultado: Escala ordinal

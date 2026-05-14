@@ -1,0 +1,316 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## Leer librerías necesarias
+
+```{r}
+library(readr)
+library(dplyr)
+library(visdat)
+library(naniar)
+```
+
+## Libreta de códigos:
+
+- **Horas de sueño diarias:** Debería ser un valor numérico decimal dentro del rango **\[3 - 12\]** horas.
+
+- **Horas de ejercicio por semana:** Valor numérico dentro del rango **\[1 - 20\]** horas.
+
+- **Frecuencia de consumo de bebidas energéticas:** En días enteros dentro del rango **\[0 - 7\]** días.
+
+- **Número de unidades de bebida energética por día:** Valor entero dentro del rango **\[0 - 5\]** bebidas aproximadamente.
+
+- **Cantidad de desayuno habitual**: Valor entero dentro de la escala **0 - 4**, donde 0 es una poca cantidad y 4 una gran cantidad.
+
+- **Actividad física:** Debe tomar uno de los valores de la siguiente lista: "**deportes colectivos", "actividad aeróbica", "actividad anaeróbica", "mixta", "no realiza actividad física"**.
+
+- **Sexo**: Debería ser una de las especificadas en la siguiente lista: **"Masculino"**, **"Femenino"**.
+
+- **Carrera universitaria:** Debe tomar uno de los valores de la siguiente lista: **"Ingeniería, Tecnología y Construcción"**, **"Humanidades, Artes y Educación"**, **"Administración, Negocios y Contabilidad"**, **"Ciencias exactas y Ambientales"**, **"Ciencias de la salud"**, **"Ciencias Sociales y Derecho"**.
+
+- **Nivel de estrés auto-percibido**: Dentro de la siguiente escala ordinal: **\[0 - 4\]** donde **0** es un nivel nulo de estrés y **4** un nivel muy alto.
+
+- **Nivel de calidad de sueño auto-percibida**: Dentro de la siguiente escala ordinal **"Muy mala" \< "Mala" \< "Regular" \< "Buena" \< "Muy buena"**
+
+- **Ciclo académico:** Dentro de la siguiente escala ordinal: **1** \< **2** \< **3 \< 4 \< 5 \< 6 \< 7 \< 8 \< 9 \< 10**
+
+- **Edad**: Valor entero dentro del rango **\[17 - 25\]** años.
+
+- **Cantidad de cursos matriculados:** Valor entero dentro del rango **\[3 - 8\]** cursos.
+
+## Leer el .csv con los datos
+
+```{r}
+DF <- read_csv("Encuesta.csv")
+unique(DF$`¿Qué grupo te envió la encuesta?`)
+```
+
+## Información del Data Frame (DF)
+
+### Filtrado del Data Frame para el grupo 8
+
+```{r}
+DF_grupo8 <- DF %>%filter(`¿Qué grupo te envió la encuesta?` == 8)
+```
+
+### Cantidad de observaciones
+
+```{r}
+nrow(DF_grupo8)
+```
+
+### Cantidad de variables
+
+```{r}
+ncol(DF_grupo8)
+```
+
+### Tipos de variables presente
+
+```{r}
+glimpse(DF_grupo8)
+```
+
+### Tipos de datos por columna
+
+```{r}
+str(DF_grupo8)
+```
+
+### Resultados de las 10 primeras filas
+
+```{r}
+head(DF, n=10)
+```
+
+## Limpieza de datos
+
+### Copia de seguridad de nuestro Data Frame
+
+```{r}
+DF_grupo8 -> DF_limpio
+```
+
+### Revisión preliminar de la variable categórica nominal Sexo
+
+```{r}
+unique(DF_grupo8$`1. Sexo`)
+length(unique(DF_grupo8$`1. Sexo`))
+```
+
+Vemos que no hay datos incompletos ni problemas de tipeo en los valores de esta variable por lo que la consideraremos como limpia.
+
+### Revisión preliminar de la variable Edad
+
+```{r}
+unique(DF_grupo8$`4. Edad en años cumplidos`)
+length(unique(DF_grupo8$`4. Edad en años cumplidos`))
+```
+
+Se puede observar que hay valores en la edad que exceden el rango pre-establecido, por lo que se hará una limpieza a estos datos.
+
+### Limpieza de datos de la variable Edad
+
+```{r}
+DF_limpio$`4. Edad en años cumplidos`[DF_limpio$`4. Edad en años cumplidos` < 16 | DF_limpio$`4. Edad en años cumplidos` > 25] <- NA
+```
+
+```{r}
+unique(DF_limpio$`4. Edad en años cumplidos`)
+length(unique(DF_limpio$`4. Edad en años cumplidos`))
+```
+
+Todos las edad ahora están dentro del rango permitido por lo que la variable está ahora limpia.
+
+### Revisión preliminar de la variable Carrera
+
+```{r}
+unique(DF_grupo8$`5. Carrera universitaria`)
+length(unique(DF_grupo8$`5. Carrera universitaria`))
+```
+
+Se observa que no hay problemas con los valores de la variable Carrera por lo que se considera como limpia.
+
+### Revisión preliminar de la variable Ciclo Académico
+
+```{r}
+unique(DF_grupo8$`6. Ciclo académico`)
+length(unique(DF_limpio$`6. Ciclo académico`))
+```
+
+Se puede apreciar que no hay problema con los valores de la variable por lo que se considera como limpia. A continuación se usará la función **factor()** con **ordered = True** para el ordenamiento de las categorías.\
+
+```{r}
+DF_limpio$`6. Ciclo académico` <- factor(DF_limpio$`6. Ciclo académico`, levels = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10), ordered = TRUE)
+```
+
+### Ordenamiento de las categorías de la variable Ciclo académico
+
+```{r}
+unique(DF_limpio$`6. Ciclo académico`)
+```
+
+### Revisión preliminar de la variable Cantidad de cursos
+
+```{r}
+unique(DF_grupo8$`7. ¿En cuántos cursos te encuentras matriculado actualmente?`)
+length(unique(DF_grupo8$`7. ¿En cuántos cursos te encuentras matriculado actualmente?`))
+```
+
+Vemos que hay valores que salen del rango pre-establecido por lo que se procederá con la limpieza de los datos errados.
+
+### Limpieza de la variable Cantidad de cursos
+
+```{r}
+DF_limpio$`7. ¿En cuántos cursos te encuentras matriculado actualmente?`[DF_limpio$`7. ¿En cuántos cursos te encuentras matriculado actualmente?` < 3 | DF_limpio$`7. ¿En cuántos cursos te encuentras matriculado actualmente?` > 8] <- NA
+```
+
+```{r}
+unique(DF_limpio$`7. ¿En cuántos cursos te encuentras matriculado actualmente?`)
+```
+
+Los datos errados se trataron como NA's, por lo que la variable Cantidad de cursos está ahora limpia
+
+### Revisión preliminar de la variable Horas de ejercicio por semana
+
+```{r}
+unique(DF_grupo8$`8. Considerando los últimos 7 días, ¿Cuántas horas en total a la semana dedicaste a realizar actividad física (deporte, gimnasio, caminatas intensas, etc.)?`)
+length(unique(DF_grupo8$`8. Considerando los últimos 7 días, ¿Cuántas horas en total a la semana dedicaste a realizar actividad física (deporte, gimnasio, caminatas intensas, etc.)?`))
+```
+
+Vemos que hay valores que exceden el rango pre-establecido para la variable como es el caso de los valores "24.0" y "21.0" por lo que se realizará la limpieza de datos para esta variable.
+
+### Limpieza de la variable Horas de ejercicio por semana
+
+```{r}
+DF_limpio$`8. Considerando los últimos 7 días, ¿Cuántas horas en total a la semana dedicaste a realizar actividad física (deporte, gimnasio, caminatas intensas, etc.)?`[DF_limpio$`8. Considerando los últimos 7 días, ¿Cuántas horas en total a la semana dedicaste a realizar actividad física (deporte, gimnasio, caminatas intensas, etc.)?` > 20] <- NA
+```
+
+```{r}
+unique(DF_limpio$`8. Considerando los últimos 7 días, ¿Cuántas horas en total a la semana dedicaste a realizar actividad física (deporte, gimnasio, caminatas intensas, etc.)?`)
+```
+
+El valor errado fue tratado como NA por lo que la variable ahora está limpia.
+
+### Revisión preliminar de la variable Calidad de sueño auto-percibida
+
+```{r}
+unique(DF_grupo8$`16. ¿Cómo calificarías la calidad de tu sueño en general?`)
+length(unique(DF_grupo8$`16. ¿Cómo calificarías la calidad de tu sueño en general?`))
+```
+
+Se puede apreciar que no hay problema con los valores de la variable por lo que se considera como limpia. A continuación se usará la función **factor()** con **ordered = True** para el ordenamiento de las categorías.
+
+### Ordenamiento de la variable Calidad de sueño auto-percibida
+
+```{r}
+DF_limpio$`16. ¿Cómo calificarías la calidad de tu sueño en general?` <- factor(DF_limpio$`16. ¿Cómo calificarías la calidad de tu sueño en general?`, levels = c("Muy mala", "Mala", "Regular", "Buena", "Muy buena"), ordered = TRUE)
+```
+
+```{r}
+unique(DF_limpio$`16. ¿Cómo calificarías la calidad de tu sueño en general?`)
+```
+
+### Revisión preliminar de la variable Horas de sueño diarias
+
+```{r}
+unique(DF_grupo8$`17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.`)
+length(unique(DF_grupo8$`17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.`))
+```
+
+Se observan valores fuera del rango pre-establecido, por ejemplo, es imposible que una personas duerma un promedio de 0 horas diarias. El valor de 2 horas también se considera como errado. Se procede con la limpieza de la variable.
+
+### Limpieza de la variable Horas de sueño diarias
+
+```{r}
+DF_limpio$`17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.`[DF_limpio$`17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.` < 3 | DF_limpio$`17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.` > 12] <- NA
+```
+
+```{r}
+unique(DF_limpio$`17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.`)
+```
+
+Vemos que ya no hay valores errados para esta variable, pues estos se consideraron como NA's por lo que la variable se encuentra limpia.
+
+### Revisión preliminar de la variable Cantidad de desayuno habitual
+
+```{r}
+unique(DF_grupo8$`19. ¿Qué cantidad de desayuno consumes habitualmente?`)
+length(unique(DF_grupo8$`19. ¿Qué cantidad de desayuno consumes habitualmente?`))
+```
+
+Se observa que no hay valores errados en esta variable por lo que se considera como limpia.
+
+### Revisión preliminar de la variable Frecuencia de consumo de bebidas energéticas
+
+```{r}
+unique(DF_grupo8$`20. ¿Cuántos días a la semana consumes bebidas energéticas? (0 = ningún día de la semana, 1, 2, …, 7)`)
+length(unique(DF_grupo8$`20. ¿Cuántos días a la semana consumes bebidas energéticas? (0 = ningún día de la semana, 1, 2, …, 7)`))
+```
+
+Se observa que no hay valores errados en esta variable por lo que se considera como limpia.
+
+### Revisión preliminar de la variable Número de unidades de bebida energética por día
+
+```{r}
+unique(DF_grupo8$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?`)
+length(unique(DF_grupo8$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?`))
+```
+
+Se puede apreciar que hay errores errados en los valores de esta variable. Sin embargo hay un valor que se puede entender el valor de uno de los valores presentes como el de "6 moster". Se procederá con la limpieza de datos de la variable.
+
+### Limpieza de la variable Número de unidades de bebida energética por día
+
+```{r}
+DF_limpio$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?`[DF_limpio$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?` %in% c("6 moster")] <- "6"
+DF_limpio$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?`[DF_limpio$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?` %in% c("Ga", "me compro todo tambo")] <- NA
+DF_limpio$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?`[DF_limpio$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?` %in% c("No tomo")] <- "0"
+```
+
+```{r}
+unique(DF_limpio$`21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?`)
+```
+
+Los datos errados fueron considerados como NA's y el valor identificable tuvo una corrección para su correcto estudio por lo que la variable queda limpia.
+
+### Revisión preliminar de la variable Nivel de estrés auto-percibido
+
+```{r}
+unique(DF_grupo8$`23. ¿Cuál es tu percepción del nivel de estrés?`)
+length(unique(DF_grupo8$`23. ¿Cuál es tu percepción del nivel de estrés?`))
+```
+
+Se puede ver que no hay inconvenientes con la variable. A continuación se usará la función **factor()** con **ordered = True** para el ordenamiento de las categorías.
+
+```{r}
+DF_limpio$`23. ¿Cuál es tu percepción del nivel de estrés?` <- factor(DF_limpio$`23. ¿Cuál es tu percepción del nivel de estrés?`, levels = c(0, 1, 2, 3, 4), ordered = TRUE)
+```
+
+```{r}
+unique(DF_limpio$`23. ¿Cuál es tu percepción del nivel de estrés?`)
+```
+
+### Revisión preliminar de la variable Actividad física
+
+```{r}
+unique(DF_grupo8$`27. Qué tipo de actividad física realizas con mayor frecuencia durante el ciclo académico 2026-I?`)
+length(unique(DF_grupo8$`27. Qué tipo de actividad física realizas con mayor frecuencia durante el ciclo académico 2026-I?`))
+```
+
+Se aprecia que no hay problemas con los valores de las variables por lo que se considera como limpia.
+
+## Eliminación de columnas extras
+
+```{r}
+DF_final <- DF_limpio %>%
+  select(-c(1,2,4, 5, 11,12,13,14,15,17,16,16,20,24,26,27,28,30,31,32,33,34,35,36))
+```
+
+## Exportación de datos
+
+```{r}
+write_csv(DF_final, "Dataframe_grupo8.csv")
+```

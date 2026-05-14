@@ -1,0 +1,1050 @@
+---
+title: "TA1 Cuytopia"
+format: html
+---
+
+## Carga de librerías
+
+```{r}
+library(readr)
+library(dplyr)
+library(modeest)
+library(ggplot2)
+```
+
+## Carga de datos
+
+```{r}
+DF <- read_csv("cuytopia.csv")
+```
+
+## Exploración
+
+```{r}
+str(DF)
+summary(DF)
+```
+
+**Tamaño del Data Frame (DF)**
+
+```{r}
+dim(DF)
+```
+
+**Número de filas, unidades muestrales u observaciones**
+
+```{r}
+nrow(DF)
+```
+
+**Número de columnas o variables**
+
+```{r}
+ncol(DF)
+```
+
+**Visualizar las 10 primeras filas del Data Frame (DF)**
+
+```{r}
+head(DF, n=10)
+```
+
+**Visualizar las 10 últimas filas del Data Frame (DF)**
+
+```{r}
+tail(DF, n=10)
+```
+
+**Visualizar el Data Frame (DF) y los tipos de variables**
+
+```{r}
+str(DF)
+```
+
+**Descriptores numéricos de cada variable**
+
+**Variables categóricas:** Frecuencia absoluta o número de observaciones.
+
+**Variables numéricas:** Se muestra los siguientes descriptores: Min (mínimo de los valores), 1st Qu.(primer cuartil) , Median (mediana de los valores), Mean (promedio o media de los valores), 3rd Qu. (tercer cuartil), Max (máximo de los valores), NA's (cantidad de datos faltantes)
+
+```{r}
+summary(DF$Peso)
+```
+
+```{r}
+summary(DF)
+```
+
+**Cantidad de datos faltantes**
+
+```{r}
+sum(is.na(DF))
+```
+
+**Porcentaje de datos faltantes**
+
+\[ Número de datos faltantes / (número de filas x número de columnas) \] \* 100
+
+El 13.33% de los datos son faltantes.
+
+```{r}
+round(sum(is.na(DF))/(nrow(DF)*ncol(DF))*100,2)
+```
+
+**Porcentaje de datos completos**
+
+\[ (número de filas x número de columnas - Número de datos faltantes ) / (número de filas x número de columnas) \] \* 100
+
+```{r}
+round(( nrow(DF)*ncol(DF) - sum(is.na(DF)) )/(nrow(DF)*ncol(DF)) *100,2)
+```
+
+**Cantidad de datos faltantes por variable**
+
+```{r}
+colSums(is.na(DF))
+```
+
+**Porcentaje de datos faltantes por variable**
+
+```{r}
+round(colSums(is.na(DF))/nrow(DF)*100,2)
+```
+
+**Cantidad de datos faltantes por variable y Porcentaje de datos faltantes por variable ordenados en forma descendente**
+
+```{r}
+miss_var_summary(DF)
+```
+
+**Cantidad de observaciones o filas completas sin datos faltantes.**
+
+Existen 2165 observaciones o filas completas.
+
+```{r}
+sum(complete.cases(DF))
+```
+
+**Porcentaje de observaciones o filas completas sin datos faltantes.**
+
+Existen 46.57% observaciones o filas completas.
+
+```{r}
+round(sum(complete.cases(DF))/nrow(DF)*100, 2)
+```
+
+**Cantidad de observaciones o filas incompletas con datos faltantes.**
+
+Existen 2484 observaciones o filas incompletas.
+
+```{r}
+sum(!complete.cases(DF))
+```
+
+**Porcentaje de observaciones o filas incompletas con datos faltantes.**
+
+Existen 53.43% observaciones o filas incompletas.
+
+```{r}
+round(sum(!complete.cases(DF))/nrow(DF)*100, 2)
+```
+
+**Cantidad de datos faltantes por fila (observación)**
+
+```{r}
+table(rowSums(is.na(DF)))
+```
+
+**Promedio de datos faltantes por fila**
+
+```{r}
+round(mean(rowSums(is.na(DF))), 2)
+```
+
+**Promedio de datos faltantes por columna**
+
+```{r}
+round(mean(colSums(is.na(DF))),2)
+```
+
+**Mediana de datos faltantes por fila**
+
+```{r}
+round(median(rowSums(is.na(DF))), 2)
+```
+
+**Cantidad de datos faltantes por fila (observación) y Porcentaje de datos faltantes por fila (observación) ordenados en forma descendente**
+
+```{r}
+round(miss_case_table(DF),2)
+```
+
+**Gráfico de datos y porcentajes faltantes por variable**
+
+```{r}
+vis_miss(DF)
+```
+
+**Gráfico de datos faltantes por variable ordenados en forma descedente**
+
+```{r}
+gg_miss_var(DF)
+```
+
+**Variable con menor tamaño efectivo de muestra**
+
+El tamaño efectivo de cada variable se calcula como el número de observaciones totales menos la cantidad de datos faltantes en dicha variable.
+
+```{r}
+# Cálculo del tamaño efectivo por variable
+efectivo <- nrow(DF) - colSums(is.na(DF))
+efectivo
+
+# Identificar la variable con menor tamaño efectivo
+variable_menor <- names(efectivo)[which.min(efectivo)]
+tamano_menor <- min(efectivo)
+
+variable_menor
+tamano_menor
+```
+
+**Datos faltantes por unidad muestral**
+
+```{r}
+# Número de NA por fila
+na_por_fila <- rowSums(is.na(DF))
+
+# Máximo de NA en una fila
+max_na <- max(na_por_fila)
+
+# Número de filas con ese máximo
+filas_max_na <- sum(na_por_fila == max_na)
+
+# Promedio
+promedio_na <- round(mean(na_por_fila), 2)
+
+# Mediana
+mediana_na <- round(median(na_por_fila), 2)
+
+max_na
+filas_max_na
+promedio_na
+mediana_na
+```
+
+**Descriptores de la variable Peso**
+
+```{r}
+# Eliminamos los valores faltantes (NA) para poder calcular correctamente
+peso <- DF$Peso
+
+# -------------------------------
+# Mediana (valor central de los datos)
+median_peso <- median(peso, na.rm = TRUE)
+median_peso
+
+# -------------------------------
+# Promedio (media aritmética)
+promedio_peso <- mean(peso, na.rm = TRUE)
+promedio_peso
+
+# -------------------------------
+# Desviación estándar (qué tanto varían los datos)
+desv_peso <- sd(peso, na.rm = TRUE)
+desv_peso
+
+# -------------------------------
+# Cantidad de valores diferentes
+valores_diferentes <- length(unique(peso))
+valores_diferentes
+```
+
+**Limpieza y análisis de la variable Sexo**
+
+```{r}
+# ----------------------------------------
+# 1. LIMPIEZA DE LA VARIABLE SEXO
+# ----------------------------------------
+
+# Convertimos todo a minúsculas para evitar diferencias por formato
+DF <- DF %>%
+  mutate(Sexo = tolower(Sexo))
+
+# Reemplazamos las distintas formas incorrectas por valores estándar
+DF <- DF %>%
+  mutate(Sexo = case_when(
+    # Variantes de hembra
+    Sexo %in% c("h", "hembra") ~ "Hembra",
+    
+    # Variantes de macho
+    Sexo %in% c("m", "macho") ~ "Macho",
+    
+    # Corrección de errores de tipeo (ej: "machoo", "mmachoo", etc.)
+    grepl("mach", Sexo) ~ "Macho",
+    grepl("hemb", Sexo) ~ "Hembra",
+    
+    # Si queda algún valor raro → lo convertimos en NA
+    TRUE ~ NA_character_
+  ))
+
+# ----------------------------------------
+# 2. VERIFICACIÓN DE LA LIMPIEZA
+# ----------------------------------------
+
+# Tabla de frecuencias para comprobar que solo hay dos categorías
+table(DF$Sexo)
+
+
+# ----------------------------------------
+# 3. CÁLCULO DE DESCRIPTORES
+# ----------------------------------------
+
+# Moda (categoría más frecuente)
+moda_sexo <- names(sort(table(DF$Sexo), decreasing = TRUE))[1]
+moda_sexo
+
+# Cantidad de valores diferentes
+valores_diferentes <- length(unique(DF$Sexo))
+valores_diferentes
+
+# Tamaño efectivo (cantidad de datos no faltantes)
+tamano_efectivo <- sum(!is.na(DF$Sexo))
+tamano_efectivo
+```
+
+**Limpieza y análisis de la variable Raza**
+
+```{r}
+DF <- DF %>%
+  mutate(
+    Raza = tolower(Raza),
+    Raza = trimws(Raza),
+    Raza = gsub("^cuy\\s*", "", Raza),
+    
+    # quitar tildes manualmente
+    Raza = gsub("á", "a", Raza),
+    Raza = gsub("é", "e", Raza),
+    Raza = gsub("í", "i", Raza),
+    Raza = gsub("ó", "o", Raza),
+    Raza = gsub("ú", "u", Raza)
+  ) %>%
+  mutate(
+    Raza = case_when(
+      Raza == "" ~ "hibrido",
+      is.na(Raza) ~ "hibrido",
+      
+      grepl("abis", Raza) ~ "abisinio",
+      grepl("andi|adin", Raza) ~ "andino",
+      grepl("hibr|ibri", Raza) ~ "hibrido",
+      grepl("peru", Raza) ~ "peruano",
+      grepl("amer", Raza) ~ "americano",
+      grepl("rex", Raza) ~ "rex",
+      grepl("skin", Raza) ~ "skinny",
+      
+      TRUE ~ NA_character_
+    )
+  )
+
+# ----------------------------------------
+# 2. VERIFICACIÓN
+# ----------------------------------------
+
+table(DF$Raza)
+
+# ----------------------------------------
+# 3. DESCRIPTORES
+# ----------------------------------------
+
+# Moda
+moda_raza <- names(sort(table(DF$Raza), decreasing = TRUE))[1]
+moda_raza
+
+# Cantidad de valores diferentes
+valores_raza <- length(unique(DF$Raza))
+valores_raza
+
+# Tamaño efectivo (sin NA)
+tamano_efectivo_raza <- sum(!is.na(DF$Raza))
+tamano_efectivo_raza
+
+
+#verificamos :
+unique(DF$Raza)
+
+```
+
+**Limpieza y análisis de la variable Color**
+
+```{r}
+library(dplyr)
+library(stringr)
+
+# ----------------------------------------
+# 1. LIMPIEZA
+# ----------------------------------------
+
+DF <- DF %>%
+  mutate(
+    Color = tolower(Color),
+    Color = trimws(Color),
+    
+    # quitar tildes manual
+    Color = gsub("á", "a", Color),
+    Color = gsub("é", "e", Color),
+    Color = gsub("í", "i", Color),
+    Color = gsub("ó", "o", Color),
+    Color = gsub("ú", "u", Color)
+  ) %>%
+  
+  mutate(
+    Color = case_when(
+      
+      # patrones considerando errores de teclado
+      grepl("negr", Color) ~ "negro",
+      grepl("blanc", Color) ~ "blanco",
+      grepl("gris", Color) ~ "gris",
+      grepl("ros", Color) ~ "rosa",
+      
+      grepl("marron oscuro|marrn oscuro", Color) ~ "marron oscuro",
+      grepl("marron|marrn", Color) ~ "marron",
+      
+      grepl("tricolor|tricolr", Color) ~ "tricolor",
+      grepl("pintado|pintad", Color) ~ "pintado",
+      grepl("roj|rojiz|rojz", Color) ~ "rojizo",
+      
+      TRUE ~ NA_character_
+    )
+  )
+
+# ----------------------------------------
+# 2. VERIFICACIÓN
+# ----------------------------------------
+
+table(DF$Color)
+
+# ----------------------------------------
+# 3. DESCRIPTORES
+# ----------------------------------------
+
+# Moda
+moda_color <- names(sort(table(DF$Color), decreasing = TRUE))[1]
+moda_color
+
+# Cantidad de valores diferentes
+valores_color <- length(unique(DF$Color[!is.na(DF$Color)]))
+valores_color
+
+# Tamaño efectivo
+tamano_efectivo_color <- sum(!is.na(DF$Color))
+tamano_efectivo_color
+
+```
+
+**Limpieza y análisis de la variable Peso**
+
+```{r}
+# ----------------------------------------
+# 1. DETECCIÓN DE VALORES ERRÓNEOS (OUTLIERS)
+# ----------------------------------------
+
+# Obtener los valores atípicos usando boxplot
+outliers <- boxplot.stats(DF$Peso)$out
+
+# Cantidad de valores erróneos
+cantidad_outliers <- length(outliers)
+cantidad_outliers
+
+
+# ----------------------------------------
+# 2. LIMPIEZA (REEMPLAZAR POR NA)
+# ----------------------------------------
+
+# Sustituimos los valores erróneos por NA
+DF$Peso[DF$Peso %in% outliers] <- NA
+
+
+# ----------------------------------------
+# 3. VERIFICACIÓN
+# ----------------------------------------
+
+# Nuevo boxplot después de limpiar
+boxplot(DF$Peso, main = "Peso después de limpieza")
+
+
+# ----------------------------------------
+# 4. DESCRIPTORES (SIN NA)
+# ----------------------------------------
+
+min_peso <- min(DF$Peso, na.rm = TRUE)
+median_peso <- median(DF$Peso, na.rm = TRUE)
+max_peso <- max(DF$Peso, na.rm = TRUE)
+promedio_peso <- mean(DF$Peso, na.rm = TRUE)
+desv_peso <- sd(DF$Peso, na.rm = TRUE)
+
+min_peso
+median_peso
+max_peso
+promedio_peso
+desv_peso
+
+
+# ----------------------------------------
+# 5. TAMAÑO EFECTIVO
+# ----------------------------------------
+
+tamano_efectivo <- sum(!is.na(DF$Peso))
+tamano_efectivo
+
+
+# ----------------------------------------
+# 6. HISTOGRAMA PARA VER SESGO
+# ----------------------------------------
+
+hist(DF$Peso, main = "Histograma de Peso", col = "gray")
+```
+
+**Limpieza y análisis de la variable Edad**
+
+```{r}
+# ----------------------------------------
+# 1. DETECCIÓN DE VALORES ATÍPICOS
+# ----------------------------------------
+
+# Se identifican los valores atípicos usando el boxplot
+outliers_edad <- boxplot.stats(DF$Edad)$out
+
+# Se cuenta cuántos valores atípicos hay
+cantidad_outliers_edad <- length(outliers_edad)
+
+cat("Cantidad de valores atípicos:", cantidad_outliers_edad, "\n")
+
+
+# ----------------------------------------
+# 2. DETECCIÓN DE VALORES NO ENTEROS
+# ----------------------------------------
+
+# Se identifican los valores que no son enteros (error según enunciado)
+no_enteros <- DF$Edad[!is.na(DF$Edad) & DF$Edad %% 1 != 0]
+
+# Se cuenta cuántos valores no enteros existen
+cantidad_no_enteros <- length(no_enteros)
+
+cat("Cantidad de valores no enteros:", cantidad_no_enteros, "\n")
+
+
+# ----------------------------------------
+# 3. LIMPIEZA
+# ----------------------------------------
+
+# Se reemplazan por NA los valores que:
+# - están fuera del rango (8 a 72)
+# - no son enteros
+DF$Edad <- ifelse(
+  DF$Edad < 8 | DF$Edad > 72 | DF$Edad %% 1 != 0,
+  NA,
+  DF$Edad
+)
+
+
+# ----------------------------------------
+# 4. VERIFICACIÓN
+# ----------------------------------------
+
+# Se genera un boxplot después de la limpieza
+boxplot(DF$Edad, main = "Edad después de limpieza")
+
+
+# ----------------------------------------
+# 5. DESCRIPTORES
+# ----------------------------------------
+
+# Se calculan los estadísticos ignorando los NA
+min_edad <- min(DF$Edad, na.rm = TRUE)
+median_edad <- median(DF$Edad, na.rm = TRUE)
+max_edad <- max(DF$Edad, na.rm = TRUE)
+promedio_edad <- mean(DF$Edad, na.rm = TRUE)
+desv_edad <- sd(DF$Edad, na.rm = TRUE)
+
+cat("Mínimo:", min_edad, "\n")
+cat("Mediana:", median_edad, "\n")
+cat("Máximo:", max_edad, "\n")
+cat("Promedio:", promedio_edad, "\n")
+cat("Desviación estándar:", desv_edad, "\n")
+
+
+# ----------------------------------------
+# 6. TAMAÑO EFECTIVO
+# ----------------------------------------
+
+# Se cuenta cuántos datos válidos quedan (sin NA)
+tamano_efectivo_edad <- sum(!is.na(DF$Edad))
+
+cat("Tamaño efectivo:", tamano_efectivo_edad, "\n")
+```
+
+# ----------------------------------------
+
+# Limpieza y análisis de la variable Cintura
+
+# ----------------------------------------
+
+```{r}
+
+# ----------------------------------------
+# 1. DETECCIÓN DE VALORES ATÍPICOS
+# ----------------------------------------
+
+# Se identifican los valores atípicos usando el boxplot
+outliers_cintura <- boxplot.stats(DF$Cintura)$out
+
+# Se cuenta cuántos valores atípicos hay
+cantidad_outliers_cintura <- length(outliers_cintura)
+
+cat("Cantidad de valores atípicos:", cantidad_outliers_cintura, "\n")
+
+
+# ----------------------------------------
+# 2. DETECCIÓN DE VALORES NO ENTEROS
+# ----------------------------------------
+
+# Se identifican los valores que no son enteros
+no_enteros_cintura <- DF$Cintura[!is.na(DF$Cintura) & DF$Cintura %% 1 != 0]
+
+# Se cuenta cuántos valores no enteros existen
+cantidad_no_enteros_cintura <- length(no_enteros_cintura)
+
+cat("Cantidad de valores no enteros:", cantidad_no_enteros_cintura, "\n")
+
+
+# ----------------------------------------
+# 3. LIMPIEZA
+# ----------------------------------------
+
+# Se reemplazan por NA los valores que:
+# - están fuera del rango (10 a 30)
+# - no son enteros
+
+DF$Cintura <- ifelse(
+  DF$Cintura < 10 | DF$Cintura > 30 | DF$Cintura %% 1 != 0,
+  NA,
+  DF$Cintura
+)
+
+
+# ----------------------------------------
+# 4. VERIFICACIÓN
+# ----------------------------------------
+
+# Se visualiza el boxplot luego de la limpieza
+boxplot(DF$Cintura, main = "Cintura después de limpieza")
+
+
+# ----------------------------------------
+# 5. DESCRIPTORES
+# ----------------------------------------
+
+# Se calculan los principales descriptores sin considerar NA
+min_cintura <- min(DF$Cintura, na.rm = TRUE)
+median_cintura <- median(DF$Cintura, na.rm = TRUE)
+max_cintura <- max(DF$Cintura, na.rm = TRUE)
+promedio_cintura <- mean(DF$Cintura, na.rm = TRUE)
+desv_cintura <- sd(DF$Cintura, na.rm = TRUE)
+
+cat("Mínimo:", min_cintura, "\n")
+cat("Mediana:", median_cintura, "\n")
+cat("Máximo:", max_cintura, "\n")
+cat("Promedio:", round(promedio_cintura, 2), "\n")
+cat("Desviación estándar:", round(desv_cintura, 2), "\n")
+
+
+# ----------------------------------------
+# 6. TAMAÑO EFECTIVO
+# ----------------------------------------
+
+# Se calcula cuántos datos válidos quedan (sin NA)
+tamano_efectivo_cintura <- sum(!is.na(DF$Cintura))
+
+cat("Tamaño efectivo:", tamano_efectivo_cintura, "\n")
+
+```
+
+# ----------------------------------------
+
+# Limpieza y análisis de la variable Largo
+
+# ----------------------------------------
+
+```{r}
+
+# ----------------------------------------
+# 1. DETECCIÓN DE VALORES ATÍPICOS
+# ----------------------------------------
+
+# Se identifican los valores atípicos usando el boxplot
+outliers_largo <- boxplot.stats(DF$Largo)$out
+
+# Cantidad de valores atípicos
+cantidad_outliers_largo <- length(outliers_largo)
+
+cat("Cantidad de valores atípicos:", cantidad_outliers_largo, "\n")
+
+
+# ----------------------------------------
+# 2. DETECCIÓN DE VALORES NO ENTEROS
+# ----------------------------------------
+
+# Valores que no son enteros
+no_enteros_largo <- DF$Largo[!is.na(DF$Largo) & DF$Largo %% 1 != 0]
+
+# Cantidad de valores no enteros
+cantidad_no_enteros_largo <- length(no_enteros_largo)
+
+cat("Cantidad de valores no enteros:", cantidad_no_enteros_largo, "\n")
+
+
+# ----------------------------------------
+# 3. LIMPIEZA
+# ----------------------------------------
+
+# Reglas:
+# - Debe estar entre 10 y 50
+# - Debe ser entero
+
+DF$Largo <- ifelse(
+  DF$Largo < 10 | DF$Largo > 50 | DF$Largo %% 1 != 0,
+  NA,
+  DF$Largo
+)
+
+
+# ----------------------------------------
+# 4. VERIFICACIÓN
+# ----------------------------------------
+
+boxplot(DF$Largo, main = "Largo después de limpieza")
+
+
+# ----------------------------------------
+# 5. DESCRIPTORES
+# ----------------------------------------
+
+min_largo <- min(DF$Largo, na.rm = TRUE)
+median_largo <- median(DF$Largo, na.rm = TRUE)
+max_largo <- max(DF$Largo, na.rm = TRUE)
+promedio_largo <- mean(DF$Largo, na.rm = TRUE)
+desv_largo <- sd(DF$Largo, na.rm = TRUE)
+
+cat("Mínimo:", min_largo, "\n")
+cat("Mediana:", median_largo, "\n")
+cat("Máximo:", max_largo, "\n")
+cat("Promedio:", round(promedio_largo, 2), "\n")
+cat("Desviación estándar:", round(desv_largo, 2), "\n")
+
+
+# ----------------------------------------
+# 6. TAMAÑO EFECTIVO
+# ----------------------------------------
+
+tamano_efectivo_largo <- sum(!is.na(DF$Largo))
+
+cat("Tamaño efectivo:", tamano_efectivo_largo, "\n")
+```
+
+# ----------------------------------------
+
+# Limpieza y análisis de la variable Talla
+
+# ----------------------------------------
+
+```{r}
+
+# ----------------------------------------
+# 1. RANGO
+# ----------------------------------------
+
+# Se calcula el mínimo y máximo
+min_edad <- min(DF$Edad, na.rm = TRUE)
+max_edad <- max(DF$Edad, na.rm = TRUE)
+
+# Rango = max - min
+rango_edad <- max_edad - min_edad
+
+cat("Rango:", rango_edad, "\n")
+
+
+# ----------------------------------------
+# 2. RANGO INTERCUARTIL (IQR)
+# ----------------------------------------
+
+# Se obtienen los cuartiles
+cuartiles_edad <- quantile(DF$Edad, na.rm = TRUE)
+
+# Q1 y Q3
+Q1_edad <- cuartiles_edad[2]
+Q3_edad <- cuartiles_edad[4]
+
+# IQR = Q3 - Q1
+iqr_edad <- Q3_edad - Q1_edad
+
+cat("Rango intercuartil:", iqr_edad, "\n")
+
+
+# ----------------------------------------
+# 3. COEFICIENTE DE VARIACIÓN
+# ----------------------------------------
+
+# Promedio y desviación estándar
+promedio_edad <- mean(DF$Edad, na.rm = TRUE)
+desv_edad <- sd(DF$Edad, na.rm = TRUE)
+
+# CV = (sd / mean) * 100
+cv_edad <- (desv_edad / promedio_edad) * 100
+
+cat("Coeficiente de variación:", round(cv_edad, 2), "%\n")
+
+
+# ----------------------------------------
+# 4. INTERPRETACIÓN
+# ----------------------------------------
+
+# Forma de la distribución
+if(abs(promedio_edad - median(DF$Edad, na.rm = TRUE)) < 1){
+  forma <- "aproximadamente simétrica"
+} else if(promedio_edad > median(DF$Edad, na.rm = TRUE)){
+  forma <- "sesgada a la derecha"
+} else {
+  forma <- "sesgada a la izquierda"
+}
+
+cat("Forma de la distribución:", forma, "\n")
+
+
+# Variabilidad según CV
+if(cv_edad < 10){
+  variabilidad <- "baja"
+} else if(cv_edad <= 30){
+  variabilidad <- "moderada"
+} else {
+  variabilidad <- "alta"
+}
+
+cat("Variabilidad:", variabilidad, "\n")
+
+```
+
+# ----------------------------------------
+
+# Análisis de la variable Cintura
+
+# ----------------------------------------
+
+```{r}
+
+# ----------------------------------------
+# 1. RANGO
+# ----------------------------------------
+
+min_cintura <- min(DF$Cintura, na.rm = TRUE)
+max_cintura <- max(DF$Cintura, na.rm = TRUE)
+
+rango_cintura <- max_cintura - min_cintura
+
+cat("Rango:", rango_cintura, "\n")
+
+
+# ----------------------------------------
+# 2. RANGO INTERCUARTIL
+# ----------------------------------------
+
+cuartiles_cintura <- quantile(DF$Cintura, na.rm = TRUE)
+
+Q1_cintura <- cuartiles_cintura[2]
+Q3_cintura <- cuartiles_cintura[4]
+
+iqr_cintura <- Q3_cintura - Q1_cintura
+
+cat("Rango intercuartil:", iqr_cintura, "\n")
+
+
+# ----------------------------------------
+# 3. COEFICIENTE DE VARIACIÓN
+# ----------------------------------------
+
+promedio_cintura <- mean(DF$Cintura, na.rm = TRUE)
+desv_cintura <- sd(DF$Cintura, na.rm = TRUE)
+
+cv_cintura <- (desv_cintura / promedio_cintura) * 100
+
+cat("Coeficiente de variación:", round(cv_cintura, 2), "%\n")
+
+
+# ----------------------------------------
+# 4. INTERPRETACIÓN
+# ----------------------------------------
+
+# Forma
+if(abs(promedio_cintura - median(DF$Cintura, na.rm = TRUE)) < 1){
+  forma_cintura <- "relativamente concentrada alrededor de la mediana"
+} else if(promedio_cintura > median(DF$Cintura, na.rm = TRUE)){
+  forma_cintura <- "a la derecha de la mediana"
+} else {
+  forma_cintura <- "a la izquierda de la mediana"
+}
+
+cat("Forma:", forma_cintura, "\n")
+
+
+# Variabilidad
+if(cv_cintura < 10){
+  variabilidad_cintura <- "bajo"
+} else if(cv_cintura <= 30){
+  variabilidad_cintura <- "moderado"
+} else {
+  variabilidad_cintura <- "alto"
+}
+
+cat("Variabilidad:", variabilidad_cintura, "\n")
+
+```
+
+# ----------------------------------------
+
+# Análisis de la variable Largo
+
+# ----------------------------------------
+
+```{r}
+
+# ----------------------------------------
+# 1. RANGO
+# ----------------------------------------
+
+min_largo <- min(DF$Largo, na.rm = TRUE)
+max_largo <- max(DF$Largo, na.rm = TRUE)
+
+rango_largo <- max_largo - min_largo
+
+cat("Rango:", rango_largo, "\n")
+
+
+# ----------------------------------------
+# 2. RANGO INTERCUARTIL
+# ----------------------------------------
+
+cuartiles_largo <- quantile(DF$Largo, na.rm = TRUE)
+
+Q1_largo <- cuartiles_largo[2]
+Q3_largo <- cuartiles_largo[4]
+
+iqr_largo <- Q3_largo - Q1_largo
+
+cat("Rango intercuartil:", iqr_largo, "\n")
+
+
+# ----------------------------------------
+# 3. COEFICIENTE DE VARIACIÓN
+# ----------------------------------------
+
+promedio_largo <- mean(DF$Largo, na.rm = TRUE)
+desv_largo <- sd(DF$Largo, na.rm = TRUE)
+
+cv_largo <- (desv_largo / promedio_largo) * 100
+
+cat("Coeficiente de variación:", round(cv_largo, 2), "%\n")
+
+
+# ----------------------------------------
+# 4. INTERPRETACIÓN
+# ----------------------------------------
+
+# Forma
+if(abs(promedio_largo - median(DF$Largo, na.rm = TRUE)) < 1){
+  forma_largo <- "relativamente concentrada alrededor de la mediana"
+} else if(promedio_largo > median(DF$Largo, na.rm = TRUE)){
+  forma_largo <- "a la derecha de la mediana"
+} else {
+  forma_largo <- "a la izquierda de la mediana"
+}
+
+cat("Forma:", forma_largo, "\n")
+
+
+# Variabilidad
+if(cv_largo < 10){
+  variabilidad_largo <- "bajo"
+} else if(cv_largo <= 30){
+  variabilidad_largo <- "moderado"
+} else {
+  variabilidad_largo <- "alto"
+}
+
+cat("Variabilidad:", variabilidad_largo, "\n")
+```
+
+# ----------------------------------------
+
+# Análisis de la variable Peso
+
+# ----------------------------------------
+
+```{r}
+# Rango
+min_peso <- min(DF$Peso, na.rm = TRUE)
+max_peso <- max(DF$Peso, na.rm = TRUE)
+
+rango_peso <- max_peso - min_peso
+cat("Rango:", rango_peso, "\n")
+
+
+# ----------------------------------------
+# Rango intercuartil
+# ----------------------------------------
+
+cuartiles_peso <- quantile(DF$Peso, na.rm = TRUE)
+
+Q1_peso <- cuartiles_peso[2]
+Q3_peso <- cuartiles_peso[4]
+
+iqr_peso <- Q3_peso - Q1_peso
+cat("Rango intercuartil:", iqr_peso, "\n")
+
+
+# ----------------------------------------
+# Coeficiente de variación
+# ----------------------------------------
+
+promedio_peso <- mean(DF$Peso, na.rm = TRUE)
+desv_peso <- sd(DF$Peso, na.rm = TRUE)
+
+cv_peso <- (desv_peso / promedio_peso) * 100
+cat("Coeficiente de variación:", round(cv_peso, 2), "%\n")
+
+
+# ----------------------------------------
+# Interpretación
+# ----------------------------------------
+
+# Forma
+if(promedio_peso > median(DF$Peso, na.rm = TRUE)){
+  forma_peso <- "a la derecha de la mediana"
+} else if(promedio_peso < median(DF$Peso, na.rm = TRUE)){
+  forma_peso <- "a la izquierda de la mediana"
+} else {
+  forma_peso <- "relativamente concentrada alrededor de la mediana"
+}
+
+cat("Forma:", forma_peso, "\n")
+
+
+# Variabilidad
+if(cv_peso < 10){
+  variabilidad_peso <- "bajo"
+} else if(cv_peso <= 30){
+  variabilidad_peso <- "moderado"
+} else {
+  variabilidad_peso <- "alto"
+}
+
+cat("Variabilidad:", variabilidad_peso, "\n")
+
+```

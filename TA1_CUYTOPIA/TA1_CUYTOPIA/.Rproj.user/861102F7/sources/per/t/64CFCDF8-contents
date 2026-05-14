@@ -1,0 +1,179 @@
+---
+title: "Primer_avance_PG1_Version2"
+format: html
+editor: visual
+---
+
+## PROYECTO: SALUD Y ESTILO DE VIDA EN ESTUDIANTES UTEC
+
+### Tema general:
+
+Relación de la salud de los estudiantes universitarios con su estilo de vida y alimentación.
+
+### Tema del grupo
+
+Impacto del consumo de bebidas energéticas en la vida académica de los universitarios de UTEC Barranco en el ciclo 2026-1.
+
+### Objetivo general:
+
+Analizar la relación de la salud de los estudiantes universitarios con sus hábitos de estilo de vida (actividad física, horas de sueño, etc.) y también la relación con su alimentación.
+
+### Objetivos específicos:
+
+-   Determinar la relación entre la frecuencia de consumo de bebidas energéticas en días por semana y las horas de sueño diarias de los estudiantes de UTEC Barranco en 2026.
+
+-   Analizar la relación entre el nivel de estrés autopercibido y la frecuencia de consumo de bebidas energéticas en días por semana en estudiantes de UTEC Barranco en 2026.
+
+-   Evaluar la relación entre el tipo de actividad física realizada y la calidad de sueño autopercibida en estudiantes de UTEC Barranco en 2026.
+
+### Variables de cuantitativas continuas:
+
+-   Horas de sueño diarias
+
+    -   Definición: Cantidad promedio de horas que duerme el estudiante por noche
+
+    -   Medición: Valor decimal (ej. 5.5, 7.0, 8.5)
+
+    -   Rango: 0 a 12 horas
+
+    -   Relación:  Objetivo Específico 1 
+
+-   Horas de ejercicio por semana
+
+    -   Definición: Cantidad de horas semanales que el estudiante dedica a algún tipo de actividad física. 
+
+    -   Medición: Valor numérico decimal (ej. 1.5, 3.0, 5.0 horas).
+
+    -   Rango esperado: 0 a 20 horas por semana
+
+    -   Relación: Variable de contexto — el ejercicio regula directamente la calidad de sueño y el nivel de estrés, ambos presentes en los objetivos.
+
+### Variables cuantitativas discretas:
+
+-   Frecuencia de consumo de bebidas energéticas
+
+    -   Definición: Número de días por semana en que el estudiante consume al menos una bebida energética.
+
+    -   Medición: Valor entero de 0 a 7 días
+
+    -   Rango esperado: 0 a 7 días por semana 
+
+    -   Relación: Objetivo Específico 1 y Objetivo Específico 2 
+
+-   Número de unidades de bebida energética por ocasión
+
+    -   Definición: Cantidad de latas o botellas de bebida energética que el estudiante consume cada vez que las ingiere.
+
+    -   Medición: Valor entero de 0 a 5 unidades
+
+    -   Rango esperado: 0 a 5 unidades por ocasión
+
+    -   Relación: Variable de contexto — complementa la frecuencia de consumo para estimar la intensidad total del consumo.
+
+### Variables cuantitativas nominales
+
+-   Actividad física
+
+    -   Definición: Modalidad de ejercicio o actividad física que practica el estudiante habitualmente.
+
+    -   Categorías: Gimnasio / Deporte / Caminar / Ninguna
+
+    -   Relación: Objetivo Específico 3
+
+-   Alimentación habitual
+
+    -   Definición: Características de la comida que consume el estudiante de manera regular.
+
+    -   Categorías: Completo / Ligero / No desayuna
+
+    -   Relación: Variable de contexto — conecta con los hábitos de alimentación del tema general del proyecto.
+
+### Variables cualitativas ordinales
+
+-   Nivel de estrés auto-percibido
+
+    -   Definición: Percepción subjetiva del estudiante sobre su nivel de estrés en el contexto académico actual.
+
+    -   Escala: Muy bajo / Bajo / Regular / Alto / Muy alto
+
+    -   Orden: de menor a mayor intensidad
+
+    -   Relación: Objetivo Específico 2 
+
+-   Calidad de sueño auto-percibida
+
+    -   Definición: Percepción subjetiva del estudiante sobre qué tan reparador y satisfactorio considera su descanso nocturno. 
+
+    -   Escala: Muy mala / Mala / Regular / Buena / Muy buena
+
+    -   Orden: de menor a mayor calidad
+
+    -   Relación: Objetivo Específico 3
+
+### Instrumento de recolección:
+
+-   Población: La población del estudio está conformada por los estudiantes universitarios de la Universidad de Ingeniería y Tecnología durante el ciclo 2026-1.
+
+-   Unidad muestral: Corresponde a cada estudiante que participa en la encuesta, ya que cada uno representa una observación individual dentro del estudio.
+
+En este estudio, se usa una observación directa (como contar personas en un parque), no se realiza ningún tipo de medición externa.
+
+No se hace conteo directo, no se utilizan dispositivos tecnológicos (gadgets) y tampoco se trabaja con algún tipo de ratio físico. Toda la información se obtiene a partir de lo que responde cada estudiante en la encuesta. Por lo tanto, todas las variables se recolectan mediante autorreporte.
+
+Esto implica que la información depende de la percepción y memoria de cada encuestado. Además, los datos no dependen de un observador ni de algún instrumento de medición, por lo que no hay intervención directa del investigador en el proceso.\
+\
+**Tipo de medición según variable**:
+
+-   Las variables se recogen de distintas formas según su naturaleza:
+
+-   Las horas de sueño y las horas de ejercicio se obtienen como una estimación numérica personal del estudiante.
+
+-   El consumo de bebidas energéticas se mide como una frecuencia declarada (cuántos días a la semana consume).
+
+-   El nivel de estrés y la calidad del sueño se basan en la percepción subjetiva del encuestado. Por ello, el estudio se basa en datos declarativos, ya que provienen directamente de lo que reportan los estudiantes, y no de mediciones experimentales ni observacionales.
+
+**Forma en que se plantean las preguntas**
+
+Las preguntas del cuestionario han sido diseñadas para que sean fáciles de responder y entender. En algunos casos, variables que originalmente son numéricas se presentan en forma de intervalos o categorías, con el fin de facilitar la respuesta.
+
+Por ejemplo, la frecuencia de consumo de bebidas energéticas se plantea así:
+
+-   0 días
+
+-   1–2 días
+
+-   3–4 días
+
+-   5–6 días
+
+-   7 días
+
+De esta manera, aunque la variable es cuantitativa, en el cuestionario se trabaja como una variable cualitativa ordinal. Este criterio es similar al uso de rangos en variables como la edad. Por otro lado, las variables cualitativas se presentan directamente como categorías:
+
+Nominales: no tienen orden (por ejemplo, tipo de actividad física o alimentación).
+
+Ordinales: tienen un orden o jerarquía (como el nivel de estrés o la calidad de sueño).
+
+Justificación de la forma de medición
+
+El uso de categorías en lugar de valores exactos permite que el cuestionario sea más sencillo de responder y reduce posibles errores o confusiones por parte de los estudiantes.
+
+Además, ayuda a estandarizar las respuestas, lo cual facilita el análisis de los datos posteriormente.
+
+### Listado de preguntas:
+
+-   ¿Cuántas horas duermes en promedio por noche?
+
+-   ¿Cuántas horas a la semana dedicas a hacer ejercicio o actividad física?
+
+-   ¿Cuántos días a la semana consumes bebidas energéticas?
+
+-   Cuando consumes bebidas energéticas, ¿cuántas unidades (latas o botellas) tomas por ocasión? (0, 1, 2, 3, 4, 5 o más)
+
+-   ¿Qué tipo de actividad física realizas habitualmente? (Gimnasio / Deporte / Caminar / Ninguna)
+
+-   ¿Cómo es tu desayuno habitual? (Completo / Ligero / No come)
+
+-   ¿Cómo calificarías tu nivel de estrés académico actualmente? (Muy bajo / Bajo / Regular / Alto / Muy alto)
+
+-   ¿Cómo calificarías la calidad de tu sueño en general? (Muy mala / Mala / Regular / Buena / Muy buena)

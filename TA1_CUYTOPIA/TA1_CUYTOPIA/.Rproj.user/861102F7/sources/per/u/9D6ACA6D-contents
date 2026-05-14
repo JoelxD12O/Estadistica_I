@@ -1,0 +1,15 @@
+install.packages(c("readr", "dplyr", "modeest", "ggplot2"))
+
+library(readr)
+library(dplyr)
+library(modeest)
+library(ggplot2)
+
+
+
+DF <- read_csv("cuytopia.csv")
+
+
+str(DF)
+summary(DF)
+
