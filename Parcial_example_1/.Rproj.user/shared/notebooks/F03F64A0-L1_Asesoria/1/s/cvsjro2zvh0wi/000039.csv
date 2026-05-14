@@ -1,0 +1,6 @@
+"0",""
+"0","#cuantas personas entraron"
+"0","cat(""el numero maximo de personas que entraron fue :"", max(DF$Entraron, na.rm = TRUE))"
+"1","el numero maximo de personas que entraron fue :"
+"1"," "
+"1","13"

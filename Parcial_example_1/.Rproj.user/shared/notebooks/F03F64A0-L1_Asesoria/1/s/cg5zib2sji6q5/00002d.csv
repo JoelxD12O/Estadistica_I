@@ -1,0 +1,5 @@
+"0","points(1:3,"
+"0","       c(mean(DF$Total[DF$Servicio == ""Malo""]/60,    na.rm = TRUE),"
+"0","         mean(DF$Total[DF$Servicio == ""Regular""]/60, na.rm = TRUE),"
+"0","         mean(DF$Total[DF$Servicio == ""Bueno""]/60,   na.rm = TRUE)),"
+"0","       pch = 4)"

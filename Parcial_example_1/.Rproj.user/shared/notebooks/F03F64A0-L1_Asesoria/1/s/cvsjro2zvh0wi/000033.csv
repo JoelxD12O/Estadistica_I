@@ -1,0 +1,7 @@
+"0","boxplot(DF$Entraron,"
+"0","        horizontal = TRUE,"
+"0","        bty  = ""n"","
+"0","        ylim = c(0, max(DF$Entraron, na.rm = TRUE)),"
+"0","        frame = FALSE,"
+"0","        axes  = TRUE,"
+"0","        col  = ""cyan"")"

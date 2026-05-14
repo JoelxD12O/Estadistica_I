@@ -73,7 +73,6 @@ DF <- read_csv("BodegasEP.csv")
 
 ```{r}
 summary(DF)
-
 ```
 
 **En DF, ¿Cuántas bodegas participaron en el estudio?**
@@ -81,7 +80,6 @@ summary(DF)
 ```{r}
 length(unique(DF$Bodega))#cuenta los NA
 n_distinct(DF$Bodega)      #(ignora NA)
-
 ```
 
 **En DF, ¿Cuántas bodegas tienen todos sus datos completos? Question Blank 1 of 1**

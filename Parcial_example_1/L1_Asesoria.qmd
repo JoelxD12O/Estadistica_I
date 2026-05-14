@@ -286,6 +286,54 @@ La mediana de la variable es \_\_\_\_\_ segundos, su promedio es \_\_\_\_\_ segu
 Como el coeficiente de variación es \_\_\_\_\_, podemos afirmar que sería más apropiado seleccionar \_\_\_\_\_ \[la mediana / el promedio\] debido a que los datos presentan variabilidad \_\_\_\_\_ \[alta / moderada / baja\].
 La moda de la variable es \_\_\_\_\_, la variable es \_\_\_\_\_ \[sesgada a la derecha / sesgada a la izquierda / simétrica\]
 
+```{r}
+
+
+sum(is.na(DF$Total))
+#tamaño efectivo 
+sum(!is.na(DF$Total))
+
+#hallamos la mediana
+round(median(DF$Total,na.rm = T),2)
+#promedio
+round(mean(DF$Total, na.rm = T),2)
+#desviacion estandar
+round(sd(DF$Total, na.rm = T),2)
+
+#coeficiente de variacion
+round(sd(DF$Total, na.rm = TRUE)/mean(DF$Total, na.rm = TRUE), 2)  
+
+#Coeficiente de variación (CV)
+#El coeficiente de variación mide el grado de dispersión de los datos
+#respecto a su media. Se calcula dividiendo la desviación estándar
+#entre el promedio y multiplicando por 100.
+#
+#Interpretación:
+#CV < 15%   -> baja variabilidad
+#15% <= CV <= 30% -> variabilidad moderada
+#CV > 30%   -> alta variabilidad
+#
+#Si el CV es alto, es más recomendable utilizar la mediana
+#como medida de tendencia central, ya que el promedio puede
+#verse afectado por valores extremos.
+
+#NOTA
+#media > mediana	 =>sesgo derecha
+#media < mediana	 =>sesgo izquierda
+#media ≈ mediana	 =>simétrica
+
+
+
+#PARA HALLAR LA MODA
+which.max(table(DF$Viaje))  
+
+
+
+```
+
+
+
+
 ## Pregunta 4 - Variable `Servicio`
 
 Usando los datos limpios, considere la variable Servicio.
@@ -295,11 +343,31 @@ Esto quiere decir que \_\_\_\_\_ \[al menos la mitad de los viajes tuvieron un s
 El rango de la variable es \_\_\_\_\_ \[imposible de calcular / Bueno − Malo / 2\].
 
 
+**la variables categorica ordinal **
+```{r}
 
 
+levels(DF$Servicio)  #SERIA CATEGORICA ORDINAL
+
+#cuartil
+
+########################################33
+# aca lo que hacemos es ordenar la variable
+DF$Servicio <- factor(
+  DF$Servicio,
+  levels = c("Malo", "Regular", "Bueno"),
+  ordered = TRUE
+)
+
+#convertimos la variable ordinal a numeros
+
+x <- as.numeric(DF$Servicio)
 
 
+#ahora podemos calcular medidas ordinales
+quantile(x, c(0.25, 0.5, 0.75), type = 3, na.rm = TRUE)
 
+```
 
 
 
@@ -335,17 +403,38 @@ boxplot(DF$Entraron,
         col  = "cyan")
 points(mean(DF$Entraron, na.rm = TRUE), 1, pch = 4, cex = 1.5)
 title(xlab = "personas que entraron", line = 2)
+
+#cuantas personas entraron
+cat("el numero maximo de personas que entraron fue :", max(DF$Entraron, na.rm = TRUE))
+
 ```
 
 - El máximo de la variable Entraron es 13.
+RPTA: 
+
+[verdadero]
+
 
 - En al menos tres cuartas partes de los viajes entraron 4 personas o menos.
+RPTA: 
+[En el boxplot, el borde derecho de la caja está cerca de 4, significa el 75% de los viajes tubieron 4 personas o menos]
+
 
 - La variable Entraron está sesgada a la derecha.
 
-- La variable Entraron no tiene valores atípicos.
+RPTA:
+[si, porque la cola del gráfico se extiende hacia valores grandes]
+
+- La variable Entraron no tiene valores atípicos.[Falso, en el bloxplot aprecen puntos separados del bigote derecho  que representan valores atipicos]
 
 - En la mitad de los viajes entraron 3 personas.
+RPTA:
+[Verdadero, la línea dentro de la caja del bloxplot esta cercade 3]
+
+NOTA:
+media -> la X
+mediana -> linea dentro de la caja
+
 
 ## Pregunta 6 — Gráfica cat-num: `Total` por `Servicio`
 
@@ -373,6 +462,8 @@ legend("topright",
        legend = c("Promedio por tipo de servicio", "Promedio global"),
        pch = c(4, NA), lty = c(NA, 2),
        col = c("black", "black"), bty = "n")
+
+
 ```
 
 - El tiempo total, para cada nivel de servicio, está sesgado a la derecha.
