@@ -1,0 +1,295 @@
+---
+title: "Laboratorio Datos Diversos"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: false
+    theme: yeti
+---
+
+Se carga la librería *readr* y *dplyr*
+
+```{r, message=FALSE}
+library(readr)
+library(dplyr)
+```
+
+Luego, se usa la función `read_csv` para cargar los datos.
+
+```{r}
+DF <- read_csv("DD.csv")
+```
+
+# Pregunta 1: Carga y estructura de datos
+
+## Número de observaciones y variables  
+
+```{r}
+cat('La tabla cargada tiene',nrow(DF),'observaciones y',ncol(DF),'variables.')
+
+#cat: concatena objetos, vectores.
+#nrow: devuelve el número de filas de un dataframe
+#ncol: devuelve el número de columnas de un dataframe
+```
+
+Otra forma de obtener el número de filas y columnas de un dataframe es usando las funciones de la librería `dplyr`.
+
+```{r}
+nObservaciones<-DF%>%summarise(n=n()) #se obtiene el número de observaciones 
+
+nVariables<-DF%>%summarise(n=length(DF)) #se obtiene el número de variables
+
+cat('La tabla cargada tiene',unlist(nObservaciones),'observaciones y',unlist(nVariables),'variables.')
+
+#summarise:resume las observaciones según la función dada.
+#unlist: devuelve un vector; en este caso se usa porque la creación de los objetos con las funciones de "dplyr" devuelve una lista y no un vector, y la función "cat" solo concatena vectores o cadenas. 
+```
+
+## NA's y observaciones incompletas
+
+```{r}
+cat('Hay un total de',sum(is.na(DF)),'datos faltantes y',sum(!complete.cases(DF)),'observaciones incompletas.')
+
+#is.na: devuelve los elementos NA
+#complete.cases: devuelve en un vector, la cantidad de casos que no contienen errores.
+#!: operador de negación lógica (NO)
+```
+
+Otra forma de resolver esta pregunta es usando las funciones de la librería `dplyr`. 
+
+```{r}
+
+datosFaltantes<-sum(apply(is.na(DF),MARGIN=1, FUN=sum))
+
+obsIncompletas<-DF%>%filter(!complete.cases(.))%>%nrow
+
+cat('Hay un total de',datosFaltantes,'datos faltantes y',obsIncompletas,'observaciones incompletas.')
+
+#apply: devuelve el resultado de aplicar la función 'FUN' al dataframe especificado, aplicado a MARGIN (1-filas,2-columnas)
+```
+
+# Pregunta 2: Tipos de variables
+
+## Tipos de variables
+
+Para calcular el número de variables numéricas y categóricas es necesario hacer una inspección sobre el tipo de variable del _dataframe_. 
+
+```{r}
+str(DF)
+```
+
+Como se observa, la carga del _dataframe_, mediante el comando `read_csv`, asigna los tipos lógicos y caracter a las variables categóricas. Asimismo, las variables _Periodo_, _Codigo_, _Seccion_ y _Ciclo_ por sus valores numéricos son leídos como tal, pero son categóricas, pues sus resúmenes, como suma o promedio, no tienen ninguna interpretación.
+
+Por lo tanto, corregiremos tales asignaciones:
+
+```{r}
+#seleccionamos las columnas numéricas
+numCol<-c("Edad","Estatura","Peso","Tiempo")
+
+#seleccionamos las columnas de tipo factor
+factCol<-names(DF)[!names(DF) %in% numCol]
+
+#se convierten las variables categóricas a factor
+DF[factCol] <- lapply(DF[factCol], FUN=factor)
+
+#se muestra la estructura actualizada
+str(DF)
+
+#names: devuelve el nombre del objeto.
+#lapply: devuelve una de lista de misma longitud, en la que cada elemento es el resultado de aplicar la función FUN.
+```
+
+Como se observa, ahora están correctamente asignados los tipos de cada variable.
+
+Para contar la cantidad de variables numéricas, usaremos el comando `select_if` de la librería `dplyr`.
+
+```{r}
+#Obtenemos la cantidad de variables numéricas
+nNumericas<-length(select_if(DF,is.numeric))
+
+#Obtenemos la cantidad de variables categóricas
+nCategoricas<-length(DF)-nNumericas
+
+#Imprimimos la salida
+cat('En la tabla hay',nNumericas,'variables numéricas y',nCategoricas,'variables categóricas.')
+
+#select_if: devuelve un subset de datos según la condición dada.
+```
+
+## Variables ordinales
+
+Las variables ordinales son aquellas cuyas categorías presentan un orden.
+
+En este caso, las únicas variables que presentan este orden son:
+
+*Periodo*,*Codigo* y *Ciclo*
+
+Por lo tanto, la respuesta es `3`.
+
+# Pregunta 3: Datos Faltantes 
+
+```{r}
+#Alternativa 1
+which.max(colSums(is.na(DF))) #colSums, suma por columnas los valores faltantes; which.max, devuelve la posición máxima del valor máximo.
+
+#Alternativa 2
+which.max(apply(X=is.na(DF), MARGIN=2, FUN=sum))
+
+cat('La variable con mayor cantidad de datos faltantes es',unlist(names(which.max(colSums(is.na(DF))))),'.')
+
+# apply: devuelve el resultado de aplicar la función "FUN" al objeto "X", "MARGIN"= 1-aplica la función por filas y 2-aplica la función por columnas
+# which: devuelve la posición de la condición mencionada dentro del paréntesis ()
+```
+
+# Pregunta 4: Observación con más Datos Faltantes 
+
+```{r}
+#Alternativa 1
+DF[which.max(rowSums(is.na(DF))),"Carrera"] #rowSums, suma por filas los valores faltantes; which.max, devuelve la posición máxima del valor máximo.
+
+#Alternativa 2
+DF[which.max(apply(X=is.na(DF), MARGIN=1, FUN=sum)),"Carrera"]
+
+cat('La carrera de la observación con más datos faltantes es',paste(unlist(DF[which.max(rowSums(is.na(DF))),"Carrera"])),'.')
+
+# apply: devuelve el resultado de aplicar la función "FUN" al objeto "X", "MARGIN"= 1-aplica la función por filas y 2-aplica la función por columnas
+# which: devuelve la posición de la condición mencionada dentro del paréntesis ()
+```
+
+# Pregunta 5: Descriptores 
+
+## Variable Edad
+
+```{r}
+cat('Descriptores de la variable Edad:\n\n')
+
+cat('Media:',round(mean(DF$Edad, na.rm=TRUE),2),'\n') #calcula el promedio de la edad, excluyendo los na
+cat('Desviación Estándar:',round(sd(DF$Edad, na.rm=TRUE),2),'\n') #calcula la desviación estándar de la edad, excluyendo los na
+cat('Mediana:',round(median(DF$Edad, na.rm=TRUE),2),'\n') #calcula la mediana de la edad, excluyendo los na
+cat('Rango:',round(range(DF$Edad, na.rm=TRUE),2),'\n') #calcula el rango de la edad, excluyendo los na
+cat('Rango Intercuartílico:',round(IQR(DF$Edad, na.rm=TRUE),2),'\n') #calcula el rango intercuartílico de la edad, excluyendo los na
+cat('Mínimo:',min(DF$Edad, na.rm = TRUE),'\n') #calcula el mínimo de la edad, excluyendo los na
+cat('Máximo:',max(DF$Edad, na.rm = TRUE),'\n') #calcula el máximo de la edad, excluyendo los na
+
+cat('Número de observaciones válidas:',nrow(DF)-sum(is.na(DF$Edad)),'\n') #calcula el número de edades válidas (no na's)
+cat('Proporción de observaciones válidas:',round((nrow(DF)-sum(is.na(DF$Edad)))/nrow(DF)*100,2),'\n') #calcula la proporción de edades válidas (no na's)
+
+#round: redondea un valor o vector, "digits" = dígitos al redondear
+```
+
+La distribución de la `Edad` es _sesgada a la derecha_, pues se cumple que media > mediana, y los datos están _relativamente concentrados_.
+
+## Variable Estatura
+
+```{r}
+cat('Descriptores de la variable Estatura:\n\n')
+
+cat('Media:',round(mean(DF$Estatura, na.rm=TRUE),2),'\n') #calcula el promedio de la estatura, excluyendo los na
+cat('Desviación Estándar:',round(sd(DF$Estatura, na.rm=TRUE),2),'\n') #calcula la desviación estándar de la estatura, excluyendo los na
+cat('Mediana:',round(median(DF$Estatura, na.rm=TRUE),2),'\n') #calcula la mediana de la estatura, excluyendo los na
+cat('Rango:',round(range(DF$Estatura, na.rm=TRUE),2),'\n') #calcula el rango de la estatura, excluyendo los na
+cat('Rango Intercuartílico:',round(IQR(DF$Estatura, na.rm=TRUE),2),'\n') #calcula el rango intercuartílico de la estatura, excluyendo los na
+cat('Mínimo:',min(DF$Estatura, na.rm = TRUE),'\n') #calcula el mínimo de la estatura, excluyendo los na
+cat('Máximo:',max(DF$Estatura, na.rm = TRUE),'\n') #calcula el máximo de la estatura, excluyendo los na
+
+cat('Número de observaciones válidas:',nrow(DF)-sum(is.na(DF$Estatura)),'\n') #calcula el número de estaturas válidas (no na's)
+cat('Proporción de observaciones válidas:',round((nrow(DF)-sum(is.na(DF$Estatura)))/nrow(DF)*100,2),'\n') #calcula la proporción de estaturas válidas (no na's)
+
+#round: redondea un valor o vector, "digits" = dígitos al redondear
+```
+
+La distribución de la `Estatura` es _sesgada a la izquierda_, pues se cumple que media < mediana, y los datos están _relativamente concentrados_.
+
+## Variable Peso
+
+```{r}
+cat('Descriptores de la variable Peso:\n\n')
+
+cat('Media:',round(mean(DF$Peso, na.rm=TRUE),2),'\n') #calcula el promedio del peso, excluyendo los na
+cat('Desviación Estándar:',round(sd(DF$Peso, na.rm=TRUE),2),'\n') #calcula la desviación estándar del peso, excluyendo los na
+cat('Mediana:',round(median(DF$Peso, na.rm=TRUE),2),'\n') #calcula la mediana del peso, excluyendo los na
+cat('Rango:',round(range(DF$Peso, na.rm=TRUE),2),'\n') #calcula el rango del peso, excluyendo los na
+cat('Rango Intercuartílico:',round(IQR(DF$Peso, na.rm=TRUE),2),'\n') #calcula el rango intercuartílico del peso, excluyendo los na
+cat('Mínimo:',min(DF$Peso, na.rm = TRUE),'\n') #calcula el mínimo del peso, excluyendo los na
+cat('Máximo:',max(DF$Peso, na.rm = TRUE),'\n') #calcula el máximo del peso, excluyendo los na
+
+cat('Número de observaciones válidas:',nrow(DF)-sum(is.na(DF$Peso)),'\n') #calcula el número de pesos válidas (no na's)
+cat('Proporción de observaciones válidas:',round((nrow(DF)-sum(is.na(DF$Peso)))/nrow(DF)*100,2),'\n') #calcula la proporción de pesos válidas (no na's)
+
+#round: redondea un valor o vector, "digits" = dígitos al redondear
+```
+
+La distribución de la `Peso` es _aproximadamente simétrica_, pues la media es aproximadamente igual que la mediana, y los datos están _relativamente concentrados_.
+
+## Variable Tiempo
+
+```{r}
+cat('Descriptores de la variable Tiempo:\n\n')
+
+cat('Media:',round(mean(DF$Tiempo, na.rm=TRUE),2),'\n') #calcula el promedio del tiempo, excluyendo los na
+cat('Desviación Estándar:',round(sd(DF$Tiempo, na.rm=TRUE),2),'\n') #calcula la desviación estándar del tiempo, excluyendo los na
+cat('Mediana:',round(median(DF$Tiempo, na.rm=TRUE),2),'\n') #calcula la mediana del tiempo, excluyendo los na
+cat('Rango:',round(range(DF$Tiempo, na.rm=TRUE),2),'\n') #calcula el rango del tiempo, excluyendo los na
+cat('Rango Intercuartílico:',round(IQR(DF$Tiempo, na.rm=TRUE),2),'\n') #calcula el rango intercuartílico del tiempo, excluyendo los na
+cat('Mínimo:',min(DF$Tiempo, na.rm = TRUE),'\n') #calcula el mínimo del tiempo, excluyendo los na
+cat('Máximo:',max(DF$Tiempo, na.rm = TRUE),'\n') #calcula el máximo del tiempo, excluyendo los na
+
+cat('Número de observaciones válidas:',nrow(DF)-sum(is.na(DF$Tiempo)),'\n') #calcula el número de tiempos válidas (no na's)
+cat('Proporción de observaciones válidas:',round((nrow(DF)-sum(is.na(DF$Tiempo)))/nrow(DF)*100,2),'\n') #calcula la proporción de tiempos válidas (no na's)
+
+#round: redondea un valor o vector, "digits" = dígitos al redondear
+```
+
+La distribución de la `Tiempo` es _sesgada a la derecha_, pues la media es mayor que la mediana, y los datos están _relativamente concentrados_.
+
+# Pregunta 6: Boxplots
+
+## Variable Edad
+```{r}
+cat('Resumen de Boxplot de la variable Edad:\n\n')
+
+cat('Total de valores atípicos demasiado grandes:',sum(boxplot.stats(DF$Edad)$out>boxplot.stats(DF$Edad)$stats[5]),'\n') #[...]$stats[5] indica el límite o bigote superior 
+cat('Total de valores atípicos demasiado pequeños:',sum(boxplot.stats(DF$Edad)$out<boxplot.stats(DF$Edad)$stats[1]),'\n') #[...]$stats[1] indica el límite o bigote inferior
+cat('El promedio, sin eliminar los valores atípicos, es:',round(mean(DF$Edad,na.rm = T),2),'\n')
+cat('La mediana, sin eliminar los valores atípicos, es:',round(median(DF$Edad,na.rm = T),2),'\n')
+cat('El promedio, eliminando los valores atípicos, es:',round(mean(DF$Edad[!(DF$Edad %in% boxplot.stats(DF$Edad)$out)],na.rm = T),2),'\n')
+cat('La mediana, eliminando los valores atípicos, es:',round(median(DF$Edad[!(DF$Edad %in% boxplot.stats(DF$Edad)$out)],na.rm = T),2))
+
+#boxplot.stats: devuelve las estadísticas producidas por el gráfico de cajas; "stats"=devuelve los puntos de corte (1:bigote inferior,2:Q1,3:Q2 o mediana,4:Q3,5:bigote superior); "out"=vector de valores atípicos.
+```
+
+La mediana es _más_ robusta que el promedio pues es _menos_ sensible a la presencia de valores atípicos.
+
+## Variable Estatura
+```{r}
+cat('Resumen de Boxplot de la variable Estatura:\n\n')
+
+cat('Total de valores atípicos demasiado grandes:',sum(boxplot.stats(DF$Estatura)$out>boxplot.stats(DF$Estatura)$stats[5]),'\n') #[...]$stats[5] indica el límite o bigote superior 
+cat('Total de valores atípicos demasiado pequeños:',sum(boxplot.stats(DF$Estatura)$out<boxplot.stats(DF$Estatura)$stats[1]),'\n') #[...]$stats[1] indica el límite o bigote inferior
+cat('El promedio, sin eliminar los valores atípicos, es:',round(mean(DF$Estatura,na.rm = T),2),'\n')
+cat('La mediana, sin eliminar los valores atípicos, es:',round(median(DF$Estatura,na.rm = T),2),'\n')
+cat('El promedio, eliminando los valores atípicos, es:',round(mean(DF$Estatura[!(DF$Estatura %in% boxplot.stats(DF$Estatura)$out)],na.rm = T),2),'\n')
+cat('La mediana, eliminando los valores atípicos, es:',round(median(DF$Estatura[!(DF$Estatura %in% boxplot.stats(DF$Estatura)$out)],na.rm = T),2))
+
+#boxplot.stats: devuelve las estadísticas producidas por el gráfico de cajas; "stats"=devuelve los puntos de corte (1:bigote inferior,2:Q1,3:Q2 o mediana,4:Q3,5:bigote superior); "out"=vector de valores atípicos.
+```
+
+La mediana es _más_ robusta que el promedio pues es _menos_ sensible a la presencia de valores atípicos.
+
+## Variable Peso
+```{r}
+cat('Resumen de Boxplot de la variable Peso:\n\n')
+
+cat('Total de valores atípicos demasiado grandes:',sum(boxplot.stats(DF$Peso)$out>boxplot.stats(DF$Peso)$stats[5]),'\n') #[...]$stats[5] indica el límite o bigote superior 
+cat('Total de valores atípicos demasiado pequeños:',sum(boxplot.stats(DF$Peso)$out<boxplot.stats(DF$Peso)$stats[1]),'\n') #[...]$stats[1] indica el límite o bigote inferior
+cat('El promedio, sin eliminar los valores atípicos, es:',round(mean(DF$Peso,na.rm = T),2),'\n')
+cat('La mediana, sin eliminar los valores atípicos, es:',round(median(DF$Peso,na.rm = T),2),'\n')
+cat('El promedio, eliminando los valores atípicos, es:',round(mean(DF$Peso[!(DF$Peso %in% boxplot.stats(DF$Peso)$out)],na.rm = T),2),'\n')
+cat('La mediana, eliminando los valores atípicos, es:',round(median(DF$Peso[!(DF$Peso %in% boxplot.stats(DF$Peso)$out)],na.rm = T),2))
+
+#boxplot.stats: devuelve las estadísticas producidas por el gráfico de cajas; "stats"=devuelve los puntos de corte (1:bigote inferior,2:Q1,3:Q2 o mediana,4:Q3,5:bigote superior); "out"=vector de valores atípicos.
+```
+
+La mediana es _más_ robusta que el promedio pues es _menos_ sensible a la presencia de valores atípicos.

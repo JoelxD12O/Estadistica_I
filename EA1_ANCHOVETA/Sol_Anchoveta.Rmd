@@ -1,0 +1,673 @@
+---
+title: "Laboratorio 1"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: no
+      smooth_scroll: no
+    number_sections: true
+    theme: yeti
+---
+
+<style type="text/css">
+#TOC {
+  color: gray; 
+}
+
+</style>
+
+> # **Introducción**
+
+Los estudios históricos [JM], [ED] y [SG] sobre la **anchoveta ficticia** (*Engraulis simulacra*) en las zonas pesqueras del Perú determinaron que el largo promedio de la anchoveta es de $8\,cm$ y su peso promedio es de $70\,g$. 
+
+En los dos últimos estudios citados, la preponderancia de machos y hembras fue similar y en el primero, no se reportó.
+
+Las redes utilizadas en los tres estudios tenían agujeros de, respectivamente $2.54\,cm$, $2.54\,cm$ y $2.00\,cm$. 
+
+Estos estudios también determinaron que las proporciones aproximadas de la anchoveta son las de un cilindro de largo $l$ y diámetro $a$ en centímetros, donde se determinó una relación aproximada entre $a$ y $l$ por regresión. Ese modelo, que aún es utilizado en la actualidad, es $a=l*0.28+1.00$ y se supone que es válido para peces de $7.00\,cm$ o más.
+
+Finalmente, en los tres estudios mencionados, se determinó la densidad de la anchoveta comparando el peso seco de las mismas, con el volumen de agua destilada a $4^\circ C$ desplazado por estas; llegando al valor de $1.05\,\frac{g}{cm^3}$. 
+
+Considerando que el más moderno de estos estudios tiene casi 100 años de antiguedad se decidió llevar a cabo un nuevo estudio para caracterizar las poblaciónes de este pez y determinar la salud de los inventarios disponibles.
+
+Este estudio se llevó a cabo desde el año 2007 hasta el año 2017, donde se clasificaron, midieron y pesaron, 100 peces capturados mediante una red de malla fina con agujeros de $1.00\,cm$ en la misma semana durante el verano y el invierno de cada año, por 10 barcos pesqueros de características similares, seleccionados al azar en cada estación, de un conjunto de 18 disponibles y trabajando en las zonas de pesca legal.
+
+Las mediciones fueron tomadas por personal entrenado en el reconocimiento, clasificación y medida de las características relevantes.
+
+Los datos recolectados se reportan a continuación en el archivo [Anchoveta_07_17.csv](https://utec.instructure.com/users/2088/files/91206) que debe ser descargado en su computador para ser analizado usando **R**.
+
+El archivo está codificado en formato UTF-8 consiste de 22000 observaciones de las siguientes variables:  
+
++ `Año`: el año en que se realizó la recolección, variable numérica entera entre 2007 y 2017. 
+
++ `Estacion`: la estación en que se realizó la recolección, variable categórica que puede tomar los valores `Invierno` y `Verano`. La recolección se llevó a cabo en las condiciones descritas en la *semana central* de la estación.
+
++ `Barco`: el barco en el que se realizó la recolección, es una variable categórica que puede tomar cualquiera de 18 valores posibles. En cada estación se seleccionaron al azar 10 de los 18 barcos disponibles para que la recolección se llevase a cabo en ellos.
+
++ `Sexo`: sexo de la anchoveta, es una variable categórica que puede tomar los valores `Hembra` o `Macho`. Para determinar el sexo de la anchoveta se confió en el juicio del clasificador entrenado. El iris de las hembras es plateado brillante mientras que el de los machos de un anaranjado brillante.  
+
++ `Largo`: el largo de la anchoveta en centímetros, es una variable numérica positiva. El largo se mide desde el borde de la agalla hasta el centro del inicio de la aleta caudal. Las proporciones de la anchoveta se mantienen relativamente uniformes una vez esta alcanza un tamaño relativamente grande (históricamente se habla de al menos $7.00\,cm$).
+
++ `Peso`: el peso de la anchoveta en gramos, es una variable numérica positiva. Se pesa la anchoveta completa. 
+
+
+> # **Problemas**
+
+Se desea dar una descripción de los datos recolectados con la intención de validar los modelos existentes para la anchoveta ficticia y proponer modelos apropiados en el caso de que los modelos existentes ya no sean válidos.
+
+**Preguntas L2018.1.1.E**
+
+Las preguntas de L2018.1.1.I son un subconjunto propio de estas, por lo que colgaremos solo las soluciones a L2018.1.1.E
+
+Lo primero que haremos es cargar las librerías que se emplearán:
+
+```{r, message=FALSE}
+library(readr)
+library(dplyr)
+```
+
+Ahora cargaremos los datos que previamente descargamos en nuestro directorio de trabajo.
+
+```{r}
+DF<-read_csv(file="Anchoveta_07_17.csv")
+```
+
+Como no hay advertencias, presumiremos que la carga ocurrió como esperábamos.
+
+El muestreo es por conglomerados ya que seleccionamos uniformemente y al azar 10 de los 18 barcos disponibles y estos toman un muestreo aleatorio simple de las anchovetas disponibles en el universo.
+
+> # **1. ¿Cuántas veces, en promedio, participaron los barcos en el estudio?**
+
+Se busca saber en promedio cuantas veces han participado los barcos en el estudio. Como sabemos que cada barco que participa procesa 100 anchovetas por estación, basta con ver la tabla de frecuencias de los barcos y dividir sus entradas por 100.
+
+```{r}
+Participaciones<-table(DF$Barco)/100 
+
+#table: devuelve las frecuencias de cada "nivel"; estos se dividen entre 100, y se almacenan en la variable Participaciones.
+```
+
+Las participaciones de los barcos están ahora en el vector `Participaciones`, que podemos promediar usando la función `mean`.
+
+```{r}
+mean(Participaciones) #mean: se utiliza para obtener el promedio aritmético
+```
+
+Podemos usar la función `round` para obtener la respuesta directamente.
+
+La respuesta a la pregunta es `r round(mean(Participaciones),digits=2)`.
+
+> # **2. ¿Cuántos barcos participaron en el estudio?**
+
+Según el enunciado hay 18 disponibles, para decir que realmente participaron en el estudio deberían haber recolectado al menos una muestra.
+
+Los barcos participantes son:
+
+```{r}
+BarcosParticipantes<-unique(DF$Barco) 
+#unique: se utiliza para generar un vector con los valores existentes de la columna Barco, y este vector se almacena en la variable: BarcosParticipantes.
+```
+
+Hay exactamente
+```{r}
+length(BarcosParticipantes) #length: devuelve la longitud del vector.
+```
+
+y sus nombres son
+```{r}
+BarcosParticipantes 
+```
+
+Otra forma de obtener el nombre de los barcos es usando el comando `levels`, pero es necesario que la variable sea del tipo "factor".
+
+Como la carga de datos con la librería `readr` lee las variables cualitativas como `character`, es necesario transformarlas.
+
+```{r}
+DF$Barco<-factor(DF$Barco) #convierte la variable en tipo factor
+
+levels(DF$Barco)
+#levels: devuelve el valor de los "niveles" del vector.
+```
+
+La respuesta a la pregunta es `r length(BarcosParticipantes)`.
+
+> # **3. Participación de los barcos**
+
+> ## 3.1. ¿Cuántas veces participó el barco que más veces participó en el estudio?
+
+La respuesta se puede ver por inspección del vector `Participaciones`
+```{r}
+Participaciones #Colocando el nombre de la variable, aparecerá su contenido.
+```
+
+O podemos usar la función `max`.
+
+```{r}
+max(Participaciones) #max: devuelve el valor máximo de un vector.
+```
+
+Un barco con más participaciones se puede conseguir usando la función `which.max`
+
+```{r}
+names(Participaciones)[which.max(Participaciones)]
+
+#wich.max: devuelve la posición del primer máximo al combinarlo con "names" devuelve el nombre de la posición.
+#names: devuelve el nombre de los valores de la variable "Participaciones".
+```
+
+pero esto no garantiza tener a todos los barcos con el número máximo de participaciones pues la función `which.max` retorna el índice del primer máximo.
+
+Para encontrarlos a todos podríamos usar
+
+```{r}
+names(Participaciones)[Participaciones==max(Participaciones)]
+
+#Encuentra los índices de los máximos de la variable "Participaciones"; luego busca el nombre, con el comando names, de los índices que cumplen con la condición. 
+```
+
+La respuesta a la pregunta es `r max(Participaciones)`.
+
+> ## 3.2. ¿Cuántas veces participó el barco que más veces participó en el estudio?
+
+La respuesta se puede ver por inspección del vector `Participaciones`
+```{r}
+Participaciones #Colocando el nombre de la variable, aparecerá su contenido.
+```
+
+O podemos usar la función `min`.
+
+```{r}
+min(Participaciones)#min: devuelve el valor mínimo de un vector. 
+```
+
+El barco con menos participaciones se puede conseguir usando la función `which.min`
+
+```{r}
+names(Participaciones)[which.min(Participaciones)]
+
+#Encuentra los índices de los mínimos de la variable "Participaciones"; luego busca el nombre, con el comando names, de los índices que cumplen con la condición. 
+```
+
+pero esto no garantiza tener a todos los barcos con el número mínimo de participaciones pues la función `which.min` retorna el índice del primer mínimo.
+
+Para encontrarlos a todos podríamos usar
+
+```{r}
+names(Participaciones)[Participaciones==min(Participaciones)]
+
+#compara cual de las participaciones es igual al mínimo, luego busca el nombre de la posición de todos los que cumplan con la condición. 
+```
+
+La respuesta a la pregunta es `r min(Participaciones)`.
+
+> # **4. ¿Cuál es el porcentaje de hembras en todo el estudio?**
+
+Para esto tambien podemos usar una tabla y una simple inspección visual
+
+```{r}
+round(table(DF$Sexo)/nrow(DF)*100,digits=2)
+
+#table(DF$Sexo): devuelve la cantidad de machos y hembras
+#nrow(DF): luego se divide por la cantidad total de pescados
+#y al multiplicarlo por 100 se obtiene el porcentaje
+#digits: parametrizamos la cantidad de decimales. 
+```
+
+Si queremos hacerlo de manera automatizada debemos ser un poco más sofisticados
+
+```{r}
+(round(table(DF$Sexo)/nrow(DF)*100,digits=2))[names(table(DF$Sexo))=="Hembra"]
+
+#names(table(DF$Sexo))=="Hembra": A diferencia del anterior; aquí se utiliza una condicional para trabajar únicamente con "hembras".
+```
+
+La respuesta a la pregunta es `r (round(table(DF$Sexo)/nrow(DF)*100,digits=2))[1]`.
+
+> # **5. Porcentaje de hembras capturadas en cada estación**
+
+> ## 5.1 ¿Cuál es el porcentaje de hembras capturadas en invierno?
+
+Una tabla de frecuencias, reescalada apropiadamente nos da la respuesta mediante inspección visual.
+
+```{r}
+round(table(DF$Estacion,DF$Sexo)/rowSums(table(DF$Estacion,DF$Sexo))*100,digits=2)
+
+#rowsums: ubica el total de pescados por cada estación y por sexo.
+```
+
+Si queremos hacerlo de manera automatizada debemos ser un poco más sofisticados
+
+```{r}
+round(table(DF$Estacion,DF$Sexo)/rowSums(table(DF$Estacion,DF$Sexo))*100,digits=2)[names(table(DF$Estacion))=="Invierno",names(table(DF$Sexo))=="Hembra"]
+
+#names(table(DF$Estacion))=="Invierno",names(table(DF$Sexo))=="Hembra": Se utilizan dos condicionales en las posiciones de filas y columnas del índice para trabajar con "Invierno" y "Hembra".
+
+```
+
+La respuesta a la pregunta es `r round(table(DF$Estacion,DF$Sexo)/rowSums(table(DF$Estacion,DF$Sexo))*100,digits=2)[1,1]`.
+
+> ## 5.2 ¿Cuál es el porcentaje de hembras capturadas en verano?
+
+Una tabla de frecuencias, reescalada apropiadamente nos da la respuesta mediante inspección visual.
+```{r}
+round(table(DF$Estacion,DF$Sexo)/rowSums(table(DF$Estacion,DF$Sexo))*100,digits=2)
+#rowSums(table(DF$Estacion,DF$Sexo)): ubica el total de pescados por cada estación.
+#a continuación, se divide el total de hembras por estación entre el total de pescados por estación y realiza la misma operación para machos
+#se presenta como una tabla en porcetajes, multiplicando todo por 100 y con 2 decimales de precisión
+```
+
+Si queremos hacerlo de manera automatizada debemos ser un poco más sofisticados
+
+```{r}
+round(table(DF$Estacion,DF$Sexo)/rowSums(table(DF$Estacion,DF$Sexo))*100,digits=2)[names(table(DF$Estacion))=="Verano",names(table(DF$Sexo))=="Hembra"]
+
+#names(table(DF$Estacion))=="Verano",names(table(DF$Sexo))=="Hembra" : Se utilizan dos condicionales en las posiciones de filas y columnas del índice para trabajar con "Verano" y "Hembra".
+```
+
+La respuesta a la pregunta es `r round(table(DF$Estacion,DF$Sexo)/rowSums(table(DF$Estacion,DF$Sexo))*100,digits=2)[2,1]`.
+
+> # **6-7. Largo de las anchovetas**  
+
+> ## 6-7.1. ¿Cuánto es el largo promedio en centímetros de las anchovetas del estudio?
+
+La respuesta a esta pregunta se puede hallar usando la función `mean`.
+```{r}
+mean(DF$Largo)#mean devuelve el promedio aritmético de la variable "Largo".
+```
+
+La respuesta a la pregunta es `r round(mean(DF$Largo),digits=2)`.
+
+> ## 6-7.2. ¿Cuál es la mediana del largo en centímetros de las anchovetas del estudio?  
+
+La respuesta a esta pregunta se puede hallar usando la función `median`.
+```{r}
+median(DF$Largo)#median devuelve la mediana de la variable "Largo"
+```
+
+La respuesta a la pregunta es `r round(median(DF$Largo),digits=2)`.
+
+> ## 6-7.3. ¿Cuál es el mínimo del largo en centímetros de las anchovetas del estudio?
+
+La respuesta a esta pregunta se puede hallar usando la función `min`.
+```{r}
+min(DF$Largo)#min devuelve el valor mínimo de todos los datos de la variable "Largo".
+```
+
+La respuesta a la pregunta es `r round(min(DF$Largo),digits=2)`.
+
+> ## 6-7.4. ¿Cuál es el máximo del largo en centímetros de las anchovetas del estudio?
+
+La respuesta a esta pregunta se puede hallar usando la función `max`.
+```{r}
+max(DF$Largo)#max devuelve el valor máximo de todos los datos de la variable "Largo".
+```
+
+La respuesta a la pregunta es `r round(max(DF$Largo),digits=2)`.
+
+> ## 6-7.5. ¿Cuál es la desviación estándar del largo en centímetros de las anchovetas del estudio?
+
+La respuesta a esta pregunta se puede hallar usando la función `sd`.
+```{r}
+sd(DF$Largo)#sd devuelve la desviación estandar de la variable "Largo".
+```
+
+La respuesta a la pregunta es `r round(sd(DF$Largo),digits=2)`.
+
+> # **8. Pesos de las anchovetas**
+
+> ## 8.1. El rango intercuartil de los pesos en gramos de las anchovetas del estudio es:
+
+La respuesta a esta pregunta se puede hallar usando la función `IQR`.
+```{r}
+IQR(DF$Peso)#IQR devuelve el rango intercuartil de la variable "Peso". 
+```
+
+La respuesta a la pregunta es `r round(IQR(DF$Peso),digits=2)`.
+
+> ## 8.2. El rango de los pesos en gramos de las anchovetas del estudio es:
+
+La respuesta a esta pregunta se puede hallar usando las funciones `min` y `max`.
+```{r}
+max(DF$Peso)-min(DF$Peso)#max y min; devuelven el valor máximo y mínimo respectivamente. 
+```
+
+La respuesta a la pregunta es `r round(max(DF$Peso)-min(DF$Peso),digits=2)`.
+
+> # **9. Análisis de los pesos de las anchovetas**  
+  
+> ## 9.1. La distribución de los pesos es:
+
+Para ver si la distribución es sesgada debemos comparar la mediana y la media del peso. Para esto podriamos calcular ambas funciones de la manera usual y compararlas o podemos usar la función `summary`.
+
+```{r}
+summary(DF$Peso) #Summary da un resumen general de la variable.
+```
+
+Como la media es mayor que la mediana (está a la derecha de la mediana en la recta real) diremos que la distribución es sesgada a la derecha.
+
+Tambien podríamos ver un histograma de los pesos.
+
+```{r}
+hist(DF$Peso,breaks=30,col="lightgray",main="Distribución del peso de las anchovetas",ylab="densidad",xlab="peso (g)",prob=TRUE)
+abline(v=median(DF$Peso),col="red",lwd=2) 
+abline(v=mean(DF$Peso),col="blue",lwd=2) 
+legend(200,0.012,legend=c("Mediana","Media"),lwd=2,col=c("red","blue")) 
+
+#hist: sirve para graficar un histograma, "col" se utiliza para dar color al histograma, "main" = título, "ylab" = eje y, "xlab" = eje x, 
+#abline: permite colocar una linea en el histograma
+#legend: leyenda, indicando primero posición por coordenadas, declaración de nombres,ancho de línea y colores
+```
+La cola prolongada y relativamente alta a la derecha sugiere que la distribución es sesgada a la derecha y eso se confirma al ver la mediana y la media.
+
+Un boxplot también puede ser útil
+```{r}
+boxplot(DF$Peso,main="Peso de las anchovetas",ylab="peso (g)")
+
+#boxplot: se utiliza para una gráfica tipo boxplot, "main" = título, "ylab" = eje y  
+abline(h=mean(DF$Peso),col="red")#linea que grafica la media del peso
+```
+
+La presencia de valores atípicos usualmente genera un sesgo hacia el lado donde estos ocurren, como se puede ver al comparar con la media (en rojo en el diagrama).
+
+De nuevo, la distribución es sesgada a la derecha (la derecha esta arriba ahora).
+
+Por cierto, el `boxplot` también se puede presentar de manera horizontal, pero no es lo usual.
+
+```{r}
+boxplot(DF$Peso,main="Peso de las anchovetas",xlab="peso (g)",horizontal=TRUE)
+
+#horizontal=TRUE: se utiliza para visualizar el boxplot en horizontal  
+
+abline(v=mean(DF$Peso),col="red")
+
+#abline: grafica una linea que representa la media del peso.
+
+text(x=mean(DF$Peso)-4, y=0.6, "Media", srt=90, col="red")
+
+#text: agrega un texto en el gráfico.
+```
+
+La respuesta de la pregunta es: **sesgada a la derecha**.
+
+> ## 9.2. Clase modal
+
+Si se agrupan los pesos de las anchovetas en gramos en clases de ancho 10, comenzando por las clases (0,10], (10,20], (20,30], ... hasta llegar a la clase correspondiente a los pesos (240,250].
+La clase modal corresponde (la clase que tiene la mayor cantidad de observaciones) es:
+
+Para calcular la clase modal podemos usar la función `cut` y la función `table`.
+
+```{r}
+Frecuencias<-table(cut(DF$Peso,breaks=seq(from=0,to=250,by=10)))
+
+#breaks=seq(): se utiliza para dar un rango: from=inicio, to=final, by=tamaño del intérvalo. 
+
+Frecuencias
+```
+
+Un gráfico (muy parecido al histograma) que puede servir es:
+
+```{r}
+plot(Frecuencias,las=3,
+     xlab="clases del peso (g)",ylab="frecuencia",cex.axis=0.5,main="Histograma de clases")
+
+#"plot" se utiliza para un gráfico de barras, donde: cex.axis = tamaño de fuente de los ejes. 
+```
+
+
+En ambos casos podemos determinar cual es la clase modal por inspección visual, pero también lo podemos hacer de la manera habitual automatizada.
+
+```{r}
+Frecuencias[which.max(Frecuencias)]#devuelve el valor de la primera posición máxima. 
+```
+
+Una clase modal es `r (names(Frecuencias))[which.max(Frecuencias)]`. 
+
+Si hubiese más de una clase modal y quisiesemos capturarlas todas deberíamos usar un acceso lógico.
+
+```{r}
+(names(Frecuencias))[Frecuencias==max(Frecuencias)]#Devuelve el nombre de las posiciones que cumplas la condición (todos los máximos).
+```
+
+La respuesta a la pregunta es `r (names(Frecuencias))[which.max(Frecuencias)]`.
+
+> ## 9.3. El coeficiente de variación del peso de las anchoas del estudio es:
+
+El coeficiente de variación de una variable se calcula dividiendo la desviación estándar de ésta por la media de la misma.
+
+Como las unidades de la desviación estándar son las mismas que las de la media, el coeficiente de variación es un escalar sin unidades.
+
+La respuesta de la pregunta es **un escalar sin unidades**.
+
+El coeficiente de variación del peso de las anchovetas del estudio, como número entre 0 y 1 es: 
+
+> # **10. El coeficiente de variación del peso de las anchovetas del estudio, como número entre 0 y 1 es:**
+
+Usando la fórmula del coeficiente de variación y las funciones `sd` y `mean` para el peso de las anchovetas podemos calcular fácilmente este valor.
+
+Es importante notar que la media debe estar suficientemente alejada del valor cero para no romper el primer mandamiento de la matemática.
+
+```{r}
+sd(DF$Peso)/mean(DF$Peso)#sd: desviación estándar, y mean devuelve el valor de la media. 
+```
+
+La respuesta de la pregunta es `r round(sd(DF$Peso)/mean(DF$Peso),digits=2)`.
+
+> # **11. Visualización:**
+
+> ## 11.1. Si se quiere visualizar las distribuciones de los largos en función del barco que recolectó los datos, para poder ver si hay diferencias marcadas entre los barcos se debe:
+
+Repitan conmigo **Las tortas son para los cumpleaños**.
+
+Una manera razonable de comparar las distribuciones es utilizando los *boxplot*. Tenemos bastantes observaciones por barco y no siempre tenemos la misma cantidad.
+
+```{r}
+boxplot(DF$Largo~DF$Barco,las=3,cex.axis=0.5,xlab="barco",ylab="largo (cm)",main="Distribución de largos por barco")
+
+#DF$Largo~DF$Barco: hace varios boxplot paralelos, en x los barcos y en y el largo
+```
+
+Se puede observar que las distribuciones de los largos son muy parecidas.
+
+Si intentan hacer un diagrama de dispersión el resultado no es tan claro pues hay muchos puntos superpuestos.
+
+```{r}
+plot(as.numeric(as.factor(DF$Barco)),DF$Largo,xlab="número del barco",ylab="largo (cm)",main="Distribución de largos por barco")
+```
+Podriamos utilizar transparencias y la función `jitter` para tratar de hacer una visualización relevante en ese caso
+
+```{r}
+plot(jitter(as.numeric(as.factor(DF$Barco))),DF$Largo,xlab="número del barco",ylab="largo (cm)",main="Distribución de largos por barco",pch=20,col=rgb(0,0,0,0.05))
+
+```
+pero la realidad es que el resultado no es más claro que los *boxplots*.
+
+La respuesta de esta pregunta es **Colocar en la misma escala los boxplot de los largos correspondientes a las anchovetas capturadas por cada barco**.
+
+> ## 11.2. Si se quiere evidenciar una relación de algún tipo entre el largo y el peso de las anchovetas capturadas se debe:
+
+Repitan conmigo **Las tortas son para los cumpleaños**.
+
+Si queremos evidenciar una relación entre dos variables, lo más razonable es colocar ambas en un diagrama de dispersión.
+
+```{r}
+plot(DF$Largo,DF$Peso,pch=".",xlab="largo (cm)",ylab="peso (g)",main="Largo vs. peso")
+```
+
+Si las cantidades de puntos crean problemas, siempre podemos ajustar su tamaño (como hicimos en la gráfica anterior al especificar `pch="."`) o ajustar su transparencia (o ambas, si fuese necesario).
+
+También podríamos trabajar con la función `smoothScatter`, que desenfatiza las observaciones individuales trabajando con colores más oscuros (más observaciones) o mas claros (menos observaciones), y solo marca las observaciones individuales que estan realmente aisladas.
+
+```{r}
+smoothScatter(DF$Largo,DF$Peso,xlab="largo (cm)",ylab="peso (g)",main="Largo vs. peso")#Este gráfico permite desenfatizar los puntos, 
+```
+
+
+La respuesta a esta pregunta es **Hacer un diagrama de dispersión del largo contra el peso**.
+
+> ## **11.3. Suponga que en DF están los datos sobre las anchovetas. Además de etiquetar y titular apropiadamente la gráfica, si se quiere mostrar como varía la proporción de hembras con respecto a la estación se debe:**
+
+Repitan conmigo **Las tortas son para los cumpleaños**.
+
+Esta pregunta se podía resolver ejecutando cada línea propuesta y viendo cuales eran útiles y cuales no.
+
+Pero siempre se debe recordar el refrán *más vale maña que fuerza* y no perder el tiempo.
+
+Como `hembras` es uno de los niveles de `Sexo` y estación es otra variable categórica, podemos pensar en un gráfico de mosaico.
+
+Como queremos mostrar la variación de hembras en cada estación, debemos agrupar las cosas en nuestra tabla primero por estación y luego por sexo.
+
+Si queremos, podemos adornar la tabla con colores, pero no es necesario.
+
+```{r}
+mosaicplot(table(DF$Estacion,DF$Sexo),main="Proporción de sexo por estación",col=c("red","blue"))
+
+#mosaicplot: sirve para presentar tablas o barras superpuestas
+```
+
+En la gráfica se puede ver que en cada estación se pescaron la mitad de los peces (es decir, las muestras de invierno y verano tienen el mismo tamaño) y en cada estación las hembras constituyen menos de la mitad de los peces caapturados.
+
+Las hembras constituyen aproximadamente la tercera parte de los peces capturados en invierno y son menos de la mitad pero más de la tercera parte de los peces capturados en verano.
+
+La respuesta a esta pregunta es `mosaicplot(table(DF$Estacion,DF$Sexo))`.
+
+> # **12. Modelo**
+
+> ## 12.1. ¿Cuántas anchovetas de las recolectadas se pueden usar para corroborar si el modelo para el ancho es válido?
+
+En el modelo se especifica que las anchovetas deben tener siete centímetros de largo o más.
+
+Podemos seleccionar solamente las anchovetas válidas para el modelo.
+```{r}
+DFValidas<-DF[DF$Largo>=7,]
+```
+
+De manera que el número de filas en la nueva tabla es el número de anchovetas que sirven para corroborar el modelo.
+
+```{r}
+nrow(DFValidas)
+```
+
+Si solo estabamos interesados en el número, tambien hemos podido hacer:
+
+```{r}
+sum(DF$Largo>=7)
+```
+
+La respuesta a esta pregunta es `r sum(DF$Largo>=7)`.
+
+> ## 12.2. Si suponemos que las proporciones de la anchoveta no cambian cuando el pez es suficientemente grande y suponemos que la densidad es invariante en el tiempo, podemos validar si el modelo para el ancho aún es razonable calculando la densidad.
+En términos de esto podemos aventurar la siguiente hipótesis:
+
+Hay montones de maneras de tratar de validar el modelo, pero lo importante es entender que no aplicaba para todas las anchovetas, por lo que deberíamos restringirnos a las anchovetas del largo apropiado.
+
+Una manera de validar el modelo podría ser, tratar de predecir el peso observado de las anchovetas de tamaño válido a partir del cálculo de su volumen en función del modelo cilíndrico de la anchoveta.
+
+```{r}
+densidad<-1.05
+Ancho<-DFValidas$Largo*0.28+1
+Volumen<-DFValidas$Largo*Ancho^2*pi/4
+PesoModelo<-Volumen*densidad
+```
+
+Ahora podríamos graficar el peso observado contra el peso predicho. Una buena coincidencia sería si la gráfica presenta una acumulación significativa sobre la recta de pendiente 1 que pasa por el origen (la recta $y=x$).
+
+```{r}
+plot(DFValidas$Peso,PesoModelo,pch=".",col=rgb(0,0,0,0.2),xlab="peso real (g)",ylab="peso estimado (g)",main="Comparación entre el peso real y el peso estimado")
+abline(0,1,col="red")
+```
+
+Al trabajar con la transparencia planteada, se puede ver que el modelo que tenemos para el ancho, sobreestima el peso de la anchoveta. 
+
+La función `smoothScatter` puede ser conveniente, al ocultar las observaciones individuales salvo en los casos que son atípicas o están muy aisladas.
+
+```{r}
+smoothScatter(DFValidas$Peso, PesoModelo,xlab="peso real (g)",ylab="peso estimado (g)",main="Comparación entre el peso real y el peso estimado")
+abline(0,1,col="red")
+```
+
+Aquí se ve más claramente que el modelo del ancho sobreestima el peso de la anchoveta pues el área más oscura de la gráfica está por encima de la línea donde ambos pesos son iguales (que es realmente donde desearíamos que el modelo esté).
+
+Otra cosa que podríamos hacer es tratar de recuperar la densidad de la anchoveta usando el modelo del ancho.
+
+Esto podemos hacerlo calculando la densidad en función del modelo
+```{r}
+DensidadEstimada<-DFValidas$Peso/Volumen
+```
+
+```{r}
+summary(DensidadEstimada)
+```
+
+Claramente hay un problema, pues la densidad debería ser `r densidad`  y su promedio da `r mean(DensidadEstimada)`.
+
+Gráficamente podemos ver que
+
+```{r}
+boxplot(DensidadEstimada,ylab=expression((g/cm^3)),cex.lab=0.8,main="Densidad estimada")
+abline(h=c(densidad,mean(DensidadEstimada)),col=c("red","blue"))
+legend(1.2,1.5,legend=c("Densidad real","Densidad estimada promedio"),col=c("red","blue"),lty=1,bty="n",cex=0.6)
+```
+por lo que el modelo subestima la densidad (y esto es consistente con lo que vimos antes).
+
+Todo lo que estamos viendo apunta a la hipótesis:
+
+*El modelo para el ancho de las anchovetas de 7 centímetros o más de largo es obsoleto.*
+
+La respuesta de esta pregunta es **El modelo original para el ancho de la anchoveta es obsoleto para anchovetas de 7 centímetros o más**.
+
+> # **Bibliografía**
+
+[JM]: J. Moriarty (1889). *A Survey of the peruvian populations of Engraulis simulacra*. Royal Society of Natural Sciences, London, England. p. 314.
+
+[ED]: E. Dibol (1911). *Sobre la salud de la anchoveta ficticia en las costas de Peru*. Acta Ecológica, Lima, Perú. p. 127.
+
+[SG]: S. Gonzón (1923). *Caracterización de las especies económicamente aprovechables de la fachada del Pacífico*. AES , Lima, Perú. p. 35.
+
+> # **Bono**
+
+> ## Sexos y estaciones
+
+Para poner en una misma escala los boxplots de los pesos para todas las combinaciones de los factores `Sexo` y `Estacion` obtenemos
+
+```{r}
+boxplot(DF$Peso~DF$Estacion*DF$Sexo,las=3,cex.axis=0.6)
+```
+
+Esto nos permite apreciar que **en general los machos son menos pesados que las hembras** (pero hay excepciones).
+
+Nos permite observar que la **distribución de los pesos de los machos depende claramente de la estación**, en general, los machos son menos pesados en invierno que en verano.
+
+Nos permite observar que **la distribución de los pesos de las hembras se comporta de manera similar independientemente de la estación**, pues sus diagramas de caja son casi idénticos salvo por algunos valores atípicos.
+
+y finalmente nos permite observar que **La distribución de los pesos de los machos es diferente de la distribución de los pesos de las hembras**, pues en particular, las medianas están en lugares diferentes.
+
+> ## Diagrama de tortas
+
+Para el lector interesado, mostramos algunos diagramas de torta apropiados.
+
+```{r}
+pie(c(0.7,0.3),col=c("brown4","lightgray"),labels=c("Parte de la torta que no me he comido","Parte de la torta que ya me comí"),cex=0.8,main="Torta de chocolate")
+```
+
+
+```{r}
+pie(c(0.7,0.2,0.1),col=c("lightblue","yellow1","brown4"),labels=c("Cielo","Parte iluminada de la pirámide","Parte sombreada de la pirámide"),cex=0.8,init.angle=-36,main="Gran pirámide",border=FALSE)
+```
+
+Para más información respecto los gráficos de torta, por favor leer la ayuda de la función `pie`, en particular la sección de notas (el ejemplo de la pirámide está en la ayuda).
+
+```{r}
+op<-par(bg="black",col.main="gray")
+pie(c(7/8,1/8),col=c("yellow1","black"),cex=0.8,init.angle=360/16,main="Waka-waka-waka-waka-waka...",lty=0)
+lines(c(0.6,1.1),c(0,0.25),col="gray")
+lines(c(-0.8,-1),c(0.15,0.2),col="gray")
+text(-1.2,0.25,"Pac-Man",col="gray",cex=0.8)
+points(0.6,0,col="pink",cex=4,pch=19)
+text(1.3,0.3,"Píldora",cex=0.8,col="gray")
+points(c(1.4),c(0),col="pink",cex=2,pch=19)
+abline(h=c(1,-1),col="blue",lwd=20)
+par(op)
+```
+
+Para más información sobre [Pac-Man](https://en.wikipedia.org/wiki/List_of_Pac-Man_video_games) visite el [enlace](www.freepacman.org/).

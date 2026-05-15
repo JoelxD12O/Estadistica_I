@@ -1,0 +1,368 @@
+---
+title: "Práctica 1"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: false
+    theme: yeti
+---
+
+Explorar en **R** el [archivo de datos sobre bodegas](https://utec.instructure.com/courses/694/modules/items/21094) en diversos distritos de Lima.
+
+En el archivo encontrarán los siguientes campos:
+
++ `Bodega`: una cadena de caracteres que representa a la bodega. El nombre real de la bodega ha sido ofuscado por razones de confidencialidad.
+
++ `Distrito`: una cadena de caracteres que representa el distrito donde está ubicada la bodega.
+
++ `Aforo`: un entero positivo con el aforo de la bodega.
+
++ `Productos`: un entero positivo con la cantidad de tipos de productos diferentes que manejó la bodega un mes. Marcas diferentes y presentaciones diferentes cuentan como productos diferentes. Los diversos tipos de verduras y frutas cuentan como tipos diferentes.
+
++ `Ventas1`: La cantidad total (en soles con céntimos) vendida por la bodega en la primera semana del estudio. No se toman en cuenta las devoluciones.
+
++ `Ventas2`: La cantidad total (en soles con céntimos) vendida por la bodega en la segunda semana del estudio. No se toman en cuenta las devoluciones.
+
++ `Ventas3`: La cantidad total (en soles con céntimos) vendida por la bodega en la tercera semana del estudio. No se toman en cuenta las devoluciones.
+
++ `Ventas4`: La cantidad total (en soles con céntimos) vendida por la bodega en la cuarta semana del estudio. No se toman en cuenta las devoluciones.
+
+El conjunto de datos está limpio, pero la limpieza generó algunos datos faltantes en las ventas, estos se reportan como `r NA`.
+
+# Estructuras necesarias
+
+Para trabajar en el pre laboratorio 1 y el laboratorio 1 necesitará los siguientes _data frames_:
+
+## El _data frame_ `DF`
+
+Este _data frame_ contiene todos los datos del archivo `BodegasEP.csv` y se debe cargar directamente mediante la función `read_csv` de la libería **readr**. Para poder hacer esto deben tener el archivo en una ubicación conocida, preferiblemente el directorio de trabajo.
+
+Recuerden que la función `str` puede ser útil para entender los diversos detalles de una estructura en **R**.
+
+La función `complete.cases` también es conveniente pues permite detectar en donde hay datos faltantes, de manera similar a `is.na`.
+
+## El _data frame_ `DFT`
+
+Este _data frame_ se crea a partir de `DF` usando la función `complete.cases` para eliminar los registros con datos faltantes y usando la función `cbind` para anexar una columna adicional donde se encuentra la suma de las columnas `Ventas1`, `Ventas2`, `Ventas3` y `Ventas4`.
+
+De esta manera `DFT` tiene una columna más que `DF` y algunas filas menos que `DF`.
+
+La función `stri_length` podría ser útil para manipular algunas cosas relacionadas con `DFT`.
+
+## El _data frame_ `DFD`
+
+Este _data frame_ se obtiene a partir de `DFT` utilizando la función `aggregate`.
+
+En `DFD` deberían haber solo dos columnas (dos variables). La primera es el `Distrito`, que es el valor que hemos utilizado para sumar las ventas mensuales. La segunda es `Total Ventas` y tiene los valores acumulados de las ventas, por distrito.
+
+En el caso de las filas, `DFD` también tiene pocas, ya que en realidad trabaja con el número de distritos disponibles en el estudio.
+
+> # **Preguntas**
+
+Cargue el archivo a un *data frame* en **R** y responda las siguientes preguntas:
+
+Primero, se lee el archivo usando la función *read_csv* de la librería `readr``
+
+Se carga la librería:
+
+```{r, message=FALSE}
+library(readr)
+library(dplyr)
+```
+
+Luego, se lee el archivo:
+
+```{r}
+
+DF<-read_csv(file="BodegasEP.csv")
+
+# read_csv: se utiliza para leer un archivo en formato con separación de comas (.csv); toda la información del archivo se almacena en la variable DF.
+
+# Importante: Si el archivo a leerse tiene separación de punto y coma, se usa la función read_csv2
+```
+
+> ## **1. ¿Cuántas variables numéricas tiene el _data frame_?**
+
+Se recomienda responder esta pregunta de manera analítica y no con comandos de **"r"**, pues el software no analiza la naturaleza de la variable, solo identifica en función a cómo se presentan las variables en la base de datos.
+Se puede apoyar con los comandos `str` o `summary` de R-base, estos indican el tipo de variable que **"r"** identifica.   
+
+```{r}
+#str, devuelve los tipos de variables de la base de datos.
+str(DF)
+#summary, da un resumen general de las variable y también indica el tipo de variable que "r" identifica. 
+summary(DF)
+```
+
+Una solución más óptima, pues devuelve la cantidad de variables numéricas, es usar el comando `sum` acompañado del comando `sapply` y del argumento `FUN`
+
+```{r}
+#sapply, devuelve una lista del mismo tamaño de "X", y cada salida es el resultado de aplicar el argumento "FUN".
+
+#is.numeric, verifica si una variable es del tipo "numérico", devuelve un tipo booleano (False, True).
+sum(sapply(X=DF, FUN=is.numeric))
+```
+
+> ## **2. ¿Cuántos niveles tiene el factor `Distrito`?**  
+
+Una forma simple de obtener los niveles del factor `Distrito` es usando la función `unique`:
+
+```{r}
+unique(DF$Distrito)
+```
+
+Otra forma de resolver esta pregunta es la siguiente: 
+
+Primero, se debe convertir en tipo _factor_ la variable `Distrito`, debido a que la función _read_csv_ reconoce las variables cualitativas como tipo `character`. 
+
+```{r}
+DF$Distrito<-factor(DF$Distrito)
+
+# factor: se usa para convertir una variable en factor 
+```
+
+Luego, se analiza la longitud del vector que indica los niveles de los distritos.
+```{r}
+length(levels(DF$Distrito))
+
+#length: devuelve el largo de la variable "Distrito"
+#levels: permite vectorizar la información de la variable Distrito, solo devuelve los nombre de la variable "Distrito" 
+```
+
+Asimismo, otra forma de obtener los niveles del factor `Distrito` es usando las funciones `select`, `unique` y `arrange` concatenado por el operador '%>%'.
+
+```{r}
+DF%>%select(Distrito)%>%unique()%>%arrange(Distrito)
+
+#select: selecciona la(s) columna(s) especificada(s)
+#unique: obtiene los valores únicos de una variable dada
+#arrange: ordenar el objeto según la columna especificada
+```
+
+> ## **3. ¿Cuántas bodegas participaron en el estudio?**
+
+Bastará con revisar las participaciones, asumiendo que verdaderamente las bodegas participaron sólo una vez en el estudio.
+
+```{r}
+nrow(DF)
+
+#nrow: devuelve el número de filas que hay en "DF" --> data frame 
+```
+
+Usando la función `summarise`, indicando el número de observaciones con el comando `n()` también se puede responder la pregunta.
+
+```{r}
+DF%>%summarise(n=n())
+```
+
+> ## **4. ¿Cuántos datos faltantes hay? ¿A cuántas bodegas afectan?**
+
+Tenemos dos formas de generar esta información. Siempre revisando los registros incompletos por observación.
+```{r}
+datosFaltantes<-sum(is.na(DF)) #is.na: devuelve en un vector, la cantidad datos cuyo valor es N/A.
+bodegasAfectadas<-sum(!complete.cases(DF))
+
+cat('Hay',datosFaltantes,'datos faltantes y afectan a',bodegasAfectadas,'bodegas.')
+
+#complete.cases: devuelve en un vector, la cantidad de casos que no contienen errores.
+#sum: se utiliza para sumar los valores de un vector.
+#cat: concatena vectores.
+```
+
+> ## **5. ¿Cuántas bodegas tienen todos sus datos completos?**
+
+*Sugerencia: la función `complete.cases` puede ser de utilidad.*
+
+Para resolver esta pregunta es muy útil la función `complete.cases`, que es una función complementaria de la función anterior.
+```{r}
+sum(complete.cases(DF))
+```
+
+> ## **6. ¿Cuántas bodegas, con todos sus datos completos, participaron en Miraflores?**
+
+Basta con utilizar el "and booleano" entre los casos que son completos y los que se encuentran en Miraflores.
+```{r}
+sum(complete.cases(DF) & DF$Distrito=="Miraflores")
+
+#&, es el operador lógico "y", indica que se debe de cumplir ambas condiciones.
+#==, se utiliza como condición de igualdad, no confundir con "=".
+```
+
+> ## **7. ¿Cuántas bodegas, con todos sus datos completos, participaron en Breña?**
+
+Respuesta similar a la anterior.
+```{r}
+sum(complete.cases(DF) & DF$Distrito=="Breña")
+```
+
+Cree un nuevo *data frame* con los datos completos y anéxele una columna `Ventas` con la suma de ventas de las cuatro semanas.
+
+*Sugerencia: la función `cbind` puede ser de utilidad.*
+
+```{r}
+DFL<-DF[complete.cases(DF),]
+
+#Crea un nuevo data frama en función de "DF" y los casos sin errores, recordar que el uso de corchetes [], simboliza una secuencia de condiciones. 
+
+DFT<-cbind(DFL,Ventas=DFL$Ventas1+DFL$Ventas2+DFL$Ventas3+DFL$Ventas4)
+
+#cbind: crea una secuencia de datos en columnas o filas, el código une al dataframe DFL y una columna nuevo llamada "ventas".
+```
+
+> ## **8. ¿Cuál es el total de ventas en todos los distritos?**
+
+```{r}
+sum(DFT$Ventas)
+```
+
+> ## **9. ¿En qué distrito está la bodega con mayor venta semanal? ¿Cómo se llama esa bodega?**
+
+Primero debemos tener en cuenta que hay 4 semanas de venta, no basta con encontrar al de mayor valor en una semana. Para esto debemos encontrar el máximo entre las 4 semanas y a continuación encontrar los índices de quienes han llegado a ese valor en las diferentes semanas para finalmente saber sus nombres.
+
+```{r}
+m<-max(DFT[,5:8])
+#max: retorna el valor máximo.
+#DFT[,5:8]: devuelve los valores de la columnas 5 al 8 del dataframe "DFT"
+
+i<-which(DFT$Ventas1==m | DFT$Ventas2==m | DFT$Ventas3==m | DFT$Ventas4==m) 
+#which: devuelve la posición de la condición mencionada dentro del paréntesis ()
+#|, es el símbolo del operador lógico "or", el cual devuelve el valor, si una o mas de las condiciones se cumple.
+
+DFT[i,c(2,1)]#devuelve el nombre de la posición "i", indicando las columnas 2 y 1. 
+```
+
+Otra forma de responder esta pregunta es usando las funciones de la librería `dplyr`. Primero se genera un subset de datos con la función `select`, y luego se agrupan con `group_by`, para, de esta forma, crear la variable _Maximo_ que es el máximo de las ventas de las 4 semanas con la función `mutate`. Finalmente, se selecciona solo las columnas _Distrito_, _Bodega_ y _Maximo_ con la función `select`, se ordena descendentemente con la función `arrange` y se muestra solo la primera fila, que contiene el máximo, con la función `head`.
+
+```{r}
+DF%>%select(Bodega,Distrito,Ventas1,Ventas2,Ventas3,Ventas4)%>%group_by(Bodega,Distrito)%>%mutate(Maximo=max(Ventas1,Ventas2,Ventas3,Ventas4))%>%select(Distrito,Bodega,Maximo)%>%arrange(desc(Maximo))%>%head(n=1)
+  
+#select: selecciona las variables del dataframe
+#group_by: define las variables de agrupamiento
+#mutate: crea una variable; en este caso se creó una variable que es el máximo de las ventas de las 4 semanas
+#arrange: ordena el dataframe
+#head: selecciona las "n" observaciones superiores 
+```
+
+> ## **10. ¿En qué distrito esta la bodega con menor venta semanal? ¿Cómo se llama esa bodega?**
+
+Primero debemos tener en cuenta que hay 4 semanas de venta, no basta con encontrar al de menor valor en una semana. Para esto debemos encontrar el mínimo entre las 4 semanas y a continuación encontrar los índices de quienes han llegado a ese valor en las diferentes semanas para finalmente saber sus nombres.
+
+```{r}
+m<-min(DFT[,5:8]) #min devuelve el valor mínimo.
+i<-which(DFT$Ventas1==m | DFT$Ventas2==m | DFT$Ventas3==m | DFT$Ventas4==m) 
+DFT[i,c(2,1)]
+```
+De la misma manera que en el ejercicio anterior, seguimos el proceso, pero en lugar de crear la variable _Maximo_, se crea la variable _Minimo_, y en lugar de arreglar el subset de datos descendentemente, lo hacemos de manera ascendente.
+
+**Arrange por default ordenar ascendentemente, por lo que no necesita especificarse**
+
+```{r}
+DF%>%select(Bodega,Distrito,Ventas1,Ventas2,Ventas3,Ventas4)%>%group_by(Bodega,Distrito)%>%mutate(Minimo=min(Ventas1,Ventas2,Ventas3,Ventas4))%>%select(Distrito,Bodega,Minimo)%>%arrange(Minimo)%>%head(n=1)
+```
+
+> ## **11. ¿En qué distrito está la bodega con mayor venta mensual? ¿Cómo se llama esa bodega?**
+
+Esta es una pregunta parecida a las anteriores, con la diferencia que debemos observar en este caso solamente la columna de ventas totales. Finalmente se apunta al distrito y el nombre de la bodega.
+
+```{r}
+i<-which.max(DFT$Ventas)
+
+#which.max: devuelve la posición del primer máximo de la variable Ventas del dataframe DFT
+
+DFT[i,c(2,1)]
+#devuelve el nombre de la posición "i", indicando las columnas 2 y 1. 
+```
+
+Otra forma de obtener el mismo resultado es aplicar la función `filter` para seleccionar la bodega con las ventas mensuales más altas.
+
+```{r}
+DFT%>%filter(Ventas==max(Ventas))%>%select(Distrito,Bodega)
+```
+
+> ## **12. ¿En qué distrito esta la bodega con menor venta mensual? ¿Cómo se llama esa bodega?**
+
+Esta es una pregunta parecida a las anteriores, con la diferencia que debemos observar en este caso solamente la columna de ventas totales. Finalmente se apunta al distrito y el nombre de la bodega.
+
+```{r}
+i<-which.min(DFT$Ventas)
+
+#which.min: devuelve la posición del primer mínimo de la variable Ventas del dataframe DFT
+
+DFT[i,c(2,1)]
+#devuelve el nombre de la posición "i", indicando las columnas 2 y 1. 
+```
+
+Como en el caso anterior, podemos usar la función `filter`con la condición de _Ventas==min(Ventas)_ para obtener la bodega con las menores ventas mensuales.
+
+```{r}
+DFT%>%filter(Ventas==min(Ventas))%>%select(Distrito,Bodega)
+```
+
+> ## **13. ¿Qué distrito tiene las mayores ventas en el estudio?**
+
+*Sugerencia: la función `aggregate` puede ser de utilidad.*
+
+La idea es poder generar un nuevo dataframe que tenga la agrupación de ventas por distrito. $Aggregate$ con $FUN=sum$ nos permite agrupar sumando los resultados.
+
+```{r}
+DFD<-aggregate(DFT$Ventas, by=list(Distrito=DFT$Distrito), FUN=sum)
+#aggregate: divide los datos en subconjuntos, y devuelve los datos según se indique en el paréntesis
+names(DFD)<-c("Distrito","Total Ventas") #names: devuelve los nombres de DFD.
+DFD
+DFD[which.max(DFD$`Total Ventas`),]
+#devuelve el nombre de la primera posición máxima de la variable "Total ventas" del data frame DFD
+```
+
+Otra forma de obtener la respuesta es usando la función `select` para generar un subset de datos con las variables _Distrito_ y _Ventas_, para luego agruparlo por _Distrito_ usando la función `group_by` y resumirla como la suma de _Ventas_. Finalmente, ordenarlas descendentemente por las ventas totales con la función `arrange` y seleccionar la primera fila con la función `head`.
+
+```{r}
+DFT%>%select(Distrito,Ventas)%>%group_by(Distrito)%>%summarise(VentasTotales=sum(Ventas))%>%arrange(desc(VentasTotales))%>%head(n=1)
+```
+
+> ## **14. ¿Qué distrito tiene las menores ventas en el estudio?**
+
+Utilizando el dataframe ya existente sólo debemos buscar el mínimo.
+
+```{r}
+DFD[which.min(DFD$`Total Ventas`),]
+#devuelve el nombre de la primera posición mínima de la variable "Total ventas" del data frame DFD
+```
+
+Al igual que en la pregunta anterior, seguimos el proceso usando las mismas funciones, pero en lugar de usar `head`, usamos `tail` que toma la última fila, que contiene la menor de las ventas totales. 
+
+```{r}
+DFT%>%select(Distrito,Ventas)%>%group_by(Distrito)%>%summarise(VentasTotales=sum(Ventas))%>%arrange(desc(VentasTotales))%>%tail(n=1)
+```
+
+> ## **15. ¿Qué bodegas tienen el nombre más largo? ¿Cúanto vendieron?**
+
+Este es un trabajo más interesante, pues hace un procesamiento con el comando $levels$, $stri_length$ 
+
+Pero antes de poder usar estas funciones, es necesario convertir las variables cualitativas a factor:
+
+```{r}
+DFT$Bodega<-factor(DFT$Bodega)
+```
+
+Luego, aplicamos los comandos descritos:
+
+```{r}
+library(stringi)
+stri_length(levels(DFT$Bodega))[which.max(stri_length(levels(DFT$Bodega)))]
+#stri_length: devuelve el valor numerico del tamaño de un string (cadena)
+
+levels(DFT$Bodega)[stri_length(levels(DFT$Bodega)) == stri_length(levels(DFT$Bodega))[which.max(stri_length(levels(DFT$Bodega)))]]
+#vectoriza cuyo valor sea igual a los máximos valores del tamaño de una cadena de la variable Bodega.
+#which.max(stri_length(levels(DFT$Bodega))): devuelve el índice de la primera cadena mas larga.
+
+nombre<-levels(DFT$Bodega)[which.max(stri_length(levels(DFT$Bodega)))]
+#levels: vectoriza todo lo nombrado en el paréntesiis
+DFT[DFT$Bodega==nombre,c(1,9)]
+```
+
+Otra forma de llegar a la solución es usando la función `mutate` para crear la variable _LogitudBodega_ en la que almacenamos la longitud del nombre de la Bodega con el comando `stri_length`. Luego, seleccionamos las variables _Bodega_, _LongitudBodega_ y _Ventas_, para luego filtrarla por la longitud máxima.
+
+```{r}
+DFT%>%mutate(LongitudBodega=stri_length(Bodega))%>%select(Bodega,LongitudBodega,Ventas)%>%filter(LongitudBodega==max(LongitudBodega))%>%select(Bodega,Ventas)
+```
