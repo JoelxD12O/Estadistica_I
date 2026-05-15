@@ -1,0 +1,199 @@
+---
+title: "Laboratorio 1"
+format: html
+editor: visual
+embed-resources: true
+---
+
+Para poder resolver exitosamente el laboratorio necesitará cargar las librerías *readr* y *dplyr*.
+
+El laboratorio consiste de cargar y procesar datos de dos archivos, `C19.csv` y `Demo.csv`
+
+Una descripción detallada de ambos archivos la puede encontrar en la página de Tablas.
+
+Los nombres de las distintas tablas y variables en este documento son los nombres sugeridos ya que son los mismos que se utilizan en las diversas partes del laboratorio.
+
+Es conveniente construir las tablas que se mencionan a continuación desde el principio del laboratorio.
+
+## Tablas de datos básicas
+
+- `DC:` datos sobre COVID-19, del archivo `C19.csv.`
+
+- `DD:` datos demográficos, del archivo `Demo.csv`.
+
+*Sugerencia:* Utilice la función `read_csv` de la librería readr.
+
+## Tablas de resumen
+
+- `DFU:` datos sobre COVID-19 en el Reino Unido, agregados por día. Esta tabla se obtiene seleccionando las observaciones correspondientes al Pais “United Kingdom”, agrupándolas por día y totalizando las variables Contagiados, Muertos y Recuperados. Para hacer esto es posible que le resulten útiles las funciones filter, `group by` y `summarise`, todas de la librería *dplyr*.
+
+Esta tabla debe ser ampliada con dos columnas adicionales:
+
+- `ContDia` el número de contagiados para cada día; se obtiene restándole al número de Contagiados de un día, el número de Contagiados del día anterior.
+
+- `TMA` tasa de mortalidad acumulada para cada día; se obtiene dividiendo el número de muertos de cada día por el número de contagiados del mismo día y finalmente multiplicando por 100.
+
+*Sugerencia:* la función diff puede ser de utilidad. Usar las funciones de dplyr puede ser conveniente en esta parte.
+
+## Tabla comparativa
+
+- `DX` es una tabla que cruza la información reciente de `DC` con información demográfica de `DD`.<br> Para construir `DX` se debe ejecutar el siguiente bloque de código.
+
+```{r, message=FALSE, warning=FALSE}
+#| include: false
+library(readr)
+library(dplyr)
+DC <- read_csv("C19-1.csv")
+DD <- read_csv("Demo-1.csv")
+```
+
+```{r, message=FALSE, warning=FALSE}
+DC %>% filter(Fecha == max(Fecha)) -> DZ
+DX <- left_join(DZ,DD)
+DX$Mort <- DX$Muertos/DX$Contagiados
+DX <- DX[!is.na(DX$Mort),]
+```
+
+```{r}
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+
+```{r}
+cat("datos faltantes de DC: ", sum(is.na(DC)))
+cat("\n")
+cat("datos faltantes de DD : ", sum(is.na(DD)))
+cat("\n")
+cat("observaciones completas de Dc: ",
+round(sum(complete.cases(DC)), 2) )
+cat("\n")
+cat("observaciones completas de DD: ",
+round(sum(complete.cases(DD)), 2) )
+cat("\n")
+
+
+
+```
+
+```{r}
+cat("\n")
+cat("cantidad de observaciones en Dc: ",
+sum(!complete.cases(DC)) )
+
+
+cat("\n")
+cat("cantidad de observaciones en DD: ",
+sum(!complete.cases(DD)) )
+
+
+cat("\n")
+cat("cantidad de variables en DC: ",
+ncol(DC) )
+
+cat("\n")
+cat("cantidad de variables en DD: ",
+ncol(DD) )
+
+```
+
+```{r}
+
+
+cat("En DC la variable Pais toma ")
+
+length(unique(DC$Pais))
+cat("
+ valores diferentes y la variable Provincia toma " )
+length(unique(DC$Provincia))
+ cat("valores.")
+ cat("\n")
+ 
+  cat("\n")
+
+ 
+ 
+ cat("En DC, hay")
+ length(unique(DC$Pais[is.na(DC$Provincia)]))
+ cat("valores diferentes de la variable Pais cuya provincia es NA: ")
+ 
+ cat("\n")
+  cat("\n")
+
+  cat("En DC, hay")
+ length(unique(DC$Pais[!is.na(DC$Provincia)]))
+ 
+ cat("valores diferentes de la variable Pais cuya provincia no  es NA: ")
+```
+
+```{r}
+cat("El número de días transcurridos entre el primer caso reportado y el último caso reportado en el United Kingdom es ")
+uk <- DC[DC$Pais == "United Kingdom", ]
+max(uk$Fecha) - min(uk$Fecha)
+    
+    
+    
+    
+```
+
+```{r}
+cat("En DC, el número de valores diferentes de la variable Provincia cuando la variable Pais toma el valor United Kingdom es")
+
+
+uk <- DC[DC$Pais == "United Kingdom", ]
+
+length(unique(uk$Provincia))
+
+```
+
+```{r}
+
+# Crear DFU
+DFU <- DC %>%
+  filter(Pais == "United Kingdom") %>%
+  group_by(Fecha) %>%
+  summarise(
+    Contagiados = sum(Contagiados, na.rm = TRUE),
+    Muertos = sum(Muertos, na.rm = TRUE),
+    Recuperados = sum(Recuperados, na.rm = TRUE)
+  )
+# Crear columna ContDia
+DFU$ContDia <- c(NA, diff(DFU$Contagiados))
+
+# Crear columna TMA
+DFU$TMA <- (DFU$Muertos / DFU$Contagiados) * 100
+
+
+# Día con mayor incremento
+DFU[which.max(DFU$ContDia), ]
+
+
+
+```
+
+```{r}
+fi <- min(DFU$Fecha[!is.na(DFU$ContDia) & DFU$ContDia > 0])
+
+ff <- max(DFU$Fecha[!is.na(DFU$ContDia) & DFU$ContDia > 0])
+
+Sel <- (fi <= DFU$Fecha) & (DFU$Fecha <= ff)
+
+min(DFU$ContDia[Sel], na.rm = TRUE)
+
+median(DFU$ContDia[Sel], na.rm = TRUE)
+
+mean(DFU$ContDia[Sel], na.rm = TRUE)
+
+max(DFU$ContDia[Sel], na.rm = TRUE)
+
+sd(DFU$ContDia[Sel], na.rm = TRUE)
+
+max(DFU$ContDia[Sel], na.rm = TRUE) -
+min(DFU$ContDia[Sel], na.rm = TRUE)
+
+IQR(DFU$ContDia[Sel], na.rm = TRUE)
+
+(sd(DFU$ContDia[Sel], na.rm = TRUE) /
+ mean(DFU$ContDia[Sel], na.rm = TRUE)) * 100
+
+```

@@ -1,0 +1,340 @@
+---
+title: "Solucionario práctica EP"
+format: html
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+# 1 Carga de datos
+
+```{r}
+r <- function(x){
+  round(x, digits = 2)
+}
+```
+
+```{r}
+DF <- read_csv("L1B.csv")
+```
+
+```{r}
+nobs <- nrow(DF)
+nvars <- ncol(DF)
+nnas <- sum(is.na(DF))
+ninc <- sum(!complete.cases(DF))
+```
+
+```{r}
+nobs
+nvars
+nnas
+ninc
+```
+
+Cargue el conjunto de datos con la función read_csv de la biblioteca readr.
+
+Por razones de compatibilidad, use la variable DF.
+
+El conjunto de datos tiene `r nobs` observaciones y `r nvars`.
+
+El número de datos faltantes es `r nnas` y son responsables por `r ninc` observaciones incompletas.
+
+# 2 Descripción Tabla
+
+```{r}
+nc <- sum(complete.cases(DF))
+por <- r((nrow(DF) - nc)/nrow(DF)*100)
+TAB <- colSums(!is.na(DF))
+mm <- min(TAB)
+mmv <- names(TAB)[mm == TAB]
+```
+
+```{r}
+nc
+por
+mm
+mmv
+```
+
+Si decidimos eliminar todas las todas las observaciones incompletas nuestro tamaño de muestra sería `r nc`, por lo que perderíamos aproximadamente `r por` % de las observaciones que tenemos.
+
+Considerando que aún no hemos hecho la limpieza de los datos, decidimos que debemos vivir con los datos faltantes que tenemos.
+
+El menor tamaño efectivo de la muestra es `r mm` y corresponde a la variable `r mmv`.
+
+# 3 Descriptiva num
+
+## 3.1 Descriptiva L
+
+```{r}
+X <- DF$L
+
+Y <- as.numeric(chartr("Ol", "01", X))
+nuevosna <- sum(!is.na(X) & is.na(Y))
+# otra forma
+# nuevosna <- sum(is.na(Y)) -  sum(is.na(X))
+n <- sum(!is.na(Y))
+me <- r(median(Y, na.rm = TRUE))
+m <- r(mean(Y, na.rm = TRUE))
+sd <- r(sd(Y, na.rm = TRUE))
+cv <- sd(Y, na.rm = TRUE)/mean(Y, na.rm = TRUE)
+desc <- ifelse(cv <= 0.3, "el promedio", "la mediana")
+cvt <- ifelse(cv <= 0.3, "baja", ifelse(cv <= 0.6, "moderada", "alta"))
+cv <- r(cv)
+TAB <- table(Y, useNA = "ifany")
+ses <- ifelse(m > me, "sesgada a la derecha", ifelse(m == me, "simétrica", "sesgada a la izquierda"))
+
+DF$L <- Y
+```
+
+```{r}
+nuevosna
+n
+me
+m
+sd
+cv
+desc
+cvt
+ses
+```
+
+Considere la variable L.
+
+Se sabe que el lector automático comete algunos errores de lectura.
+
+Los dos errores más frecuentes son la lectura incorrecta de un cero como la letra "O" mayúscula y la lectura incorrecta de un uno como la letra "L" minúscula.
+
+Utilice la función `chartr` para arreglar los errores mencionados. Cualquier otro error debe resultar en un dato faltante.
+
+Al aplicar este procedimiento para limpiar la variable hemos añadido `r nuevosna` datos faltantes. Por lo que el tamaño efectivo de la muestra se reduce a `r n`.
+
+La mediana de la variable es `r me` cm, su promedio es `r m` cm y su desviación estándar es `r sd` cm.
+
+Como el coeficiente de variación es `r cv`, podemos afirmar que sería más apropiado seleccionar `r desc` debido a que los datos presentan variabilidad `r cvt`.
+
+Finalmente,la distribución de la variable es `r ses`.
+
+## 3.2 Descriptiva A
+
+```{r}
+X <- DF$A
+
+Y <- as.numeric(chartr("Ol", "01", X))
+nuevosna <- sum(!is.na(X) & is.na(Y))
+# otra forma
+# nuevosna <- sum(is.na(Y)) -  sum(is.na(X))
+n <- sum(!is.na(Y))
+me <- r(median(Y, na.rm = TRUE))
+m <- r(mean(Y, na.rm = TRUE))
+sd <- r(sd(Y, na.rm = TRUE))
+cv <- sd(Y, na.rm = TRUE)/mean(Y, na.rm = TRUE)
+desc <- ifelse(cv <= 0.3, "el promedio", "la mediana")
+cvt <- ifelse(cv <= 0.3, "baja", ifelse(cv <= 0.6, "moderada", "alta"))
+cv <- r(cv)
+TAB <- table(Y, useNA = "ifany")
+ses <- ifelse(m > me, "sesgada a la derecha", ifelse(m == me, "simétrica", "sesgada a la izquierda"))
+
+DF$A <- Y
+```
+
+```{r}
+nuevosna
+n
+me
+m
+sd
+cv
+desc
+cvt
+ses
+```
+
+Considere la variable A.
+
+Se sabe que el lector automático comete algunos errores de lectura.
+
+Los dos errores más frecuentes son la lectura incorrecta de un cero como la letra "O" mayúscula y la lectura incorrecta de un uno como la letra "L" minúscula.
+
+Utilice la función `chartr` para arreglar los errores mencionados. Cualquier otro error debe resultar en un dato faltante.
+
+Al aplicar este procedimiento para limpiar la variable hemos añadido `r nuevosna` datos faltantes. Por lo que el tamaño efectivo de la muestra se reduce a `r n`.
+
+La mediana de la variable es `r me` cm, su promedio es `r m` cm y su desviación estándar es `r sd` cm.
+
+Como el coeficiente de variación es `r cv`, podemos afirmar que sería más apropiado seleccionar `r desc` debido a que los datos presentan variabilidad `r cvt`.
+
+Finalmente,la distribución de la variable es `r ses`.
+
+## 3.3 Descriptiva E
+
+```{r}
+X <- DF$E
+
+Y <- as.numeric(chartr("Ol", "01", X))
+nuevosna <- sum(!is.na(X) & is.na(Y))
+# otra forma
+# nuevosna <- sum(is.na(Y)) -  sum(is.na(X))
+n <- sum(!is.na(Y))
+me <- r(median(Y, na.rm = TRUE))
+m <- r(mean(Y, na.rm = TRUE))
+sd <- r(sd(Y, na.rm = TRUE))
+cv <- sd(Y, na.rm = TRUE)/mean(Y, na.rm = TRUE)
+desc <- ifelse(cv <= 0.3, "el promedio", "la mediana")
+cvt <- ifelse(cv <= 0.3, "baja", ifelse(cv <= 0.6, "moderada", "alta"))
+cv <- r(cv)
+TAB <- table(Y, useNA = "ifany")
+ses <- ifelse(m > me, "sesgada a la derecha", ifelse(m == me, "simétrica", "sesgada a la izquierda"))
+
+DF$E <- Y
+```
+
+```{r}
+nuevosna
+n
+me
+m
+sd
+cv
+desc
+cvt
+ses
+```
+
+Considere la variable E.
+
+Se sabe que el lector automático comete algunos errores de lectura.
+
+Los dos errores más frecuentes son la lectura incorrecta de un cero como la letra "O" mayúscula y la lectura incorrecta de un uno como la letra "L" minúscula.
+
+Utilice la función `chartr` para arreglar los errores mencionados. Cualquier otro error debe resultar en un dato faltante.
+
+Al aplicar este procedimiento para limpiar la variable hemos añadido `r nuevosna` datos faltantes. Por lo que el tamaño efectivo de la muestra se reduce a `r n`.
+
+La mediana de la variable es `r me` cm, su promedio es `r m` cm y su desviación estándar es `r sd` cm.
+
+Como el coeficiente de variación es `r cv`, podemos afirmar que sería más apropiado seleccionar `r desc` debido a que los datos presentan variabilidad `r cvt`.
+
+Finalmente,la distribución de la variable es `r ses`.
+
+# 4 Descriptiva Calidad
+
+```{r}
+tipo <- "categórica ordinal"
+DF$Calidad <- factor(DF$Calidad, levels = c("Básica", "Estándar", "Buena", "Excelente", "Premium"), ordered = TRUE)
+q1 <- quantile(DF$Calidad, 0.25, type = 3)
+q2 <- quantile(DF$Calidad, 0.5, type = 3)
+q3 <- quantile(DF$Calidad, 0.75, type = 3)
+interp <- "al menos la cuarta parte de las maderas es de calidad buena o mejor"
+txt <- "imposible de calcular"
+TAB <- table(DF$Calidad)
+mo <- names(TAB)[max(TAB) == TAB] 
+```
+
+```{r}
+tipo
+q1
+q2
+q3
+interp
+txt
+```
+
+Usando los datos limpios, considere la variable Calidad.
+
+Responda únicamente en función de lo que puede observar en la gráfica.
+
+Esta variable es `r tipo`
+
+El primer cuartil de la variable es `r q1`, su mediana es `r q2` y su tercer cuartil es `r q3`.
+
+Esto quiere decir que `r interp`.
+
+El rango de la variable es `r txt`.
+
+# 5 Gráfica num
+
+Usando los datos limpios, considere el siguiente fragmento de código y marque todas las respuestas correctas.
+
+```{r}
+nf <- layout(mat = matrix(c(1,2) , 2 , 1, byrow = TRUE),  height = c(2,1))
+par(mar=c(0.0, 4.1, 2.1, 1.1))
+hist(DF$Peso
+     , xlim = c(0, max(DF$Peso))
+     , ylab = "densidad"
+     , main = "Histograma de peso"
+     , prob = TRUE
+     , axes = FALSE
+     , breaks = 20
+     , col = "lightblue"
+     )
+axis(2)
+legend("topright", legend = "Promedio", pch = 4, bty = "n", pt.cex = 1.5)
+par(mar=c(4.1, 4.1, 0.6, 1.1))
+boxplot(DF$Peso
+        , horizontal = TRUE
+        , bty = "n"
+        , ylim = c(0, max(DF$Peso))
+        , frame = FALSE
+        , axes = TRUE
+        , col = "lightblue"
+        )
+points(mean(DF$Peso, na.rm = TRUE), 1, pch = 4, cex = 1.5)
+title(xlab = "peso (kg)", line = 2)
+```
+
+```{r}
+TAB <- table(DF$Peso)
+names(TAB)[max(TAB) == TAB]
+```
+
+# 6 Gráfica cat-num
+
+Usando los datos limpios, considere el siguiente fragmento de código y marque todas las respuestas correctas.
+
+![](images/clipboard-9133593.png)
+
+Responda únicamente en función de lo que puede observar en la gráfica.
+
+```{r}
+boxplot(DF$Precio ~ DF$Calidad
+        , varwidth = TRUE
+        , main = "Precio en términos de calidad"
+        , ylab = "precio (S/.)"
+        , xlab = "calidad"
+        , col = "lightgreen"
+        )
+abline(h = mean(DF$Precio), lty = 2, col = "red")
+points(1:5
+       , c(mean(DF$Precio[DF$Calidad == "Básica"])
+           , mean(DF$Precio[DF$Calidad == "Estándar"])
+           , mean(DF$Precio[DF$Calidad == "Buena"])
+           , mean(DF$Precio[DF$Calidad == "Excelente"])
+           , mean(DF$Precio[DF$Calidad == "Premium"])
+           )
+       , pch = 4
+       )
+legend("topright"
+       , legend = c("Promedio por calidad", "Promedio global")
+       , pch = c(4, NA)
+       , lty = c(NA, 2)
+       , col = c("black", "red")
+       , bty = "n"
+       )
+```
+
+```{r}
+DF[min(DF$Precio) == DF$Precio, ]
+```
+
+```{r}
+r(mean(DF$Precio))
+```
+
+```{r}
+table(DF$Calidad)
+```

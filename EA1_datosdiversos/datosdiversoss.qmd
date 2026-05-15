@@ -25,7 +25,6 @@ str(DF)
 summary(DF)
 ```
 
-
 ```{r}
 #Número de observaciones (filas)
 nrow(DF)
@@ -58,7 +57,6 @@ carrera
 
 ```
 
-
 ```{r}
 
 na_por_variable <- colSums(is.na(DF))  
@@ -71,6 +69,7 @@ variable
 
 
 ```
+
 ```{r}
 # 📌 PROMEDIO
 promedio <- round(mean(DF$Estatura, na.rm = TRUE), 2)
@@ -115,6 +114,7 @@ n_efectivo   # 👉 "El tamaño efectivo es ____"
 porcentaje <- round(n_efectivo / nrow(DF) * 100, 2)
 porcentaje   # 👉 "aproximadamente ____ %"
 ```
+
 ```{r}
 # 📌 PROMEDIO
 promedio <- round(mean(DF$Estatura, na.rm = TRUE), 2)
@@ -239,7 +239,6 @@ cat("El promedio es MÁS sensible\n")
 # "el promedio es más sensible"
 
 ```
-
 
 ```{r}
 
