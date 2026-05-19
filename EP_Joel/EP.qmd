@@ -1,0 +1,188 @@
+---
+title: "EP"
+format: html
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+###funcion para redondear
+r<-function(x){
+  return(round(x,digits=2))
+}
+
+```
+
+```{r}
+DF<-read_csv("Twitch.csv")
+```
+
+```{r}
+View(DF)
+```
+
+```{r}
+#observaciones
+nrow(DF)
+#variables
+ncol(DF)
+#faltantes
+sum(is.na(DF))
+#incompletas
+sum(!complete.cases(DF))
+
+```
+
+```{r}
+
+
+nc <- sum(complete.cases(DF))
+por <- r((nrow(DF) - nc)/nrow(DF)*100)
+TAB <- colSums(!is.na(DF))
+mm <- min(TAB)
+mmv <- names(TAB)[mm == TAB]
+```
+
+```{r}
+nc
+por
+mm
+mmv
+```
+
+```{r}
+# convertir variables categóricas
+DF$Juego <- factor(DF$Juego)
+
+DF$Mes <- factor(
+  DF$Mes,
+  levels = c(
+    "Enero","Febrero","Marzo","Abril",
+    "Mayo","Junio","Julio","Agosto",
+    "Septiembre","Octubre","Noviembre","Diciembre"
+  )
+)
+
+
+DF$Pos <- as.numeric(DF$Pos)
+
+limpiar_num <- function(x){
+  as.numeric(gsub("[^0-9]", "", x))
+}
+
+DF$HorasV <- limpiar_num(DF$HorasV)
+DF$HorasT <- limpiar_num(DF$HorasT)
+DF$Streamers <- limpiar_num(DF$Streamers)
+DF$MaxEsp <- limpiar_num(DF$MaxEsp)
+DF$MaxCan <- limpiar_num(DF$MaxCan)
+DF$PromEsp <- limpiar_num(DF$PromEsp)
+DF$PromCan <- limpiar_num(DF$PromCan)
+
+
+marzo_2023 <- subset(DF, Mes == "Marzo" & Año == 2023)
+marzo_2023[which.max(marzo_2023$Pos), c("Juego","Pos")]
+
+```
+
+```{r}
+# coeficiente de variación
+cv <- round(
+  sd(DF$HorasV, na.rm = TRUE) /
+  mean(DF$HorasV, na.rm = TRUE),
+  2
+)
+
+cv
+
+median(DF$HorasV, na.rm = TRUE)
+```
+
+```{r}
+
+
+DF$IndEC <- DF$PromEsp / DF$PromCan
+
+hist(DF$IndEC,
+     prob = TRUE,
+     main = "Histograma del número promedio de espectadores por canal",
+     ylim = c(-0.004, 0.035),
+     breaks = seq(0, 300, 10),
+     ylab = "densidad",
+     xlab = "promedio de espectadores por canal",
+     sub = paste("tamaño efectivo de la muestra:",
+                 sum(is.na(DF$IndEC)),
+                 "reportes")
+)
+
+boxplot(DF$IndEC,
+        horizontal = TRUE,
+        ann = FALSE,
+        boxwex = 0.005,
+        add = TRUE,
+        at = -0.0025
+)
+
+abline(v = mean(DF$IndEC, na.rm = TRUE), col = "red")
+
+legend("topright",
+       legend = "promedio de IndEC",
+       col = "red",
+       bty = "n",
+       lty = 1)
+
+
+
+```
+
+```{r}
+summary(DF$IndEC)
+
+
+cat("\n")
+
+quantile(DF$IndEC,
+         probs = c(0, 0.25, 0.5, 0.75, 1),
+         na.rm = TRUE)
+
+mean(DF$IndEC, na.rm = TRUE)
+
+sd(DF$IndEC, na.rm = TRUE)
+
+boxplot.stats(DF$IndEC)$stats
+
+```
+
+```{r}
+op <- par(mfrow = c(1, 2))
+
+boxplot(DF$IndEC ~ DF$Año,
+        las = 3,
+        varwidth = TRUE,
+        xlab = "año",
+        ylab = "espectadores por canal"
+)
+
+boxplot(DF$PromCan ~ DF$Año,
+        log = "y",
+        las = 3,
+        varwidth = TRUE,
+        xlab = "año",
+        ylab = "canales",
+        ylim = c(1, 20000)
+)
+
+par(op)
+
+title(main = "Espectadores por canal y número de canales a lo largo del tiempo")
+tapply(DF$IndEC, DF$Año, summary)
+
+tapply(DF$PromCan, DF$Año, summary)
+
+boxplot.stats(split(DF$PromCan, DF$Año)[["2016"]])$stats
+
+boxplot.stats(split(DF$PromCan, DF$Año)[["2024"]])$stats
+```

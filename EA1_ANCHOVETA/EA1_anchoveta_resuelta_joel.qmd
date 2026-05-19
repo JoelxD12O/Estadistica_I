@@ -4,7 +4,6 @@ format: html
 editor: visual
 ---
 
-
 > # **Problemas**
 
 Se desea dar una descripción de los datos recolectados con la intención de validar los modelos existentes para la anchoveta ficticia y proponer modelos apropiados en el caso de que los modelos existentes ya no sean válidos.
@@ -358,7 +357,7 @@ La respuesta de la pregunta es: **sesgada a la derecha**.
 
 > ## 9.2. Clase modal
 
-Si se agrupan los pesos de las anchovetas en gramos en clases de ancho 10, comenzando por las clases (0,10], (10,20], (20,30], ... hasta llegar a la clase correspondiente a los pesos (240,250]. La clase modal corresponde (la clase que tiene la mayor cantidad de observaciones) es:
+Si se agrupan los pesos de las anchovetas en gramos en clases de ancho 10, comenzando por las clases (0,10\], (10,20\], (20,30\], ... hasta llegar a la clase correspondiente a los pesos (240,250\]. La clase modal corresponde (la clase que tiene la mayor cantidad de observaciones) es:
 
 Para calcular la clase modal podemos usar la función `cut` y la función `table`.
 
@@ -587,11 +586,11 @@ La respuesta de esta pregunta es **El modelo original para el ancho de la anchov
 
 > # **Bibliografía**
 
-[JM]: J. Moriarty (1889). *A Survey of the peruvian populations of Engraulis simulacra*. Royal Society of Natural Sciences, London, England. p. 314.
+\[JM\]: J. Moriarty (1889). *A Survey of the peruvian populations of Engraulis simulacra*. Royal Society of Natural Sciences, London, England. p. 314.
 
-[ED]: E. Dibol (1911). *Sobre la salud de la anchoveta ficticia en las costas de Peru*. Acta Ecológica, Lima, Perú. p. 127.
+\[ED\]: E. Dibol (1911). *Sobre la salud de la anchoveta ficticia en las costas de Peru*. Acta Ecológica, Lima, Perú. p. 127.
 
-[SG]: S. Gonzón (1923). *Caracterización de las especies económicamente aprovechables de la fachada del Pacífico*. AES , Lima, Perú. p. 35.
+\[SG\]: S. Gonzón (1923). *Caracterización de las especies económicamente aprovechables de la fachada del Pacífico*. AES , Lima, Perú. p. 35.
 
 > # **Bono**
 
