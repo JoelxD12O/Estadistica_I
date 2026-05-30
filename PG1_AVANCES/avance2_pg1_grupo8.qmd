@@ -1,0 +1,475 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+## Dependencias
+
+```{r}
+library(readr)
+library(dplyr)
+library(visdat)
+```
+
+## Libreta de códigos:
+
+A continuación se describe cada variable del estudio, su clasificación estadística, el tipo de dato en R, y las reglas de validación aplicadas durante la limpieza.
+
+------------------------------------------------------------------------
+
+### 1. Sexo
+
+- **Nombre en R:** `Sexo`
+- **Clasificación:** Cualitativa nominal
+- **Tipo en R:** `factor`
+- **Valores válidos:** `"Masculino"`, `"Femenino"`
+- **Regla de limpieza:** Cualquier valor fuera de la lista = `NA`
+
+------------------------------------------------------------------------
+
+### 2. Edad
+
+- **Nombre en R:** `Edad`
+- **Clasificación:** Cuantitativa discreta
+- **Tipo en R:** `integer`
+- **Valores válidos:** Entero dentro del rango **\[17 - 25\]** años
+- **Regla de limpieza:** Valores fuera del rango = `NA`
+
+------------------------------------------------------------------------
+
+### 3. Carrera universitaria
+
+- **Nombre en R:** `Carrera`
+- **Clasificación:** Cualitativa nominal
+- **Tipo en R:** `factor`
+- **Valores válidos:**
+  - `"Ingeniería, Tecnología y Construcción"`
+  - `"Humanidades, Artes y Educación"`
+  - `"Administración, Negocios y Contabilidad"`
+  - `"Ciencias Exactas y Ambientales"`
+  - `"Ciencias de la Salud"`
+  - `"Ciencias Sociales y Derecho"`
+- **Regla de limpieza:** Normalización por `grepl()` mapeando variantes textuales. Valores no reconocidos = `NA`
+
+------------------------------------------------------------------------
+
+### 4. Ciclo académico
+
+- **Nombre en R:** `CicloAcademico`
+- **Clasificación:** Cualitativa ordinal
+- **Tipo en R:** `factor` con `ordered = TRUE`
+- **Escala:** `1 < 2 < 3 < ... < 10`
+- **Regla de limpieza:** Valores fuera del rango \[1 - 10\] = `NA`
+
+------------------------------------------------------------------------
+
+### 5. Cantidad de cursos matriculados
+
+- **Nombre en R:** `CantidadCursos`
+- **Clasificación:** Cuantitativa discreta
+- **Tipo en R:** `integer`
+- **Valores válidos:** Entero dentro del rango **\[3 - 8\]** cursos
+- **Regla de limpieza:** Valores fuera del rango = `NA`
+
+------------------------------------------------------------------------
+
+### 6. Horas de ejercicio por semana
+
+- **Nombre en R:** `HorasEjercicio`
+- **Clasificación:** Cuantitativa continua
+- **Tipo en R:** `numeric`
+- **Valores válidos:** Numérico dentro del rango **\[1 - 20\]** horas
+- **Regla de limpieza:** Valores fuera del rango = `NA`
+
+------------------------------------------------------------------------
+
+### 7. Calidad de sueño auto-percibida
+
+- **Nombre en R:** `CalidadSuenio`
+- **Clasificación:** Cualitativa ordinal
+- **Tipo en R:** `factor` con `ordered = TRUE`
+- **Escala:** `"Muy mala" < "Mala" < "Regular" < "Buena" < "Muy buena"`
+- **Regla de limpieza:** Valores fuera de la escala = `NA`
+
+------------------------------------------------------------------------
+
+### 8. Horas de sueño diarias
+
+- **Nombre en R:** `HorasSuenio`
+- **Clasificación:** Cuantitativa continua
+- **Tipo en R:** `numeric`
+- **Valores válidos:** Numérico decimal dentro del rango **\[3 - 12\]** horas
+- **Regla de limpieza:** Valores fuera del rango = `NA`
+
+------------------------------------------------------------------------
+
+### 9. Cantidad de desayuno habitual
+
+- **Nombre en R:** `CanDesayuno`
+- **Clasificación:** Cualitativa ordinal
+- **Tipo en R:** `factor` con `ordered = TRUE`
+- **Escala:** `0 < ... < 4`
+  - `0` = ninguna cantidad
+  - `4` = gran cantidad
+- **Regla de limpieza:** Valores fuera del rango \[0 - 4\] = `NA`
+
+------------------------------------------------------------------------
+
+### 10. Frecuencia de consumo de bebidas energéticas
+
+- **Nombre en R:** `FrecBebida`
+- **Clasificación:** Cuantitativa discreta
+- **Tipo en R:** `integer`
+- **Valores válidos:** Entero dentro del rango **\[0 - 7\]** días por semana
+  - `0` = ningún día
+  - `7` = todos los días
+- **Regla de limpieza:** Valores fuera del rango = `NA`
+
+------------------------------------------------------------------------
+
+### 11. Número de unidades de bebida energética por día
+
+- **Nombre en R:** `UnidadBebida`
+- **Clasificación:** Cuantitativa discreta
+- **Tipo en R:** `integer`
+- **Valores válidos:** Entero dentro del rango **\[0 - 5\]** unidades
+- **Regla de limpieza:**
+  - Valores fuera del rango = `NA` (incluye `"6 moster"` que excede el rango)
+  - Valores no numéricos o no interpretables = `NA`
+  - **NA natural:** Si `FrecBebida == 0` (no consume), entonces `UnidadBebida = 0`
+
+------------------------------------------------------------------------
+
+### 12. Nivel de estrés auto-percibido
+
+- **Nombre en R:** `Estres`
+- **Clasificación:** Cualitativa ordinal
+- **Tipo en R:** `factor` con `ordered = TRUE`
+- **Escala:**
+
+| Valor numérico | Etiqueta |
+|:--------------:|----------|
+|       0        | Nulo     |
+|       1        | Bajo     |
+|       2        | Medio    |
+|       3        | Alto     |
+|       4        | Muy alto |
+
+- **Regla de limpieza:** Valores fuera del rango \[0 - 4\] = `NA`
+
+------------------------------------------------------------------------
+
+### 13. Actividad física
+
+- **Nombre en R:** `ActividadFisica`
+- **Clasificación:** Cualitativa nominal
+- **Tipo en R:** `factor`
+- **Valores válidos:**
+  - `"Deportes colectivos"`
+  - `"Actividad aeróbica"`
+  - `"Actividad anaeróbica"`
+  - `"Mixta"`
+  - `"No realiza actividad física"`
+- **Regla de limpieza:** Normalización por `grepl()` mapeando variantes textuales del formulario. Valores no reconocidos = `NA`
+
+------------------------------------------------------------------------
+
+## Tabla resumen de clasificación
+
+| Variable | Nombre en R | Clasificación | Tipo en R | Rango / Valores válidos |
+|---------------|---------------|---------------|---------------|---------------|
+| Sexo | `Sexo` | Cualitativa nominal | `factor` | Masculino, Femenino |
+| Edad | `Edad` | Cuantitativa discreta | `integer` | \[17 - 25\] |
+| Carrera | `Carrera` | Cualitativa nominal | `factor` | 6 carreras definidas |
+| Ciclo académico | `CicloAcademico` | Cualitativa ordinal | `factor` | 1 \< 2 \< ... \< 10 |
+| Cant. cursos | `CantidadCursos` | Cuantitativa discreta | `integer` | \[3 - 8\] |
+| Horas ejercicio | `HorasEjercicio` | Cuantitativa continua | `numeric` | \[1 - 20\] |
+| Calidad sueño | `CalidadSuenio` | Cualitativa ordinal | `factor` | Muy mala \< ... \< Muy buena |
+| Horas sueño | `HorasSuenio` | Cuantitativa continua | `numeric` | \[3 - 12\] |
+| Cant. desayuno | `CanDesayuno` | Cualitativa ordinal | `factor` | 0 \< 1 \< 2 \< 3 \< 4 |
+| Frec. bebida | `FrecBebida` | Cuantitativa discreta | `integer` | \[0 - 7\] |
+| Unid. bebida | `UnidadBebida` | Cuantitativa discreta | `integer` | \[0 - 5\] |
+| Estrés | `Estres` | Cualitativa ordinal | `factor` | Nulo \< Bajo \< Medio \< Alto \< Muy alto |
+| Activ. física | `ActividadFisica` | Cualitativa nominal | `factor` | 5 categorías definidas |
+
+## Carga de datos
+
+```{r}
+DF_T <- read_csv("Encuesta.csv")
+
+# Filtrar solo registros del grupo 8
+DF <- DF_T %>% filter(`¿Qué grupo te envió la encuesta?` == 8)
+```
+
+------------------------------------------------------------------------
+
+## Información general del Data Frame
+
+### Cantidad de observaciones
+
+```{r}
+nrow(DF)
+```
+
+### Cantidad de variables
+
+```{r}
+ncol(DF)
+```
+
+### Estructura general
+
+```{r}
+glimpse(DF)
+```
+
+------------------------------------------------------------------------
+
+## Renombre y selección de variables
+
+```{r}
+DFN <- DF %>% rename(
+  Edad            = '4. Edad en años cumplidos',
+  Sexo            = '1. Sexo',
+  CantidadCursos  = '7. ¿En cuántos cursos te encuentras matriculado actualmente?',
+  HorasSuenio     = '17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.',
+  ActividadFisica = '27. Qué tipo de actividad física realizas con mayor frecuencia durante el ciclo académico 2026-I?',
+  FrecBebida      = '20. ¿Cuántos días a la semana consumes bebidas energéticas? (0 = ningún día de la semana, 1, 2, …, 7)',
+  UnidadBebida    = '21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?',
+  HorasEjercicio  = '8. Considerando los últimos 7 días, ¿Cuántas horas en total a la semana dedicaste a realizar actividad física (deporte, gimnasio, caminatas intensas, etc.)?',
+  CanDesayuno     = '19. ¿Qué cantidad de desayuno consumes habitualmente?',
+  Carrera         = '5. Carrera universitaria',
+  Estres          = '23. ¿Cuál es tu percepción del nivel de estrés?',
+  CicloAcademico  = '6. Ciclo académico',
+  CalidadSuenio   = '16. ¿Cómo calificarías la calidad de tu sueño en general?'
+) %>% select(
+  Edad, Sexo, CantidadCursos, HorasSuenio, ActividadFisica,
+  FrecBebida, UnidadBebida, HorasEjercicio, CanDesayuno,
+  Carrera, Estres, CicloAcademico, CalidadSuenio
+)
+```
+
+------------------------------------------------------------------------
+
+## Snapshot inicial (antes de limpieza)
+
+```{r}
+snapshot_inicial <- data.frame(
+  Variable   = colnames(DFN),
+  N_total    = nrow(DFN),
+  N_NA       = colSums(is.na(DFN)),
+  Porc_NA    = round(colSums(is.na(DFN)) / nrow(DFN) * 100, 2),
+  N_completo = colSums(!is.na(DFN))
+)
+snapshot_inicial
+```
+
+### Filas completas e incompletas (inicial)
+
+```{r}
+# Filas sin ningún NA
+sum(complete.cases(DFN))
+
+# Filas con al menos un NA
+sum(!complete.cases(DFN))
+```
+
+------------------------------------------------------------------------
+
+## Limpieza de datos
+
+```{r}
+DD <- DFN %>% mutate(
+
+  # --- Cuantitativas: validación por rango ---
+
+  # Edad: [17-25] años
+  Edad = ifelse(Edad >= 17 & Edad <= 25, Edad, NA),
+
+  # Horas de sueño: [3-12] horas
+  HorasSuenio = ifelse(HorasSuenio >= 3 & HorasSuenio <= 12, HorasSuenio, NA),
+
+  # Horas de ejercicio: [1-20] horas
+  HorasEjercicio = ifelse(HorasEjercicio >= 1 & HorasEjercicio <= 20, HorasEjercicio, NA),
+
+  # Frecuencia de bebidas: [0-7] días
+  FrecBebida = ifelse(FrecBebida >= 0 & FrecBebida <= 7, FrecBebida, NA),
+
+  # Unidades de bebida: convertir texto a número
+  UnidadBebida = readr::parse_number(as.character(UnidadBebida)),
+
+  # Validar rango [0-5]
+  UnidadBebida = ifelse(UnidadBebida >= 0 & UnidadBebida <= 5, UnidadBebida, NA),
+  
+  
+  
+  
+  # Cantidad de desayuno: [0-4]
+  CanDesayuno = as.integer(ifelse(CanDesayuno >= 0 & CanDesayuno <= 4, CanDesayuno, NA)),
+  
+  # Estrés: [0-4]
+  Estres = ifelse(Estres >= 0 & Estres <= 4, Estres, NA),
+
+  # Cantidad de cursos: [3-8]
+  CantidadCursos = ifelse(CantidadCursos >= 3 & CantidadCursos <= 8, CantidadCursos, NA),
+
+  # Ciclo académico: [1-10]
+  CicloAcademico = ifelse(CicloAcademico >= 1 & CicloAcademico <= 10, CicloAcademico, NA),
+
+  # --- Cualitativas: normalización textual ---
+
+  # Actividad física
+  ActividadFisica = case_when(
+    grepl("colectivo|futbol|basket|vóley", ActividadFisica, ignore.case = TRUE) ~ "Deportes colectivos",
+    grepl("aeróbica|correr|nadar|bicicleta", ActividadFisica, ignore.case = TRUE) ~ "Actividad aeróbica",
+    grepl("anaeróbica|pesas|fuerza", ActividadFisica, ignore.case = TRUE) ~ "Actividad anaeróbica",
+    grepl("mixta", ActividadFisica, ignore.case = TRUE) ~ "Mixta",
+    grepl("no realizo|no realiza", ActividadFisica, ignore.case = TRUE) ~ "No realiza actividad física",
+    TRUE ~ NA_character_
+  ),
+
+  # Carrera universitaria
+  Carrera = case_when(
+    grepl("ingeniería|tecnología|construcción", Carrera, ignore.case = TRUE) ~ "Ingeniería, Tecnología y Construcción",
+    grepl("salud", Carrera, ignore.case = TRUE) ~ "Ciencias de la Salud",
+    grepl("administración|negocios|contabilidad", Carrera, ignore.case = TRUE) ~ "Administración, Negocios y Contabilidad",
+    grepl("sociales|derecho", Carrera, ignore.case = TRUE) ~ "Ciencias Sociales y Derecho",
+    grepl("humanidades|artes|educación", Carrera, ignore.case = TRUE) ~ "Humanidades, Artes y Educación",
+    grepl("exactas|ambientales", Carrera, ignore.case = TRUE) ~ "Ciencias Exactas y Ambientales",
+    TRUE ~ NA_character_
+  ),
+
+  # Calidad de sueño
+  CalidadSuenio = ifelse(
+    CalidadSuenio %in% c("Muy mala", "Mala", "Regular", "Buena", "Muy buena"),
+    CalidadSuenio, NA
+  ),
+
+  # Sexo
+  Sexo = ifelse(Sexo %in% c("Masculino", "Femenino"), Sexo, NA)
+
+) %>% mutate(
+  # NA natural: si no consume bebidas (FrecBebida == 0), UnidadBebida = 0
+  UnidadBebida = ifelse(FrecBebida == 0 & is.na(UnidadBebida), 0L, UnidadBebida)
+)
+```
+
+------------------------------------------------------------------------
+
+## Conversión de tipos
+
+```{r}
+DD <- DD %>% mutate(
+
+  # Cuantitativas discretas → integer
+  Edad           = as.integer(Edad),
+  CantidadCursos = as.integer(CantidadCursos),
+  FrecBebida     = as.integer(FrecBebida),
+  UnidadBebida   = as.integer(UnidadBebida),
+  CicloAcademico = as.integer(CicloAcademico),
+
+  # Cualitativas nominales → factor
+  Sexo            = factor(Sexo),
+  Carrera         = factor(Carrera),
+  ActividadFisica = factor(ActividadFisica),
+
+  # Cualitativas ordinales → factor ordenado
+  CanDesayuno = factor(CanDesayuno,
+    levels  = c(0, 1, 2, 3, 4),
+    labels  = c("Ninguna", "Poca", "Regular", "Bastante", "Mucha"),
+    ordered = TRUE),
+
+  CalidadSuenio = factor(CalidadSuenio,
+    levels  = c("Muy mala", "Mala", "Regular", "Buena", "Muy buena"),
+    ordered = TRUE),
+
+  Estres = factor(Estres,
+    levels  = c(0, 1, 2, 3, 4),
+    labels  = c("Nulo", "Bajo", "Medio", "Alto", "Muy alto"),
+    ordered = TRUE),
+
+  CicloAcademico = factor(CicloAcademico,
+    levels  = 1:10,
+    ordered = TRUE)
+)
+
+# Verificar tipos finales
+glimpse(DD)
+```
+
+------------------------------------------------------------------------
+
+## Snapshot final (después de limpieza)
+
+```{r}
+snapshot_final <- data.frame(
+  Variable   = colnames(DD),
+  N_total    = nrow(DD),
+  N_NA       = colSums(is.na(DD)),
+  Porc_NA    = round(colSums(is.na(DD)) / nrow(DD) * 100, 2),
+  N_completo = colSums(!is.na(DD))
+)
+snapshot_final
+```
+
+### Comparación antes y después de la limpieza
+
+```{r}
+data.frame(
+  Variable     = colnames(DFN),
+  NA_inicial   = colSums(is.na(DFN)),
+  NA_final     = colSums(is.na(DD)),
+  NA_generados = colSums(is.na(DD)) - colSums(is.na(DFN))
+)
+```
+
+### Filas completas e incompletas (final)
+
+```{r}
+sum(complete.cases(DD))
+sum(!complete.cases(DD))
+```
+
+------------------------------------------------------------------------
+
+## Análisis de sobrerrepresentación
+
+Variables donde un solo valor concentra más del 90% de las respuestas pueden distorsionar el análisis.
+
+```{r}
+sobrerep <- sapply(DD, function(col) {
+  frec_max <- max(table(col, useNA = "no"))
+  round(frec_max / sum(!is.na(col)) * 100, 2)
+})
+sobrerep
+```
+
+## Manejo de valores atípicos
+
+Los valores atípicos fueron evaluados considerando los rangos teóricos definidos para cada variable según el contexto del estudio. No se identificaron valores extremos legítimos fuera de dichos rangos. Los casos detectados correspondieron principalmente a errores de digitación, respuestas inconsistentes o formatos no válidos, por lo que fueron recodificados como `NA` durante el proceso de limpieza.
+
+------------------------------------------------------------------------
+
+## Política de manejo de nulos y decisión de eliminación
+
+Se conservan todas las filas. Los `NA` por variable se manejan con `na.rm = TRUE` en los descriptores. Solo se eliminan filas donde las variables de identificación básica (`Edad`, `Sexo`, `Carrera`) sean `NA`, ya que sin ellas la observación no es interpretable.
+
+```{r}
+DF_final <- DD %>%
+  filter(!is.na(Edad) & !is.na(Sexo) & !is.na(Carrera))
+
+# Tamaño final
+nrow(DF_final)
+
+# Muestra efectiva final
+sum(complete.cases(DF_final))
+```
+
+------------------------------------------------------------------------
+
+## Exportación
+
+```{r}
+write_csv(DF_final, "Dataframe_grupo8_limpio.csv")
+```

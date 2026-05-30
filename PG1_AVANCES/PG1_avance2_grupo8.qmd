@@ -444,6 +444,7 @@ sobrerep <- sapply(DD, function(col) {
 })
 sobrerep
 ```
+
 ## Manejo de valores atípicos
 
 Los valores atípicos fueron evaluados considerando los rangos teóricos definidos para cada variable según el contexto del estudio. No se identificaron valores extremos legítimos fuera de dichos rangos. Los casos detectados correspondieron principalmente a errores de digitación, respuestas inconsistentes o formatos no válidos, por lo que fueron recodificados como `NA` durante el proceso de limpieza.

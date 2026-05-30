@@ -1,0 +1,414 @@
+---
+title: "Análisis Univariado"
+format: html
+editor: visual
+---
+
+# Análisis univariado
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(modeest)
+library(readr)
+```
+
+```{r}
+df <- read_csv("Dataframe_grupo8_limpio.csv")
+
+# Corrección nombres 
+df <- df %>% rename(
+  HorasSueño   = HorasSuenio,
+  CalidadSueño = CalidadSuenio
+)
+
+# Orden de variables ordinales
+df$Estres <- factor(df$Estres,
+  levels = c("Nulo", "Bajo", "Medio", "Alto", "Muy alto"),
+  ordered = TRUE)
+
+df$CalidadSueño <- factor(df$CalidadSueño,
+  levels = c("Muy mala", "Mala", "Regular", "Buena", "Muy buena"),
+  ordered = TRUE)
+```
+
+## Variable Frecuencia de consumo de bebidas energéticas (`FrecBebida`)
+
+```{r}
+x <- df$FrecBebida
+
+cat("Media:            ", round(mean(x), 2), "\n")
+cat("Mediana:          ", median(x), "\n")
+cat("Moda:             ", mfv(x), "\n")
+cat("Desv. estándar:   ", round(sd(x), 2), "\n")
+cat("Q1 (P25):         ", quantile(x, 0.25), "\n")
+cat("Q3 (P75):         ", quantile(x, 0.75), "\n")
+cat("RIQ:              ", IQR(x), "\n")
+```
+
+```{r}
+bp <- boxplot(df$FrecBebida,
+              main = "Boxplot — Frecuencia de consumo de bebidas energéticas",
+              ylab = "FrecBebida",
+              col = "#90CAF9",
+              border = "#1565C0",
+              col.out = "red",
+              pch = 19)
+
+text(x = 1.25,
+     y = bp$stats,
+     labels = c(
+       paste("Min =", bp$stats[1]),
+       paste("Q1 =", bp$stats[2]),
+       paste("Med =", bp$stats[3]),
+       paste("Q3 =", bp$stats[4]),
+       paste("Max =", bp$stats[5])
+     ),
+     pos = 4,
+     cex = 0.85,
+     col = "black")
+```
+
+```{r}
+ggplot(df, aes(x = factor(FrecBebida))) +
+  geom_bar(fill = "#1565C0", color = "white", width = 0.7) +
+  geom_text(stat = "count",
+            aes(label = paste0(after_stat(count), "\n(",
+                               round(after_stat(count)/nrow(df)*100, 1), "%)")),
+            vjust = -0.3, size = 3.2) +
+  labs(title = "Frecuencia de consumo de bebidas energéticas",
+       x = "Días por semana", y = "Número de estudiantes") +
+  theme_minimal()
+```
+
+La frecuencia de consumo de bebidas energéticas presentó una **media de 0.96**, con **mediana y moda iguales a 0**, evidenciando una fuerte concentración en ausencia de consumo. Además, **el 75% de los estudiantes consume como máximo 2 bebidas energéticas** como se puede apreciar en el gráfico de caja. Existe una **variabilidad moderada en la frecuencia de consumo** entre los estudiantes; aunque el consumo promedio es cercano a 1 bebida, algunos estudiantes presentan consumos considerablemente mayores pues se observa un **máximo de consumo de 7 bebidas**.
+
+## Variable Horas de Sueño (`HorasSueño`)
+
+```{r}
+x <- df$HorasSueño
+
+cat("Media:           ", round(mean(x, na.rm=TRUE), 2), "\n")
+cat("Mediana:         ", median(x, na.rm=TRUE), "\n")
+cat("Desv. estándar:  ", round(sd(x, na.rm=TRUE), 2), "\n")
+cat("Mínimo:          ", min(x, na.rm=TRUE), "\n")
+cat("Q1 (P25):        ", quantile(x, 0.25, na.rm=TRUE), "\n")
+cat("Q3 (P75):        ", quantile(x, 0.75, na.rm=TRUE), "\n")
+cat("RIQ:             ", IQR(x, na.rm=TRUE), "\n")
+cat("Máximo:          ", max(x, na.rm=TRUE), "\n")
+```
+
+```{r}
+ggplot(df, aes(x = HorasSueño)) +
+  geom_histogram(
+    binwidth = 1,
+    fill = "#42A5F5",
+    color = "white"
+  ) +
+  geom_vline(
+    xintercept = mean(df$HorasSueño, na.rm = TRUE),
+    color = "red",
+    linewidth = 1.2,
+    linetype = "dashed"
+  ) +
+  labs(
+    title = "Distribución de horas de sueño",
+    x = "Horas de sueño",
+    y = "Frecuencia"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+media_sueño <- mean(df$HorasSueño, na.rm = TRUE)
+mediana_sueño <- median(df$HorasSueño, na.rm = TRUE)
+sd_sueño <- sd(df$HorasSueño, na.rm = TRUE)
+
+asimetria_sueño <- round(
+  3*(media_sueño - mediana_sueño)/sd_sueño,
+  2
+)
+
+cat("Coeficiente de asimetría:", asimetria_sueño, "\n")
+```
+
+```{r}
+ggplot(df, aes(y = HorasSueño)) +
+  geom_boxplot(
+    fill="#81C784",
+    outlier.color="red"
+  ) +
+  labs(
+    title="Boxplot de horas de sueño"
+  ) +
+  theme_minimal()
+```
+
+La variable **HorasSueño** presentó una **media de 6.22 horas**, con **mediana igual a 6**, indicando una distribución **relativamente centrada** alrededor de dicho valor. Además, el **50% central de los estudiantes duerme entre 5 y 7 horas**, mostrando una dispersión moderada. La **desviación estándar de 1.35 horas** evidencia variabilidad limitada en los hábitos de sueño y se presenta también una ligera **simetría positiva** (sesgo a la derecha) indicando que la mayoría mantiene hábitos de sueño **cercanos a la media** aunque también hay casos de hábitos de sueño **superiores**, extendiendo la distribución a valores altos, siendo **11 horas el máximo** registrado.
+
+## Variable Nivel de estrés autopercibido (`Estres`)
+
+```{r}
+cat("Moda:    ", mfv(as.character(df$Estres)), "\n")
+cat("Mediana: ", levels(df$Estres)[median(as.numeric(df$Estres))], "\n")
+```
+
+```{r}
+t <- as.data.frame(table(Estres = df$Estres))
+t$Porcentaje <- round(t$Freq / sum(t$Freq) * 100, 2)
+t$Acum_pct   <- round(cumsum(t$Freq) / sum(t$Freq) * 100, 2)
+names(t)     <- c("Nivel de estrés", "Frecuencia", "Porcentaje (%)", "% Acumulado")
+print(t, row.names = FALSE)
+```
+
+```{r}
+ggplot(df, aes(x = Estres, fill = Estres)) +
+  geom_bar(color = "white", width = 0.7) +
+  geom_text(stat = "count",
+            aes(label = paste0(after_stat(count), "\n(",
+                               round(after_stat(count)/nrow(df)*100, 1), "%)")),
+            vjust = -0.3, size = 3.2) +
+  labs(title = "Nivel de estrés autopercibido",
+       x = "Nivel de estrés", y = "Número de estudiantes") +
+  scale_fill_brewer(palette = "Oranges") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+t_plot <- as.data.frame(table(Estres = df$Estres))
+t_plot$Porcentaje <- t_plot$Freq / sum(t_plot$Freq) * 100
+t_plot$Acumulado  <- cumsum(t_plot$Porcentaje)
+
+ggplot(t_plot, aes(x = Estres, y = Acumulado, group = 1)) +
+  geom_line(color = "#E65100", linewidth = 1.2) +
+  geom_point(color = "#E65100", size = 3) +
+  geom_text(aes(label = paste0(round(Acumulado, 1), "%")),
+            vjust = -0.8, size = 3.2) +
+  labs(title = "Porcentaje acumulado — Nivel de estrés",
+       x = "Nivel de estrés", y = "% acumulado") +
+  ylim(0, 110) +
+  theme_minimal()
+```
+
+La variable **Estres** presentó una marcada concentración en categorías elevadas, siendo **“Alto” el nivel predominante con un 40.5%**, correspondiente a la **moda** de la distribución. Además, los niveles **“Alto” y “Muy alto” agrupan el 61.2% de los estudiantes**, evidenciando una elevada prevalencia de estrés tal y como se esperaba en el contexto universitario. En contraste, solo el **16.4% reportó niveles “Nulo” o “Bajo”**, mientras que el porcentaje acumulado indica que **79.3% presenta un nivel de estrés “Alto” o inferior**.
+
+## Variable Calidad de sueño autopercibida (`CalidadSueño`)
+
+```{r}
+cat("Moda:    ", mfv(as.character(df$CalidadSueño)), "\n")
+cat("Mediana: ", levels(df$CalidadSueño)[median(as.numeric(df$CalidadSueño))], "\n")
+```
+
+```{r}
+t <- as.data.frame(table(CalidadSueño = df$CalidadSueño))
+t$Porcentaje <- round(t$Freq / sum(t$Freq) * 100, 2)
+t$Acum_pct   <- round(cumsum(t$Freq) / sum(t$Freq) * 100, 2)
+names(t)     <- c("Calidad de sueño", "Frecuencia", "Porcentaje (%)", "% Acumulado")
+print(t, row.names = FALSE)
+```
+
+```{r}
+ggplot(df, aes(x = CalidadSueño, fill = CalidadSueño)) +
+  geom_bar(color = "white", width = 0.7) +
+  geom_text(stat = "count",
+            aes(label = paste0(after_stat(count), "\n(",
+                               round(after_stat(count)/nrow(df)*100, 1), "%)")),
+            vjust = -0.3, size = 3.2) +
+  labs(title = "Calidad de sueño autopercibida",
+       x = "Calidad de sueño", y = "Número de estudiantes") +
+  scale_fill_brewer(palette = "Purples") +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r}
+t_plot2 <- as.data.frame(table(CalidadSueño = df$CalidadSueño))
+t_plot2$Porcentaje <- t_plot2$Freq / sum(t_plot2$Freq) * 100
+t_plot2$Acumulado  <- cumsum(t_plot2$Porcentaje)
+
+ggplot(t_plot2, aes(x = CalidadSueño, y = Acumulado, group = 1)) +
+  geom_line(color = "#6A1B9A", linewidth = 1.2) +
+  geom_point(color = "#6A1B9A", size = 3) +
+  geom_text(aes(label = paste0(round(Acumulado, 1), "%")),
+            vjust = -0.8, size = 3.2) +
+  labs(title = "Porcentaje acumulado — Calidad de sueño",
+       x = "Calidad de sueño", y = "% acumulado") +
+  ylim(0, 110) +
+  theme_minimal()
+```
+
+La variable **CalidadSueño** presentó una notable concentración en la categoría **“Regular”**, correspondiente al **51.7% de los estudiantes** y constituyendo la **moda** de la distribución. Asimismo, las categorías **“Muy mala”, “Mala” y “Regular” acumulan el 84.5% de las respuestas**, evidenciando una predominancia de percepciones de calidad de sueño no óptimas. En contraste, solo el **15.5% reportó una calidad de sueño “Buena” o “Muy buena”**, siendo esta última la categoría menos frecuente con un **2.6%**. Esto va acorde con los datos obtenidos en la variable **HorasSueño** pues vemos que en promedio, los alumnos suelen dormir menos de la **cantidad de horas recomendada de 8 horas de sueño.**
+
+# ANÁLISIS BIVARIADO
+
+## Relación entre frecuencia de consumo de bebidas energéticas y horas de sueño
+
+```{r}
+cor(df$FrecBebida, df$HorasSueño, use = "complete.obs")
+```
+
+```{r}
+plot(
+  df$FrecBebida,
+  df$HorasSueño,
+  main = "Relación entre consumo de bebidas energéticas y horas de sueño",
+  xlab = "Frecuencia de bebidas energéticas",
+  ylab = "Horas de sueño",
+  col = "blue",
+  pch = 19
+)
+
+modelo1 <- lm(HorasSueño ~ FrecBebida, data = df)
+
+abline(
+  modelo1,
+  col = "red",
+  lwd = 2
+)
+
+```
+
+La relación entre la frecuencia de consumo de bebidas energéticas y las horas de sueño presenta una tendencia negativa moderada. Conforme aumenta el consumo de bebidas energéticas, las horas de sueño tienden a disminuir. La línea de tendencia evidencia esta asociación inversa, aunque existe dispersión en los datos, indicando que otros factores también podrían influir en los hábitos de sueño de los estudiantes.
+
+## Relación entre nivel de estrés y horas de sueño
+
+```{r}
+cor(as.numeric(df$Estres), df$HorasSueño, use = "complete.obs")
+```
+
+```{r}
+plot(
+  as.numeric(df$Estres),
+  df$HorasSueño,
+  main = "Relación entre nivel de estrés y horas de sueño",
+  xlab = "Nivel de estrés",
+  ylab = "Horas de sueño",
+  col = "darkgreen",
+  pch = 19
+)
+
+modelo2 <- lm(HorasSueño ~ as.numeric(Estres), data = df)
+
+abline(
+  modelo2,
+  col = "red",
+  lwd = 2
+)
+```
+
+Se observa una relación negativa entre el nivel de estrés y las horas de sueño. Los estudiantes con mayores niveles de estrés tienden a dormir menos horas. La recta de regresión muestra una pendiente descendente, sugiriendo que el incremento del estrés podría afectar negativamente la duración del descanso.
+
+## Relación entre horas de sueño y calidad de sueño autopercibida
+
+```{r}
+boxplot(
+  HorasSueño ~ CalidadSueño,
+  data = df,
+  col = "plum",
+  main = "Horas de sueño según calidad de sueño",
+  xlab = "Calidad de sueño",
+  ylab = "Horas de sueño"
+)
+```
+
+El análisis muestra que los estudiantes con mejor calidad de sueño presentan medianas más altas de horas de descanso. En contraste, quienes reportan una calidad de sueño “Mala” o “Muy mala” suelen dormir menos horas. Esto evidencia una asociación positiva entre una mayor duración del sueño y una mejor percepción de la calidad del descanso.
+
+## Relación entre tipo de actividad física y calidad de sueño autopercibida 2
+
+```{r}
+tabla_af_cs <- as.data.frame(
+  table(
+    ActividadFisica = df$ActividadFisica,
+    CalidadSueño = df$CalidadSueño
+  )
+)
+
+tabla_af_cs
+```
+
+```{r}
+ggplot(
+  tabla_af_cs,
+  aes(
+    x = ActividadFisica,
+    y = Freq,
+    fill = CalidadSueño
+  )
+) +
+  geom_bar(
+    stat = "identity",
+    position = "fill"
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Relación entre actividad física y calidad de sueño",
+    x = "Tipo de actividad física",
+    y = "Porcentaje",
+    fill = "Calidad de sueño"
+  ) +
+  theme_minimal()
+```
+
+La relación entre el tipo de actividad física y la calidad de sueño autopercibida muestra que los estudiantes que realizan actividad física con mayor frecuencia presentan una mayor proporción de percepciones positivas sobre la calidad de sueño. Por el contrario, quienes realizan poca o ninguna actividad física concentran mayores porcentajes de calidad de sueño “Regular” o “Mala”. Esto sugiere una posible asociación positiva entre la práctica de actividad física y una mejor percepción del descanso.
+
+# Relación entre tipo de actividad física y nivel de estrés autopercibido 2
+
+```{r}
+tabla_af_estres <- as.data.frame(
+  table(
+    ActividadFisica = df$ActividadFisica,
+    Estres = df$Estres
+  )
+)
+
+tabla_af_estres
+```
+
+```{r}
+ggplot(
+  tabla_af_estres,
+  aes(
+    x = ActividadFisica,
+    y = Freq,
+    fill = Estres
+  )
+) +
+  geom_bar(
+    stat = "identity",
+    position = "fill"
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Relación entre actividad física y nivel de estrés",
+    x = "Tipo de actividad física",
+    y = "Porcentaje",
+    fill = "Nivel de estrés"
+  ) +
+  theme_minimal()
+```
+
+Se observa que los estudiantes con mayor actividad física presentan menores proporciones de niveles de estrés “Alto” y “Muy alto”. En contraste, quienes realizan poca actividad física concentran mayores porcentajes de estrés elevado. Esto evidencia una posible relación inversa entre la práctica de actividad física y el nivel de estrés autopercibido.
+
+# Relación entre tipo de actividad física y frecuencia de consumo de bebidas energéticas 2
+
+```{r}
+ggplot(
+  df,
+  aes(
+    x = ActividadFisica,
+    y = FrecBebida,
+    fill = ActividadFisica
+  )
+) +
+  geom_boxplot(alpha = 0.8) +
+  labs(
+    title = "Frecuencia de consumo de bebidas energéticas según actividad física",
+    x = "Tipo de actividad física",
+    y = "Frecuencia de consumo"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+El análisis muestra diferencias en la frecuencia de consumo de bebidas energéticas según el tipo de actividad física. Algunos grupos presentan medianas de consumo ligeramente superiores, así como una mayor dispersión en los datos. Esto sugiere que los hábitos relacionados con la actividad física podrían estar asociados con patrones distintos de consumo de bebidas energéticas entre los estudiantes.
