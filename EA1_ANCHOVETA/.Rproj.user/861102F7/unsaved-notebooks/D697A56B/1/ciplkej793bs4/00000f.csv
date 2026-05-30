@@ -1,8 +1,0 @@
-"0","round("
-"0","  sum(DF$Sexo == ""Hembra"" & DF$Estacion == ""Verano"") /"
-"0","  sum(DF$Estacion == ""Verano"") * 100,"
-"0","2)"
-"1","[1]"
-"1"," 41.68"
-"1","
-"

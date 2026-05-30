@@ -1,7 +1,0 @@
-"0","DFD <- DFT %>%"
-"0","  group_by(Distrito) %>%  "
-"0","  # agrupa por distrito"
-"0",""
-"0","  summarize(Total_Ventas = sum(Total))  "
-"0","  # calcula el total de ventas por distrito"
-"0",""

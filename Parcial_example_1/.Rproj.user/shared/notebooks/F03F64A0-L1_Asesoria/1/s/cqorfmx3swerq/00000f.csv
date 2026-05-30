@@ -1,6 +1,0 @@
-"0","#verificando la libreta observamos que todo esta en segundos asi que debemos hacer 5*60"
-"0","DF <-DF %>% mutate(Espera = ifelse(Espera >= 0 & Espera <= 300, Espera, NA),"
-"0","Viaje = ifelse(Viaje >= 0 & Viaje <= 120, Viaje, NA),"
-"0","Total = ifelse(Total >= 0 & Total <= 420, Total, NA))"
-"2","Error: objeto 'DF' no encontrado
-"

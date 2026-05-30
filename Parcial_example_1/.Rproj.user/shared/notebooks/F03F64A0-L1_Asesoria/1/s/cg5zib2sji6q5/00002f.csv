@@ -1,4 +1,0 @@
-"0","legend(""topright"","
-"0","       legend = c(""Promedio por tipo de servicio"", ""Promedio global""),"
-"0","       pch = c(4, NA), lty = c(NA, 2),"
-"0","       col = c(""black"", ""black""), bty = ""n"")"
