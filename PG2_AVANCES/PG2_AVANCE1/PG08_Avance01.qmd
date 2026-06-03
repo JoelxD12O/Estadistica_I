@@ -1,0 +1,429 @@
+---
+title: "Probabilidad empírica — Hábitos de sueño, consumo de bebidas energéticas y bienestar estudiantil"
+subtitle: "Ciclo académico 2026-I"
+authors:
+  - name: "Piero Max Ortiz Villafuerte (Líder)"
+  - name: "Joel Modesto Cayllahua Hilario"
+  - name: "Salvador Donayre Epifania"
+  - name: "Sebastian Ernesto Chahuara Galdos"
+  - name: "Marisol Yaranga Delgado"
+format: html
+editor: visual
+fontsize: 12pt
+linestretch: 2
+papersize: letter
+number-sections: true
+embed-resources: true
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(readr)
+
+# Carga y limpieza (igual que PG08_Informe.qmd)
+DF <- read_csv("Encuesta.csv")
+
+DFN <- DF %>% rename(
+  Edad            = '4. Edad en años cumplidos',
+  Sexo            = '1. Sexo',
+  CantidadCursos  = '7. ¿En cuántos cursos te encuentras matriculado actualmente?',
+  HorasSuenio     = '17. ¿Cuántas horas duermes en promedio por noche?  Considerar desde el momento que se recuestan y dejan de usar los dispositivos móviles hasta que se despiertan.',
+  ActividadFisica = '27. Qué tipo de actividad física realizas con mayor frecuencia durante el ciclo académico 2026-I?',
+  FrecBebida      = '20. ¿Cuántos días a la semana consumes bebidas energéticas? (0 = ningún día de la semana, 1, 2, …, 7)',
+  UnidadBebida    = '21. Cuando consumes bebidas energéticas, ¿cuántas unidades tomas por día?',
+  HorasEjercicio  = '8. Considerando los últimos 7 días, ¿Cuántas horas en total a la semana dedicaste a realizar actividad física (deporte, gimnasio, caminatas intensas, etc.)?',
+  CanDesayuno     = '19. ¿Qué cantidad de desayuno consumes habitualmente?',
+  Carrera         = '5. Carrera universitaria',
+  Estres          = '23. ¿Cuál es tu percepción del nivel de estrés?',
+  CicloAcademico  = '6. Ciclo académico',
+  CalidadSuenio   = '16. ¿Cómo calificarías la calidad de tu sueño en general?',
+  GrupoEncuesta   = '¿Qué grupo te envió la encuesta?'
+) %>% select(
+  Edad, Sexo, CantidadCursos, HorasSuenio, ActividadFisica,
+  FrecBebida, UnidadBebida, HorasEjercicio, CanDesayuno,
+  Carrera, Estres, CicloAcademico, CalidadSuenio, GrupoEncuesta
+)
+
+DD <- DFN %>% mutate(
+  Edad           = ifelse(Edad >= 17 & Edad <= 25, Edad, NA),
+  HorasSuenio    = ifelse(HorasSuenio >= 3 & HorasSuenio <= 12, HorasSuenio, NA),
+  HorasEjercicio = ifelse(HorasEjercicio >= 0 & HorasEjercicio <= 20, HorasEjercicio, NA),
+  FrecBebida     = ifelse(FrecBebida >= 0 & FrecBebida <= 7, FrecBebida, NA),
+  UnidadBebida   = readr::parse_number(as.character(UnidadBebida)),
+  UnidadBebida   = ifelse(UnidadBebida >= 0 & UnidadBebida <= 5, UnidadBebida, NA),
+  CanDesayuno    = as.integer(ifelse(CanDesayuno >= 0 & CanDesayuno <= 4, CanDesayuno, NA)),
+  Estres         = ifelse(Estres >= 0 & Estres <= 4, Estres, NA),
+  CantidadCursos = ifelse(CantidadCursos >= 3 & CantidadCursos <= 8, CantidadCursos, NA),
+  CicloAcademico = ifelse(CicloAcademico >= 1 & CicloAcademico <= 10, CicloAcademico, NA),
+  ActividadFisica = case_when(
+    grepl("colectivo|futbol|basket|vóley", ActividadFisica, ignore.case = TRUE) ~ "Deportes colectivos",
+    grepl("aeróbica|correr|nadar|bicicleta", ActividadFisica, ignore.case = TRUE) ~ "Actividad aeróbica",
+    grepl("anaeróbica|pesas|fuerza", ActividadFisica, ignore.case = TRUE) ~ "Actividad anaeróbica",
+    grepl("mixta", ActividadFisica, ignore.case = TRUE) ~ "Mixta",
+    grepl("no realizo|no realiza", ActividadFisica, ignore.case = TRUE) ~ "No realiza actividad física",
+    TRUE ~ NA_character_
+  ),
+  Carrera = case_when(
+    grepl("ingeniería|tecnología|construcción", Carrera, ignore.case = TRUE) ~ "Ingeniería, Tecnología y Construcción",
+    grepl("salud", Carrera, ignore.case = TRUE) ~ "Ciencias de la Salud",
+    grepl("administración|negocios|contabilidad", Carrera, ignore.case = TRUE) ~ "Administración, Negocios y Contabilidad",
+    grepl("sociales|derecho", Carrera, ignore.case = TRUE) ~ "Ciencias Sociales y Derecho",
+    grepl("humanidades|artes|educación", Carrera, ignore.case = TRUE) ~ "Humanidades, Artes y Educación",
+    grepl("exactas|ambientales", Carrera, ignore.case = TRUE) ~ "Ciencias Exactas y Ambientales",
+    TRUE ~ NA_character_
+  ),
+  CalidadSuenio = ifelse(
+    CalidadSuenio %in% c("Muy mala", "Mala", "Regular", "Buena", "Muy buena"),
+    CalidadSuenio, NA
+  ),
+  Sexo = ifelse(Sexo %in% c("Masculino", "Femenino"), Sexo, NA)
+) %>% mutate(
+  UnidadBebida = ifelse(FrecBebida == 0 & is.na(UnidadBebida), 0L, UnidadBebida)
+)
+
+DD <- DD %>% mutate(
+  Edad           = as.integer(Edad),
+  CantidadCursos = as.integer(CantidadCursos),
+  FrecBebida     = as.integer(FrecBebida),
+  UnidadBebida   = as.integer(UnidadBebida),
+  CicloAcademico = as.integer(CicloAcademico),
+  Sexo           = factor(Sexo),
+  Carrera        = factor(Carrera),
+  ActividadFisica = factor(ActividadFisica),
+  CanDesayuno    = factor(CanDesayuno, levels = c(0,1,2,3,4),
+                          labels = c("Ninguna","Poca","Regular","Bastante","Mucha"), ordered = TRUE),
+  CalidadSuenio  = factor(CalidadSuenio,
+                           levels = c("Muy mala","Mala","Regular","Buena","Muy buena"), ordered = TRUE),
+  Estres         = factor(Estres, levels = c(0,1,2,3,4),
+                          labels = c("Nulo","Bajo","Medio","Alto","Muy alto"), ordered = TRUE),
+  CicloAcademico = factor(CicloAcademico, levels = 1:10, ordered = TRUE)
+)
+
+# Muestra efectiva del GRUPO 8 (solo para verificar el mínimo requerido)
+n_grupo8 <- DD %>%
+  filter(GrupoEncuesta == 8, !is.na(Edad), !is.na(Sexo), !is.na(Carrera)) %>%
+  nrow()
+
+# Muestra efectiva de TODA LA SECCIÓN (base de trabajo)
+DF_seccion <- DD %>%
+  filter(!is.na(Edad) & !is.na(Sexo) & !is.na(Carrera))
+
+n_seccion <- nrow(DF_seccion)
+
+# --- Cálculos Variable 1: FrecBebida ---
+v1_tabla <- DF_seccion %>%
+  filter(!is.na(FrecBebida)) %>%
+  count(FrecBebida) %>%
+  arrange(FrecBebida)
+
+n_v1 <- sum(v1_tabla$n)
+v1_tabla <- v1_tabla %>%
+  mutate(P = round(n / n_v1, 4))
+
+# --- Cálculos Variable 2: CalidadSuenio ---
+niveles_cs <- c("Muy mala", "Mala", "Regular", "Buena", "Muy buena")
+
+v2_tabla <- DF_seccion %>%
+  filter(!is.na(CalidadSuenio)) %>%
+  mutate(CalidadSuenio = factor(as.character(CalidadSuenio), levels = niveles_cs)) %>%
+  count(CalidadSuenio) %>%
+  arrange(CalidadSuenio)
+
+n_v2 <- sum(v2_tabla$n)
+v2_tabla <- v2_tabla %>%
+  mutate(P = round(n / n_v2, 4))
+```
+
+# Verificación de observaciones limpias
+
+El análisis de probabilidad se realiza con **los datos de toda la sección**. El filtro por grupo únicamente se aplica para verificar que el Grupo 8 alcanzó el mínimo de 150 observaciones limpias requerido.
+
+```{r}
+cat("Observaciones limpias — Grupo 8:         ", n_grupo8, "\n")
+cat("Observaciones limpias — Sección completa:", n_seccion, "\n")
+```
+
+El Grupo 8 cuenta con **`r n_grupo8` observaciones limpias**. El análisis probabilístico se realiza sobre la muestra efectiva de toda la sección: **n = `r n_seccion`**.
+
+------------------------------------------------------------------------
+
+# Variable 1: Frecuencia de consumo de bebidas energéticas
+
+**Tipo:** Cuantitativa discreta
+
+**Distribución de frecuencias observadas:**
+
+```{r echo=FALSE}
+v1_tabla %>%
+  mutate(
+    `Días/semana` = FrecBebida,
+    Frecuencia = n,
+    `P(Eᵢ)` = P
+  ) %>%
+  select(`Días/semana`, Frecuencia, `P(Eᵢ)`) %>%
+  knitr::kable()
+```
+
+## Experimento aleatorio
+
+$EA_1$: Seleccionar una persona al azar del estudio (la unidad muestral) y observar la cantidad de días a la semana en que consume bebidas energéticas.
+
+## Espacio muestral
+
+$$\Omega_{EA_1} = \{0,\ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7\}$$
+
+## Eventos atómicos
+
+- $E_1$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **0 días por semana**
+- $E_2$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **1 día por semana**
+- $E_3$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **2 días por semana**
+- $E_4$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **3 días por semana**
+- $E_5$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **4 días por semana**
+- $E_6$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **5 días por semana**
+- $E_7$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **6 días por semana**
+- $E_8$: Seleccionar una persona al azar del estudio cuya frecuencia de consumo de bebidas energéticas es **7 días por semana**
+
+## Probabilidades empíricas
+
+```{r}
+n_v1 <- sum(!is.na(DF_seccion$FrecBebida))
+
+P_E1 <- sum(DF_seccion$FrecBebida == 0, na.rm = TRUE) / n_v1
+P_E2 <- sum(DF_seccion$FrecBebida == 1, na.rm = TRUE) / n_v1
+P_E3 <- sum(DF_seccion$FrecBebida == 2, na.rm = TRUE) / n_v1
+P_E4 <- sum(DF_seccion$FrecBebida == 3, na.rm = TRUE) / n_v1
+P_E5 <- sum(DF_seccion$FrecBebida == 4, na.rm = TRUE) / n_v1
+P_E6 <- sum(DF_seccion$FrecBebida == 5, na.rm = TRUE) / n_v1
+P_E7 <- sum(DF_seccion$FrecBebida == 6, na.rm = TRUE) / n_v1
+P_E8 <- sum(DF_seccion$FrecBebida == 7, na.rm = TRUE) / n_v1
+
+cat("P(E1) — 0 días:", round(P_E1, 4), "\n")
+cat("P(E2) — 1 día: ", round(P_E2, 4), "\n")
+cat("P(E3) — 2 días:", round(P_E3, 4), "\n")
+cat("P(E4) — 3 días:", round(P_E4, 4), "\n")
+cat("P(E5) — 4 días:", round(P_E5, 4), "\n")
+cat("P(E6) — 5 días:", round(P_E6, 4), "\n")
+cat("P(E7) — 6 días:", round(P_E7, 4), "\n")
+cat("P(E8) — 7 días:", round(P_E8, 4), "\n")
+```
+
+## Comprobación
+
+```{r}
+P_E1 + P_E2 + P_E3 + P_E4 + P_E5 + P_E6 + P_E7 + P_E8
+```
+
+## Visualización
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(v1_tabla, aes(x = factor(FrecBebida), y = P, fill = factor(FrecBebida))) +
+  geom_bar(stat = "identity", color = "white", width = 0.7) +
+  geom_text(aes(label = round(P, 3)), vjust = -0.5, size = 3.5) +
+  labs(
+    title = "Probabilidad empírica — Frecuencia de consumo de bebidas energéticas",
+    x = "Días por semana (k)",
+    y = expression(P(E[i]))
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Interpretación
+
+La distribución de probabilidades revela que la mayoría de los estudiantes universitarios de la sección **no consume bebidas energéticas**: la probabilidad de que un estudiante seleccionado al azar no las consuma ningún día es de **P(E₁) = 0.5439**, es decir, más de la mitad. A medida que aumenta la frecuencia de consumo, las probabilidades disminuyen progresivamente, siendo el consumo diario (7 días) el menos probable con **P(E₈) = 0.0159**. Esto refleja que el consumo de bebidas energéticas es un comportamiento minoritario dentro de la población estudiantil, aunque presente en aproximadamente el 46% de los encuestados.
+
+------------------------------------------------------------------------
+
+# Variable 2: Calidad de sueño autopercibida
+
+**Tipo:** Cualitativa ordinal
+
+**Distribución de frecuencias observadas:**
+
+```{r echo=FALSE}
+v2_tabla %>%
+  mutate(
+    Categoría  = as.character(CalidadSuenio),
+    Frecuencia = n,
+    `P(Eᵢ)`   = P
+  ) %>%
+  select(Categoría, Frecuencia, `P(Eᵢ)`) %>%
+  knitr::kable()
+```
+
+## Experimento aleatorio
+
+$EA_2$: Seleccionar una persona al azar del estudio (la unidad muestral) y observar su calificación subjetiva de la calidad de su sueño durante el ciclo académico 2026-I.
+
+## Espacio muestral
+
+$$\Omega_{EA_2} = \{\text{Muy mala},\ \text{Mala},\ \text{Regular},\ \text{Buena},\ \text{Muy buena}\}$$
+
+## Eventos atómicos
+
+- $E_1$: Seleccionar una persona al azar del estudio cuya calidad de sueño autopercibida es **Muy mala**
+- $E_2$: Seleccionar una persona al azar del estudio cuya calidad de sueño autopercibida es **Mala**
+- $E_3$: Seleccionar una persona al azar del estudio cuya calidad de sueño autopercibida es **Regular**
+- $E_4$: Seleccionar una persona al azar del estudio cuya calidad de sueño autopercibida es **Buena**
+- $E_5$: Seleccionar una persona al azar del estudio cuya calidad de sueño autopercibida es **Muy buena**
+
+## Probabilidades empíricas
+
+```{r}
+cs <- as.character(DF_seccion$CalidadSuenio)
+n_v2 <- sum(!is.na(cs))
+
+P_E1_cs <- sum(cs == "Muy mala",  na.rm = TRUE) / n_v2
+P_E2_cs <- sum(cs == "Mala",      na.rm = TRUE) / n_v2
+P_E3_cs <- sum(cs == "Regular",   na.rm = TRUE) / n_v2
+P_E4_cs <- sum(cs == "Buena",     na.rm = TRUE) / n_v2
+P_E5_cs <- sum(cs == "Muy buena", na.rm = TRUE) / n_v2
+
+cat("P(E1) — Muy mala: ", round(P_E1_cs, 4), "\n")
+cat("P(E2) — Mala:     ", round(P_E2_cs, 4), "\n")
+cat("P(E3) — Regular:  ", round(P_E3_cs, 4), "\n")
+cat("P(E4) — Buena:    ", round(P_E4_cs, 4), "\n")
+cat("P(E5) — Muy buena:", round(P_E5_cs, 4), "\n")
+```
+
+## Comprobación
+
+```{r}
+P_E1_cs + P_E2_cs + P_E3_cs + P_E4_cs + P_E5_cs
+```
+
+## Visualización
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+v2_plot <- v2_tabla %>%
+  mutate(CalidadSuenio = factor(as.character(CalidadSuenio), levels = niveles_cs))
+
+ggplot(v2_plot, aes(x = CalidadSuenio, y = P, fill = CalidadSuenio)) +
+  geom_bar(stat = "identity", color = "white", width = 0.7) +
+  geom_text(aes(label = round(P, 3)), vjust = -0.5, size = 3.5) +
+  scale_fill_brewer(palette = "Blues") +
+  labs(
+    title = "Probabilidad empírica — Calidad de sueño autopercibida",
+    x = "Calidad de sueño",
+    y = expression(P(E[i]))
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+## Interpretación
+
+La distribución de probabilidades muestra que la percepción de calidad de sueño **Regular** es la más frecuente entre los estudiantes, con una probabilidad de **P(E₃) = 0.4935**, concentrando casi la mitad de las observaciones. Le siguen las categorías **Mala** (P(E₂) = 0.2093) y **Buena** (P(E₄) = 0.1907), mientras que los extremos son notablemente menos probables: **Muy mala** (P(E₁) = 0.0589) y **Muy buena** (P(E₅) = 0.0477). En conjunto, la probabilidad de que un estudiante seleccionado al azar perciba su sueño como negativo (Muy mala o Mala) asciende a aproximadamente **0.268**, lo que indica que más de una cuarta parte de los estudiantes reporta una calidad de descanso deficiente durante el ciclo académico 2026-I.
+
+# Probabilidad condicional
+
+## 1. Definición de eventos
+
+Se definen dos eventos, uno simple y otro compuesto respectivamente, uno por cada variable de estudio:
+
+- $E_1$: Seleccionar un estudiante al azar de la sección que **no consume bebidas energéticas** (FrecBebida = 0)
+- $E_2$: Seleccionar un estudiante al azar de la sección cuya **calidad de sueño autopercibida es Regular, Mala o Muy mala**
+
+```{r}
+# Variables dicotómicas para cada evento
+DF_cond <- DF_seccion %>%
+  filter(!is.na(FrecBebida), !is.na(CalidadSuenio)) %>%
+  mutate(
+    E1 = ifelse(FrecBebida == 0, "No consume", "Consume"),
+    E2 = ifelse(as.character(CalidadSuenio) %in% c("Muy mala", "Mala", "Regular"),
+                "Sueño regular o peor", "Sueño bueno o muy bueno")
+  )
+
+# Tabla de contingencia (frecuencias absolutas)
+tabla_cond <- table(E1 = DF_cond$E1, E2 = DF_cond$E2)
+
+tabla_df <- as.data.frame.matrix(tabla_cond)
+tabla_df$Total <- rowSums(tabla_df)
+tabla_df <- rbind(tabla_df, Total = colSums(tabla_df))
+tabla_df
+
+frec_table <- round(prop.table(tabla_cond) * 100, 2)
+frec_df <- as.data.frame.matrix(frec_table)
+frec_df$Total <- rowSums(frec_df)
+frec_df <- rbind(frec_df, Total = colSums(frec_df))
+frec_df
+```
+
+## 2. Prueba de independencia
+
+```{r}
+n_cond <- nrow(DF_cond)
+no_consume <- sum(DF_cond$E1 == "No consume")
+suenio_reg_peor <- sum(DF_cond$E2 == "Sueño regular o peor")
+
+# Probabilidades E1, E2, E2 comp.
+P_E1  <- no_consume / n_cond
+P_E2  <- suenio_reg_peor / n_cond
+
+# Probabilidad conjunta
+P_E1_intersect_E2 <- sum(DF_cond$E1 == "No consume" &
+                           DF_cond$E2 == "Sueño regular o peor") / n_cond
+
+# Probabilidad disjunta
+P_E1_union_E2 <- sum(DF_cond$E1 == "No consume" |
+                       DF_cond$E2 == "Sueño regular o peor") / n_cond
+
+cat("P(E1)                =", round(P_E1, 4), "\n")
+cat("P(E2)                =", round(P_E2, 4), "\n")
+cat("P(E1 intersect E2)   =", round(P_E1_intersect_E2, 4), "\n")
+cat("P(E1) * P(E2)        =", round(P_E1 * P_E2, 4), "\n")
+if(round(P_E1_intersect_E2, 4) == round(P_E1 * P_E2, 4)) {
+  cat("Los eventos son INDEPENDIENTES")
+} else {
+  cat("Los eventos son DEPENDIENTES")
+}
+```
+
+## 3. Propiedades
+
+```{r}
+P_E1_E2 <- P_E1_intersect_E2 / P_E2
+P_E2_E1 <- P_E1_intersect_E2 / P_E1
+P_E1_E1E2 <- P_E1 * P_E2_E1
+P_E2c <- 1 - P_E2
+
+P_E1_E2c <- sum(DF_cond$E1 == "No consume" & 
+                DF_cond$E2 == "Sueño bueno o muy bueno") /sum(DF_cond$E2 == "Sueño bueno o muy bueno")
+P_E2_E1c <- sum(DF_cond$E1 == "Consume" & 
+                DF_cond$E2 == "Sueño regular o peor") /sum(DF_cond$E1 == "Consume")
+
+cat("P(E1|E2)                =", round(P_E1_E2, 4), "\n")
+cat("P(E2|E1)                =", round(P_E2_E1, 4), "\n")
+cat("P(E1 union E2)          =", round(P_E1_union_E2, 4), "\n")
+cat("P(E1) * P(E2)           =", round(P_E1 * P_E2, 4), "\n")
+cat("P(E1) * P(E2|E1)        =", round(P_E1_E1E2, 4), "\n")
+cat("P(E2 complemento)       =", round(P_E2c, 4), "\n")
+cat("P(E1|E2 complemento)    =", round(P_E1_E2c, 4), "\n")
+cat("P(E2|E1 complemento)    =", round(P_E2_E1c, 4), "\n")
+
+if (round(P_E1_E1E2, 4) == round(P_E1_intersect_E2, 4)) {
+  cat("Se cumple la propiedad: P(E1 intersect E2) = P(E1) * P(E2|E1)")
+}
+```
+
+## 4. Teorema de Bayes
+
+Verificación de $P(E_2 | E_1)$ aplicando el teorema de Bayes:
+
+$$P(E_2 | E_1) = \frac{P(E_1 | E_2) \cdot P(E_2)}{P(E_1 | E_2) \cdot P(E_2) + P(E_1 | E_2^c) \cdot P(E_2^c)}$$
+
+```{r}
+Bayes <- (P_E1_E2 * P_E2) / ((P_E1_E2 * P_E2) + (P_E1_E2c * P_E2c))
+
+cat("T. Bayes  =", round(Bayes, 4), "\n")
+if (round(Bayes, 4) == round(P_E2_E1, 4)) {
+  cat("Se cumple el Teorema de Bayes")
+}
+```
+
+Ambos métodos coinciden, lo que valida el cálculo.
+
+## 5. Interpretación
+
+Con el análisis de la tabla bivariada, se encontró que el **54.39% de los estudiantes no consume bebidas energéticas**, mientras que el **76.17% reporta una calidad de sueño Regular, Mala o Muy mala**. Además, la probabilidad conjunta $P(E_1 \cap E_2)=0.4159$ indica que aproximadamente el **41.59% de los estudiantes cumplen simultáneamente ambas condiciones**, lo que sugiere que una calidad de sueño no óptima es frecuente incluso para los que no consumen bebidas energéticas. Las probabilidades condicionales muestran que el **54.6% de los estudiantes con calidad de sueño Regular, Mala o Muy mala no consume bebidas energéticas**, y que **el 76.46% de quienes no consumen bebidas energéticas presentan una calidad de sueño Regular, Mala o Muy mala.** Asimismo, la aplicación del **teorema de Bayes** confirmó la consistencia de los resultados obtenidos y al ver que $P(E_1 \cap E_2)$ no es exactamente igual a $P(E_1)\cdot P(E_2)$ se puede concluir que ambos eventos son **dependientes**, evidenciando cierta relación entre el **consumo de bebidas energéticas y la calidad de sueño** en nuestro estudio.
