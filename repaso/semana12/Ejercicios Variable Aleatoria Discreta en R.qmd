@@ -1,0 +1,173 @@
+---
+title: "Ejercicios de variable aleatoria discreta"
+format: html
+editor: visual
+---
+
+## Pregunta N°1
+
+Una urna contiene 5 bolas rojas, 3 naranjas y 2 azules. Dos bolas son seleccionadas al azar,
+
+**(a) ¿Cuál es el espacio muestral del experimento?**
+
+```{r}
+# Ingresando um vector que represente las 10 bolas de la urna
+urna <- c("r1","r2","r3","r4","r5","n1","n2","n3","a1","a2")
+
+Espacio_muestral <- t(combn (urna,2))
+Espacio_muestral
+```
+
+```{r}
+# Tamaño del espacio muestral
+nrow(Espacio_muestral)
+
+# Otra forma de calcular el tamaño muestral
+choose(10,2)
+```
+
+**(b) Si llamamos X a la variable aleatoria que cuenta el número de bolas naranjas seleccionadas, ¿Cuáles son todos los posibles valores que puede tomar X?**
+
+**Posibles valores**
+
+***X***= número de bolas naranjas seleccionadas de la muestra de 2 bolas
+
+**Rango de X = { 0, 1, 2 }**
+
+**(c) Calcule la función de probabilidad de masa de X**
+
+Probabilidad para **X = 0** bolas naranjas
+
+```{r}
+Prob0 =(choose(3,0)*choose(7,2))/choose(10,2)
+Prob0
+```
+
+Probabilidad para **X = 1** bola naranja
+
+```{r}
+Prob1 =(choose(3,1)*choose(7,1))/choose(10,2)
+Prob1
+```
+
+Probabilidad para **X = 2** bolas naranjas
+
+```{r}
+Prob3 =(choose(3,2)*choose(7,0))/choose(10,2)
+Prob3
+```
+
+La función de Probabilidad de masa de X es:
+
+$P(X=0) = P(0) = 0.4667$
+
+$P(X=1) = P(1) = 0.4667$
+
+$P(X=2) = P(2) = 0.0666$
+
+## Pregunta N°2
+
+Suponga que un dado es lanzado dos veces. ¿Cuáles son los posibles valores que pueden tomar de las siguientes variables aleatorias. Calcule la probabilidad de masa en cada caso.
+
+**a) El máximo valor entre los dos dados**
+
+**Solución**
+
+```{r}
+dado_1 = seq(1:6)
+dado_2 = seq(1:6)
+
+Tabla_dados=expand.grid(dado_1, dado_2)
+colnames(Tabla_dados) = c("X1", "X2")
+Tabla_dados
+```
+
+Creando una columna que contenga el mayor valor de los dos dados.
+
+```{r}
+Tabla_dados$maximo = pmax(Tabla_dados$X1,Tabla_dados$X2)
+Tabla_dados
+```
+
+**Valores posibles**
+
+```{r}
+table(Tabla_dados$maximo)
+```
+
+**Probabilidad de masa**
+
+```{r}
+round(table(Tabla_dados$maximo)/nrow(Tabla_dados),4)
+
+round(prop.table(table(Tabla_dados$maximo)),4) # Otra forma
+```
+
+**b) El mínimo valor entre los dos dados.**
+
+Creando una columna que contenga el mínimo valor de los dos dados.
+
+```{r}
+Tabla_dados$minimo = pmin(Tabla_dados$X1,Tabla_dados$X2)
+Tabla_dados
+```
+
+**Valores posibles**
+
+```{r}
+table(Tabla_dados$minimo)
+```
+
+**Probabilidad de masa**
+
+```{r}
+round(table(Tabla_dados$minimo)/nrow(Tabla_dados),4)
+
+round(prop.table(table(Tabla_dados$minimo)),4) # Otra forma
+```
+
+**c) La suma de los dos dados.**
+
+Creando una columna que contenga la suma de los dos dados.
+
+```{r}
+Tabla_dados$suma = Tabla_dados$X1 + Tabla_dados$X2
+Tabla_dados
+```
+
+**Valores posibles**
+
+```{r}
+table(Tabla_dados$suma)
+```
+
+**Probabilidad de masa**
+
+```{r}
+round(table(Tabla_dados$suma)/nrow(Tabla_dados),4)
+
+round(prop.table(table(Tabla_dados$suma)),4) # Otra forma
+```
+
+**d) El valor del primer dado menos el valor del segundo.**
+
+Creando una columna que contenga la diferencia de los dos dados.
+
+```{r}
+Tabla_dados$resta = Tabla_dados$X1 - Tabla_dados$X2
+Tabla_dados
+```
+
+**Valores posibles**
+
+```{r}
+table(Tabla_dados$resta)
+```
+
+**Probabilidad de masa**
+
+```{r}
+round(table(Tabla_dados$resta)/nrow(Tabla_dados),4)
+
+round(prop.table(table(Tabla_dados$resta)),4) # Otra forma
+```

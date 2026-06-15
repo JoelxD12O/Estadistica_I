@@ -231,7 +231,7 @@ ggplot(v1_tabla, aes(x = factor(FrecBebida), y = P, fill = factor(FrecBebida))) 
 
 ## Interpretación
 
-La distribución de probabilidades revela que la mayoría de los estudiantes universitarios de la sección **no consume bebidas energéticas**: la probabilidad de que un estudiante seleccionado al azar no las consuma ningún día es de **P(E₁) = 0.5439**, es decir, más de la mitad. A medida que aumenta la frecuencia de consumo, las probabilidades disminuyen progresivamente, siendo el consumo diario (7 días) el menos probable con **P(E₈) = 0.0159**. Esto refleja que el consumo de bebidas energéticas es un comportamiento minoritario dentro de la población estudiantil, aunque presente en aproximadamente el 46% de los encuestados.
+La distribución de probabilidades revela que la mayoría de los estudiantes universitarios de la sección **no consume bebidas energéticas**: la probabilidad de que un estudiante seleccionado al azar no las consuma ningún día es de **P(E₁) = 0.521**, es decir, más de la mitad. A medida que aumenta la frecuencia de consumo, las probabilidades disminuyen progresivamente, siendo el consumo diario (7 días) el menos probable con **P(E₈) = 0.015**. Esto refleja que el consumo de bebidas energéticas es un comportamiento minoritario dentro de la población estudiantil, aunque presente en aproximadamente el 48% de los encuestados.
 
 ------------------------------------------------------------------------
 
@@ -314,7 +314,7 @@ ggplot(v2_plot, aes(x = CalidadSuenio, y = P, fill = CalidadSuenio)) +
 
 ## Interpretación
 
-La distribución de probabilidades muestra que la percepción de calidad de sueño **Regular** es la más frecuente entre los estudiantes, con una probabilidad de **P(E₃) = 0.4935**, concentrando casi la mitad de las observaciones. Le siguen las categorías **Mala** (P(E₂) = 0.2093) y **Buena** (P(E₄) = 0.1907), mientras que los extremos son notablemente menos probables: **Muy mala** (P(E₁) = 0.0589) y **Muy buena** (P(E₅) = 0.0477). En conjunto, la probabilidad de que un estudiante seleccionado al azar perciba su sueño como negativo (Muy mala o Mala) asciende a aproximadamente **0.268**, lo que indica que más de una cuarta parte de los estudiantes reporta una calidad de descanso deficiente durante el ciclo académico 2026-I.
+La distribución de probabilidades muestra que la percepción de calidad de sueño **Regular** es la más frecuente entre los estudiantes, con una probabilidad de **P(E₃) = 0.494**, concentrando casi la mitad de las observaciones. Le siguen las categorías **Mala** (P(E₂) = 0.209) y **Buena** (P(E₄) = 0.191), mientras que los extremos son notablemente menos probables: **Muy mala** (P(E₁) = 0.059) y **Muy buena** (P(E₅) = 0.048). En conjunto, la probabilidad de que un estudiante seleccionado al azar perciba su sueño como negativo (Muy mala o Mala) asciende a aproximadamente **0.268**, lo que indica que más de una cuarta parte de los estudiantes reporta una calidad de descanso deficiente durante el ciclo académico 2026-I.
 
 # Probabilidad condicional
 
@@ -330,8 +330,7 @@ Se definen dos eventos, uno simple y otro compuesto respectivamente, uno por cad
 DF_cond <- DF_seccion %>%
   filter(!is.na(FrecBebida), !is.na(CalidadSuenio)) %>%
   mutate(
-    E1 = ifelse(FrecBebida == 0, "No consume", "Consume"),
-    E2 = ifelse(as.character(CalidadSuenio) %in% c("Muy mala", "Mala", "Regular"),
+s    E2 = ifelse(as.character(CalidadSuenio) %in% c("Muy mala", "Mala", "Regular"),
                 "Sueño regular o peor", "Sueño bueno o muy bueno")
   )
 
