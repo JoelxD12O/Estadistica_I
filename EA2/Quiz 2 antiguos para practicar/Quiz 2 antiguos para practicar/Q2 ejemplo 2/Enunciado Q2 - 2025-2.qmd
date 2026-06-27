@@ -1,0 +1,65 @@
+---
+title: "Marketing Campaign"
+format: html
+editor: visual
+---
+
+## Análisis de datos
+
+El conjunto de datos **marketing_campaign_ULTIMO.csv** es parte del conjunto de datos "Customer Personality Analysis" que contiene información sobre clientes de una empresa de productos de consumo, incluyendo datos demográficos, comportamiento de compra y participación en campañas de marketing.
+
+### Libreta de códigos
+
+**Información del Cliente**
+
+-   **ID**: Identificador único del cliente.
+
+-   **Age**: Edad del cliente en años.
+
+-   **Education**: Nivel educativo del cliente (por ejemplo, 'Graduation', 'PhD', 'Master', 'Basic', '2n Cycle').
+
+-   **Marital_Status**: Estado civil del cliente (por ejemplo, 'Single', 'Together', 'Married', 'Divorced', 'Widow', 'Absurd', 'Alone', 'YOLO').
+
+-   **Income**: Ingreso anual del cliente.
+
+-   **Kidhome**: Número de niños en el hogar del cliente.
+
+-   **Teenhome**: Número de adolescentes en el hogar del cliente.
+
+-   **Dt_Customer**: Fecha en la que el cliente fue dado de alta con la empresa / fecha de ingreso.
+
+-   **Recency**: Número de días desde la última compra del cliente.
+
+-   **Complain**: Variable binaria: 1 si el cliente presento una queja en los dos últimos años, 0 en caso contrario.
+
+**Comportamiento de Compra**
+
+-   **MntWines**: Monto gastado en vinos en los últimos 2 años.
+
+-   **MntFruits**: Monto gastado en frutas en los últimos 2 años.
+
+-   **MntMeatProducts**: Monto gastado en productos cárnicos en los últimos 2 años.
+
+-   **MntFishProducts**: Monto gastado en productos de pescado en los últimos 2 años.
+
+-   **MntSweetProducts**: Monto gastado en productos dulces en los últimos 2 años.
+
+-   **MntGoldProds**: Monto gastado en productos de oro en los últimos 2 años.
+
+-   **Response**: Indica si el cliente aceptó la última campaña (1 = Sí, 0 = No).
+
+-   **NumDealsPurchases**: Número de compras que hizo el cliente aprovechando una oferta o descuento.
+
+-   **NumWebPurchases**: Número de compras realizadas a través del sitio web de la empresa.
+
+-   **NumCatalogPurchases**: Número de compras realizadas mediante catálogo (orden por catálogo).
+
+-   **NumStorePurchases**: Número de compras realizadas directamente en tiendas físicas.
+
+-   **NumWebVisitsMonth**: Número de veces que el cliente visitó el sitio web de la empresa en el último mes (visitas, no necesariamente compras).
+
+## Resultados
+
+El resultado principal es el documento **marketing_campaign_ULTIMO.csv**
+
+Su trabajo es analizar los datos y responder las preguntas que se hacen al respecto.

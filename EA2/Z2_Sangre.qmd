@@ -1,0 +1,473 @@
+---
+title: "Z2-Sangre"
+format: html
+editor: visual
+---
+
+# Z2-Sangre
+
+## Tipos sanguíneos
+
+<style>
+  th,td{
+     padding:2px 5px 2px 5px;
+  }
+</style>
+
+La tabla a continuación denota las distintas frecuencias aproximadas en la población peruana de los diversos tipos sanguíneos más comunes. 
+
+```{r}
+library(xtable)
+library(dplyr)
+```
+
+```{r}
+Sangre<-as_tibble(list(
+  Tipo=c("A+","B+","AB+","O+","A-","B-","AB-","O-")
+  ,Frecuencia=c(18.4,7.8,1.6,70.0,0.5,0.28,0.02,1.4)
+  )
+)
+
+```
+
+```{r,results="asis"}
+print(xtable(Sangre), type="html",include.rownames=FALSE)
+```
+
+Fuente: [Club rh negativo de Perú](http://rhnegativoperu.com/donaciones-de-sangre/porcentajes-grupo-sanguineo/).
+
+[LINK APUNTES DISCRETAS](https://jamboard.google.com/d/1H-UMFguAVVwF4UYAyf_TU3IbBYdzUP3dNNv0rlrRbfQ/edit?usp=sharing)
+
+## Preguntas
+
+### P1:
+Determine la probabilidad de cada tipo o factor sanguíneo en el Peru. (O,A,B,AB,Rh+,Rh-)
+
+```{r}
+Sangre <- Sangre %>% mutate(prob = Frecuencia/100)
+```
+
+```{r}
+Sangre
+```
+P(O) = P(O-) + P(O+)
+
+```{r}
+prob_RHp <- sum(Sangre$prob[1:4])
+prob_RHp
+```
+```{r}
+prob_RHn <- sum(Sangre$prob[5:8])
+prob_RHn
+```
+
+0.7140 / 0.1890/ 0.0808 / 0.0162 / 0.9780/ 0.022
+
+### P2:
+En una campaña de donación de sangre se reciben 200 donantes.
+La probabilidad de recibir exactamente 3 donantes de tipo A-, correctamente redondeada a dos decimales, es:
+
+n=200
+X= Cantidad de donantes del tipo A- (0,1,2,3,...)
+P(exito) = P(A-)
+
+Bin(n,p)
+P(X=3) 
+
+```{r}
+round(dbinom(x=3,size=200,prob=Sangre$prob[5]),2)
+```
+
+0.06
+
+### P3:
+
+En una campaña de donación de sangre se reciben 200 donantes.
+El valor esperado del número de donantes A-, correctamente redondeado a dos decimales, es:
+
+n=200
+p(exito)=p(A-)
+
+Bin(n,p)
+Esperanza = n*p
+
+```{r}
+200*Sangre$prob[5]
+```
+
+
+1
+
+### P4:
+
+En una campaña de donación de sangre se reciben 200 donantes.
+La variable aleatoria que cuenta número de donantes que es necesario atender hasta atender el primero diferente de AB+ es una [binomial/hipergeometrica/binomial negativa] con parámetros [] y [].
+
+Geom(p) = BinNeg(1,P(=!AB+))
+
+
+bn 1 0.9840
+
+### P5:
+
+En una campaña de donación de sangre se reciben 200 donantes.
+El número esperado de donantes hasta ver el primero con tipo AB-, correctamente redondeado a 2 decimales, es:
+
+valor esperado o esperanza de Modelo Geom = 1/p
+
+```{r}
+1/(Sangre$prob[7])
+```
+
+5000
+
+### P6:
+
+El tipo de sangre [] es poco frecuente en Perú; aún así esperamos ver al menos un donante en el caso de una campaña con 200 donantes. 
+
+El tipo [ ] es más problemático ya que una campaña de 200 donantes, solo obtendrá algún donante cerca del 43 % de las veces; en una campaña de ese tamaño se esperan ver cerca de[ ] donantes.
+
+El tipo [ AB- ] requiere campañas más grandes, ya que en promedio veríamos el primero al haber procesado [ ]donantes. Una campaña con 200 donantes, solo tendrá éxito cerca del 4 % de las veces.
+
+Fijo n=200
+P(X>0)
+pbin es Modelo Binomial : Bin(n=200,p(cada tipo de sangre)) P(x>0)
+
+```{r}
+Sangre %>% mutate(Valor_Esperado=200*prob, pbin = pbinom(0,200,prob,lower.tail = FALSE))
+```
+Geom(AB-) -> Valor esperado o 'en promedio' = 1/p
+```{r}
+1/Sangre$prob[7]
+```
+
+
+A- B- 0.56 AB- 5000
+
+### P7:
+En una campaña de donación de sangre se reciben al menos 200 donantes.
+
+La probabilidad de obtener el tercer donante O- antes de haber procesado 201 donantes es:
+
+0.53
+
+P(exito) = P(O-) -> nos piden el 3er éxito -> BinNeg
+
+P(X<201) = P(X<=200)
+
+```{r}
+pnbinom(200-3,3,Sangre$prob[8])
+```
+```{r}
+Sangre
+```
+
+### P8:
+En una campaña de donación de sangre se reciben 200 donantes.
+
+Si sabemos que los diez primeros donantes tienen factor Rh-, la probabilidad de que al menos uno de ellos sea AB- es:
+
+- - - - - - - - - - ? ? ? ? ... ?????? 
+n=10 P(X>=1) = P(X>0) = 1 - P(x=0)
+
+
+```{r}
+pABneg_rhneg <- Sangre$prob[7]/prob_RHn
+```
+
+```{r}
+pbinom(0,10,pABneg_rhneg,lower.tail = FALSE)
+```
+
+
+0.09
+
+# Z2-Impresora
+
+Una impresora 3D produce planchas de 25 piezas plásticas idénticas.
+
+Los diseños de las piezas tienen complejidad variable y de esa complejidad depende la probabilidad que una pieza tenga defectos al imprimirse.
+
+Se quieren comprender los distintos aspectos relacionados con los defectos en la fabricación de las piezas.
+
+## Preliminares
+
+Un estudio previo determinó que se puede suponer que las piezas impresas en una misma plancha son independientes entre sí y que las planchas también son independientes entre sí, siempre que se sigan las recomendaciones de mantenimiento y calibración.
+
+```{r, echo = FALSE, results = 'hide'}
+library(readr)
+DF <- read_csv("ProbCond.csv")
+Planchas <- read_csv("Defectos.csv")
+
+
+r <- function(x){
+  return(round(x, digits = 2))
+}
+```
+Ese mismo estudio determinó las siguientes probabilidades de defecto por pieza dado el nivel de complejidad de la misma.
+
+En la tabla, **Comp** corresponde a los niveles de complejidad del diseño. La complejidad del diseño es una variable categórica ordinal y trabajamos con: Baja < Media < Alta.
+
+En la tabla, **ProbError** corresponde a la probabilidad condicional de que una pieza sea defectuosa dado el nivel de complejidad especificado.
+
+En la tabla, **Prod** corresponde a la proporción del total de la producción de la impresora que se dedica a planchas del nivel de complejidad especificado.
+
+```{r, echo = FALSE}
+DF
+```
+```{r, echo = FALSE}
+library(RColorBrewer)
+coul <- brewer.pal(3, "Dark2") 
+```
+
+## Datos del segundo estudio
+
+Para un nuevo estudio se han recolectado datos sobre 10000 planchas impresas y el número de piezas defectuosas por plancha; la impresora se mantuvo bien mantenida y calibrada a lo largo del estudio por lo que se espera que los datos reflejen la realidad del modelo teórico que se quiere plantear.
+
+El máximo número de piezas defectuosas por plancha fue `r max(Planchas$Defectos)` y casi el `r r(sum(Planchas$Defectos <=7)/nrow(Planchas))*100` % de las planchas estudiadas tienen a lo mucho 7 piezas defectuosas; casi el `r r(sum(Planchas$Defectos <=4)/nrow(Planchas))*100` % de las planchas tienen a lo mucho 4 piezas defectuosas.
+
+Aproximadamente el `r r(sum(Planchas$Defectos <=0)/nrow(Planchas))*100` % de las planchas no tienen piezas defectuosas.
+
+El promedio de piezas defectuosas es `r r(mean(Planchas$Defectos))` y su desviación estándar es `r r(sd(Planchas$Defectos))`, por lo que el coeficiente de variación del número de piezas defectuosas es `r r(sd(Planchas$Defectos)/mean(Planchas$Defectos))` y podemos decir que el número de piezas defectuosas está ligeramente sesgado a la derecha y relativamente disperso alrededor de su media.
+
+```{r, echo = FALSE, results = 'hide'}
+summary(Planchas$Defectos)
+```
+Algunos de estos resultados se pueden apreciar en las siguientes gráficas.
+
+## Gráficas
+
+Primero queremos estudiar el número de piezas defectuosas por plancha.
+
+```{r, echo = FALSE}
+hist(Planchas$Defectos
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , main = "Piezas defectuosas por plancha"
+     , sub = paste("Total de", nrow(Planchas), "planchas")
+     , ylim = c(-0.04, 0.17)
+     )
+boxplot(Planchas$Defectos
+        , horizontal = TRUE
+        , at = -0.025
+        , add = TRUE
+        , boxwex = 0.05
+        )
+abline(v = mean(Planchas$Defectos), lty = 3, col = "blue")
+legend("topright", legend = "media", lty = 3, col = "blue", bty = "n")
+```
+
+La variable aleatoria que cuenta el número de defectos por plancha es peculiar y no se ajusta directamente a ninguno de los modelos estándar. Su rango es claramente el conjunto de los enteros entre 0 y 25, pues una plancha podría tener cualquier cantidad de piezas defectuosas, desde ninguna (0 piezas defectuosas) hasta todas (25 piezas defectuosas).
+
+Son de particular interés las clases correspondientes a 0 y 4 defectos.
+
+Suponemos, gracias al número de observaciones, que esa _bimodalidad_ aparente es real y no debida simplemente a las fluctuaciones aleatorias de la muestra. 
+
+## Dependencias
+
+En la siguiente gráfica podemos apreciar que el número de piezas defectuosas por plancha depende claramente de la complejidad del diseño de la pieza.
+
+```{r, echo = FALSE}
+Comp <- factor(Planchas$Complejidad
+               , levels = DF$Comp
+               , ordered = TRUE
+               )
+boxplot(Planchas$Defectos~Comp
+        , ylab = "Complejidad"
+        , xlab = "Defectos por plancha"
+        , main = "Defectos en función de complejidad del diseño"
+        , col = coul
+        , horizontal = TRUE
+        , varwidth = TRUE
+        , sub = paste("Total de", nrow(Planchas), "planchas")
+        )
+```
+
+Los histogramas de el número de piezas por complejidad del diseño se ven un poco más familiares y sirven para explicar la _bimodalidad_ que mencionamos previamente.
+
+```{r, echo = FALSE}
+hist(Planchas$Defectos[Planchas$Complejidad == "Baja"]
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , main = "Complejidad baja"
+     , sub = paste("Total de"
+                   , sum(Planchas$Complejidad == "Baja")
+                   , "planchas"
+                   )
+     , col = coul[1]
+     )
+```
+Las planchas de complejidad baja tienen una probabilidad pequeña de generar piezas con defectos, pero también son, relativas al total de planchas que se producen, el grupo menos numeroso.
+
+```{r, echo = FALSE}
+hist(Planchas$Defectos[Planchas$Complejidad == "Media"]
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , main = "Complejidad media"
+     , sub = paste("Total de"
+                   , sum(Planchas$Complejidad == "Media")
+                   , "planchas"
+                   )
+     , col = coul[2]
+     )
+```
+Las planchas de complejidad media tienen una mayor probabilidad de generar piezas con defectos.
+
+```{r, echo = FALSE}
+hist(Planchas$Defectos[Planchas$Complejidad == "Alta"]
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , main = "Complejidad alta"
+     , sub = paste("Total de"
+                   , sum(Planchas$Complejidad == "Alta")
+                   , "planchas"
+                   )
+     , col = coul[3]
+     )
+```
+Las planchas de complejidad alta tienen la probabilidad más grande de generar piezas con defectos. Son el grupo más numeroso de planchas que se producen aunque en cantidad sean similar al grupo de complejidad media.
+
+Si superponemos los histogramas podemos entender el histograma _bimodal_ del principio.
+
+```{r, echo = FALSE}
+hist(Planchas$Defectos[Planchas$Complejidad == "Baja"]
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , main = "Superposición de histogramas"
+     , col = paste(coul[1], "77", sep ="")
+     )
+hist(Planchas$Defectos[Planchas$Complejidad == "Media"]
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , col = paste(coul[2], "77", sep ="")
+     , add = TRUE
+     )
+hist(Planchas$Defectos[Planchas$Complejidad == "Alta"]
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , col = paste(coul[3], "77", sep ="")
+     , add = TRUE
+     )
+hist(Planchas$Defectos
+     , breaks = (0:26)-0.5
+     , prob = TRUE
+     , xlab = "piezas defectuosas por plancha"
+     , ylab = "Probabilidad empírica"
+     , col = "#77777777"
+     , border = "white"
+     , add = TRUE
+     )
+legend("topright", legend = c("Baja", "Media", "Alta", "Indistinta"), col = c(coul, "#77777777"), pch = 20)
+
+```
+
+## Probabilidades condicionales
+
+Como se puede apreciar que el número de piezas defectuosas parece depender de la complejidad del diseño de la plancha que se imprime, puede ser interesante calcular las probabilidades condicionales empíricas de la complejidad para cada cantidad de piezas defectuosas.
+
+Las probabilidades empíricas son aquellas que se obtienen a partir de la muestra tomando la proporción de casos favorables al evento que queremos estudiar, entre casos totales, todo esto dentro del universo de interés.
+
+```{r, echo = FALSE}
+mosaicplot(table(Planchas$Defectos, Comp)
+           , las = 2
+           , col = coul
+           , cex.axis = 0.55
+           , main = "Probabilidad empírica conjunta"
+           , xlab = "Cantidad de defectos por plancha"
+           , ylab = "Complejidad"
+           )
+```
+```{r, echo = FALSE}
+pbaja0 <- r(sum(Planchas$Complejidad == "Baja" & Planchas$Defectos == 0)/nrow(Planchas))
+```
+
+Este mosaico muestra gráficamente las probabilidades de las diversas combinaciones de número de defectos por planchas y complejidad. Por ejemplo, el rectángulo grande verde corresponde la probabilidad empírica de que una plancha sea de _complejidad baja y tenga cero defectos_. Esa probabilidad es aproximadamente `r pbaja0`. Es importante recordar que el "área" del mosaico es 1 y que los diversos rectángulos corresponden a las distintas proporciones o probabilidades.
+
+
+Finalmente, podemos adaptar el gráfico anterior para tener una idea visual de las probabilidades condicionales empíricas (calculadas de la muestra).
+```{r, echo = FALSE}
+mosaicplot(table(Planchas$Defectos, Comp)
+           / rowSums(table(Planchas$Defectos, Comp))
+           , las = 2
+           , col = coul
+           , cex.axis = 0.55
+           , main = "Probabilidad condicional empírica"
+           , xlab = "Cantidad de defectos por plancha"
+           , ylab = "Complejidad"
+           )
+```
+Por ejemplo, si nos concentramos en la columna correspondiente a seis defectos, podemos apreciar claramente que la probabilidad condicional de que la plancha sea de complejidad alta es bastante mayor a un medio, mientras que la probabilidad de que la plancha sea de complejidad baja es cero.
+
+Claramente estos resultados corresponden a las probabilidades empíricas, calculadas directamente desde la muestra.
+
+Los valores teóricos de dicha probabilidad se pueden calcular usando el teorema de Bayes.
+
+## Preguntas
+
+### P1
+
+El archivo ProbCond.csv contiene una tabla donde para cada complejidad de diseño se presenta la probabilidad condicional de que cada pieza de la plancha sea defectuosa y la fracción de la producción total correspondiente. Cargue los datos en la tabla de datos DF usando la función read_csv.
+
+La tabla de datos DF tiene *** filas y *** columnas. La probabilidad de que una pieza sea defectuosa y de complejidad alta es de *** Usando la fórmula de probabilidad total podemos decir que la probabilidad de que una pieza sea defectuosa es ***
+
+3, 3, 0.11, 0.17
+
+### P2    
+
+El número de piezas con defectos cuando se imprime un diseño de complejidad baja sigue un modelo  *** con parámetro ***
+ y probabilidad ***
+
+binomial, 25, 0.02
+
+### P3
+
+El número de piezas con defectos cuando se imprime un diseño de complejidad alta es una variable aleatoria *** con esperanza *** desviación estándar *** y coeficiente de variación ***
+
+discreta, 7.75, 2.31, 0.3
+ 
+### P4
+
+A la impresora se le debe hacer mantenimiento la quinta vez que imprime una plancha con más de 7 piezas con defectos. Si la complejidad del diseño es alta y las planchas se comportan de manera independiente, se puede modelar el número de planchas que se imprimen entre mantenimientos mediante una *** cuyo mínimo es *** y su esperanza es ***
+
+binomial negativa, 5, 18.80
+
+### P5
+
+A la impresora se le debe hacer mantenimiento la quinta vez que imprime una plancha con más de 7 piezas con defectos. La probabilidad de tener que hacer el mantenimiento de la impresora antes de imprimir 48 planchas con diseños de dificultad media es ***
+
+0.01
+
+### P6
+
+La probabilidad de que una plancha con un diseño de una complejidad tomada al azar de acuerdo a las probabilidades teóricas tenga exactamente 10 piezas defectuosas es ***
+
+0.04
+
+### P7
+
+Las probabilidades de que la complejidad sea baja, media o alta, dado que el número de piezas defectuosas en la plancha es 2, son, respectivamente, *** , *** y ***
+
+0.25, 0.72, 0.03
+
+### P8
+
+El promedio muestral y la desviación estándar muestral lo deben calcular sobre la tabla Planchas con los datos de Defectos.csv. Los valores teóricos podrían ser ligeramente diferentes y se pueden calcular usando la función sum. 
+
+El promedio muestral del número de defectos por plancha es *** y su desviación estándar es *** El promedio teórico de la variable aleatoria que cuenta el número de defectos es *** y su desviación estándar ***
+
+4.34, 3.43, 4.35, 3.42
+

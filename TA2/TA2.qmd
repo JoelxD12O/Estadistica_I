@@ -1,0 +1,461 @@
+---
+title: "TA2"
+format: html
+editor: visual
+---
+
+
+**Joel Modesto Cayllahua Hilario**
+
+## Carga de librerías
+
+```{r}
+library(readr)
+library(dplyr)
+library(modeest)
+library(ggplot2)
+library(stringr)
+```
+
+## Carga de datos
+
+```{r}
+DF <- read_csv("Cuy_InicialYPiloto.csv")
+```
+
+## Pregunta 1
+
+**Dimensiones de la tabla**
+
+```{r}
+nrow(DF)
+ncol(DF)
+```
+
+**Estructura y tipos de variables**
+
+```{r}
+str(DF)
+```
+
+**Observaciones incompletas (con al menos 1 NA)**
+
+```{r}
+sum(!complete.cases(DF))
+```
+
+## Pregunta 2
+
+**Distribución de registros por día y por mes**
+
+```{r}
+table(format(DF$Fecha, format = "%m-%d", tz = ""))
+table(format(DF$Fecha, format = "%m", tz = ""))
+```
+
+**Identificación del mes del piloto (mayo: ~821 cuyes/día vs ~310/día en feb-mar)**
+
+```{r}
+t_mes <- table(format(DF$Fecha, format = "%m", tz = ""))
+t_mes
+mes_piloto <- "05"
+mes_piloto
+```
+
+**Separación de datos: sistema original (feb-mar) vs piloto (mayo)**
+
+```{r}
+DF_original <- DF %>% filter(format(Fecha, "%m", tz = "") != mes_piloto)
+DF_piloto   <- DF %>% filter(format(Fecha, "%m", tz = "") == mes_piloto)
+
+nrow(DF_original)
+nrow(DF_piloto)
+```
+
+**Total de datos faltantes (celdas NA) por sistema**
+
+```{r}
+sum(is.na(DF_original))
+sum(is.na(DF_piloto))
+```
+
+**Porcentaje de datos faltantes: total, original y piloto**
+
+```{r}
+round(sum(is.na(DF))          / (nrow(DF)          * ncol(DF)) * 100, 2)
+round(sum(is.na(DF_original)) / (nrow(DF_original) * ncol(DF_original)) * 100, 2)
+round(sum(is.na(DF_piloto))   / (nrow(DF_piloto)   * ncol(DF_piloto))   * 100, 2)
+```
+
+**Registros limpios (observaciones completas) por sistema**
+
+```{r}
+limpios_original <- sum(complete.cases(DF_original))
+limpios_piloto   <- sum(complete.cases(DF_piloto))
+limpios_original
+limpios_piloto
+```
+
+**Costo por registro limpio de un cuy**
+
+```{r}
+round(10100 / limpios_original, 2)
+round(10100 / limpios_piloto, 2)
+```
+
+## Pregunta 3
+
+**Distribución de razas y probabilidades simples**
+
+```{r}
+n <- nrow(DF)
+
+t_raza <- table(DF$Raza)
+t_raza
+
+PA <- round(sum(DF$Raza == "andino",  na.rm = TRUE) / n, 2)
+PB <- round(sum(DF$Raza == "peruano", na.rm = TRUE) / n, 2)
+PC <- round(1 - PA, 2)
+PD <- round(1 - PB, 2)
+
+PA; PB; PC; PD
+```
+
+**Probabilidades de unión e intersección (A y B son disjuntos)**
+
+```{r}
+P_AiB <- 0
+P_AiB
+
+P_AuB <- round(PA + PB, 2)
+P_AuB
+```
+
+**Probabilidades con complementos C y D**
+
+```{r}
+P_CuD <- 1 - P_AiB
+P_CuD
+
+P_CiD <- round(1 - P_AuB, 2)
+P_CiD
+```
+
+## Pregunta 4
+
+**Probabilidades simples: G (blanco en pelaje), H (negro), K (marrón)**
+
+```{r}
+n <- nrow(DF)  # redefinir por si no se corrió Pregunta 3 antes
+
+# G: blanco, pintado (blanco+marrón), tricolor (blanco+negro+marrón)
+# H: negro, tricolor
+# K: marrón, pintado, tricolor
+# marrón oscuro NO se considera marrón (es categoría distinta en codebook)
+
+PG <- round(sum(DF$Color %in% c("blanco", "pintado", "tricolor"), na.rm = TRUE) / n, 2)
+PH <- round(sum(DF$Color %in% c("negro",  "tricolor"),            na.rm = TRUE) / n, 2)
+PK <- round(sum(DF$Color %in% c("marrón", "pintado", "tricolor"), na.rm = TRUE) / n, 2)
+
+PG; PH; PK
+```
+
+**Intersecciones**
+
+```{r}
+# G ∩ H = tricolor (único con blanco Y negro)
+# H ∩ K = tricolor (único con negro Y marrón)
+# G ∩ H ∩ K = tricolor
+P_GiH   <- round(sum(DF$Color == "tricolor",                          na.rm = TRUE) / n, 2)
+P_GiK   <- round(sum(DF$Color %in% c("pintado", "tricolor"),          na.rm = TRUE) / n, 2)
+P_HiK   <- round(sum(DF$Color == "tricolor",                          na.rm = TRUE) / n, 2)
+P_GiHiK <- round(sum(DF$Color == "tricolor",                          na.rm = TRUE) / n, 2)
+
+P_GiK   # P(G ∩ K)
+```
+
+**Uniones**
+
+```{r}
+P_GuH   <- round(PG + PH - P_GiH, 2)
+P_GuK   <- round(PG + PK - P_GiK, 2)
+P_HuK   <- round(PH + PK - P_HiK, 2)
+P_GuHuK <- round(PG + PH + PK - P_GiH - P_GiK - P_HiK + P_GiHiK, 2)
+
+P_GuH; P_GuK; P_HuK; P_GuHuK
+```
+
+**Diferencias de conjuntos**
+
+```{r}
+# (G ∪ H ∪ K) \ G = en G∪H∪K pero NO en G
+P_GuHuK_minusG <- round(P_GuHuK - PG, 2)
+
+# (G ∪ H ∪ K) \ H = en G∪H∪K pero NO en H
+P_GuHuK_minusH <- round(P_GuHuK - PH, 2)
+
+P_GuHuK_minusG; P_GuHuK_minusH
+```
+
+## Pregunta 5
+
+**Probabilidades marginales de cada evento**
+
+```{r}
+n <- nrow(DF)  # redefinir por si no se corrió Pregunta 3 antes
+
+# L = rojizo, M = gris, N = crema (Color)
+# S = andino, W = angora  (Raza)
+
+PL <- round(sum(DF$Color == "rojizo", na.rm=TRUE) / n, 2)
+PM <- round(sum(DF$Color == "gris",   na.rm=TRUE) / n, 2)
+PN <- round(sum(DF$Color == "crema",  na.rm=TRUE) / n, 2)
+PS <- round(sum(DF$Raza  == "andino", na.rm=TRUE) / n, 2)
+PW <- round(sum(DF$Raza  == "angora", na.rm=TRUE) / n, 2)
+
+PL; PM; PN; PS; PW
+```
+
+**P(L|S) vs P(L) — independencia de L y S**
+
+```{r}
+n_S   <- sum(DF$Raza  == "andino",                            na.rm=TRUE)
+n_L   <- sum(DF$Color == "rojizo",                            na.rm=TRUE)
+
+PL_gS <- round(sum(DF$Raza == "andino"  & DF$Color == "rojizo", na.rm=TRUE) / n_S, 2)
+PS_gL <- round(sum(DF$Color == "rojizo" & DF$Raza  == "andino", na.rm=TRUE) / n_L, 2)
+
+PL_gS; PL
+PS_gL; PS
+```
+
+**P(N|S) vs P(N) — independencia de N y S**
+
+```{r}
+PN_gS <- round(sum(DF$Raza == "andino" & DF$Color == "crema", na.rm=TRUE) / n_S, 2)
+
+PN_gS; PN
+```
+
+**P(W|M) vs P(W) y P(M|W) vs P(M) — independencia de W y M**
+
+```{r}
+n_M   <- sum(DF$Color == "gris",   na.rm=TRUE)
+n_W   <- sum(DF$Raza  == "angora", na.rm=TRUE)
+
+PW_gM <- round(sum(DF$Color == "gris"   & DF$Raza  == "angora", na.rm=TRUE) / n_M, 2)
+PM_gW <- round(sum(DF$Raza  == "angora" & DF$Color == "gris",   na.rm=TRUE) / n_W, 2)
+
+PW_gM; PW
+PM_gW; PM
+```
+
+## Pregunta 6
+
+**Boxplot de Tiempo por día de recolección (Fase I = azul, Piloto = naranja)**
+
+```{r}
+boxplot(DF$Tiempo ~ format(DF$Fecha, format = "%m-%d", tz = "")
+        , varwidth = TRUE
+        , las = 3
+        , main = "Tiempos de recolección por equipo"
+        , ylab = "tiempo entre cuyes consecutivos (min)"
+        , xlab = "fecha de recolección"
+        , col = c(rep("lightblue", 16), rep("orange", 5))
+        )
+legend("topright"
+       , legend = c("Fase I", "Piloto")
+       , fill = c("lightblue", "orange")
+       , bty = "n"
+       )
+```
+
+## Pregunta 7
+
+**Histograma del piloto con modelo exponencial**
+
+```{r}
+Ts <- DF$Tiempo[format(DF$Fecha, format = "%m", tz = "") == "05"]
+hist(Ts
+     , breaks = 30
+     , prob   = TRUE
+     , ylab   = "densidad"
+     , xlab   = "tiempos entre cuyes por equipo (min)"
+     , main   = "Comparación entre la densidad teórica y el histograma de tiempos"
+     )
+Xs <- seq(0, 30, by = 0.25)
+lines(Xs
+      , dexp(Xs, rate = 1/mean(Ts, na.rm = TRUE)), col = "black", lwd = 2)
+abline(v   = c(mean(Ts, na.rm = TRUE)
+               , qexp(0.5, 1/mean(Ts, na.rm = TRUE)))
+       , col = c("blue", "red")
+       , lwd = 2)
+legend("topright"
+       , legend = c("media teórica", "mediana teórica", "densidad teórica")
+       , col    = c("blue", "red", "black")
+       , lwd    = 2
+       , bty    = "n")
+```
+
+**Valores clave del modelo**
+
+```{r}
+lambda   <- 1 / mean(Ts, na.rm = TRUE)
+media_teo   <- mean(Ts, na.rm = TRUE)          # = 1/lambda
+mediana_teo <- qexp(0.5, rate = lambda)         # = ln(2)/lambda
+mediana_emp <- median(Ts, na.rm = TRUE)
+
+round(media_teo,   2)
+round(mediana_teo, 2)
+round(mediana_emp, 2)
+round(abs(mediana_emp - mediana_teo), 4)        # diferencia mediana emp vs teo
+```
+
+**Ancho de clases del histograma**
+
+```{r}
+h <- hist(Ts, breaks = 30, plot = FALSE)
+round(diff(h$breaks)[1], 4)   # ancho de la primera clase
+length(h$breaks) - 1          # numero real de clases
+```
+
+**Probabilidades del modelo (P entre 1.5 y 2 min)**
+
+```{r}
+# Modelo exponencial
+p_modelo <- round(pexp(2, rate = lambda) - pexp(1.5, rate = lambda), 2)
+p_modelo
+
+# Empírica (histograma)
+p_emp <- round(mean(Ts >= 1.5 & Ts <= 2, na.rm = TRUE), 2)
+p_emp
+```
+
+**Propiedad matemática: P(T > media) = 1/e**
+
+```{r}
+round(1/exp(1), 4)              # valor teórico
+round(pexp(media_teo, rate = lambda, lower.tail = FALSE), 4)  # verificación
+```
+
+## Pregunta 8
+
+**Probabilidad de negro y modelo Binomial(40, p)**
+
+```{r}
+n <- nrow(DF)
+
+# P(negro) = color exactamente negro
+p_negro <- round(sum(DF$Color == "negro", na.rm = TRUE) / n, 2)
+p_negro
+```
+
+```{r}
+# X ~ Binomial(n=40, p=p_negro)
+# P(X = 5): probabilidad exacta de obtener 5 negros
+P_X5 <- round(dbinom(5, size = 40, prob = p_negro), 2)
+P_X5
+
+# P(X >= 5): % de muestras con al menos 5 negros
+P_al_menos_5 <- round(pbinom(4, size = 40, prob = p_negro, lower.tail = FALSE) * 100, 2)
+P_al_menos_5
+```
+
+```{r}
+# Media y varianza del modelo Binomial
+media_bin    <- round(40 * p_negro, 2)
+varianza_bin <- round(40 * p_negro * (1 - p_negro), 2)
+media_bin
+varianza_bin
+```
+
+## Pregunta 9
+
+**Geométrica general: intentos hasta obtener un cuy andino**
+
+```{r}
+n <- nrow(DF)
+
+PS <- round(sum(DF$Raza == "andino", na.rm = TRUE) / n, 2)
+PS
+media_geo1 <- round(1 / PS, 2)   # E[X] = 1/p
+media_geo1
+```
+
+**Geométrica condicionada a negro: intentos hasta andino entre negros**
+
+```{r}
+p_and_neg <- round(
+  sum(DF$Raza == "andino" & DF$Color == "negro", na.rm = TRUE) /
+  sum(DF$Color == "negro", na.rm = TRUE), 2)
+
+p_and_neg
+media_geo2 <- round(1 / p_and_neg, 2)
+media_geo2
+```
+
+**Comparación: P(andino|negro) vs P(andino)**
+
+```{r}
+PS          # P(andino) incondicional
+p_and_neg   # P(andino | negro) condicional
+```
+
+## Pregunta 10
+
+**Filtro: Largo de machos peruanos**
+
+```{r}
+Ls <- DF$Largo[(DF$Raza == "peruano") & (DF$Sexo == "macho")]
+```
+
+**Histograma con modelo normal (código del enunciado)**
+
+```{r}
+hist(Ls
+     , prob = TRUE
+     , main = "Largos de machos peruanos"
+     , xlab = "Largo (cm)"
+     , ylab = "densidad"
+     , ylim = c(0, 0.15)
+     )
+Xs <- seq(15, 40, by = 0.1)
+lines(Xs, dnorm(Xs, mean(Ls, na.rm = TRUE), sd(Ls, na.rm = TRUE)), lwd = 2)
+abline(v   = c(mean(Ls, na.rm = TRUE), median(Ls, na.rm = TRUE))
+       , col = c("red", "blue"), lwd = 2)
+legend("topright"
+       , legend = c("media teórica", "mediana teórica", "densidad teórica")
+       , col    = c("blue", "red", "black")
+       , lwd = 2, bty = "n")
+```
+
+**Tamaño efectivo de muestra (sin NAs)**
+
+```{r}
+sum(!is.na(Ls))
+```
+
+**Media, mediana y desviación estándar**
+
+```{r}
+mu_Ls <- mean(Ls,   na.rm = TRUE)
+me_Ls <- median(Ls, na.rm = TRUE)
+sd_Ls <- sd(Ls,     na.rm = TRUE)
+
+round(mu_Ls, 2)
+round(me_Ls, 2)
+round(sd_Ls, 2)
+round(abs(mu_Ls - me_Ls), 4)   # diferencia media-mediana (simetría)
+```
+
+**P(18.5 ≤ Largo ≤ 35.5) según modelo normal**
+
+```{r}
+round((pnorm(35.5, mu_Ls, sd_Ls) - pnorm(18.5, mu_Ls, sd_Ls)) * 100, 2)
+```
+
+**P(Largo < 0) según modelo normal**
+
+```{r}
+round(pnorm(0, mu_Ls, sd_Ls), 10)   # probabilidad de valor negativo
+```

@@ -1,0 +1,187 @@
+---
+title: "Solución Q2 - Horario 5"
+format: html
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("Banking_Dataset_final.csv")
+head(DF)
+```
+
+```{r}
+colSums((is.na(DF)))
+```
+
+```{r}
+Tabla0 <- table(DF$job, DF$marital)
+Tabla0
+```
+
+```{r}
+Tabla0_con_subtotal <- addmargins (Tabla0)
+Tabla0_con_subtotal
+```
+
+### Pregunta N°1
+
+Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil ("marital") casado ("married") es **0.62**.
+
+Por otro lado, si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga trabajo ("job") en gestión ("management") es **0.22**.
+
+```{r}
+Prob_casado1 <- 2797/4521
+Prob_casado1
+  
+Prob_casado2 <- nrow(DF[DF$marital =="married",])/nrow(DF)
+Prob_casado2
+
+Prob_manag1 <- 975/4521
+Prob_manag1
+  
+Prob_manag2 <- nrow(DF[DF$job =="management",])/nrow(DF)
+Prob_manag2
+```
+
+### Pregunta N°2
+
+Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil ("marital") casado ("married") **y** que tenga trabajo ("job") en gestión ("management") es **0.12**
+
+Por tanto, si se selecciona un cliente al azar entonces la probabilidad de que el cliente tenga estado civil ("marital") casado ("married") **o** que tenga trabajo ("job") en gestión ("management") es **0.71**
+
+```{r}
+prob_marital_y_job1 <- 563/4521
+prob_marital_y_job1
+
+prob_marital_y_job2 <- nrow(DF[DF$marital =="married" & DF$job =="management",])/nrow(DF)
+prob_marital_y_job2
+
+prob_marital_o_job <-  Prob_casado1 + Prob_manag1 - prob_marital_y_job1
+prob_marital_o_job
+```
+
+### Pregunta N°3
+
+Si se selecciona un cliente al azar y sabemos que tiene estado civil ("marital") soltero ("single"), entonces, la probabilidad de que tenga trabajo ("job") como técnico ("technician") es **0.23**
+
+Mientras si se selecciona un cliente al azar y sabemos que tiene trabajo ("job") como técnico ("technician"), entonces, la probabilidad de que tenga estado civil ("marital") soltero ("single") es **0.35**
+
+```{r}
+prob_tecnico_dado_soltero1 <- 270/1196
+prob_tecnico_dado_soltero1
+
+prob_tecnico_dado_soltero2 <- nrow(DF[DF$marital =="single" & DF$job =="technician",])/nrow(DF[DF$marital =="single",])
+prob_tecnico_dado_soltero2
+
+prob_soltero_dado_tecnico1 <- 270/772
+prob_soltero_dado_tecnico1
+
+prob_soltero_dado_tecnico2 <- nrow(DF[DF$marital =="single" & DF$job =="technician",])/nrow(DF[DF$job =="technician",])
+prob_soltero_dado_tecnico2
+```
+
+### Pregunta N°4
+
+Si del total de clientes, se seleccionan al azar **50**, entonces la probabilidad de que **30** de ellos tengan estado civil ("marital") casado ("married") y los otros **20** cualquiera de los otros estados ("divorced", "single") es \_\_ **0.11 .**
+
+Por otro lado, si del total de clientes, se seleccionan al azar **50**, entonces la probabilidad de que **10** de ellos tengan trabajo ("job") en gestion ("management") y los otros **40** cualquiera de los otros trabajos ("housemaid", "retired", "student", etc) es \_\_ **0.14 .**
+
+```{r}
+choose(2797,30)*choose(1724,20)/choose(4521,50)
+choose(975,10)*choose(3546,40)/choose(4521,50)
+```
+
+### Pregunta N°5
+
+Para crear una contraseña con 3 caracteres, se elige:
+
+-   la primera una letra (26 opciones),
+
+-   el segundo un número (10 opciones: 0 a 9),
+
+-   y el tercero un símbolo entre 5 disponibles.
+
+    Por tanto se pueden formar \_\_ **1300** contraseñas diferentes
+
+    ```{r}
+    26*10*5
+    ```
+
+Por otro lado, en un concurso permite elegir **un solo premio** entre:
+
+-   11 libros,
+
+-   7 audífonos,
+
+-   o 9 camisetas.
+
+    Por tanto, se pueden tener \_\_ **27** opciones distintas de premio.
+
+### Pregunta 6
+
+En una clase de Estadística de **20** alumnos, se escogen de manera aleatoria a **4** para formar un grupo que se encargará de realizar una investigación relacionada a algoritmos de predicción.
+
+Por tanto, se púeden formar \_\_ **4845** grupos distintos.
+
+```{r}
+choose(20,4)
+```
+
+Por otro lado, en una competencia con **15** participantes, la cantidad de formas distintas que se pueden asignar los **3** primeros lugares (oro, plata y bronce) es de \_\_ **2730**
+
+```{r}
+choose(15,3)*factorial(3)
+```
+
+### Pregunta 7
+
+Evaluar si es verdadero o falso cada uno de las afirmaciones siguientes:
+
+-   Si A y B son eventos mutuamente excluyentes se cumple que: A ꓵ B = ф y P(A ꓵ B) = 0 \_\_ VERDADERO
+-   Si A y B son eventos mutuamente excluyentes se cumple que: P(A ꓵ B) = P(A) + P(B) \_\_ FALSO
+-   Dados dos eventos A y B independientes, con P(A)\>0 y P(B)\>0 se cumple que P(B \| A) = P(B) y P(A \| B) = P(A) \_\_ VERDADERO
+-   Dados dos eventos A y B independientes, se cumple que P(A U B) = P(A) \* P(B) \_\_ FALSO
+
+### Pregunta 8
+
+Una empresa usa dos servidores independientes como respaldo. La probabilidad de que el primer servidor falle es 0.25 y de que falle el segundo es 0.15. A partir de ello determinar:
+
+La probabilidad de que falle al menos uno de los servidores es \_\_ **0.3625**
+
+La probabilidad de que ninguno de los servidores falle es \_\_ **0.6375**
+
+La probabilidad de que falle solo uno de los servidores es \_\_ **0.325**
+
+La probabilidad de que solo el primer servidor falle y el segundo no falle es \_\_ **0.2125**
+
+```{r}
+# Se pide P(A U B) = P(A) + P(B) - P(A ꓵ B)
+# Por independencia:  P(A U B) = P(A) + P(B) - P(A)*P(B)
+P_al_menos_uno_falla <- 0.25 + 0.15 - 0.25*0.15
+P_al_menos_uno_falla
+```
+
+```{r}
+# Se pide 1 - P(A U B)
+P_ninguno_falla <- 1 - 0.3625
+P_ninguno_falla
+```
+
+```{r}
+# Se pide P(A Δ B) = P(A) + P(B) - 2*P(A ꓵ B)
+# Por independencia P(A Δ B) = P(A) + P(B) - 2*P(A)*P(B)
+P_solo_una_falla <- 0.25 + 0.15 - 2*0.25*0.15
+P_solo_una_falla
+```
+
+```{r}
+# Se pide P(A ꓵ Bᶜ) 
+# Por independencia:  P(A ꓵ Bᶜ) = P(A) * P(Bᶜ)
+P_solo_1ero_falla <- 0.25*(1-0.15)
+P_solo_1ero_falla
+```

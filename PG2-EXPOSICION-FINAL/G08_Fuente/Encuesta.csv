@@ -1,0 +1,1193 @@
+Edad,Sexo,CantidadCursos,HorasSuenio,ActividadFisica,FrecBebida,UnidadBebida,HorasEjercicio,CanDesayuno,Carrera,Estres,CicloAcademico,CalidadSuenio,GrupoEncuesta
+19,Masculino,7,6,Deportes colectivos,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Mala,8
+20,Masculino,5,7,Actividad aeróbica,0,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,8
+20,Masculino,6,7,Actividad aeróbica,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,5
+19,Masculino,5,7,Actividad aeróbica,0,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,8
+20,Masculino,6,6,Mixta,0,0,2,Bastante,Ciencias de la Salud,Alto,7,Regular,5
+18,Femenino,8,6,Actividad aeróbica,0,0,4,Regular,Ciencias Sociales y Derecho,Medio,3,Mala,5
+17,Masculino,6,6,Actividad aeróbica,1,0,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,8
+18,Masculino,6,7,Deportes colectivos,3,1,6,Poca,"Ingeniería, Tecnología y Construcción",Alto,2,Mala,5
+18,Femenino,5,6,No realiza actividad física,6,1,2,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,8
+18,Femenino,5,5,Mixta,3,1,5,Poca,"Ingeniería, Tecnología y Construcción",Medio,3,Muy mala,8
+18,Masculino,6,5,Actividad aeróbica,1,0,2,Mucha,Ciencias Sociales y Derecho,Muy alto,3,Regular,5
+18,Femenino,7,6,No realiza actividad física,0,0,1,Bastante,Ciencias Sociales y Derecho,Bajo,3,Regular,5
+20,Masculino,6,6,Actividad aeróbica,3,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,5
+18,Masculino,6,9,Actividad aeróbica,0,1,2,Regular,Ciencias de la Salud,Bajo,1,Regular,5
+25,Masculino,6,5,Deportes colectivos,1,0,3,Poca,Ciencias de la Salud,Alto,3,Muy mala,5
+19,Femenino,6,6,No realiza actividad física,0,0,1,Bastante,Ciencias Sociales y Derecho,Bajo,5,Mala,5
+18,Masculino,6,6,Mixta,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,5
+19,Femenino,5,6,Actividad aeróbica,0,0,5,Poca,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,8
+20,Masculino,5,6,No realiza actividad física,0,0,2,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,3,Mala,5
+18,Femenino,8,6,Actividad aeróbica,2,2,2,Bastante,Ciencias Sociales y Derecho,Alto,3,Muy mala,5
+18,Masculino,6,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,5
+25,Masculino,5,6,Mixta,0,0,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,8,Mala,9
+18,Femenino,6,6,Actividad aeróbica,0,0,3,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,9
+19,Femenino,6,5,Actividad aeróbica,3,1,6,Bastante,"Administración, Negocios y Contabilidad",Medio,3,Mala,5
+25,Masculino,6,5,Mixta,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,9
+22,Femenino,7,5,Actividad aeróbica,0,0,1,Poca,Ciencias de la Salud,Alto,3,Muy mala,5
+24,Masculino,6,6,Deportes colectivos,1,1,3,Poca,"Ingeniería, Tecnología y Construcción",Medio,7,Mala,9
+19,Femenino,5,6,Mixta,0,0,8,Bastante,Ciencias Exactas y Ambientales,Alto,1,Regular,9
+19,Femenino,3,7,No realiza actividad física,0,0,1,Bastante,"Humanidades, Artes y Educación",Muy alto,5,Regular,5
+18,Femenino,5,NA,No realiza actividad física,0,0,1.5,Regular,Ciencias Sociales y Derecho,Medio,3,Muy mala,5
+18,Femenino,7,7,No realiza actividad física,0,0,1,Ninguna,"Humanidades, Artes y Educación",Alto,3,Mala,5
+25,Femenino,7,8,No realiza actividad física,0,0,1,Bastante,Ciencias de la Salud,Muy alto,3,Muy buena,5
+18,Masculino,6,6,Deportes colectivos,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Bajo,1,Buena,9
+19,Masculino,5,7,Mixta,2,1,7,Poca,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,5
+19,Femenino,6,7,Actividad aeróbica,0,0,1,Bastante,"Humanidades, Artes y Educación",Medio,1,Buena,5
+20,Femenino,5,4,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,9
+19,Femenino,6,6,Deportes colectivos,1,1,2.5,Regular,"Humanidades, Artes y Educación",Alto,1,Regular,9
+17,Femenino,6,4,Actividad aeróbica,0,0,2,Regular,"Humanidades, Artes y Educación",Muy alto,1,Regular,5
+20,Masculino,6,7,Deportes colectivos,3,3,1.5,Ninguna,Ciencias de la Salud,Alto,10,Regular,9
+18,Masculino,6,6,Actividad aeróbica,0,0,1.5,Bastante,Ciencias de la Salud,Alto,3,Regular,5
+17,Masculino,6,7,No realiza actividad física,0,0,1,Bastante,"Humanidades, Artes y Educación",Alto,1,Regular,5
+20,Femenino,6,6,Mixta,0,0,2,Bastante,Ciencias de la Salud,Medio,3,Regular,5
+20,Femenino,6,8,Mixta,0,0,2,Mucha,"Administración, Negocios y Contabilidad",Alto,3,Regular,8
+17,Masculino,6,8,Deportes colectivos,0,0,10,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,8
+21,Masculino,5,7,Actividad aeróbica,0,0,4,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,6,Mala,5
+20,Masculino,5,5,Mixta,0,1,3,Bastante,"Ingeniería, Tecnología y Construcción",Medio,9,Regular,5
+18,Femenino,7,8,Deportes colectivos,0,0,2,Bastante,"Administración, Negocios y Contabilidad",Alto,1,Regular,5
+21,Femenino,7,8,Deportes colectivos,0,0,1,Bastante,Ciencias Sociales y Derecho,Alto,7,Regular,5
+19,Masculino,5,3,No realiza actividad física,2,2,1,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,3,Muy mala,5
+17,Masculino,6,6,Actividad aeróbica,2,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,8
+19,Femenino,6,4,Actividad aeróbica,0,0,2,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,5,Muy mala,5
+23,Masculino,8,5,Deportes colectivos,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,9,Mala,9
+19,Masculino,5,8,Deportes colectivos,1,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Nulo,3,Regular,8
+22,Femenino,8,6,Actividad aeróbica,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,10,Regular,5
+18,Femenino,NA,4,Deportes colectivos,2,1,1.5,Regular,Ciencias Exactas y Ambientales,Alto,3,Mala,5
+19,Masculino,4,5,Mixta,7,2,1,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Regular,8
+23,Femenino,8,5,No realiza actividad física,0,0,1.5,Regular,Ciencias de la Salud,Alto,9,Mala,5
+21,Masculino,5,7,No realiza actividad física,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,6,Mala,5
+19,Masculino,5,7,Deportes colectivos,1,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,5,Buena,9
+25,Femenino,4,7,Actividad aeróbica,0,0,2,Regular,"Administración, Negocios y Contabilidad",Medio,10,Regular,9
+20,Femenino,6,8,No realiza actividad física,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,5,Muy mala,8
+19,Masculino,4,9,No realiza actividad física,7,2,6,Poca,"Ingeniería, Tecnología y Construcción",Nulo,5,Muy mala,8
+21,Femenino,8,5,Mixta,0,0,7.5,Bastante,Ciencias de la Salud,Alto,9,Regular,5
+19,Masculino,5,6,Deportes colectivos,0,0,4,Ninguna,Ciencias Exactas y Ambientales,Bajo,5,Regular,8
+19,Femenino,6,6,Mixta,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,8
+23,Masculino,NA,4,Actividad aeróbica,0,0,1,Bastante,Ciencias de la Salud,Nulo,10,Regular,5
+19,Masculino,5,6,Actividad aeróbica,0,0,8,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,5,Mala,8
+19,Femenino,6,7,Actividad aeróbica,0,0,1,Bastante,Ciencias de la Salud,Muy alto,2,Regular,8
+19,Masculino,6,7,Mixta,0,0,4,Poca,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,8
+20,Masculino,8,8,Deportes colectivos,7,2,2.6,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,5,Regular,9
+21,Masculino,5,5,Mixta,0,0,11,Bastante,Ciencias de la Salud,Alto,6,Mala,8
+19,Femenino,5,6,Actividad aeróbica,0,0,4,Ninguna,"Administración, Negocios y Contabilidad",Alto,5,Regular,8
+19,Femenino,7,3,Mixta,4,1,6,Regular,"Administración, Negocios y Contabilidad",Muy alto,5,Muy mala,8
+19,Masculino,7,7,Actividad aeróbica,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,5
+24,Femenino,8,3,Actividad aeróbica,4,0,1,Mucha,Ciencias de la Salud,Muy alto,9,Regular,5
+19,Femenino,5,5,Mixta,0,0,NA,Bastante,Ciencias de la Salud,Muy alto,5,Mala,8
+20,Femenino,5,5,Deportes colectivos,1,1,3,Poca,"Ingeniería, Tecnología y Construcción",Medio,7,Muy mala,8
+22,Masculino,5,5,Deportes colectivos,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,6,Mala,9
+20,Masculino,5,7,No realiza actividad física,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+17,Masculino,6,6,Actividad aeróbica,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,1,Mala,8
+25,Femenino,7,7,Actividad aeróbica,0,0,12,Bastante,"Humanidades, Artes y Educación",Bajo,10,Buena,9
+24,Masculino,5,4,Deportes colectivos,0,0,2,Ninguna,Ciencias Sociales y Derecho,Medio,8,Mala,9
+19,Masculino,6,7,Mixta,0,0,1.5,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Buena,5
+20,Femenino,6,7,Deportes colectivos,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,8
+19,Masculino,6,6,Actividad aeróbica,0,0,4,Poca,Ciencias de la Salud,Bajo,5,Buena,8
+18,Masculino,7,6,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,5
+19,Masculino,6,6,Mixta,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,5
+19,Masculino,6,6.5,Actividad aeróbica,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,5
+17,Femenino,6,6,No realiza actividad física,0,0,2,Bastante,Ciencias Exactas y Ambientales,Muy alto,1,Regular,9
+20,Masculino,7,7.5,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,7,Regular,8
+18,Masculino,5,5,Deportes colectivos,0,0,5,Regular,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,9
+23,Masculino,4,3,No realiza actividad física,6,1,2,Bastante,"Humanidades, Artes y Educación",Nulo,1,Muy buena,9
+18,Masculino,5,6,Mixta,0,0,16,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,3,Buena,3
+18,Masculino,6,5,Deportes colectivos,0,1,10,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,3
+21,Masculino,4,4,Deportes colectivos,1,2,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Mala,3
+22,Femenino,4,5,No realiza actividad física,0,0,3,Mucha,"Administración, Negocios y Contabilidad",Muy alto,7,Muy mala,3
+17,Masculino,6,6,Deportes colectivos,3,2,7,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,3
+19,Masculino,5,7,Deportes colectivos,0,0,8,Mucha,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,3
+23,Masculino,5,6,Deportes colectivos,4,2,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,3
+22,Masculino,6,6,Deportes colectivos,3,1,2,Bastante,Ciencias Exactas y Ambientales,Alto,7,Mala,3
+18,Femenino,5,5,No realiza actividad física,2,1,2,Bastante,"Humanidades, Artes y Educación",Muy alto,3,Mala,8
+18,Masculino,6,7,Mixta,5,2,NA,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,3
+17,Masculino,NA,6,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,5
+20,Femenino,7,5,Mixta,0,0,5,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,7,Mala,8
+18,Masculino,6,6,Mixta,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,2,Regular,5
+17,Masculino,6,6,Deportes colectivos,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,8
+24,Femenino,5,7,Actividad aeróbica,1,1,1,Regular,"Humanidades, Artes y Educación",Alto,10,Buena,5
+22,Femenino,8,4.5,Actividad aeróbica,0,0,2,Poca,"Administración, Negocios y Contabilidad",Medio,7,Mala,5
+23,Femenino,NA,6.5,Mixta,0,0,4,Regular,"Humanidades, Artes y Educación",Medio,10,Regular,5
+18,Masculino,6,7,No realiza actividad física,1,1,1,Mucha,"Humanidades, Artes y Educación",Muy alto,3,Muy mala,5
+18,Femenino,6,5,Deportes colectivos,0,0,4.5,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,4,Mala,9
+21,Masculino,5,5,Deportes colectivos,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Nulo,4,Regular,8
+19,Femenino,3,5,Actividad aeróbica,0,0,3.5,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,8
+18,Femenino,8,5,Mixta,1,1,1.5,Ninguna,"Administración, Negocios y Contabilidad",Alto,3,Mala,3
+17,Masculino,4,7,Actividad aeróbica,2,1,1.5,Bastante,Ciencias Sociales y Derecho,Alto,1,Regular,3
+22,Femenino,6,6.5,Mixta,0,1,12,Bastante,Ciencias de la Salud,Muy alto,10,Regular,5
+18,Masculino,7,6,Actividad aeróbica,3,1,2,Bastante,Ciencias de la Salud,Alto,3,Regular,3
+18,Masculino,6,6,Actividad aeróbica,0,0,4,Bastante,Ciencias de la Salud,Medio,3,Regular,3
+18,Femenino,6,4,Deportes colectivos,4,2,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Mala,3
+18,Masculino,7,5,Mixta,0,0,4,Mucha,Ciencias de la Salud,Muy alto,3,Mala,3
+18,Masculino,6,4,Actividad aeróbica,3,2,1,Mucha,Ciencias de la Salud,Alto,3,Mala,3
+18,Masculino,5,8,Actividad aeróbica,0,1,3,Bastante,Ciencias de la Salud,Alto,3,Regular,3
+18,Femenino,4,4,Actividad aeróbica,4,1,1,Bastante,Ciencias de la Salud,Alto,3,Mala,3
+18,Masculino,6,6,Mixta,0,0,1,Poca,Ciencias de la Salud,Alto,3,Regular,3
+21,Masculino,6,6,Mixta,0,1,7,Regular,Ciencias de la Salud,Muy alto,9,Regular,5
+21,Femenino,5,5,Actividad aeróbica,0,0,1,Bastante,Ciencias de la Salud,Alto,4,Mala,3
+24,Femenino,7,7,No realiza actividad física,0,0,1,Mucha,"Humanidades, Artes y Educación",Muy alto,9,Regular,5
+21,Femenino,6,7,No realiza actividad física,0,0,1,Regular,Ciencias de la Salud,Alto,9,Buena,5
+22,Masculino,4,7,Actividad aeróbica,0,0,5,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,6,Muy mala,3
+24,Masculino,6,8,Actividad aeróbica,2,1,10,Bastante,"Administración, Negocios y Contabilidad",Medio,8,Buena,3
+18,Femenino,5,7,No realiza actividad física,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,3
+23,Masculino,6,9,Mixta,0,0,2.5,Bastante,"Humanidades, Artes y Educación",Medio,10,Buena,9
+18,Masculino,6,6,Actividad aeróbica,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Bajo,3,Mala,8
+18,Femenino,6,7,No realiza actividad física,1,0,1,Regular,"Ingeniería, Tecnología y Construcción",Nulo,3,Mala,8
+18,Masculino,5,7,Mixta,1,1,14,Mucha,"Administración, Negocios y Contabilidad",Alto,3,Buena,6
+18,Femenino,5,7,No realiza actividad física,0,0,6.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,8
+25,Masculino,6,7,Deportes colectivos,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Buena,5
+20,Femenino,6,8,Mixta,1,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Buena,5
+19,Femenino,5,5,Actividad aeróbica,0,0,1.5,Regular,Ciencias Exactas y Ambientales,Alto,7,Regular,5
+20,Femenino,4,7,Mixta,0,0,1,Bastante,Ciencias Exactas y Ambientales,Medio,7,Regular,5
+20,Femenino,5,6,Actividad aeróbica,0,0,2,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,7,Regular,5
+17,Masculino,6,6,Actividad aeróbica,4,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Nulo,1,Regular,8
+19,Femenino,6,8,No realiza actividad física,7,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Buena,6
+19,Femenino,6,6,Deportes colectivos,0,0,2,Poca,Ciencias Sociales y Derecho,Alto,5,Mala,8
+22,Masculino,7,6,Deportes colectivos,2,1,1.5,Poca,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,6
+20,Masculino,4,6,Deportes colectivos,2,2,3,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,8,Buena,6
+20,Masculino,NA,7,Deportes colectivos,2,1,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,6
+18,Masculino,6,7,Actividad aeróbica,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+17,Masculino,6,5,Actividad aeróbica,0,0,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,1,Mala,8
+25,Masculino,4,6,Deportes colectivos,2,1,5,Bastante,"Humanidades, Artes y Educación",Alto,10,Regular,9
+18,Masculino,3,7,Deportes colectivos,0,0,9,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,8
+18,Femenino,4,7,Actividad aeróbica,0,0,4,Regular,Ciencias Sociales y Derecho,Alto,3,Mala,5
+18,Masculino,6,8.5,Actividad aeróbica,0,0,10,Mucha,"Ingeniería, Tecnología y Construcción",Nulo,3,Muy buena,5
+23,Masculino,4,7,Deportes colectivos,7,4,1,Regular,"Administración, Negocios y Contabilidad",Medio,10,Muy mala,3
+19,Femenino,7,6,Mixta,0,0,4,Bastante,Ciencias de la Salud,Alto,1,Regular,8
+18,Masculino,7,5.5,Actividad aeróbica,1,2,5,Mucha,"Humanidades, Artes y Educación",Medio,3,Mala,5
+19,Masculino,5,7,Actividad aeróbica,2,1,1,Bastante,Ciencias de la Salud,Muy alto,5,Regular,8
+19,Masculino,7,7,Deportes colectivos,0,0,14,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,5
+19,Masculino,6,6.43,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+18,Femenino,7,6,Mixta,0,0,6.5,Bastante,Ciencias de la Salud,Alto,3,Regular,5
+18,Masculino,3,8,Mixta,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,5
+19,Masculino,6,5,Actividad aeróbica,2,0,4,Mucha,Ciencias de la Salud,Bajo,5,Regular,8
+19,Femenino,4,6,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,8
+20,Masculino,6,8,Deportes colectivos,2,1,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,8
+18,Femenino,7,7,Mixta,0,0,4.5,Bastante,Ciencias de la Salud,Alto,3,Regular,5
+20,Masculino,6,4,Deportes colectivos,3,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,6,Buena,8
+17,Masculino,6,10,Deportes colectivos,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,6
+18,Femenino,7,5,No realiza actividad física,0,0,1.5,Poca,Ciencias de la Salud,Muy alto,3,Muy mala,5
+18,Masculino,5,6,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+19,Femenino,5,6,Actividad aeróbica,1,1,3,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,8
+18,Femenino,6,6,Mixta,0,0,15,Bastante,Ciencias Sociales y Derecho,Alto,3,Buena,5
+18,Masculino,5,5,Deportes colectivos,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,5,Mala,8
+18,Femenino,6,6,Actividad aeróbica,0,0,3,Regular,Ciencias Sociales y Derecho,Medio,3,Mala,5
+18,Femenino,7,6,Mixta,0,0,2,Poca,Ciencias de la Salud,Alto,3,Regular,5
+18,Femenino,6,6,No realiza actividad física,0,0,1.5,Regular,Ciencias de la Salud,Muy alto,2,Regular,5
+18,Femenino,8,5,No realiza actividad física,2,1,5,Poca,Ciencias de la Salud,Alto,3,Muy mala,5
+22,Masculino,5,7,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,5
+20,Femenino,NA,6,Deportes colectivos,0,0,1,Regular,"Humanidades, Artes y Educación",Alto,6,Buena,5
+19,Femenino,4,5,Actividad aeróbica,0,0,4,Ninguna,"Administración, Negocios y Contabilidad",Alto,5,Mala,8
+18,Femenino,3,4,No realiza actividad física,1,1,1,Poca,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+18,Femenino,5,4,Deportes colectivos,3,1,1,Poca,Ciencias Sociales y Derecho,Muy alto,3,Mala,5
+20,Masculino,6,7,Mixta,7,2,2,Regular,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,5
+18,Masculino,6,6,Actividad aeróbica,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,5
+20,Masculino,4,7,Deportes colectivos,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,9
+20,Masculino,6,6,Actividad aeróbica,1,1,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,1
+24,Femenino,4,6,Mixta,2,NA,14,Poca,"Ingeniería, Tecnología y Construcción",Alto,9,Regular,9
+19,Femenino,6,6.5,Actividad aeróbica,0,0,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,5
+17,Femenino,6,4,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,1,Mala,5
+19,Masculino,7,8,Mixta,0,0,10,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Buena,1
+18,Masculino,8,NA,No realiza actividad física,0,0,10,Ninguna,Ciencias Sociales y Derecho,Muy alto,3,Muy buena,5
+21,Femenino,3,7.5,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,8,Buena,5
+19,Femenino,7,6,Deportes colectivos,0,0,2,Bastante,Ciencias de la Salud,Medio,3,Regular,5
+19,Masculino,6,6,Mixta,3,1,2,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,1,Mala,5
+18,Masculino,7,5,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Buena,5
+19,Femenino,5,5,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,1
+20,Femenino,NA,6,Deportes colectivos,2,0,1,Poca,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,5
+25,Femenino,5,6,Actividad aeróbica,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Alto,10,Regular,5
+18,Femenino,6,5,Actividad aeróbica,1,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,1,Regular,5
+23,Masculino,7,6,Mixta,0,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,5
+22,Masculino,7,5,Actividad aeróbica,0,0,3,Poca,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,5
+23,Masculino,3,5,Deportes colectivos,3,2,2,Regular,"Ingeniería, Tecnología y Construcción",Medio,10,Regular,5
+19,Masculino,5,8,Actividad aeróbica,0,0,12,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,5
+21,Masculino,7,5,Actividad aeróbica,2,2,4,Regular,"Ingeniería, Tecnología y Construcción",Medio,5,Mala,5
+21,Femenino,6,7,Actividad aeróbica,0,1,8,Ninguna,"Humanidades, Artes y Educación",Medio,7,Regular,5
+21,Masculino,5,8,Actividad aeróbica,0,1,8,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,5
+20,Femenino,6,4,No realiza actividad física,0,0,3.5,Poca,Ciencias de la Salud,Alto,9,Regular,5
+21,Femenino,4,5,Actividad aeróbica,2,1,10,Bastante,Ciencias Sociales y Derecho,Alto,8,Mala,5
+21,Masculino,5,6,Actividad aeróbica,1,1,8,Bastante,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,5
+20,Femenino,6,9,Actividad aeróbica,0,0,4,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,5
+21,Femenino,6,6,Mixta,0,0,4,Poca,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,5
+23,Femenino,3,6,Mixta,0,0,2,Bastante,Ciencias Exactas y Ambientales,Muy alto,8,Regular,5
+25,Masculino,3,7,No realiza actividad física,0,1,1,Regular,Ciencias Sociales y Derecho,Medio,9,Regular,9
+21,Femenino,6,4,Deportes colectivos,0,0,6,Bastante,"Administración, Negocios y Contabilidad",Alto,8,Regular,5
+20,Femenino,6,7,Actividad aeróbica,3,1,5.5,Mucha,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,5
+19,Femenino,5,6,Deportes colectivos,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,5
+22,Femenino,3,8,Actividad aeróbica,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Bajo,3,Buena,5
+22,Femenino,5,6,Deportes colectivos,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,10,Regular,5
+24,Femenino,5,5,Actividad aeróbica,0,0,4,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,10,Mala,5
+23,Femenino,4,5,Actividad aeróbica,3,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,10,Mala,5
+23,Femenino,6,7,Deportes colectivos,1,1,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,5
+21,Femenino,7,6,Deportes colectivos,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,7,Regular,5
+23,Femenino,7,7,Actividad aeróbica,6,0,3,Regular,"Ingeniería, Tecnología y Construcción",Medio,9,Regular,5
+18,Femenino,6,7,Actividad aeróbica,0,0,3.5,Bastante,"Administración, Negocios y Contabilidad",Alto,3,Buena,5
+17,Femenino,6,7,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Muy buena,5
+18,Femenino,6,4,Mixta,0,1,1,Regular,"Administración, Negocios y Contabilidad",Muy alto,3,Regular,5
+18,Femenino,6,5,Deportes colectivos,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,5
+22,Femenino,4,6,Actividad aeróbica,3,1,3,Poca,"Administración, Negocios y Contabilidad",Alto,10,Regular,5
+18,Masculino,7,6,Mixta,0,0,6,Mucha,Ciencias Sociales y Derecho,Alto,3,Regular,5
+18,Femenino,6,4.5,Mixta,0,0,9.5,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,5
+19,Femenino,6,5,Mixta,1,1,8,Regular,"Administración, Negocios y Contabilidad",Alto,3,Mala,5
+19,Masculino,5,8,Deportes colectivos,2,1,2,Bastante,Ciencias Sociales y Derecho,Alto,2,Buena,5
+23,Masculino,4,7,Deportes colectivos,2,1,3,Bastante,Ciencias Sociales y Derecho,Alto,10,Regular,8
+19,Masculino,7,7,Actividad aeróbica,1,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,5
+18,Masculino,5,7,Deportes colectivos,1,1,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Mala,5
+18,Masculino,5,7,Deportes colectivos,0,0,12,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,3
+18,Masculino,5,6,Mixta,4,2,2,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,1,Mala,3
+17,Masculino,5,7,Deportes colectivos,0,0,7.5,Poca,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,3
+23,Masculino,6,6,Mixta,0,0,6,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,6,Mala,8
+18,Masculino,6,6,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+20,Femenino,5,11,Actividad aeróbica,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Muy buena,8
+19,Masculino,5,6,Actividad aeróbica,0,0,13,Bastante,"Humanidades, Artes y Educación",Alto,5,Regular,5
+18,Femenino,6,7,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,4
+22,Masculino,4,5,Actividad aeróbica,1,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,9,Regular,4
+17,Masculino,NA,4.3,Deportes colectivos,2,1,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Mala,3
+18,Masculino,7,6.5,Actividad aeróbica,0,0,7,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,4
+18,Masculino,5,6,Actividad aeróbica,1,1,2,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,5,Mala,8
+18,Masculino,5,6,Mixta,2,1,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,1
+18,Femenino,6,4,Actividad aeróbica,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,4
+23,Femenino,6,7,Mixta,0,0,12,Regular,"Administración, Negocios y Contabilidad",Alto,10,Mala,4
+18,Masculino,5,6,Actividad aeróbica,0,0,10.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+18,Masculino,7,7,Actividad aeróbica,0,0,6.7,Poca,"Ingeniería, Tecnología y Construcción",Alto,3,Muy mala,5
+18,Masculino,5,8,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Muy buena,4
+19,Femenino,5,4,Mixta,0,0,7,Mucha,"Ingeniería, Tecnología y Construcción",Alto,2,Mala,4
+20,Masculino,5,8,Actividad aeróbica,2,1,12,Bastante,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,4
+22,Masculino,5,7,Deportes colectivos,3,1,8,Regular,"Administración, Negocios y Contabilidad",Bajo,4,Regular,4
+21,Masculino,4,6,Actividad aeróbica,0,0,10,Bastante,Ciencias de la Salud,Alto,3,Regular,4
+21,Masculino,7,4,Deportes colectivos,2,2,3.5,Poca,Ciencias de la Salud,Medio,10,Mala,4
+22,Masculino,5,4,Deportes colectivos,1,1,1,Poca,"Ingeniería, Tecnología y Construcción",Alto,6,Muy mala,4
+23,Masculino,NA,10,Mixta,7,4,2,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,10,Muy buena,4
+18,Femenino,5,6,Actividad aeróbica,0,0,1.5,Regular,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,4
+17,Masculino,6,6,Deportes colectivos,2,3,20,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,1,Regular,4
+18,Masculino,6,6,Deportes colectivos,2,1,7,Mucha,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,4
+21,Masculino,5,7,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,4
+19,Femenino,6,6,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,6
+17,Masculino,5,7,Actividad aeróbica,1,1,4,Ninguna,"Administración, Negocios y Contabilidad",Medio,1,Regular,4
+18,Femenino,7,6,Actividad aeróbica,1,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,6
+21,Masculino,NA,7,Deportes colectivos,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,4
+18,Femenino,5,5,Deportes colectivos,0,0,3.5,Regular,Ciencias Exactas y Ambientales,Muy alto,2,Mala,4
+19,Femenino,8,5,Actividad aeróbica,0,0,15,Bastante,"Humanidades, Artes y Educación",Medio,6,Regular,4
+17,Masculino,NA,5,Mixta,0,0,3,Poca,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,4
+18,Femenino,5,5,Mixta,6,2,5,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Muy mala,6
+22,Masculino,4,6.5,Deportes colectivos,2,1,4,Regular,"Ingeniería, Tecnología y Construcción",Medio,9,Regular,4
+23,Femenino,5,6,No realiza actividad física,1,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,4
+22,Masculino,6,6,Mixta,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,4
+18,Femenino,5,6,Actividad aeróbica,0,0,4,Poca,"Humanidades, Artes y Educación",Nulo,3,Mala,6
+19,Femenino,7,4,Mixta,5,0,4,Regular,Ciencias Sociales y Derecho,Bajo,3,Regular,4
+20,Femenino,5,8,Mixta,0,0,4,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,5,Buena,4
+18,Masculino,NA,6.5,Deportes colectivos,0,0,4.5,Poca,Ciencias de la Salud,Muy alto,1,Mala,4
+20,Femenino,5,5,Mixta,0,0,5,Poca,"Humanidades, Artes y Educación",Muy alto,2,Regular,4
+21,Masculino,5,7,Deportes colectivos,2,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Muy mala,4
+20,Masculino,4,8,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,7,Buena,4
+22,Masculino,6,7,No realiza actividad física,0,0,1,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Regular,4
+25,Femenino,5,9,Deportes colectivos,0,1,5,Poca,"Administración, Negocios y Contabilidad",Bajo,3,Buena,4
+20,Masculino,8,5.3,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,4,Muy buena,4
+21,Masculino,6,6,No realiza actividad física,0,3,7,Regular,Ciencias de la Salud,Muy alto,2,Mala,4
+18,Femenino,5,6,Actividad aeróbica,0,0,4.5,Mucha,"Administración, Negocios y Contabilidad",Alto,3,Regular,8
+20,Masculino,5,6,Actividad aeróbica,5,1,4,Bastante,"Administración, Negocios y Contabilidad",Alto,6,Mala,4
+20,Masculino,3,6,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,4
+18,Femenino,5,5,No realiza actividad física,0,1,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,5
+18,Femenino,5,5,Actividad aeróbica,0,0,3,Poca,Ciencias de la Salud,Medio,3,Regular,6
+21,Masculino,6,6,Deportes colectivos,1,1,6.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,5
+20,Femenino,6,7,Mixta,1,1,4,Regular,"Humanidades, Artes y Educación",Alto,7,Regular,6
+18,Femenino,6,7,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,5
+18,Femenino,6,6,Mixta,0,0,3.5,Bastante,"Administración, Negocios y Contabilidad",Muy alto,3,Regular,8
+18,Masculino,5,6,Mixta,0,0,7.5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,5
+22,Masculino,4,6,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,9
+18,Masculino,6,6,Actividad aeróbica,0,3,4.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Buena,5
+21,Femenino,5,5,Mixta,0,0,7,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,7,Muy mala,4
+18,Masculino,6,7,Actividad aeróbica,3,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,5
+24,Masculino,5,4,Deportes colectivos,0,1,8,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,8,Muy mala,4
+22,Femenino,8,4,Mixta,2,2,1.5,Poca,Ciencias Sociales y Derecho,Muy alto,8,Mala,4
+19,Masculino,6,6,Actividad aeróbica,2,2,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,2
+19,Femenino,6,6,Actividad aeróbica,0,0,7.5,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,5,Muy mala,2
+19,Femenino,5,7,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+19,Femenino,5,6,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+22,Masculino,5,5,Deportes colectivos,0,1,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,4
+20,Femenino,5,7.5,Mixta,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,6
+18,Femenino,8,6,Actividad aeróbica,1,1,NA,Bastante,"Administración, Negocios y Contabilidad",Alto,3,Regular,6
+23,Femenino,6,6,Mixta,3,1,4,Regular,"Ingeniería, Tecnología y Construcción",Medio,8,Mala,4
+22,Femenino,6,6,Actividad aeróbica,0,0,8,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,10,Mala,4
+18,Femenino,8,7,Actividad aeróbica,0,0,18,Ninguna,"Ingeniería, Tecnología y Construcción",Nulo,2,Regular,6
+17,Masculino,5,8,Deportes colectivos,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,1,Mala,4
+19,Masculino,6,8,Actividad aeróbica,0,0,6,Bastante,"Administración, Negocios y Contabilidad",Alto,2,Buena,8
+19,Femenino,6,5,Mixta,0,0,3,Poca,"Administración, Negocios y Contabilidad",Muy alto,5,Mala,8
+20,Masculino,5,7,Deportes colectivos,0,0,5,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,6,Buena,8
+22,Masculino,4,9,Actividad aeróbica,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,7,Mala,4
+18,Femenino,6,5,No realiza actividad física,1,1,1,Regular,Ciencias Sociales y Derecho,Muy alto,4,Regular,3
+19,Masculino,4,7,Actividad aeróbica,0,0,1,Bastante,Ciencias Exactas y Ambientales,Medio,5,Buena,8
+18,Femenino,5,5,Mixta,0,0,10,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,5
+20,Masculino,7,5,Actividad aeróbica,0,0,3,Bastante,"Administración, Negocios y Contabilidad",Medio,3,Mala,4
+21,Masculino,5,7.5,Mixta,0,0,3.5,Bastante,Ciencias de la Salud,Nulo,7,Muy buena,4
+23,Masculino,5,5,No realiza actividad física,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Mala,6
+18,Masculino,5,7,Actividad aeróbica,3,1,6,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,8
+20,Masculino,5,6,Mixta,2,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,9
+17,Femenino,6,6,Actividad aeróbica,0,0,4.1,Bastante,Ciencias Sociales y Derecho,Medio,1,Mala,8
+17,Masculino,5,6,Deportes colectivos,1,1,4,Regular,"Administración, Negocios y Contabilidad",Medio,1,Regular,8
+21,Masculino,5,6,Actividad aeróbica,0,0,3,Regular,"Ingeniería, Tecnología y Construcción",Medio,7,Buena,9
+19,Femenino,6,10,No realiza actividad física,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,1,Regular,8
+18,Femenino,5,7,No realiza actividad física,0,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,5
+24,Masculino,4,6,Mixta,2,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Alto,9,Buena,9
+20,Masculino,5,6,Mixta,2,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,7,Buena,5
+18,Masculino,8,NA,Actividad aeróbica,5,3,2,Poca,"Ingeniería, Tecnología y Construcción",Alto,4,Buena,6
+20,Masculino,4,6,Mixta,0,0,6,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,7,Muy mala,6
+22,Masculino,5,6,Mixta,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,9
+17,Masculino,8,6,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,1,Regular,8
+18,Masculino,6,3,Actividad aeróbica,0,1,1.5,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,3,Muy mala,2
+19,Masculino,6,7,Deportes colectivos,1,1,4.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Buena,2
+19,Femenino,5,7,Actividad aeróbica,0,0,7,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,2
+21,Masculino,5,7,Actividad aeróbica,1,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Buena,2
+18,Masculino,6,4,Actividad aeróbica,2,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,2
+18,Femenino,6,6,No realiza actividad física,4,2,1.5,Regular,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,2
+21,Masculino,5,6,Deportes colectivos,0,0,5.3,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,2
+18,Femenino,6,5,Actividad aeróbica,0,0,7.5,Ninguna,Ciencias Exactas y Ambientales,Alto,3,Mala,2
+18,Femenino,5,7,No realiza actividad física,0,0,1.5,Regular,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,2
+24,Masculino,5,7,Deportes colectivos,2,1,3,Regular,"Ingeniería, Tecnología y Construcción",Bajo,4,Mala,2
+20,Femenino,7,8,No realiza actividad física,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,5
+18,Masculino,5,5,Actividad aeróbica,2,1,5.5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Buena,2
+19,Masculino,4,6,Mixta,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Mala,2
+19,Masculino,6,8,Actividad aeróbica,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Buena,8
+19,Masculino,6,6,Mixta,0,0,2,Poca,"Ingeniería, Tecnología y Construcción",Medio,4,Mala,2
+18,Masculino,6,6,Actividad aeróbica,1,1,6,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,2
+18,Masculino,7,4,Actividad aeróbica,0,0,4,Bastante,Ciencias de la Salud,Medio,1,Mala,2
+18,Femenino,5,5,Actividad aeróbica,7,2,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,2
+18,Masculino,5,6,Deportes colectivos,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+18,Masculino,6,5,Actividad aeróbica,0,0,1.6,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Mala,8
+21,Masculino,5,6,Deportes colectivos,1,2,3,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,8,Mala,2
+21,Masculino,3,5,No realiza actividad física,1,1,1,Bastante,Ciencias Exactas y Ambientales,Alto,1,Regular,1
+20,Masculino,6,6,Deportes colectivos,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,4,Regular,2
+17,Femenino,6,6,No realiza actividad física,0,0,1.5,Mucha,"Administración, Negocios y Contabilidad",Bajo,1,Regular,5
+19,Masculino,6,7,Deportes colectivos,5,3,14,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,2
+19,Masculino,4,8,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,1
+18,Masculino,5,8,Actividad aeróbica,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Buena,2
+19,Masculino,4,4,No realiza actividad física,1,1,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,2
+19,Masculino,5,5,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Nulo,4,Mala,2
+18,Femenino,3,4,Actividad aeróbica,0,0,14,Bastante,Ciencias de la Salud,Alto,3,Mala,2
+18,Masculino,7,4,Deportes colectivos,0,0,4,Poca,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,2
+21,Femenino,3,3,No realiza actividad física,0,0,1,Poca,Ciencias de la Salud,Muy alto,9,Muy mala,3
+19,Femenino,5,6,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,2
+20,Femenino,3,6,Mixta,0,0,1.5,Bastante,Ciencias de la Salud,Alto,9,Regular,3
+22,Masculino,5,5,Mixta,0,0,2,Bastante,"Administración, Negocios y Contabilidad",Muy alto,10,Regular,3
+21,Masculino,5,6,Actividad aeróbica,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,3
+20,Masculino,6,7,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Buena,5
+18,Femenino,5,6,Mixta,0,0,5,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Buena,5
+21,Femenino,5,5,No realiza actividad física,0,0,1,Bastante,"Humanidades, Artes y Educación",Alto,5,Regular,5
+18,Masculino,5,6,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,5
+21,Femenino,5,5,Mixta,0,0,2.5,Regular,"Humanidades, Artes y Educación",Alto,4,Mala,5
+19,Femenino,5,8,Mixta,0,0,4,Regular,"Humanidades, Artes y Educación",Muy alto,1,Regular,5
+21,Masculino,5,6,Mixta,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,9,Regular,5
+18,Femenino,5,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Mala,5
+21,Femenino,6,5,No realiza actividad física,0,0,1.5,Regular,"Administración, Negocios y Contabilidad",Muy alto,7,Regular,5
+21,Masculino,6,4,Actividad aeróbica,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,3
+21,Femenino,NA,8,Mixta,0,0,10.5,Poca,"Administración, Negocios y Contabilidad",Medio,8,Regular,5
+23,Masculino,4,6,Deportes colectivos,2,3,1,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,7,Muy mala,3
+20,Femenino,5,6,No realiza actividad física,0,0,2,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,5,Muy buena,5
+20,Femenino,5,6,Actividad aeróbica,1,2,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,5
+18,Femenino,5,7,Deportes colectivos,0,0,8,Bastante,Ciencias Sociales y Derecho,Alto,3,Buena,5
+22,Femenino,7,7,Deportes colectivos,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Medio,8,Regular,5
+24,Masculino,4,7,Deportes colectivos,0,0,7,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,5
+23,Masculino,6,5,Mixta,0,0,1.5,Bastante,Ciencias de la Salud,Alto,2,Regular,3
+21,Femenino,6,9,Mixta,0,0,5,Bastante,"Administración, Negocios y Contabilidad",Medio,10,Muy buena,5
+24,Masculino,4,6,No realiza actividad física,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,10,Regular,5
+19,Femenino,4,8,Actividad aeróbica,0,0,1,Bastante,"Administración, Negocios y Contabilidad",Nulo,10,Buena,5
+20,Masculino,5,9,Actividad aeróbica,2,1,10,Regular,"Ingeniería, Tecnología y Construcción",Bajo,7,Muy mala,5
+18,Masculino,4,9,Mixta,0,0,10,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,2,Muy buena,5
+21,Masculino,4,6,Actividad aeróbica,2,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,6,Buena,3
+19,Masculino,6,10,Actividad aeróbica,0,1,1,Bastante,"Administración, Negocios y Contabilidad",Muy alto,5,Muy buena,8
+21,Masculino,5,8,Actividad aeróbica,0,0,6,Mucha,"Administración, Negocios y Contabilidad",Alto,9,Buena,8
+19,Femenino,5,6.5,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,8
+19,Masculino,6,NA,Deportes colectivos,2,2,1.5,Poca,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,8
+19,Masculino,6,4,Actividad aeróbica,2,1,2,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,3,Muy mala,8
+19,Masculino,4,6,Actividad aeróbica,0,1,8.5,Bastante,"Administración, Negocios y Contabilidad",Alto,3,Regular,8
+21,Masculino,8,7,Deportes colectivos,0,0,NA,Mucha,"Administración, Negocios y Contabilidad",Bajo,4,Regular,8
+21,Masculino,7,7,No realiza actividad física,0,0,1,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,8,Regular,2
+22,Femenino,6,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,8,Regular,2
+19,Masculino,5,6,Deportes colectivos,2,2,5,Poca,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,2
+19,Masculino,5,5,Actividad aeróbica,0,0,5,Poca,"Ingeniería, Tecnología y Construcción",Medio,3,Mala,2
+20,Masculino,5,6,Mixta,0,0,10,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Buena,8
+19,Masculino,5,6,Actividad aeróbica,1,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+19,Femenino,5,5,Actividad aeróbica,1,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,8
+18,Masculino,5,6,Mixta,3,1,8,Poca,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,2
+18,Masculino,7,5,Deportes colectivos,1,1,10,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,2
+18,Masculino,5,5,No realiza actividad física,0,1,1,Mucha,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,2
+25,Masculino,5,6,Deportes colectivos,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Muy mala,2
+19,Femenino,5,5,Actividad aeróbica,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+17,Masculino,NA,7,Mixta,0,0,6,Regular,"Ingeniería, Tecnología y Construcción",Alto,1,Buena,2
+20,Masculino,4,8,Actividad aeróbica,2,1,14,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,8
+19,Masculino,4,6,Actividad aeróbica,1,3,4,Bastante,Ciencias Exactas y Ambientales,Medio,4,Regular,8
+19,Masculino,6,7,Actividad aeróbica,1,1,7.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+19,Femenino,4,5,Mixta,0,0,9,Poca,"Ingeniería, Tecnología y Construcción",Medio,5,Mala,8
+17,Masculino,7,3,No realiza actividad física,7,NA,8.5,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,3,Muy mala,8
+19,Masculino,7,6,Deportes colectivos,0,0,8,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+18,Masculino,6,7,Actividad aeróbica,0,0,6,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,8
+22,Masculino,7,NA,Actividad aeróbica,0,3,1,Regular,Ciencias Sociales y Derecho,Medio,9,Muy buena,8
+20,Masculino,6,8,Deportes colectivos,2,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,5,Buena,8
+19,Masculino,5,6,Deportes colectivos,2,1,5,Regular,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,8
+22,Masculino,4,4,Mixta,2,1,7,Regular,"Ingeniería, Tecnología y Construcción",Alto,8,Muy mala,8
+19,Masculino,5,3,Actividad aeróbica,4,2,2,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,5,Muy mala,8
+19,Masculino,5,5,Actividad aeróbica,2,2,6,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,8
+18,Masculino,4,6,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+23,Masculino,4,7,Actividad aeróbica,0,0,7,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,8
+17,Femenino,NA,6,Deportes colectivos,0,0,1,Poca,Ciencias Sociales y Derecho,Alto,1,Mala,2
+21,Masculino,4,7,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,9,Buena,8
+22,Masculino,5,6,Actividad aeróbica,4,2,4,Regular,"Ingeniería, Tecnología y Construcción",Alto,10,Regular,8
+19,Masculino,4,5,Deportes colectivos,6,1,4.5,Bastante,Ciencias de la Salud,Alto,3,Muy mala,8
+20,Masculino,6,7,Deportes colectivos,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,7,Buena,8
+20,Femenino,7,6,Actividad aeróbica,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,7,Regular,8
+25,Masculino,6,5,Deportes colectivos,0,0,2,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,8
+21,Masculino,5,6,Deportes colectivos,1,0,2,Poca,"Ingeniería, Tecnología y Construcción",Bajo,4,Regular,8
+21,Masculino,6,7,Actividad aeróbica,2,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,8
+20,Masculino,4,5,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,8
+22,Masculino,6,5,Deportes colectivos,1,1,6,Poca,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+20,Femenino,4,5,Actividad aeróbica,0,1,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,5,Mala,8
+19,Femenino,6,7,Deportes colectivos,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,8
+18,Masculino,6,7,Actividad aeróbica,2,1,6.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,8
+19,Masculino,6,5,Actividad aeróbica,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+18,Femenino,3,5,Actividad aeróbica,1,1,2,Mucha,Ciencias de la Salud,Alto,4,Mala,8
+19,Masculino,8,8,Mixta,0,0,10,Bastante,Ciencias de la Salud,Alto,1,Buena,8
+19,Masculino,5,8.5,Deportes colectivos,3,1,7.5,Regular,Ciencias de la Salud,Medio,4,Regular,8
+18,Femenino,6,7,Actividad aeróbica,0,0,3,Bastante,Ciencias de la Salud,Medio,3,Buena,2
+19,Masculino,4,7.5,Actividad aeróbica,3,3,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,2
+25,Femenino,NA,7,Mixta,0,0,NA,Mucha,"Humanidades, Artes y Educación",Medio,6,Buena,2
+19,Femenino,6,5,Mixta,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,2
+25,Femenino,3,7,Actividad aeróbica,1,1,2,Mucha,"Administración, Negocios y Contabilidad",Muy alto,9,Buena,2
+24,Femenino,6,6,No realiza actividad física,0,0,1,Regular,"Humanidades, Artes y Educación",Muy alto,5,Regular,2
+22,Masculino,5,6,Mixta,2,1,1.5,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,7,Regular,2
+19,Masculino,5,6,Deportes colectivos,3,2,1,Mucha,"Ingeniería, Tecnología y Construcción",Medio,4,Buena,8
+21,Masculino,NA,11,Actividad aeróbica,7,4,4,Mucha,Ciencias Sociales y Derecho,Medio,5,Muy mala,8
+25,Masculino,7,7.5,Mixta,3,2,2,Mucha,"Ingeniería, Tecnología y Construcción",Medio,10,Buena,6
+23,Masculino,NA,7,Mixta,1,1,1.5,Bastante,"Administración, Negocios y Contabilidad",Alto,10,Regular,6
+25,Masculino,3,7,Mixta,0,0,3,Bastante,"Administración, Negocios y Contabilidad",Alto,10,Regular,6
+17,Masculino,4,8,Deportes colectivos,0,0,2,Bastante,Ciencias de la Salud,Bajo,1,Muy buena,6
+20,Masculino,5,7,Mixta,1,1,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,3
+22,Femenino,3,5,Mixta,0,0,1,Regular,Ciencias de la Salud,Muy alto,9,Regular,2
+19,Masculino,5,8,Actividad aeróbica,4,2,1.5,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,2
+21,Masculino,5,9,Actividad aeróbica,0,0,10,Poca,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+24,Femenino,7,5,Actividad aeróbica,0,0,1,Bastante,"Administración, Negocios y Contabilidad",Medio,7,Regular,1
+19,Femenino,6,6,Deportes colectivos,0,0,4,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,7
+18,Masculino,6,5,Actividad aeróbica,3,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,7
+21,Femenino,4,5,No realiza actividad física,0,1,2,Poca,"Ingeniería, Tecnología y Construcción",Alto,7,Mala,7
+19,Masculino,6,6,Mixta,0,0,8,Regular,"Ingeniería, Tecnología y Construcción",Bajo,3,Buena,7
+19,Masculino,5,4,Actividad aeróbica,3,2,1.5,Regular,"Ingeniería, Tecnología y Construcción",Bajo,5,Muy mala,2
+21,Masculino,6,5,Actividad aeróbica,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,3,Muy mala,2
+21,Masculino,NA,7,Actividad aeróbica,1,1,10,Poca,"Administración, Negocios y Contabilidad",Alto,6,Muy buena,2
+18,Masculino,4,6,Deportes colectivos,1,1,5,Poca,"Ingeniería, Tecnología y Construcción",Bajo,5,Regular,2
+22,Masculino,4,8,Actividad aeróbica,0,0,7.5,Bastante,"Ingeniería, Tecnología y Construcción",Nulo,3,Buena,2
+21,Masculino,5,6,Actividad aeróbica,2,2,3,Regular,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,2
+18,Femenino,7,7,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,2
+20,Masculino,5,7,Deportes colectivos,1,1,5,Regular,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,2
+19,Femenino,6,7,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,2
+17,Masculino,4,7,Deportes colectivos,2,0,1.5,Regular,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,2
+20,Masculino,3,5,Deportes colectivos,0,1,1.5,Poca,Ciencias Sociales y Derecho,Muy alto,5,Regular,2
+19,Masculino,5,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,2
+19,Masculino,6,7,Actividad aeróbica,0,0,3,Regular,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,2
+19,Masculino,4,8,Actividad aeróbica,4,3,1,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,7
+19,Masculino,3,7,Deportes colectivos,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+18,Masculino,7,7,Actividad aeróbica,1,1,1.5,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+19,Femenino,7,5,Mixta,0,0,1.5,Poca,"Humanidades, Artes y Educación",Alto,4,Regular,2
+18,Femenino,6,7,Mixta,0,0,1,Bastante,"Humanidades, Artes y Educación",Alto,5,Buena,2
+18,Femenino,7,6,Deportes colectivos,0,0,6,Bastante,"Humanidades, Artes y Educación",Medio,2,Regular,2
+21,Masculino,6,8,No realiza actividad física,0,0,1,Bastante,"Humanidades, Artes y Educación",Alto,6,Buena,2
+20,Femenino,5,6,Actividad aeróbica,2,1,7,Bastante,"Administración, Negocios y Contabilidad",Alto,6,Regular,2
+21,Femenino,6,5,Actividad aeróbica,0,0,7,Mucha,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+22,Masculino,5,6,No realiza actividad física,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,2
+21,Masculino,4,4,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Muy mala,2
+18,Masculino,7,9,Deportes colectivos,2,2,7,Regular,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,2
+18,Femenino,7,8,Actividad aeróbica,5,2,10,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,2
+21,Masculino,7,10,Mixta,3,2,3,Regular,"Ingeniería, Tecnología y Construcción",Bajo,4,Regular,2
+21,Femenino,7,4,Mixta,0,0,4,Poca,"Humanidades, Artes y Educación",Medio,4,Mala,2
+21,Masculino,5,9,Deportes colectivos,1,1,4,Bastante,"Administración, Negocios y Contabilidad",Bajo,5,Mala,2
+25,Femenino,NA,8,Actividad aeróbica,0,0,3,Mucha,"Administración, Negocios y Contabilidad",Muy alto,10,Regular,2
+20,Femenino,5,9,Mixta,0,0,1.3,Ninguna,"Humanidades, Artes y Educación",Medio,9,Regular,2
+18,Femenino,3,4,Actividad aeróbica,1,2,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,5,Buena,7
+21,Femenino,5,5,Mixta,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+21,Femenino,6,8,Actividad aeróbica,1,0,2,Regular,Ciencias Sociales y Derecho,Medio,7,Mala,1
+20,Masculino,6,6,Actividad aeróbica,0,0,4,Poca,"Administración, Negocios y Contabilidad",Medio,5,Mala,8
+18,Masculino,7,8,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,2
+19,Masculino,6,10,Mixta,5,1,4,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,3,Buena,2
+18,Femenino,6,8,Actividad aeróbica,2,2,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,2
+20,Femenino,7,9,No realiza actividad física,2,4,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,2
+18,Masculino,6,6,No realiza actividad física,3,2,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,2
+18,Masculino,4,5,Actividad aeróbica,0,0,5.5,Bastante,"Ingeniería, Tecnología y Construcción",Nulo,3,Mala,2
+18,Femenino,6,8,Mixta,3,2,3,Regular,Ciencias de la Salud,Medio,2,Regular,2
+18,Masculino,6,7,Mixta,1,1,2,Bastante,Ciencias Sociales y Derecho,Bajo,4,Regular,2
+23,Masculino,5,6,Actividad aeróbica,1,1,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,2
+23,Masculino,4,8,Mixta,1,1,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,6,Buena,2
+19,Femenino,6,7,Mixta,0,0,2,Mucha,"Administración, Negocios y Contabilidad",Alto,4,Regular,2
+20,Masculino,6,6,Mixta,0,0,3,Regular,"Ingeniería, Tecnología y Construcción",Bajo,6,Regular,2
+23,Masculino,4,5,Deportes colectivos,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Bajo,7,Mala,2
+17,Masculino,5,8,Mixta,5,3,5,Regular,"Administración, Negocios y Contabilidad",Bajo,1,Regular,3
+17,Femenino,5,5,Mixta,1,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,2
+24,Masculino,3,7,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,8,Buena,2
+18,Masculino,5,6,Actividad aeróbica,0,1,2,Mucha,"Humanidades, Artes y Educación",Medio,2,Regular,2
+18,Femenino,5,NA,Mixta,1,1,2,Regular,Ciencias Exactas y Ambientales,Bajo,2,Regular,2
+18,Femenino,6,6,Actividad aeróbica,1,1,2,Mucha,"Administración, Negocios y Contabilidad",Bajo,3,Regular,2
+19,Femenino,5,6,Mixta,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,2
+19,Femenino,5,6,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,2
+19,Femenino,5,7,No realiza actividad física,1,1,1,Poca,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,2
+21,Masculino,6,6,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,2
+22,Femenino,4,8,Mixta,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Bajo,7,Muy buena,2
+20,Masculino,5,5,Mixta,1,1,1,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,5,Regular,2
+22,Masculino,5,6,Mixta,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,2
+21,Femenino,5,9,Mixta,1,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,6,Muy buena,2
+22,Masculino,5,6,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,2
+22,Masculino,4,5,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,2
+21,Femenino,5,5,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+19,Femenino,5,6,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,2
+20,Femenino,5,6,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,2
+19,Femenino,5,5,Deportes colectivos,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,2
+19,Femenino,5,5,Deportes colectivos,1,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,2
+21,Masculino,7,4,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,3
+20,Masculino,4,6,Mixta,1,1,2,Mucha,"Ingeniería, Tecnología y Construcción",Medio,7,Mala,3
+19,Femenino,5,5,Actividad aeróbica,0,0,5,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,2
+19,Femenino,5,6,Actividad aeróbica,1,1,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,2
+19,Masculino,5,5,Actividad aeróbica,1,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,2
+19,Femenino,3,5,Actividad aeróbica,0,0,3,Poca,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+19,Femenino,5,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,8
+23,Masculino,6,7,Deportes colectivos,0,0,2,Poca,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,6
+21,Masculino,5,7,Deportes colectivos,2,2,4,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,1,Buena,6
+17,Masculino,4,7,Deportes colectivos,1,0,2,Bastante,"Administración, Negocios y Contabilidad",Medio,1,Regular,6
+21,Masculino,6,5,Deportes colectivos,2,1,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,8,Mala,6
+21,Masculino,4,4,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Mala,4
+24,Masculino,4,6,Mixta,1,1,2,Regular,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,2
+23,Femenino,5,7,Actividad aeróbica,0,0,3,Bastante,Ciencias Sociales y Derecho,Bajo,8,Regular,2
+21,Masculino,6,6,Actividad aeróbica,3,1,3,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,2
+23,Masculino,4,7,Mixta,0,1,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,2
+21,Masculino,4,7,Mixta,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,6,Buena,2
+19,Masculino,4,7,No realiza actividad física,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,2
+23,Masculino,5,8,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,6,Buena,2
+21,Masculino,4,6,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+19,Masculino,5,6,No realiza actividad física,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,2
+20,Masculino,4,7,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,2
+19,Masculino,4,8,No realiza actividad física,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Buena,2
+20,Masculino,4,7,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,2
+22,Masculino,4,6,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,9,Regular,2
+23,Masculino,4,5,No realiza actividad física,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,2
+19,Femenino,6,8,Mixta,3,2,5,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,2
+20,Masculino,7,10,Mixta,4,1,10,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,4,Buena,2
+19,Femenino,3,10,No realiza actividad física,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,3,Buena,2
+18,Masculino,6,9,Actividad aeróbica,3,2,3,Bastante,Ciencias Sociales y Derecho,Medio,2,Regular,2
+19,Masculino,7,8,Deportes colectivos,3,2,1,Regular,"Humanidades, Artes y Educación",Medio,3,Regular,2
+19,Femenino,7,8,Actividad aeróbica,3,2,3,Regular,Ciencias de la Salud,Medio,3,Regular,2
+18,Masculino,7,9,Mixta,4,2,4,Regular,Ciencias Sociales y Derecho,Medio,2,Regular,2
+18,Masculino,6,6,No realiza actividad física,3,2,1,Regular,"Administración, Negocios y Contabilidad",Medio,2,Mala,2
+18,Masculino,5,6,Mixta,2,1,7,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,8
+19,Femenino,7,7,Actividad aeróbica,0,0,1,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,3,Buena,2
+18,Masculino,6,8,Actividad aeróbica,1,1,1,Mucha,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,2
+18,Femenino,7,7,Actividad aeróbica,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,2
+19,Masculino,7,5,No realiza actividad física,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,2
+18,Femenino,5,7,No realiza actividad física,1,1,1,Regular,Ciencias de la Salud,Alto,4,Buena,2
+18,Femenino,7,6,No realiza actividad física,5,1,2,Bastante,"Administración, Negocios y Contabilidad",Medio,4,Buena,2
+20,Femenino,5,5,Mixta,1,0,3,Bastante,"Administración, Negocios y Contabilidad",Medio,4,Regular,2
+18,Masculino,7,7,No realiza actividad física,2,1,7,Poca,Ciencias Sociales y Derecho,Alto,4,Regular,2
+19,Masculino,6,7,No realiza actividad física,0,0,1,Bastante,"Humanidades, Artes y Educación",Alto,3,Buena,2
+19,Masculino,6,6,No realiza actividad física,2,1,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,2
+20,Masculino,5,5,Mixta,0,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Mala,4
+22,Femenino,NA,7,Actividad aeróbica,0,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Buena,4
+20,Masculino,4,4,No realiza actividad física,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,6,Muy mala,4
+21,Masculino,5,7,Actividad aeróbica,1,1,3,Regular,"Ingeniería, Tecnología y Construcción",Bajo,6,Muy buena,4
+20,Masculino,7,7,Actividad aeróbica,3,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,4
+22,Masculino,5,8,Actividad aeróbica,4,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Nulo,6,Buena,4
+21,Femenino,5,5,Deportes colectivos,0,0,2.5,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,4,Mala,4
+19,Femenino,5,6,Actividad aeróbica,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,4
+23,Masculino,5,5,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,4
+24,Femenino,8,7,Actividad aeróbica,0,0,4,Mucha,Ciencias Sociales y Derecho,Muy alto,7,Regular,4
+18,Femenino,4,6,Mixta,0,0,1,Bastante,Ciencias Sociales y Derecho,Alto,10,Regular,4
+19,Femenino,6,5,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Mala,8
+17,Femenino,6,7,Mixta,3,2,1.5,Poca,Ciencias de la Salud,Alto,1,Regular,1
+20,Masculino,5,3,Deportes colectivos,5,2,3,Poca,"Ingeniería, Tecnología y Construcción",Alto,6,Muy mala,1
+23,Femenino,5,9,Actividad aeróbica,0,0,10,Mucha,"Administración, Negocios y Contabilidad",Bajo,9,Muy buena,1
+23,Masculino,4,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,10,Regular,1
+21,Masculino,5,6,Actividad aeróbica,6,0,1.4,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,1
+19,Femenino,6,5,Mixta,1,0,1.5,Poca,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,1
+20,Masculino,6,7,Actividad aeróbica,0,1,4,Regular,"Humanidades, Artes y Educación",Alto,5,Regular,1
+20,Femenino,5,7,Actividad aeróbica,1,1,3,Poca,Ciencias de la Salud,Muy alto,5,Mala,1
+22,Femenino,4,8,Actividad aeróbica,4,3,3,Regular,Ciencias de la Salud,Medio,9,Mala,1
+24,Masculino,5,7,Deportes colectivos,5,4,5,Bastante,Ciencias de la Salud,Bajo,10,Regular,1
+18,Femenino,6,7,Mixta,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Buena,1
+19,Masculino,5,6,Deportes colectivos,2,1,2,Mucha,"Administración, Negocios y Contabilidad",Alto,3,Regular,1
+20,Masculino,7,6,Actividad aeróbica,3,2,5,Mucha,Ciencias Sociales y Derecho,Medio,7,Regular,1
+21,Femenino,6,5,Deportes colectivos,1,1,4,Mucha,Ciencias Sociales y Derecho,Medio,8,Buena,1
+21,Femenino,6,6,Mixta,1,1,4,Poca,"Administración, Negocios y Contabilidad",Muy alto,7,Regular,1
+18,Masculino,5,7,Actividad aeróbica,1,2,10,Regular,"Ingeniería, Tecnología y Construcción",Medio,2,Buena,1
+20,Femenino,6,6,Mixta,1,1,2.5,Poca,Ciencias Exactas y Ambientales,Muy alto,5,Regular,1
+20,Masculino,6,7,Mixta,0,0,2,Poca,Ciencias de la Salud,Alto,4,Buena,1
+17,Masculino,7,4,Actividad aeróbica,0,0,6,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,1,Muy mala,1
+17,Femenino,6,5,Actividad aeróbica,0,0,8,Poca,"Humanidades, Artes y Educación",Medio,1,Mala,1
+23,Femenino,5,8,Actividad aeróbica,0,0,2,Regular,Ciencias Exactas y Ambientales,Alto,10,Regular,1
+18,Femenino,5,8,Mixta,2,0,3,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,3,Muy mala,1
+21,Femenino,5,6,Mixta,3,1,1,Regular,"Ingeniería, Tecnología y Construcción",Bajo,8,Regular,1
+17,Femenino,6,6,Actividad aeróbica,1,1,2,Bastante,"Administración, Negocios y Contabilidad",Medio,1,Buena,1
+18,Masculino,5,7,Actividad aeróbica,0,0,5,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,3,Buena,1
+24,Masculino,6,5,Deportes colectivos,0,0,15,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,8,Regular,1
+18,Femenino,5,6,Actividad aeróbica,2,2,3,Poca,"Ingeniería, Tecnología y Construcción",Alto,4,Buena,1
+20,Masculino,6,7.4,Actividad aeróbica,5,3,5,Poca,Ciencias de la Salud,Alto,5,Regular,1
+21,Masculino,5,7,Actividad aeróbica,4,1,2,Mucha,Ciencias de la Salud,Alto,8,Regular,1
+24,Masculino,5,7,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,10,Buena,1
+18,Femenino,5,4,No realiza actividad física,0,0,7,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,2,Muy mala,1
+21,Femenino,5,7,No realiza actividad física,0,0,5,Poca,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,1
+18,Masculino,5,6,Actividad aeróbica,2,0,5,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,1
+19,Femenino,6,6,Actividad aeróbica,1,2,5,Mucha,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,1
+17,Masculino,7,3,Deportes colectivos,7,4,1,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,3,Muy mala,8
+22,Masculino,4,3,Actividad aeróbica,5,3,1.3,Regular,Ciencias de la Salud,Medio,5,Muy mala,7
+22,Masculino,4,6,Actividad aeróbica,5,3,1.5,Regular,"Administración, Negocios y Contabilidad",Alto,8,Regular,7
+25,Masculino,6,7,Actividad aeróbica,5,3,1.5,Bastante,Ciencias Sociales y Derecho,Alto,6,Regular,7
+23,Femenino,4,7,Deportes colectivos,0,0,6,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Buena,7
+18,Masculino,5,6,Actividad aeróbica,1,2,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+19,Masculino,4,7,Mixta,5,3,2.5,Bastante,"Administración, Negocios y Contabilidad",Alto,6,Buena,7
+18,Masculino,6,5,Actividad aeróbica,4,1,6.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,7
+23,Masculino,5,8,Deportes colectivos,2,2,14,Regular,"Ingeniería, Tecnología y Construcción",Alto,2,Buena,7
+22,Femenino,4,8,Actividad aeróbica,2,2,7,Regular,"Administración, Negocios y Contabilidad",Alto,3,Buena,7
+23,Masculino,4,6,Mixta,1,1,15,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,7
+22,Masculino,3,7,Deportes colectivos,2,2,10,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Buena,7
+18,Masculino,6,4,Actividad aeróbica,2,1,3,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,7
+22,Femenino,4,6,Actividad aeróbica,5,3,1.5,Regular,"Administración, Negocios y Contabilidad",Alto,7,Regular,7
+18,Femenino,5,7,No realiza actividad física,0,1,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,7
+20,Masculino,6,7,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,7
+19,Masculino,6,6,Actividad aeróbica,2,1,2.5,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,7
+19,Femenino,6,6,Actividad aeróbica,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Buena,7
+19,Masculino,4,6,Mixta,5,4,2,Mucha,Ciencias de la Salud,Alto,5,Regular,7
+19,Masculino,5,6,Actividad aeróbica,4,3,2,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Regular,7
+18,Masculino,6,5,Mixta,1,1,3,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+20,Masculino,5,6,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,7
+18,Femenino,6,6,Actividad aeróbica,0,1,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+22,Femenino,6,6,Actividad aeróbica,0,0,7,Poca,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,7
+18,Masculino,4,6,No realiza actividad física,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+19,Femenino,6,6,Mixta,1,0,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,7
+19,Femenino,6,8,Actividad aeróbica,5,3,2.5,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Regular,7
+19,Masculino,6,6,Actividad aeróbica,4,3,4,Poca,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+20,Masculino,6,6,Mixta,4,3,4,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+19,Masculino,4,5,Mixta,5,4,3.5,Mucha,Ciencias de la Salud,Alto,5,Buena,7
+20,Masculino,6,6,Mixta,5,3,2.2,Bastante,Ciencias de la Salud,Alto,5,Regular,7
+19,Masculino,5,5,Deportes colectivos,2,1,7,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,7
+18,Femenino,5,5,Deportes colectivos,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,7
+24,Femenino,6,6,Deportes colectivos,0,0,2,Poca,"Administración, Negocios y Contabilidad",Medio,10,Mala,1
+18,Femenino,6,6,Actividad aeróbica,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+19,Masculino,5,6,Mixta,4,3,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+20,Masculino,4,6,Mixta,4,3,2.5,Bastante,"Administración, Negocios y Contabilidad",Alto,7,Regular,7
+18,Masculino,4,5.3,Deportes colectivos,3,1,3.5,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,7
+18,Femenino,5,6,No realiza actividad física,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,7
+20,Femenino,5,6,Actividad aeróbica,4,3,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+18,Femenino,6,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,7
+21,Femenino,6,8,Mixta,5,3,3,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Buena,7
+22,Masculino,5,8,Mixta,4,3,4,Bastante,"Administración, Negocios y Contabilidad",Alto,6,Regular,7
+18,Femenino,5,5,No realiza actividad física,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,2,Regular,7
+20,Masculino,4,8,Mixta,5,3,3,Bastante,Ciencias de la Salud,Medio,7,Regular,7
+18,Femenino,6,5,No realiza actividad física,0,0,1,Mucha,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+23,Masculino,6,8,Mixta,6,3,5,Bastante,Ciencias de la Salud,Medio,8,Buena,7
+18,Femenino,6,7,Mixta,2,1,10,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+20,Masculino,4,8,Mixta,3,3,4,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,5,Buena,7
+17,Femenino,6,6,Mixta,0,0,5,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,1,Muy mala,7
+19,Masculino,7,9,Deportes colectivos,1,1,8,Regular,"Administración, Negocios y Contabilidad",Bajo,4,Muy buena,7
+18,Masculino,5,8,Actividad aeróbica,0,0,6,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,3,Muy buena,7
+18,Masculino,4,7,Actividad aeróbica,1,1,7,Regular,"Ingeniería, Tecnología y Construcción",Nulo,1,Regular,7
+17,Masculino,6,8,Mixta,1,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,7
+17,Femenino,6,7,Actividad aeróbica,0,0,2,Poca,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+18,Masculino,6,7,Actividad aeróbica,1,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+18,Masculino,6,6,Deportes colectivos,1,1,8,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,7
+18,Masculino,5,8,Actividad aeróbica,1,1,7,Regular,"Ingeniería, Tecnología y Construcción",Bajo,4,Buena,7
+20,Femenino,8,6,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+24,Femenino,4,8,No realiza actividad física,2,1,1,Mucha,"Humanidades, Artes y Educación",Medio,3,Regular,7
+20,Masculino,5,8,Actividad aeróbica,0,0,4.5,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,6,Buena,7
+19,Femenino,5,5,Mixta,0,0,4.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,7
+18,Femenino,5,5,Actividad aeróbica,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,7
+22,Masculino,4,7,Mixta,5,3,5,Bastante,"Administración, Negocios y Contabilidad",Alto,7,Regular,7
+20,Masculino,5,9,Actividad aeróbica,2,1,6,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,7,Regular,7
+19,Femenino,4,6,Mixta,3,3,2.5,Bastante,Ciencias Sociales y Derecho,Alto,5,Buena,7
+18,Masculino,7,4,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,2,Regular,7
+18,Masculino,5,4,Deportes colectivos,2,1,1,Poca,"Ingeniería, Tecnología y Construcción",Alto,1,Muy mala,7
+23,Masculino,4,6,Actividad aeróbica,5,3,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+18,Masculino,NA,5,Mixta,2,2,1,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,1,Muy mala,7
+20,Masculino,5,6,Actividad aeróbica,4,3,4,Bastante,Ciencias de la Salud,Muy alto,6,Regular,7
+19,Masculino,5,6,Mixta,4,2,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,7
+22,Femenino,4,6,Actividad aeróbica,2,3,3,Bastante,Ciencias Sociales y Derecho,Alto,6,Regular,7
+21,Masculino,4,6,Actividad aeróbica,5,3,5,Bastante,Ciencias Sociales y Derecho,Alto,6,Regular,7
+20,Masculino,4,6,Actividad aeróbica,2,3,5,Bastante,Ciencias Sociales y Derecho,Alto,5,Buena,7
+20,Masculino,5,6,Actividad aeróbica,3,3,5,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Regular,7
+21,Masculino,NA,6,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,10,Regular,7
+20,Masculino,4,8,Actividad aeróbica,4,2,8,Bastante,Ciencias de la Salud,Medio,6,Buena,7
+22,Masculino,5,10,Mixta,2,3,6,Bastante,Ciencias Sociales y Derecho,Alto,5,Muy buena,7
+20,Masculino,4,10,Mixta,4,3,2,Mucha,"Ingeniería, Tecnología y Construcción",Alto,5,Muy buena,7
+21,Masculino,5,8,Mixta,3,3,5,Regular,"Humanidades, Artes y Educación",Alto,5,Buena,7
+20,Femenino,4,6,Actividad aeróbica,2,2,3,Bastante,Ciencias Sociales y Derecho,Alto,6,Buena,7
+20,Masculino,4,8,Mixta,5,3,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Buena,7
+22,Masculino,4,8,Mixta,5,3,3,Bastante,"Administración, Negocios y Contabilidad",Alto,6,Buena,7
+20,Masculino,4,9,Mixta,5,3,6,Mucha,"Ingeniería, Tecnología y Construcción",Alto,6,Buena,7
+22,Masculino,6,8,Mixta,5,3,3,Bastante,"Humanidades, Artes y Educación",Alto,8,Buena,7
+21,Masculino,4,8,Actividad aeróbica,5,4,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Buena,7
+21,Masculino,4,10,Mixta,5,3,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Muy buena,7
+20,Masculino,4,6,Actividad aeróbica,5,3,5,Bastante,Ciencias de la Salud,Alto,6,Regular,7
+22,Masculino,4,6,Mixta,3,3,2.5,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Regular,7
+22,Masculino,4,6,Mixta,2,3,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,7
+19,Masculino,4,8,Mixta,2,4,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Buena,7
+22,Masculino,4,6,Actividad aeróbica,2,4,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,7
+19,Masculino,5,6,Actividad aeróbica,2,3,6,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,7
+17,Femenino,6,6,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+17,Femenino,6,8,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Buena,7
+19,Masculino,7,6,Deportes colectivos,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Mala,7
+19,Masculino,7,5,Actividad aeróbica,2,1,5,Regular,"Ingeniería, Tecnología y Construcción",Bajo,1,Mala,8
+17,Masculino,5,5,Actividad aeróbica,5,2,5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,1,Regular,8
+18,Masculino,5,6,Mixta,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,7
+19,Femenino,6,6,Mixta,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,7
+18,Femenino,6,6,Mixta,0,0,4,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,7
+20,Masculino,6,6,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,7
+21,Masculino,6,7,Deportes colectivos,3,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,7
+23,Masculino,5,5,Actividad aeróbica,0,0,5,Regular,"Ingeniería, Tecnología y Construcción",Alto,7,Mala,7
+21,Masculino,4,6,Actividad aeróbica,0,0,2,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+23,Masculino,4,5,Mixta,0,2,4,Poca,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,7
+21,Masculino,6,8,Actividad aeróbica,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,9,Buena,7
+20,Masculino,5,6,Mixta,5,2,3,Regular,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,7
+18,Femenino,8,5,Deportes colectivos,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+17,Femenino,6,7,Deportes colectivos,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+18,Masculino,7,6,No realiza actividad física,2,2,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,1,Mala,7
+18,Masculino,6,4.5,Mixta,0,0,7.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Mala,7
+18,Femenino,4,6,Deportes colectivos,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,2,Mala,7
+18,Masculino,5,6.5,Actividad aeróbica,0,0,2.5,Regular,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+18,Masculino,6,8,Actividad aeróbica,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,7
+19,Femenino,3,6,Mixta,4,2,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,2,Mala,7
+19,Masculino,4,6,Actividad aeróbica,1,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+19,Masculino,4,6.5,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,7
+20,Masculino,5,7,Actividad aeróbica,1,2,12,Poca,"Ingeniería, Tecnología y Construcción",Bajo,5,Regular,7
+23,Femenino,7,7,Mixta,1,1,3,Poca,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,7
+20,Masculino,4,7,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,2,Mala,7
+25,Masculino,5,7,Mixta,0,0,10,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,5,Regular,7
+20,Masculino,4,8,Deportes colectivos,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,7
+18,Femenino,6,5,Deportes colectivos,1,2,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,2,Mala,7
+22,Masculino,6,6,No realiza actividad física,1,1,3,Regular,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,7
+19,Masculino,5,6,Actividad aeróbica,0,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,7
+22,Femenino,4,5,No realiza actividad física,0,0,2,Regular,Ciencias de la Salud,Muy alto,5,Mala,7
+19,Femenino,6,5,Mixta,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,7
+19,Masculino,5,6.5,Mixta,0,0,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,5,Regular,7
+22,Femenino,6,6,No realiza actividad física,3,1,1,Regular,"Administración, Negocios y Contabilidad",Muy alto,6,Muy mala,7
+19,Femenino,4,8,No realiza actividad física,0,1,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+21,Femenino,4,7,Actividad aeróbica,0,0,7,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,7
+19,Masculino,6,6,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,7
+18,Masculino,6,6,No realiza actividad física,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Nulo,3,Mala,7
+18,Masculino,6,6,Actividad aeróbica,0,1,10,Regular,"Ingeniería, Tecnología y Construcción",Nulo,3,Regular,7
+20,Femenino,5,6,Actividad aeróbica,0,0,5,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,7,Buena,7
+18,Femenino,6,7,Mixta,2,1,10,Bastante,"Administración, Negocios y Contabilidad",Alto,3,Regular,7
+18,Masculino,6,5,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,7
+18,Masculino,5,5,Actividad aeróbica,3,2,2,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,2,Mala,7
+18,Femenino,5,8,No realiza actividad física,0,2,1.5,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,7
+21,Masculino,4,6,Mixta,3,1,1.5,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,7
+22,Femenino,5,6,Mixta,3,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,7
+18,Masculino,5,5,Actividad aeróbica,0,0,5,Regular,"Ingeniería, Tecnología y Construcción",Medio,2,Mala,7
+20,Masculino,6,4,Mixta,5,2,10,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,5,Mala,7
+17,Masculino,6,7,Actividad aeróbica,0,0,12,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,1,Regular,7
+18,Femenino,6,7,Actividad aeróbica,0,0,7.5,Regular,"Administración, Negocios y Contabilidad",Alto,3,Regular,7
+18,Femenino,6,7.5,Deportes colectivos,0,0,7,Regular,"Administración, Negocios y Contabilidad",Muy alto,3,Buena,7
+22,Masculino,6,6,Actividad aeróbica,2,1,2,Poca,"Ingeniería, Tecnología y Construcción",Medio,9,Regular,7
+20,Masculino,6,6,No realiza actividad física,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,8
+18,Masculino,5,6,Deportes colectivos,4,1,8,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,3
+19,Femenino,5,5,Actividad aeróbica,1,1,4.5,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,7
+22,Masculino,5,6,Mixta,3,1,2,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,6,Mala,7
+21,Femenino,4,8,Actividad aeróbica,0,0,2,Poca,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,7
+21,Masculino,6,7,Actividad aeróbica,0,0,1,Regular,Ciencias de la Salud,Alto,8,Buena,1
+19,Masculino,4,9,Actividad aeróbica,0,1,12,Mucha,"Ingeniería, Tecnología y Construcción",Medio,4,Buena,1
+17,Masculino,6,8,Mixta,1,1,3,Poca,"Ingeniería, Tecnología y Construcción",Alto,1,Buena,1
+19,Masculino,5,6,Actividad aeróbica,2,1,3,Poca,"Ingeniería, Tecnología y Construcción",Medio,4,Mala,1
+21,Femenino,3,6,Actividad aeróbica,2,2,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,8,Mala,1
+23,Masculino,4,5,Deportes colectivos,3,1,2,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,10,Mala,1
+23,Masculino,8,5,Mixta,5,4,7,Poca,Ciencias Sociales y Derecho,Medio,6,Mala,1
+19,Femenino,6,9,Mixta,0,0,3,Regular,"Administración, Negocios y Contabilidad",Medio,3,Regular,4
+20,Femenino,5,7,Actividad aeróbica,0,0,3,Regular,"Administración, Negocios y Contabilidad",Medio,8,Buena,4
+24,Masculino,6,5,Actividad aeróbica,3,4,1,Poca,"Ingeniería, Tecnología y Construcción",Medio,7,Muy mala,4
+23,Masculino,7,6,Deportes colectivos,1,1,2,Bastante,Ciencias Sociales y Derecho,Muy alto,5,Mala,4
+23,Femenino,6,7,Mixta,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,4
+21,Masculino,5,6,Actividad aeróbica,2,2,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,4
+20,Masculino,7,6,Actividad aeróbica,0,0,3,Regular,"Ingeniería, Tecnología y Construcción",Bajo,6,Mala,4
+23,Femenino,6,8,Mixta,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,7,Regular,4
+23,Masculino,3,5.5,Actividad aeróbica,3,2,1.5,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,10,Mala,4
+20,Femenino,5,6,No realiza actividad física,0,0,1.1,Regular,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,4
+23,Femenino,7,7,Actividad aeróbica,1,1,2.5,Mucha,"Ingeniería, Tecnología y Construcción",Medio,9,Buena,4
+23,Masculino,4,5.5,Actividad aeróbica,1,1,2,Mucha,"Ingeniería, Tecnología y Construcción",Alto,10,Regular,4
+20,Masculino,7,8,No realiza actividad física,0,0,1,Mucha,"Administración, Negocios y Contabilidad",Nulo,8,Muy buena,7
+20,Masculino,7,8,No realiza actividad física,0,0,1,Mucha,"Administración, Negocios y Contabilidad",Nulo,8,Muy buena,7
+17,Femenino,NA,9,Mixta,2,2,2,Bastante,"Administración, Negocios y Contabilidad",Medio,1,Buena,4
+17,Femenino,NA,8,Mixta,1,1,10,Poca,"Administración, Negocios y Contabilidad",Bajo,1,Buena,4
+17,Femenino,NA,6,Mixta,2,1,4,Poca,Ciencias Sociales y Derecho,Alto,3,Buena,4
+18,Masculino,6,6.5,Mixta,0,0,6,Regular,"Humanidades, Artes y Educación",Bajo,4,Regular,7
+17,Masculino,5,7,Mixta,1,2,2,Poca,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,4
+17,Masculino,NA,7,Mixta,0,0,12,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,1,Regular,4
+18,Masculino,NA,8,Deportes colectivos,3,2,20,Bastante,"Administración, Negocios y Contabilidad",Bajo,10,Buena,4
+17,Masculino,6,4,Actividad aeróbica,1,1,4,Poca,"Ingeniería, Tecnología y Construcción",Alto,1,Mala,4
+18,Masculino,NA,7,No realiza actividad física,0,0,1,Regular,"Administración, Negocios y Contabilidad",Medio,1,Mala,4
+19,Femenino,7,6,Actividad aeróbica,0,0,3,Bastante,Ciencias de la Salud,Bajo,5,Muy buena,7
+17,Masculino,8,6,Deportes colectivos,0,0,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,4
+21,Masculino,5,7,Mixta,2,1,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,4
+17,Masculino,NA,4,Deportes colectivos,0,0,5.3,Poca,"Ingeniería, Tecnología y Construcción",Alto,1,Mala,4
+17,Masculino,NA,12,Deportes colectivos,1,4,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Muy buena,4
+18,Masculino,NA,3,Deportes colectivos,0,0,5,Poca,Ciencias de la Salud,Bajo,2,Muy mala,4
+17,Femenino,3,7,Actividad aeróbica,0,0,3,Poca,Ciencias de la Salud,Alto,1,Regular,4
+17,Femenino,6,8,No realiza actividad física,0,0,1,Regular,Ciencias de la Salud,Muy alto,1,Regular,4
+17,Masculino,NA,7,Deportes colectivos,5,2,1,Bastante,"Administración, Negocios y Contabilidad",Alto,1,Mala,4
+20,Femenino,4,6,Actividad aeróbica,1,1,3,Poca,"Ingeniería, Tecnología y Construcción",Medio,6,Buena,4
+23,Masculino,8,6,Actividad aeróbica,1,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,7,Mala,4
+24,Masculino,5,6,Mixta,3,1,10,Bastante,Ciencias de la Salud,Medio,8,Buena,4
+25,Masculino,7,8,Deportes colectivos,0,0,7,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,4
+22,Femenino,5,6,Actividad aeróbica,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,6,Regular,4
+18,Masculino,NA,7,Actividad aeróbica,4,2,1,Regular,"Humanidades, Artes y Educación",Bajo,2,Muy buena,4
+21,Masculino,4,7,Deportes colectivos,0,0,3.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,4
+18,Masculino,NA,5,Actividad aeróbica,4,2,4,Regular,"Administración, Negocios y Contabilidad",Medio,7,Buena,4
+24,Femenino,6,6,Actividad aeróbica,1,1,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,4
+17,Femenino,6,5,Actividad aeróbica,0,2,1,Poca,Ciencias Exactas y Ambientales,Alto,1,Mala,7
+18,Masculino,NA,4,Actividad aeróbica,6,3,3,Regular,Ciencias Exactas y Ambientales,Nulo,3,Buena,4
+19,Femenino,6,8,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Buena,4
+22,Femenino,6,8,No realiza actividad física,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,4
+23,Masculino,NA,8,Deportes colectivos,6,3,5,Poca,"Administración, Negocios y Contabilidad",Alto,7,Buena,4
+24,Masculino,4,9,Actividad aeróbica,0,0,3,Bastante,"Administración, Negocios y Contabilidad",Bajo,5,Buena,4
+24,Masculino,4,9,Mixta,0,0,5,Regular,"Administración, Negocios y Contabilidad",Medio,2,Buena,4
+22,Masculino,6,6,Actividad aeróbica,0,0,1,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,9,Regular,7
+20,Femenino,6,5,Mixta,1,1,2,Regular,"Ingeniería, Tecnología y Construcción",Bajo,3,Mala,4
+25,Masculino,7,7,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,4
+17,Femenino,6,NA,Actividad aeróbica,0,0,1,Ninguna,"Administración, Negocios y Contabilidad",Nulo,1,Mala,7
+19,Femenino,5,7,Actividad aeróbica,1,1,1.5,Regular,"Administración, Negocios y Contabilidad",Alto,4,Buena,1
+18,Masculino,6,7,Deportes colectivos,1,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Muy buena,1
+20,Femenino,5,6,Mixta,3,1,1,Bastante,Ciencias de la Salud,Muy alto,6,Regular,1
+19,Masculino,6,8,Mixta,2,1,5,Mucha,"Administración, Negocios y Contabilidad",Alto,3,Buena,1
+17,Femenino,6,6,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Mala,1
+17,Femenino,5,7,No realiza actividad física,0,0,1,Ninguna,Ciencias de la Salud,Medio,1,Buena,1
+18,Masculino,5,8,Mixta,2,2,8,Mucha,"Ingeniería, Tecnología y Construcción",Alto,3,Muy buena,1
+20,Masculino,5,7,Mixta,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Buena,1
+19,Femenino,6,8,Actividad aeróbica,0,0,10.5,Mucha,Ciencias de la Salud,Bajo,3,Muy buena,1
+22,Masculino,6,5,Actividad aeróbica,3,1,1,Poca,Ciencias Sociales y Derecho,Muy alto,8,Mala,1
+20,Masculino,5,5,Actividad aeróbica,3,2,1,Ninguna,Ciencias Sociales y Derecho,Bajo,8,Mala,7
+23,Femenino,3,6,Actividad aeróbica,0,0,2,Regular,"Administración, Negocios y Contabilidad",Alto,10,Regular,1
+20,Masculino,6,4.5,Actividad aeróbica,4,2,1.5,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,4,Muy mala,1
+21,Masculino,5,8,Actividad aeróbica,0,0,11,Mucha,"Administración, Negocios y Contabilidad",Medio,5,Muy buena,1
+20,Femenino,5,7,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Buena,1
+22,Femenino,5,5,No realiza actividad física,2,1,1,Poca,Ciencias de la Salud,Muy alto,7,Mala,1
+19,Masculino,4,7.5,Mixta,0,0,5,Bastante,"Humanidades, Artes y Educación",Bajo,2,Buena,1
+21,Femenino,5,7,Actividad aeróbica,0,0,4,Bastante,"Humanidades, Artes y Educación",Medio,6,Buena,1
+22,Masculino,5,6.5,Deportes colectivos,1,1,3,Regular,"Humanidades, Artes y Educación",Alto,7,Regular,1
+18,Femenino,6,7,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,1
+17,Femenino,4,8,Actividad aeróbica,0,0,2,Bastante,"Administración, Negocios y Contabilidad",Medio,1,Regular,4
+19,Femenino,7,6,Actividad aeróbica,0,0,6,Regular,"Humanidades, Artes y Educación",Medio,4,Regular,4
+17,Masculino,NA,6,Mixta,1,1,3,Poca,"Administración, Negocios y Contabilidad",Medio,3,Regular,4
+19,Femenino,5,10,Deportes colectivos,0,0,6,Regular,"Ingeniería, Tecnología y Construcción",Medio,4,Muy buena,7
+20,Masculino,7,7,Actividad aeróbica,3,2,6,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,2,Regular,7
+18,Masculino,7,3,No realiza actividad física,5,3,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,1,Mala,7
+22,Femenino,5,9,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,10,Muy buena,7
+21,Masculino,6,6,Mixta,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,7
+19,Femenino,6,7,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Buena,7
+21,Femenino,5,4,Deportes colectivos,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,7,Mala,7
+20,Masculino,5,6,Actividad aeróbica,1,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,7
+20,Masculino,5,5,Mixta,7,2,1,Poca,"Ingeniería, Tecnología y Construcción",Alto,5,Mala,7
+18,Femenino,7,8,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,2,Regular,7
+18,Masculino,6,9,Deportes colectivos,3,1,6,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Buena,7
+17,Femenino,7,7,Mixta,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,7
+22,Masculino,3,6,Mixta,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,9,Regular,7
+19,Femenino,3,4,No realiza actividad física,0,0,1.5,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,4,Muy mala,8
+18,Masculino,5,8,Deportes colectivos,2,3,8,Bastante,"Administración, Negocios y Contabilidad",Medio,3,Buena,7
+21,Masculino,7,8,Deportes colectivos,6,3,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,7
+21,Masculino,6,6,Mixta,5,2,6.5,Regular,"Ingeniería, Tecnología y Construcción",Medio,6,Mala,7
+24,Masculino,4,6,Actividad aeróbica,0,0,1.5,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,4
+19,Masculino,6,5,Actividad aeróbica,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,4,Regular,7
+18,Masculino,6,6,No realiza actividad física,2,2,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,7
+20,Masculino,6,5,Actividad aeróbica,1,1,9,Bastante,"Ingeniería, Tecnología y Construcción",Medio,7,Mala,7
+18,Masculino,6,6,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,7
+18,Femenino,5,5,Actividad aeróbica,1,2,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,7
+24,Masculino,7,5,No realiza actividad física,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Nulo,7,Mala,7
+20,Masculino,6,5,Deportes colectivos,0,0,6,Mucha,"Ingeniería, Tecnología y Construcción",Medio,7,Mala,7
+18,Masculino,5,7,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+17,Femenino,NA,7,Deportes colectivos,0,0,1.5,Regular,"Humanidades, Artes y Educación",Bajo,2,Regular,4
+19,Masculino,6,7,Deportes colectivos,0,1,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,1,Mala,4
+18,Femenino,6,5,Deportes colectivos,5,2,1,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,1,Muy mala,7
+23,Femenino,4,7,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,10,Buena,4
+17,Masculino,7,6,No realiza actividad física,0,0,1,Poca,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,4
+23,Masculino,NA,10,Actividad aeróbica,7,4,5,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,10,Muy buena,4
+23,Masculino,3,7,Actividad aeróbica,4,4,7,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,10,Muy buena,4
+21,Masculino,3,5,Deportes colectivos,0,0,1,Bastante,Ciencias Exactas y Ambientales,Alto,3,Regular,1
+21,Masculino,3,5,Actividad aeróbica,0,0,1.5,Bastante,Ciencias Exactas y Ambientales,Alto,3,Mala,1
+22,Masculino,4,6,No realiza actividad física,1,1,1.6,Bastante,Ciencias Exactas y Ambientales,Medio,4,Regular,1
+20,Masculino,4,4,Actividad aeróbica,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,1
+22,Femenino,3,7,No realiza actividad física,2,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,10,Buena,4
+23,Femenino,6,5.5,Actividad aeróbica,3,2,2,Bastante,"Humanidades, Artes y Educación",Alto,8,Buena,4
+24,Femenino,3,5.5,Actividad aeróbica,1,1,5.5,Poca,Ciencias de la Salud,Muy alto,10,Regular,1
+19,Masculino,7,7,Mixta,2,3,8,Bastante,Ciencias Exactas y Ambientales,Medio,4,Buena,4
+18,Masculino,4,7,Mixta,1,1,9,Regular,"Administración, Negocios y Contabilidad",Medio,4,Buena,4
+25,Masculino,4,6,Mixta,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,9,Regular,4
+23,Masculino,4,6,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,9,Mala,4
+22,Masculino,5,8,Mixta,5,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,7,Mala,4
+21,Femenino,6,9,Actividad aeróbica,3,1,3,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,4,Buena,4
+25,Femenino,7,5,Deportes colectivos,6,3,1.5,Mucha,"Ingeniería, Tecnología y Construcción",Alto,8,Buena,4
+22,Femenino,6,7,Deportes colectivos,5,3,2,Mucha,Ciencias Sociales y Derecho,Bajo,6,Regular,4
+25,Femenino,6,6,Deportes colectivos,7,3,1.5,Mucha,Ciencias Exactas y Ambientales,Muy alto,7,Buena,4
+25,Masculino,7,6,Actividad aeróbica,6,3,1.5,Mucha,Ciencias Exactas y Ambientales,Medio,7,Buena,4
+18,Masculino,6,5.4,Actividad aeróbica,5,1,2,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,4
+24,Femenino,7,5,Mixta,7,4,1.2,Mucha,Ciencias Sociales y Derecho,Bajo,4,Regular,4
+18,Femenino,5,5,Deportes colectivos,0,0,1,Mucha,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,4
+19,Masculino,6,5,No realiza actividad física,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,4
+20,Masculino,6,7,Deportes colectivos,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,4
+17,Masculino,7,6,Deportes colectivos,4,2,8,Bastante,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,4
+19,Femenino,5,8,Actividad aeróbica,0,0,7,Bastante,"Administración, Negocios y Contabilidad",Medio,3,Buena,4
+17,Masculino,6,8,Mixta,0,0,2,Bastante,Ciencias Exactas y Ambientales,Medio,1,Buena,4
+23,Masculino,4,7,Deportes colectivos,1,1,7,Bastante,"Ingeniería, Tecnología y Construcción",Alto,5,Regular,4
+19,Masculino,6,9,Mixta,2,1,1.5,Poca,Ciencias Exactas y Ambientales,Medio,2,Mala,1
+19,Femenino,5,6,Actividad aeróbica,0,0,2,Poca,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,1
+19,Masculino,5,5.5,Mixta,1,1,2,Poca,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,1
+20,Femenino,6,7,Actividad aeróbica,0,0,10,Bastante,Ciencias Sociales y Derecho,Medio,4,Buena,1
+21,Masculino,5,7.5,Actividad aeróbica,0,0,4,Bastante,"Administración, Negocios y Contabilidad",Bajo,6,Buena,1
+18,Masculino,4,7,No realiza actividad física,3,1,1,Poca,"Ingeniería, Tecnología y Construcción",Medio,2,Regular,1
+19,Femenino,7,5,Actividad aeróbica,1,1,1,Regular,"Administración, Negocios y Contabilidad",Muy alto,3,Mala,1
+22,Masculino,5,6.5,Deportes colectivos,2,1,3,Regular,Ciencias Sociales y Derecho,Medio,7,Regular,1
+20,Femenino,5,6,No realiza actividad física,1,1,1,Poca,"Humanidades, Artes y Educación",Medio,5,Regular,1
+21,Masculino,5,8,Deportes colectivos,1,1,14,Mucha,"Administración, Negocios y Contabilidad",Medio,5,Muy buena,1
+22,Femenino,5,7.5,Actividad aeróbica,0,0,5,Bastante,"Administración, Negocios y Contabilidad",Bajo,7,Muy buena,1
+20,Masculino,6,6.5,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Buena,1
+19,Masculino,6,5,Actividad aeróbica,5,2,1,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,2,Mala,1
+22,Masculino,5,7.5,Mixta,0,0,11,Mucha,"Ingeniería, Tecnología y Construcción",Medio,6,Buena,1
+19,Masculino,5,6,Actividad aeróbica,1,1,2,Poca,Ciencias Sociales y Derecho,Alto,3,Regular,1
+20,Femenino,6,5.5,Deportes colectivos,2,1,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,1
+21,Masculino,5,7,Mixta,0,0,5,Bastante,Ciencias de la Salud,Bajo,5,Buena,1
+20,Masculino,5,4.5,Mixta,2,1,1.5,Poca,"Ingeniería, Tecnología y Construcción",Medio,4,Muy buena,1
+22,Femenino,5,7,Deportes colectivos,0,0,5,Bastante,"Administración, Negocios y Contabilidad",Medio,7,Buena,1
+17,Masculino,6,5,Actividad aeróbica,1,2,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,1
+23,Masculino,5,6,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,1
+17,Masculino,7,6,No realiza actividad física,0,0,3.5,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,1,Mala,1
+20,Masculino,5,8,Actividad aeróbica,3,1,3,Poca,"Ingeniería, Tecnología y Construcción",Bajo,4,Muy buena,1
+20,Masculino,7,8,Actividad aeróbica,4,3,1,Regular,"Ingeniería, Tecnología y Construcción",Nulo,6,Mala,1
+22,Femenino,5,7,Actividad aeróbica,0,0,12,Bastante,"Humanidades, Artes y Educación",Alto,1,Regular,1
+18,Masculino,6,6,Actividad aeróbica,4,2,3,Poca,Ciencias Sociales y Derecho,Nulo,3,Regular,1
+22,Femenino,7,4,Actividad aeróbica,0,0,1.5,Mucha,"Administración, Negocios y Contabilidad",Muy alto,7,Muy mala,1
+19,Femenino,5,4,No realiza actividad física,0,0,3,Poca,"Humanidades, Artes y Educación",Alto,5,Mala,1
+21,Femenino,7,5,Actividad aeróbica,2,2,1,Bastante,Ciencias de la Salud,Muy alto,5,Mala,4
+21,Femenino,5,9,Actividad aeróbica,1,0,4,Bastante,Ciencias Sociales y Derecho,Alto,5,Regular,4
+20,Femenino,6,7,Actividad aeróbica,2,1,8,Regular,"Administración, Negocios y Contabilidad",Alto,3,Regular,4
+19,Masculino,5,8,Deportes colectivos,0,0,12,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Buena,4
+19,Femenino,6,5,Actividad aeróbica,0,0,5,Ninguna,Ciencias Sociales y Derecho,Alto,3,Mala,4
+18,Femenino,5,7,Mixta,0,0,3.5,Ninguna,"Administración, Negocios y Contabilidad",Bajo,2,Regular,4
+21,Masculino,5,5,Deportes colectivos,0,1,7.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,5,Regular,4
+24,Femenino,5,4,Mixta,0,0,6,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,7,Mala,4
+19,Masculino,7,5,No realiza actividad física,1,1,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Regular,7
+20,Femenino,5,7,Actividad aeróbica,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,1
+22,Femenino,4,5,No realiza actividad física,2,1,1,Bastante,Ciencias de la Salud,Alto,7,Mala,4
+21,Masculino,5,5,Actividad aeróbica,1,1,12,Bastante,"Humanidades, Artes y Educación",Alto,7,Mala,4
+20,Masculino,3,7,Mixta,0,1,10,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,7,Buena,4
+21,Masculino,5,5,Deportes colectivos,2,1,7,Regular,"Ingeniería, Tecnología y Construcción",Bajo,5,Regular,3
+18,Masculino,5,3,Deportes colectivos,7,1,1.5,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,3,Muy mala,4
+20,Femenino,4,4,Mixta,2,2,6,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Buena,4
+22,Femenino,NA,3,No realiza actividad física,4,3,12,Bastante,Ciencias Sociales y Derecho,Alto,6,Mala,3
+22,Masculino,4,3,Actividad aeróbica,0,0,1,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,5,Muy mala,3
+21,Femenino,5,7,Deportes colectivos,3,2,2,Bastante,Ciencias de la Salud,Muy alto,1,Regular,3
+17,Masculino,5,7,Deportes colectivos,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Mala,4
+23,Femenino,5,6,Actividad aeróbica,1,1,2.5,Regular,"Administración, Negocios y Contabilidad",Alto,9,Regular,4
+21,Masculino,4,7,Mixta,3,2,10,Bastante,"Ingeniería, Tecnología y Construcción",Medio,8,Buena,4
+22,Masculino,NA,5,Actividad aeróbica,1,1,7.5,Regular,Ciencias de la Salud,Alto,9,Mala,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Buena,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Buena,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Regular,"Ingeniería, Tecnología y Construcción",Medio,1,Buena,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Regular,"Ingeniería, Tecnología y Construcción",Medio,1,Buena,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,1,Buena,4
+17,Masculino,5,6,Deportes colectivos,0,0,5,Poca,"Ingeniería, Tecnología y Construcción",Medio,1,Regular,4
+17,Masculino,5,7,Deportes colectivos,0,0,5,Mucha,"Ingeniería, Tecnología y Construcción",Medio,1,Buena,4
+20,Femenino,4,9,Mixta,2,1,8,Mucha,Ciencias Exactas y Ambientales,Muy alto,7,Muy buena,4
+20,Masculino,5,7,Actividad aeróbica,0,0,8,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Buena,1
+18,Masculino,5,10,No realiza actividad física,1,1,1.5,Poca,Ciencias Sociales y Derecho,Nulo,2,Muy buena,3
+21,Femenino,4,7.4,Actividad aeróbica,0,0,3,Bastante,"Administración, Negocios y Contabilidad",Alto,5,Regular,1
+23,Masculino,5,6.5,Actividad aeróbica,0,0,4.5,Regular,"Ingeniería, Tecnología y Construcción",Medio,8,Regular,1
+22,Femenino,4,6.5,Mixta,1,1,2,Regular,"Administración, Negocios y Contabilidad",Medio,6,Regular,1
+20,Masculino,5,7,Deportes colectivos,1,1,3.5,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Buena,1
+21,Masculino,5,7.5,Actividad aeróbica,0,0,6,Bastante,Ciencias Sociales y Derecho,Medio,5,Muy buena,1
+19,Femenino,6,7,Actividad aeróbica,0,0,7.5,Bastante,Ciencias de la Salud,Medio,3,Buena,1
+22,Masculino,5,6.5,No realiza actividad física,2,1,1,Poca,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,1
+21,Femenino,4,7.5,Actividad aeróbica,0,0,5.5,Bastante,"Administración, Negocios y Contabilidad",Bajo,5,Regular,1
+20,Masculino,6,5.5,Actividad aeróbica,3,1,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,1
+19,Femenino,5,8,Actividad aeróbica,0,0,9,Mucha,Ciencias Exactas y Ambientales,Bajo,2,Muy buena,1
+22,Masculino,5,7,Mixta,0,0,5,Bastante,"Administración, Negocios y Contabilidad",Bajo,6,Buena,1
+21,Masculino,5,6.5,Actividad aeróbica,1,1,6,Regular,"Administración, Negocios y Contabilidad",Alto,5,Buena,1
+20,Femenino,4,4,Actividad aeróbica,4,2,1,Poca,"Humanidades, Artes y Educación",Muy alto,5,Mala,1
+19,Masculino,5,5,Actividad aeróbica,3,1,1,Ninguna,"Ingeniería, Tecnología y Construcción",Medio,2,Mala,1
+22,Masculino,7,7,Deportes colectivos,2,1,2.5,Bastante,Ciencias Exactas y Ambientales,Alto,7,Regular,4
+21,Femenino,4,7.5,Actividad aeróbica,0,0,4,Bastante,"Administración, Negocios y Contabilidad",Bajo,4,Buena,1
+23,Masculino,6,6,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,4
+22,Masculino,5,7,Deportes colectivos,1,1,3,Regular,Ciencias Exactas y Ambientales,Medio,6,Buena,1
+21,Masculino,5,6.5,Mixta,0,0,2,Bastante,Ciencias Sociales y Derecho,Alto,4,Regular,1
+20,Femenino,5,6,Actividad aeróbica,0,0,1,Regular,Ciencias Sociales y Derecho,Alto,3,Regular,1
+23,Masculino,4,8,Actividad aeróbica,0,0,9.5,Mucha,"Ingeniería, Tecnología y Construcción",Bajo,7,Muy buena,1
+22,Femenino,4,6,Mixta,1,1,1.5,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,8,Regular,4
+25,Masculino,7,5,Actividad aeróbica,4,1,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,4
+23,Masculino,5,6,Deportes colectivos,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Medio,8,Buena,4
+20,Masculino,7,6,Deportes colectivos,3,2,1.5,Ninguna,"Ingeniería, Tecnología y Construcción",Muy alto,7,Mala,6
+23,Masculino,3,6,Actividad aeróbica,2,1,2.5,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,10,Muy mala,4
+21,Masculino,5,5,Deportes colectivos,2,1,1,Regular,"Ingeniería, Tecnología y Construcción",Medio,10,Regular,4
+23,Masculino,4,7,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,4
+23,Femenino,5,6,Actividad aeróbica,3,1,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,4
+19,Masculino,7,7,Actividad aeróbica,1,1,2,Regular,"Administración, Negocios y Contabilidad",Alto,5,Buena,6
+23,Femenino,8,7.5,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,9,Regular,7
+23,Femenino,5,7.5,Mixta,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,7,Regular,4
+21,Femenino,5,6,Actividad aeróbica,2,1,10,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,9,Buena,4
+19,Masculino,6,6,Actividad aeróbica,0,0,2,Poca,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,6
+18,Masculino,6,7,Actividad aeróbica,0,0,7,Mucha,"Administración, Negocios y Contabilidad",Medio,3,Buena,6
+18,Masculino,6,7,Actividad aeróbica,0,0,5,Bastante,"Humanidades, Artes y Educación",Medio,3,Regular,6
+19,Masculino,4,4,Actividad aeróbica,4,1,10,Bastante,"Ingeniería, Tecnología y Construcción",Alto,4,Mala,6
+18,Masculino,5,5,Actividad aeróbica,4,1,4,Bastante,"Administración, Negocios y Contabilidad",Medio,3,Regular,6
+18,Masculino,6,7,Actividad aeróbica,0,0,3,Bastante,"Administración, Negocios y Contabilidad",Muy alto,3,Mala,6
+19,Femenino,5,8,Actividad aeróbica,0,0,4,Regular,"Ingeniería, Tecnología y Construcción",Bajo,3,Muy buena,6
+18,Masculino,5,6,Actividad aeróbica,2,1,2,Mucha,"Administración, Negocios y Contabilidad",Muy alto,3,Regular,6
+18,Femenino,4,6,Actividad aeróbica,0,0,4,Regular,"Humanidades, Artes y Educación",Medio,3,Regular,6
+21,Masculino,6,7,Mixta,2,1,3,Regular,"Ingeniería, Tecnología y Construcción",Alto,8,Regular,6
+18,Femenino,6,5,Mixta,0,0,2,Bastante,"Humanidades, Artes y Educación",Muy alto,3,Mala,6
+18,Masculino,6,7,Deportes colectivos,1,0,12,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,6
+23,Masculino,6,6,Mixta,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Bajo,6,Buena,6
+19,Femenino,5,8,Mixta,0,0,5,Bastante,"Administración, Negocios y Contabilidad",Nulo,7,Regular,6
+20,Femenino,6,8,No realiza actividad física,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,6
+18,Femenino,6,6,Actividad aeróbica,0,0,1,Bastante,"Administración, Negocios y Contabilidad",Medio,3,Regular,6
+17,Masculino,6,5,Deportes colectivos,0,0,1,Bastante,"Ingeniería, Tecnología y Construcción",Alto,1,Mala,8
+17,Femenino,5,7,No realiza actividad física,0,0,2,Ninguna,"Ingeniería, Tecnología y Construcción",Alto,1,Regular,8
+17,Masculino,6,6,Actividad aeróbica,6,1,3,Mucha,"Ingeniería, Tecnología y Construcción",Nulo,1,Regular,8
+19,Femenino,6,7,Mixta,0,0,1,Mucha,"Ingeniería, Tecnología y Construcción",Medio,3,Regular,7
+19,Femenino,5,5,No realiza actividad física,0,0,1,Regular,"Administración, Negocios y Contabilidad",Alto,3,Muy mala,6
+19,Femenino,6,8,Actividad aeróbica,0,0,9.5,Bastante,"Administración, Negocios y Contabilidad",Medio,3,Regular,6
+23,Masculino,5,8,Actividad aeróbica,1,0,5,Regular,"Ingeniería, Tecnología y Construcción",Nulo,6,Muy mala,3
+23,Masculino,4,5,Actividad aeróbica,0,0,2,Ninguna,"Ingeniería, Tecnología y Construcción",Bajo,5,Muy mala,3
+22,Femenino,4,8,Actividad aeróbica,0,0,1,Bastante,Ciencias Exactas y Ambientales,Bajo,8,Regular,3
+23,Femenino,4,NA,Actividad aeróbica,2,2,1,Bastante,"Administración, Negocios y Contabilidad",Medio,6,Buena,3
+23,Femenino,3,3,Mixta,3,3,1,Regular,Ciencias de la Salud,Medio,9,Mala,3
+19,Femenino,5,7,Actividad aeróbica,0,0,5.5,Regular,"Ingeniería, Tecnología y Construcción",Nulo,3,Muy mala,3
+18,Masculino,4,5,Actividad aeróbica,6,4,4,Bastante,Ciencias Sociales y Derecho,Alto,5,Regular,3
+19,Femenino,5,8,Actividad aeróbica,0,0,5,Bastante,Ciencias Sociales y Derecho,Nulo,3,Regular,3
+22,Masculino,5,7,Mixta,0,0,2,Ninguna,Ciencias de la Salud,Nulo,4,Mala,3
+19,Femenino,6,7,Actividad aeróbica,4,1,2,Bastante,"Administración, Negocios y Contabilidad",Muy alto,3,Regular,1
+19,Femenino,5,12,Actividad aeróbica,0,0,2,Poca,Ciencias de la Salud,Nulo,3,Mala,3
+18,Femenino,5,6,Deportes colectivos,0,0,2,Ninguna,Ciencias Sociales y Derecho,Nulo,2,Regular,3
+20,Masculino,5,8,Actividad aeróbica,0,0,5,Mucha,Ciencias Sociales y Derecho,Alto,4,Muy buena,3
+21,Masculino,5,NA,Actividad aeróbica,4,2,1,Ninguna,Ciencias Sociales y Derecho,Medio,4,Buena,3
+21,Masculino,5,3,Deportes colectivos,0,0,3,Regular,"Humanidades, Artes y Educación",Nulo,3,Regular,3
+21,Masculino,5,NA,Actividad aeróbica,1,1,1,Poca,Ciencias Exactas y Ambientales,Bajo,4,Regular,3
+21,Femenino,6,7,Mixta,7,4,1,Bastante,Ciencias Sociales y Derecho,Alto,2,Buena,3
+21,Femenino,6,4,Actividad aeróbica,0,0,7.5,Bastante,"Administración, Negocios y Contabilidad",Nulo,4,Regular,3
+22,Femenino,5,6,Actividad aeróbica,2,3,5,Regular,"Administración, Negocios y Contabilidad",Alto,5,Buena,3
+21,Femenino,5,5,Actividad aeróbica,0,2,5,Ninguna,Ciencias Sociales y Derecho,Nulo,5,Regular,3
+19,Masculino,3,7,Actividad aeróbica,4,3,1,Regular,"Administración, Negocios y Contabilidad",Nulo,3,Buena,3
+19,Masculino,5,5,Actividad aeróbica,0,4,2,Ninguna,Ciencias de la Salud,Nulo,2,Regular,3
+22,Masculino,5,8,Deportes colectivos,0,0,1,Bastante,"Humanidades, Artes y Educación",Nulo,4,Buena,3
+23,Masculino,5,6,Actividad aeróbica,2,3,2,Ninguna,"Administración, Negocios y Contabilidad",Nulo,7,Regular,3
+21,Masculino,5,6,Actividad aeróbica,1,1,1,Poca,"Administración, Negocios y Contabilidad",Bajo,4,Regular,3
+22,Masculino,NA,3,Actividad aeróbica,3,2,NA,Regular,Ciencias de la Salud,Alto,4,Regular,3
+18,Masculino,3,NA,Actividad aeróbica,4,2,2,Regular,"Ingeniería, Tecnología y Construcción",Medio,1,Muy buena,3
+19,Masculino,6,6,Mixta,0,0,1,Bastante,Ciencias de la Salud,Nulo,2,Regular,3
+21,Masculino,5,8,Actividad aeróbica,0,0,3,Bastante,Ciencias Sociales y Derecho,Nulo,3,Buena,3
+20,Femenino,5,7,Actividad aeróbica,1,1,1,Bastante,Ciencias Exactas y Ambientales,Alto,3,Muy buena,3
+18,Masculino,5,7,Mixta,2,2,1,Bastante,"Humanidades, Artes y Educación",Muy alto,1,Regular,3
+19,Femenino,6,7,Actividad aeróbica,1,1,5,Ninguna,Ciencias Sociales y Derecho,Medio,2,Buena,3
+19,Femenino,6,5,Actividad aeróbica,3,2,5,Ninguna,Ciencias de la Salud,Medio,2,Buena,3
+21,Femenino,6,6,Actividad aeróbica,0,1,5,Poca,"Administración, Negocios y Contabilidad",Bajo,3,Buena,3
+20,Femenino,5,7,Deportes colectivos,0,2,5,Poca,Ciencias de la Salud,Alto,3,Mala,3
+22,Masculino,5,8,Mixta,2,3,2,Poca,Ciencias de la Salud,Medio,3,Muy buena,3
+22,Femenino,6,6,Mixta,5,3,6,Regular,Ciencias Sociales y Derecho,Alto,4,Buena,3
+22,Masculino,6,5,Actividad aeróbica,5,3,5,Regular,Ciencias de la Salud,Muy alto,5,Regular,3
+22,Masculino,6,NA,No realiza actividad física,0,2,8,Poca,Ciencias Exactas y Ambientales,Medio,3,Buena,3
+20,Femenino,5,4,Mixta,5,4,4,Regular,"Humanidades, Artes y Educación",Medio,4,Buena,3
+22,Masculino,6,6,Actividad aeróbica,4,3,2,Regular,Ciencias de la Salud,Alto,4,Buena,3
+21,Femenino,7,7,Actividad aeróbica,4,3,5,Regular,Ciencias Sociales y Derecho,Alto,5,Buena,3
+21,Masculino,7,NA,Actividad aeróbica,4,3,5,Bastante,Ciencias de la Salud,Muy alto,4,Buena,3
+18,Masculino,6,5,Actividad aeróbica,5,3,4,Mucha,Ciencias Exactas y Ambientales,Medio,1,Muy buena,3
+21,Masculino,7,4,Actividad aeróbica,2,2,4,Poca,Ciencias Exactas y Ambientales,Alto,1,Mala,3
+20,Masculino,6,7,Actividad aeróbica,3,3,4,Poca,"Humanidades, Artes y Educación",Alto,2,Mala,3
+21,Masculino,5,9,Actividad aeróbica,5,1,1,Regular,"Humanidades, Artes y Educación",Alto,5,Regular,3
+21,Masculino,5,NA,Mixta,4,2,6,Poca,Ciencias Sociales y Derecho,Alto,3,Regular,3
+21,Masculino,5,4,Mixta,1,2,5,Poca,Ciencias Exactas y Ambientales,Bajo,3,Buena,3
+20,Masculino,6,7,Actividad aeróbica,2,3,4,Poca,"Administración, Negocios y Contabilidad",Muy alto,2,Regular,3
+20,Masculino,7,6,Actividad aeróbica,3,2,8,Poca,"Humanidades, Artes y Educación",Bajo,3,Mala,3
+21,Femenino,3,5,Mixta,0,0,1,Bastante,Ciencias de la Salud,Muy alto,9,Regular,3
+23,Masculino,5,6,Actividad aeróbica,1,0,2,Bastante,"Administración, Negocios y Contabilidad",Muy alto,9,Buena,3
+17,Femenino,6,8,Actividad aeróbica,0,0,1,Regular,Ciencias Sociales y Derecho,Bajo,1,Buena,3
+25,Masculino,5,5,Actividad aeróbica,0,0,3,Bastante,"Ingeniería, Tecnología y Construcción",Medio,10,Regular,3
+22,Masculino,8,5,Deportes colectivos,1,1,4,Ninguna,Ciencias de la Salud,Bajo,6,Mala,3
+21,Masculino,7,NA,Actividad aeróbica,1,1,5,Ninguna,Ciencias Sociales y Derecho,Nulo,3,Muy buena,3
+22,Masculino,7,NA,Actividad aeróbica,3,2,2,Poca,"Humanidades, Artes y Educación",Bajo,2,Buena,3
+20,Masculino,7,4,Actividad aeróbica,2,3,5,Ninguna,Ciencias Sociales y Derecho,Bajo,2,Regular,3
+21,Masculino,6,NA,Actividad aeróbica,2,1,4,Ninguna,Ciencias Exactas y Ambientales,Bajo,2,Buena,3
+21,Masculino,7,8,Actividad aeróbica,2,2,5,Ninguna,"Administración, Negocios y Contabilidad",Nulo,1,Muy mala,3
+20,Masculino,7,NA,Actividad aeróbica,1,1,1,Ninguna,Ciencias de la Salud,Bajo,2,Buena,3
+21,Masculino,4,NA,Actividad aeróbica,3,3,1,Poca,"Humanidades, Artes y Educación",Muy alto,3,Buena,3
+22,Masculino,6,NA,Actividad aeróbica,4,2,1,Regular,Ciencias Sociales y Derecho,Bajo,5,Regular,3
+22,Femenino,7,3,Actividad aeróbica,5,3,2,Regular,Ciencias de la Salud,Nulo,4,Buena,3
+21,Masculino,7,9,Mixta,2,0,1,Ninguna,Ciencias de la Salud,Bajo,3,Regular,3
+24,Femenino,5,7,Actividad aeróbica,3,2,3,Poca,Ciencias de la Salud,Medio,5,Regular,3
+21,Masculino,6,6,Mixta,4,3,1,Poca,"Humanidades, Artes y Educación",Medio,4,Muy buena,3
+21,Femenino,7,7,Mixta,4,2,2,Poca,"Ingeniería, Tecnología y Construcción",Bajo,3,Regular,3
+22,Femenino,7,8,Actividad aeróbica,2,2,5,Poca,"Administración, Negocios y Contabilidad",Medio,4,Regular,3
+21,Masculino,6,8,Mixta,4,2,4,Ninguna,"Administración, Negocios y Contabilidad",Medio,3,Regular,3
+21,Masculino,6,9,No realiza actividad física,3,4,1,Poca,"Humanidades, Artes y Educación",Bajo,2,Buena,3
+25,Femenino,7,9,Actividad aeróbica,3,3,3,Poca,Ciencias de la Salud,Alto,3,Regular,3
+21,Femenino,7,9,Actividad aeróbica,4,3,2,Regular,Ciencias Sociales y Derecho,Medio,3,Mala,3
+23,Masculino,7,4,Actividad aeróbica,5,3,5,Regular,Ciencias Sociales y Derecho,Medio,4,Regular,3
+24,Femenino,5,3,Mixta,5,3,1,Regular,Ciencias Sociales y Derecho,Alto,6,Regular,3
+21,Masculino,8,9,Actividad aeróbica,5,3,1,Regular,Ciencias de la Salud,Alto,3,Regular,3
+21,Masculino,6,6,Mixta,5,4,4,Regular,Ciencias Exactas y Ambientales,Alto,3,Regular,3
+21,Masculino,8,10,Mixta,1,4,4,Poca,"Administración, Negocios y Contabilidad",Bajo,3,Mala,3
+21,Masculino,7,5,Mixta,3,3,5,Regular,Ciencias Sociales y Derecho,Bajo,3,Muy mala,3
+18,Femenino,7,7,Actividad aeróbica,2,3,5,Poca,"Administración, Negocios y Contabilidad",Alto,2,Muy mala,3
+19,Masculino,8,5,Actividad aeróbica,3,3,4,Poca,Ciencias de la Salud,Medio,2,Mala,3
+25,Femenino,7,5,Mixta,5,2,4,Poca,Ciencias de la Salud,Medio,4,Muy mala,3
+21,Femenino,7,11,Actividad aeróbica,2,3,4,Poca,"Administración, Negocios y Contabilidad",Medio,3,Buena,3
+19,Masculino,7,5,Actividad aeróbica,4,4,5,Regular,"Administración, Negocios y Contabilidad",Medio,3,Buena,3
+22,Masculino,7,7,Actividad aeróbica,4,3,4,Poca,"Administración, Negocios y Contabilidad",Alto,4,Regular,3
+21,Masculino,4,5,Actividad aeróbica,3,3,5,Regular,Ciencias de la Salud,Alto,6,Mala,3
+19,Femenino,6,9,Actividad aeróbica,0,0,12,Bastante,"Humanidades, Artes y Educación",Bajo,3,Buena,4
+20,Masculino,5,7,Actividad aeróbica,0,0,16,Bastante,"Ingeniería, Tecnología y Construcción",Medio,4,Regular,4
+21,Masculino,4,5,No realiza actividad física,0,0,1.41,Bastante,Ciencias Exactas y Ambientales,Alto,6,Mala,1
+22,Masculino,3,5.21,Actividad aeróbica,1,1,1.56,Bastante,Ciencias Exactas y Ambientales,Alto,5,Mala,1
+21,Masculino,4,4.51,No realiza actividad física,0,0,1.51,Bastante,Ciencias Exactas y Ambientales,Muy alto,4,Mala,1
+20,Masculino,3,5.21,Actividad aeróbica,0,0,1.23,Bastante,Ciencias Exactas y Ambientales,Muy alto,5,Muy mala,1
+21,Masculino,3,5.78,No realiza actividad física,0,0,1.69,Ninguna,Ciencias Exactas y Ambientales,Alto,8,Mala,1
+24,Masculino,6,4.9,Deportes colectivos,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,3
+17,Femenino,8,5.5,Mixta,0,0,4.2,Regular,"Ingeniería, Tecnología y Construcción",Alto,2,Mala,3
+19,Masculino,5,5.8,Deportes colectivos,0,0,3.7,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,2,Regular,3
+24,Femenino,NA,5,Actividad aeróbica,1,2,1,Poca,"Ingeniería, Tecnología y Construcción",Muy alto,4,Mala,4
+23,Femenino,7,7,Mixta,0,0,1.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Mala,8
+20,Femenino,7,7.5,Actividad aeróbica,2,1,10,Mucha,Ciencias Sociales y Derecho,Alto,7,Regular,8
+24,Femenino,8,7.5,Deportes colectivos,1,2,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,8
+21,Femenino,7,7.5,Deportes colectivos,0,0,2,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,8
+20,Femenino,6,5.5,Actividad aeróbica,2,2,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,8,Mala,8
+22,Femenino,7,7.5,Actividad aeróbica,3,2,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,8
+19,Femenino,6,6.5,Actividad aeróbica,2,1,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,8
+23,Femenino,5,7.5,Actividad aeróbica,3,2,2,Regular,Ciencias de la Salud,Muy alto,9,Buena,8
+18,Femenino,8,6.5,Actividad aeróbica,2,1,1,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,3,Regular,8
+22,Femenino,7,7.5,Actividad aeróbica,1,1,1,Bastante,Ciencias de la Salud,Alto,6,Regular,8
+21,Femenino,8,7.5,Actividad aeróbica,0,0,1.5,Regular,Ciencias de la Salud,Alto,5,Regular,8
+23,Femenino,7,6.5,Actividad aeróbica,0,0,1.5,Bastante,Ciencias de la Salud,Alto,7,Regular,8
+23,Femenino,5,7.5,Actividad aeróbica,0,0,2.5,Ninguna,Ciencias de la Salud,Alto,8,Buena,8
+23,Masculino,6,6,Deportes colectivos,0,1,4,Poca,"Ingeniería, Tecnología y Construcción",Medio,6,Regular,8
+21,Femenino,3,8,Deportes colectivos,1,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Regular,8
+21,Femenino,6,7.5,Mixta,1,1,2,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,7,Regular,8
+23,Femenino,5,7.5,Actividad aeróbica,2,2,2.5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,8,Regular,8
+22,Femenino,5,7.2,Actividad aeróbica,1,1,2.5,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,7,Regular,8
+23,Femenino,6,6.5,Actividad aeróbica,1,1,1.5,Regular,"Ingeniería, Tecnología y Construcción",Alto,6,Regular,8
+22,Femenino,7,6.5,Actividad aeróbica,2,1,1.5,Regular,"Ingeniería, Tecnología y Construcción",Muy alto,5,Regular,8
+22,Femenino,6,7.5,Mixta,0,0,2.5,Regular,Ciencias de la Salud,Muy alto,5,Regular,8
+21,Femenino,7,6.5,Deportes colectivos,2,2,2.1,Regular,"Ingeniería, Tecnología y Construcción",Alto,4,Regular,8
+23,Femenino,7,7.5,Actividad aeróbica,0,0,1.5,Mucha,"Ingeniería, Tecnología y Construcción",Muy alto,7,Buena,8
+19,Femenino,4,5,Actividad aeróbica,0,0,5,Bastante,"Ingeniería, Tecnología y Construcción",Alto,3,Mala,3
+18,Masculino,5,5,Actividad aeróbica,1,1,8,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,3
+19,Masculino,5,5,Deportes colectivos,4,3,5,Bastante,"Ingeniería, Tecnología y Construcción",Muy alto,3,Mala,3
+21,Masculino,4,5,Actividad aeróbica,0,0,1,Bastante,"Administración, Negocios y Contabilidad",Muy alto,9,Regular,3
+22,Femenino,5,7,Actividad aeróbica,0,1,3,Ninguna,Ciencias de la Salud,Bajo,6,Mala,3
+21,Femenino,3,7,Actividad aeróbica,3,4,3,Regular,"Ingeniería, Tecnología y Construcción",Medio,4,Muy mala,3
+19,Femenino,6,7,Deportes colectivos,0,2,1,Regular,"Administración, Negocios y Contabilidad",Bajo,1,Buena,3
+20,Femenino,5,8,Deportes colectivos,3,3,4,Bastante,Ciencias Exactas y Ambientales,Medio,2,Muy mala,3
+22,Femenino,5,8,Actividad aeróbica,4,3,1,Regular,Ciencias de la Salud,Alto,3,Buena,3
+22,Femenino,5,8,Actividad aeróbica,2,3,1,Poca,"Administración, Negocios y Contabilidad",Medio,5,Buena,3
+23,Femenino,5,8,Deportes colectivos,2,2,1,Poca,"Humanidades, Artes y Educación",Bajo,6,Muy buena,3
+22,Masculino,4,6,Actividad aeróbica,0,0,2,Regular,"Ingeniería, Tecnología y Construcción",Nulo,4,Muy buena,3
+21,Masculino,4,6,Actividad aeróbica,3,2,1,Regular,"Humanidades, Artes y Educación",Bajo,4,Regular,3
+22,Masculino,6,5,Actividad aeróbica,5,2,2,Regular,Ciencias Sociales y Derecho,Alto,5,Regular,3
+21,Femenino,5,5,Mixta,4,4,4,Regular,"Administración, Negocios y Contabilidad",Muy alto,3,Regular,3
+20,Masculino,4,7,Actividad aeróbica,4,2,3,Regular,Ciencias de la Salud,Alto,4,Muy buena,3
+24,Masculino,4,8,No realiza actividad física,4,1,1,Mucha,Ciencias de la Salud,Medio,9,Regular,3
+19,Femenino,6,8,Mixta,0,0,1.5,Bastante,"Administración, Negocios y Contabilidad",Medio,5,Buena,3
+20,Masculino,6,8,Deportes colectivos,0,0,4,Bastante,"Ingeniería, Tecnología y Construcción",Alto,2,Buena,9
+18,Masculino,5,9,Mixta,0,0,10,Regular,"Administración, Negocios y Contabilidad",Muy alto,4,Buena,6
+18,Masculino,NA,8,Mixta,2,1,3,Bastante,"Humanidades, Artes y Educación",Muy alto,1,Mala,6
+18,Femenino,6,7,No realiza actividad física,0,0,1,Regular,"Ingeniería, Tecnología y Construcción",Alto,5,Buena,3
+24,Femenino,3,6,Mixta,0,0,1,Bastante,"Humanidades, Artes y Educación",Alto,9,Regular,3
+22,Masculino,6,6,Mixta,0,0,1,Regular,Ciencias Sociales y Derecho,Bajo,3,Buena,3
+18,Femenino,6,6,Deportes colectivos,0,0,3,Bastante,"Administración, Negocios y Contabilidad",Alto,1,Regular,3
+18,Masculino,6,9,Actividad aeróbica,0,0,1,Bastante,Ciencias de la Salud,Nulo,3,Buena,3
+19,Femenino,7,8,No realiza actividad física,0,0,1,Regular,Ciencias Sociales y Derecho,Bajo,7,Regular,3
+22,Masculino,6,9,Actividad aeróbica,3,1,3,Bastante,"Ingeniería, Tecnología y Construcción",Bajo,5,Buena,3

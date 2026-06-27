@@ -1,0 +1,90 @@
+---
+title: "Solución Q3"
+format: html
+editor: visual
+---
+
+### Pregunta N°1
+
+El del comedor del piso 2 de la universidad ofrece como menú semanal: **5** entradas, **6** segundos, **4** postres, **3** bebidas. La cantidad de opciones posibles que un alumno UTEC puede escoger el menú es de \_\_\_ **360** formas distintas.
+
+Por otro lado, en la sección de Literatura de una Biblioteca se cuenta con diferentes obras literarias de tres tipos de estilos: **10** son del género narrativo, **15** del lírico y **8** del dramático. Un estudiante desea seleccionar **un** solo libro para leer el fin de semana. La cantidad de opciones diferentes que tiene el estudiante para escoger el libro es de \_\_\_ **33** opciones posibles.
+
+```{r}
+5*6*4*3
+10+15+8
+```
+
+### Pregunta N°2
+
+En una examen de Matemáticas, se cuenta con **6** preguntas de Geometría, **6** preguntas de Trigonometría y **8** preguntas de Aritmética.
+
+Un estudiante debe seleccionar en forma aleatoria **14** preguntas. La cantidad de maneras que puede escoger las preguntas es de \_\_\_ **38760**.
+
+La probabilidad que de las 14 preguntas, **6** sean de Aritmética y el resto de las otras 2 materias es de \_\_\_ **0.36**
+
+```{r}
+choose(20,14)
+round(choose(8,6)*choose(12,8)/choose(20,14),2)
+```
+
+Se pide:
+
+$$ \frac {\binom{8}{6} * \binom{12}{8}} {\binom{20}{14}} $$
+
+### Pregunta N°3
+
+Basado en su experiencia y lo indicado por el área de Compras, el encargado del almacén de una planta de ensamblaje de laptops ha indicado que en un lote de procesadores, el 30% pueden venir del proveedor A, el 50% pueden venir del proveedor B y el resto del proveedor C.
+
+Por otro lado, se conoce que el 2% de los procesadores que provienen del proveedor A son defectuosos, el 3% de los procesadores que provienen del proveedor B son defectuosos y el 4% de los procesadores que provienen del proveedor C son defectuosos.
+
+Si se elige un procesador al azar, la probabilidad de que **no** sea defectuoso es \_\_\_ **0.96**
+
+```{r}
+# Aplicación de probabilidad total
+# Prob. defectuoso = P(D|A)*P(A) + P(D|B)*P(B) + P(D|C)*P(C) 
+Prob.defectuoso <- 0.03*0.30 + 0.04*0.50 + 0.05*0.20
+Prob.defectuoso
+
+# Se pide:  Prob. no sea defectuoso <- 1 - Prob. defectuoso
+round(1-Prob.defectuoso,2)
+```
+
+### Pregunta N°4
+
+En la fabricación de un producto se presenta dos tipos de defectos A1 y A2 , cada uno con probabilidad de 0.15 y 0.12 , respectivamente. Los defectos ocurren de manera independiente. Si se elige al azar un producto, la probabilidad de que se presente por lo menos un solo tipo de defecto es \_\_\_ y la probabilidad de que se presente solo un tipo de defecto es \_\_\_
+
+```{r}
+# Se pide P(A U B) = P(A) + P(B) - P(A ꓵ B)
+# Por independencia:  P(A U B) = P(A) + P(B) - P(A)*P(B)
+P_al_menos_un_defecto <- 0.15 + 0.12 - 0.15*0.12
+P_al_menos_un_defecto
+```
+
+```{r}
+# Se pide P(A Δ B) = P(A) + P(B) - 2*P(A ꓵ B)
+# Por independencia P(A Δ B) = P(A) + P(B) - 2*P(A)*P(B)
+P_solo_un_defecto <- 0.15 + 0.12 - 2*0.15*0.12
+P_solo_un_defecto
+```
+
+### Pregunta N°5
+
+El lanzamiento de tres dados justos de seis caras y **anotar la suma** se trata de un \_\_\_ \`experimento aleatorio equiprobable\`**,** asimismo puede obtenerse \_\_\_\`16\` resultados diferentes.
+
+Finalmente, la probabilidad de que la suma sea igual **9** es \_\_\_\`0.12\`.
+
+```{r}
+dado1 <- seq(1:6)
+dado2 <- seq(1:6)
+dado3 <- seq(1:6)
+
+dados <- expand.grid(dado1, dado2, dado3)
+dados$suma= dados$Var1 + dados$Var2 + dados$Var3
+dados
+
+table(dados$suma)
+Prob_suma_sea_9 <- 25/216
+Prob_suma_sea_9
+
+```

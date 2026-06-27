@@ -1,0 +1,622 @@
+---
+title: "Hábitos de sueño, consumo de bebidas energéticas y bienestar estudiantil en universitarios e institutos durante el ciclo 2026-I"
+authors:
+  - name: "Piero Max Ortiz Villafuerte (Líder)"
+  - name: "Joel Modesto Cayllahua Hilario"
+  - name: "Salvador Donayre Epifania"
+  - name: "Sebastian Ernesto Chahuara Galdos"
+  - name: "Marisol Yaranga Delgado"
+format: html
+editor: visual
+fontsize: 12pt
+linestretch: 2
+papersize: letter
+number-sections: true
+embed-resources: true
+---
+
+```{r setup, include=FALSE}
+if (!require(ggplot2))  install.packages("ggplot2")
+if (!require(dplyr))    install.packages("dplyr")
+if (!require(readr))    install.packages("readr")
+if (!require(moments))  install.packages("moments")
+if (!require(knitr))    install.packages("knitr")
+
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(moments)
+library(fitdistrplus)
+
+DF <- read_csv("Encuesta.csv", show_col_types = FALSE)
+
+niveles_cs <- c("Muy mala", "Mala", "Regular", "Buena", "Muy buena")
+
+DF <- DF %>% mutate(
+  Edad            = as.integer(Edad),
+  CantidadCursos  = as.integer(CantidadCursos),
+  FrecBebida      = as.integer(FrecBebida),
+  UnidadBebida    = as.integer(UnidadBebida),
+  Sexo            = factor(Sexo),
+  Carrera         = factor(Carrera),
+  ActividadFisica = factor(ActividadFisica),
+  CanDesayuno     = factor(CanDesayuno,
+                           levels = c("Ninguna","Poca","Regular","Bastante","Mucha"),
+                           ordered = TRUE),
+  CalidadSuenio   = factor(CalidadSuenio, levels = niveles_cs, ordered = TRUE),
+  Estres          = factor(Estres,
+                           levels = c("Nulo","Bajo","Medio","Alto","Muy alto"),
+                           ordered = TRUE),
+  CicloAcademico  = factor(as.integer(CicloAcademico), levels = 1:10, ordered = TRUE)
+)
+
+DF_seccion <- DF
+
+n_seccion <- nrow(DF_seccion)
+
+# Parámetros variables aleatorias
+n_fb         <- sum(!is.na(DF_seccion$FrecBebida))
+p_consume    <- sum(DF_seccion$FrecBebida > 0, na.rm = TRUE) / n_fb
+
+n_cs         <- sum(!is.na(DF_seccion$CalidadSuenio))
+p_mal_suenio <- sum(as.character(DF_seccion$CalidadSuenio) %in%
+                      c("Muy mala", "Mala"), na.rm = TRUE) / n_cs
+
+# Tablas probabilidad empírica
+v1_tabla <- DF_seccion %>%
+  filter(!is.na(FrecBebida)) %>%
+  count(FrecBebida) %>%
+  arrange(FrecBebida) %>%
+  mutate(P = round(n / sum(n), 4))
+
+v2_tabla <- DF_seccion %>%
+  filter(!is.na(CalidadSuenio)) %>%
+  mutate(CalidadSuenio = factor(as.character(CalidadSuenio), levels = niveles_cs)) %>%
+  count(CalidadSuenio) %>%
+  arrange(CalidadSuenio) %>%
+  mutate(P = round(n / sum(n), 4))
+
+# Vectores variables continuas
+ejercicio_vec <- DF_seccion$HorasEjercicio[!is.na(DF_seccion$HorasEjercicio)]
+suenio_vec    <- DF_seccion$HorasSuenio[!is.na(DF_seccion$HorasSuenio)]
+
+mu_ej  <- mean(ejercicio_vec);  sd_ej  <- sd(ejercicio_vec);  
+lam_ej <- 1 / mu_ej
+mu_su  <- mean(suenio_vec);     sd_su  <- sd(suenio_vec)
+```
+
+# I. Introducción
+
+## I.1 Relevancia
+
+El estilo de vida de los estudiantes universitarios y de institutos se encuentra estrechamente relacionado con factores que afectan su salud física y mental. El consumo de bebidas energéticas ha aumentado considerablemente debido a las exigencias académicas y hábitos de descanso irregulares, siendo usadas como alternativa para mantenerse despiertos y mejorar la concentración. Sin embargo, su consumo frecuente puede generar efectos negativos sobre la calidad del sueño y el nivel de estrés. Analizar la relación entre el consumo de bebidas energéticas y el bienestar estudiantil es relevante para identificar patrones que permitan orientar estrategias de salud en la comunidad académica.
+
+## I.2 Objetivos
+
+### I.2.1 Objetivo general
+
+Analizar la relación entre el consumo de bebidas energéticas y los hábitos de sueño, actividad física y bienestar general de estudiantes universitarios y de institutos durante el ciclo académico 2026-I mediante herramientas de análisis estadístico y probabilístico.
+
+### I.2.2 Objetivos específicos
+
+- Determinar la relación entre la frecuencia de consumo de bebidas energéticas y las horas de sueño diarias de los estudiantes durante el ciclo académico 2026-I.
+
+- Analizar la relación entre el nivel de estrés autopercibido y la calidad de sueño reportada por los estudiantes durante el ciclo académico 2026-I.
+
+# II. Contexto
+
+## II.1 Población objetivo
+
+La población objetivo está conformada por estudiantes universitarios y de institutos matriculados durante el ciclo académico 2026-I. La unidad muestral corresponde a cada estudiante participante en la encuesta, representando una observación individual. Se buscó representatividad incluyendo estudiantes de diferentes centros de estudio, carreras y ciclos académicos.
+
+## II.2 Tipo de muestreo
+
+Se utilizó un muestreo no probabilístico por conveniencia, dado que los participantes fueron seleccionados según su accesibilidad y disposición para responder la encuesta virtual. Este tipo de muestreo permite obtener información de manera eficiente, con la limitación de no poder generalizar con certeza estadística a toda la población.
+
+## II.3 Recolección de datos
+
+Los datos se recolectaron mediante una encuesta virtual en Google Forms distribuida a través de redes sociales y grupos académicos durante el ciclo 2026-I. Es una fuente de datos **primaria**. Toda la información fue obtenida por autorreporte. La muestra efectiva utilizada en este informe es de **n = `r n_seccion` observaciones limpias** de toda la sección.
+
+## II.4 Variables
+
+| Variable        | Tipo                  | Restricción           |
+|-----------------|-----------------------|-----------------------|
+| Edad            | Cuantitativa discreta | \[17, 25\] años       |
+| Sexo            | Cualitativa nominal   | Masculino / Femenino  |
+| HorasSuenio     | Cuantitativa continua | \[3, 12\] horas       |
+| HorasEjercicio  | Cuantitativa continua | \[0, 20\] horas       |
+| FrecBebida      | Cuantitativa discreta | \[0, 7\] días/semana  |
+| UnidadBebida    | Cuantitativa discreta | \[0, 5\] unidades/día |
+| CalidadSuenio   | Cualitativa ordinal   | Muy mala → Muy buena  |
+| Estres          | Cualitativa ordinal   | Nulo → Muy alto       |
+| ActividadFisica | Cualitativa nominal   | 5 categorías          |
+| Carrera         | Cualitativa nominal   | 6 áreas               |
+| CantidadCursos  | Cuantitativa discreta | \[3, 8\] cursos       |
+| CicloAcademico  | Cualitativa ordinal   | \[1, 10\]             |
+| CanDesayuno     | Cualitativa ordinal   | Ninguna → Mucha       |
+
+# III. Análisis descriptivo
+
+## III.1 Análisis univariado
+
+### Frecuencia de consumo de bebidas energéticas (FrecBebida) — Cuantitativa discreta
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+fb_resumen <- DF_seccion %>%
+  filter(!is.na(FrecBebida)) %>%
+  summarise(
+    Moda   = as.integer(names(which.max(table(FrecBebida)))),
+    Mediana = median(FrecBebida),
+    Media  = round(mean(FrecBebida), 2),
+    DE     = round(sd(FrecBebida), 2),
+    CV     = round(sd(FrecBebida) / mean(FrecBebida) * 100, 1)
+  )
+kable(fb_resumen, caption = "Descriptores — FrecBebida (días/semana)")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(v1_tabla, aes(x = FrecBebida, y = P)) +
+  geom_line(linewidth = 1, color = "steelblue") +
+  geom_point(size = 3, color = "steelblue") +
+  geom_text(aes(label = round(P, 3)), vjust = -0.5, size = 3) +
+  labs(
+    title = "Distribución de frecuencia de consumo de bebidas energéticas",
+    x = "Días por semana",
+    y = "Proporción"
+  ) +
+  theme_minimal()
+```
+
+La mayoría de los estudiantes **no consume bebidas energéticas** (Moda = 0, Mediana = 0 días/semana). Sin embargo, la Media de **1.25 días/semana** revela que quienes sí consumen lo hacen con frecuencia considerable. El CV de **136.9%** indica altísima variabilidad: la distribución es asimétrica positiva con cola larga hacia la derecha, donde el 52.1% no consume nunca y solo el 1.4% consume los 7 días de la semana.
+
+------------------------------------------------------------------------
+
+### Horas de sueño por noche (HorasSuenio) — Cuantitativa continua
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+su_resumen <- data.frame(
+  n       = length(suenio_vec),
+  Media   = round(mu_su, 2),
+  Mediana = median(suenio_vec),
+  DE      = round(sd_su, 2),
+  Asimetria = round(skewness(suenio_vec), 3),
+  Curtosis  = round(kurtosis(suenio_vec), 3)
+)
+kable(su_resumen, caption = "Descriptores — HorasSuenio")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data.frame(x = suenio_vec), aes(x = x)) +
+  geom_histogram(aes(y = after_stat(density)), bins = 10,
+                 fill = "#4A90D9", color = "white", alpha = 0.85) +
+  stat_function(fun = dnorm, args = list(mean = mu_su, sd = sd_su),
+                color = "darkblue", linewidth = 1.2, linetype = "dashed") +
+  geom_vline(xintercept = mu_su, color = "darkblue", linewidth = 1) +
+  labs(title = "Distribución de horas de sueño por noche",
+       subtitle = paste0("Normal(μ = ", round(mu_su,2), ", σ = ", round(sd_su,2), ")"),
+       x = "Horas de sueño", y = "Densidad") +
+  theme_minimal()
+```
+
+Los estudiantes duermen en promedio **`r round(mu_su,2)` horas** por noche (Mediana = `r median(suenio_vec)` h, DE = `r round(sd_su,2)`). La proximidad entre media y mediana, junto con la asimetría de `r round(skewness(suenio_vec),2)` (≈0) y la curtosis de `r round(kurtosis(suenio_vec),2)` (≈3), confirman que las horas de sueño siguen una distribución aproximadamente Normal, lo que justifica su modelado en la sección IV.
+
+------------------------------------------------------------------------
+
+### Calidad de sueño autopercibida (CalidadSuenio) — Cualitativa ordinal
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+kable(v2_tabla %>% rename(Categoría = CalidadSuenio, Frecuencia = n, Proporción = P),
+      caption = "Distribución — CalidadSuenio")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+v2_acum <- v2_tabla %>%
+  mutate(
+    CalidadSuenio = factor(as.character(CalidadSuenio), levels = niveles_cs),
+    P_acum = cumsum(P)
+  )
+
+ggplot(v2_acum,
+       aes(x = CalidadSuenio, y = P_acum, group = 1)) +
+  geom_line(linewidth = 1, color = "steelblue") +
+  geom_point(size = 3, color = "steelblue") +
+  geom_text(aes(label = scales::percent(P_acum)),
+            vjust = -0.5, size = 3) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Porcentaje acumulado de la calidad de sueño",
+    x = "Calidad de sueño",
+    y = "Porcentaje acumulado"
+  ) +
+  theme_minimal()
+```
+
+La categoría modal es **Regular** (≈49%). Sumando Mala y Muy mala, más del **26%** de los estudiantes reporta sueño deficiente.
+
+------------------------------------------------------------------------
+
+### Tipo de actividad física (ActividadFisica) — Cualitativa nominal
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+af_tabla <- DF_seccion %>% filter(!is.na(ActividadFisica)) %>%
+  count(ActividadFisica) %>% mutate(P = round(n/sum(n),3)) %>% arrange(desc(n))
+
+ggplot(af_tabla, aes(x = "", y = P, fill = ActividadFisica)) +
+  geom_col(color = "white") +
+  coord_polar(theta = "y") +
+  geom_text(
+    aes(label = paste0(round(P * 100, 1), "%")),
+    position = position_stack(vjust = 0.5),
+    size = 3
+  ) +
+  labs(
+    title = "Tipo de actividad física más frecuente",
+    fill = "Actividad"
+  ) +
+  theme_void()
+```
+
+La **actividad aeróbica** es la más común (**43%**), seguida de actividad mixta (**24.2%**) y deportes colectivos (**19.3%**). Un **13.3%** no realiza ningún tipo de actividad física, cifra relevante en el contexto del bienestar estudiantil. No se registraron casos de actividad anaeróbica exclusiva en la muestra.
+
+## III.2 Análisis de interacción
+
+### Par numérico-numérico: HorasSuenio vs HorasEjercicio
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df_scatter <- DF_seccion %>% filter(!is.na(HorasSuenio), !is.na(HorasEjercicio))
+ggplot(df_scatter, aes(x = HorasEjercicio, y = HorasSuenio)) +
+  geom_point(alpha = 0.3, color = "#2196F3") +
+  geom_smooth(method = "lm", color = "darkblue", se = TRUE) +
+  labs(title = "Horas de sueño vs Horas de ejercicio semanal",
+       x = "Horas de ejercicio/semana", y = "Horas de sueño/noche") +
+  theme_minimal()
+```
+
+No se observa una tendencia lineal clara entre ejercicio y sueño. La nube de puntos está dispersa, lo que sugiere relación débil entre ambas variables continuas.
+
+### Par categórico-categórico: CalidadSuenio vs Estres
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df_cat <- DF_seccion %>% filter(!is.na(CalidadSuenio), !is.na(Estres))
+ggplot(df_cat, aes(x = Estres, fill = CalidadSuenio)) +
+  geom_bar(position = "fill", color = "white") +
+  scale_fill_brewer(palette = "RdYlBu", direction = -1) +
+  labs(title = "Calidad de sueño según nivel de estrés",
+       x = "Nivel de estrés", y = "Proporción",
+       fill = "Calidad de sueño") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
+A mayor nivel de estrés, mayor proporción de estudiantes con calidad de sueño deficiente, evidenciando una relación entre ambas variables ordinales.
+
+### Par categórico-numérico: CalidadSuenio vs HorasSuenio
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df_mix <- DF_seccion %>% filter(!is.na(CalidadSuenio), !is.na(HorasSuenio)) %>%
+  mutate(CalidadSuenio = factor(as.character(CalidadSuenio), niveles_cs))
+ggplot(df_mix, aes(x = CalidadSuenio, y = HorasSuenio, fill = CalidadSuenio)) +
+  geom_boxplot(color = "gray30") +
+  scale_fill_brewer(palette = "Blues") +
+  labs(title = "Horas de sueño según calidad de sueño autopercibida",
+       x = "Calidad de sueño", y = "Horas de sueño por noche") +
+  theme_minimal() + theme(legend.position = "none")
+```
+
+Los estudiantes con mejor calidad de sueño autopercibida tienden a dormir más horas. La mediana aumenta progresivamente de Muy mala a Muy buena, confirmando coherencia entre la percepción subjetiva y las horas reales de descanso.
+
+# IV. Análisis probabilístico
+
+## IV.1 Probabilidad empírica
+
+### Variable 1 — Frecuencia de consumo de bebidas energéticas
+
+$EA_1$: Seleccionar una persona al azar y observar cuántos días por semana consume bebidas energéticas.
+
+$$\Omega_{EA_1} = \{0,\ 1,\ 2,\ 3,\ 4,\ 5,\ 6,\ 7\}$$
+
+```{r echo=FALSE}
+kable(v1_tabla %>% rename(`Días/semana` = FrecBebida, Frecuencia = n, `P(Eᵢ)` = P),
+      caption = "Probabilidades empíricas — FrecBebida")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(v1_tabla, aes(x = factor(FrecBebida), y = P, fill = factor(FrecBebida))) +
+  geom_bar(stat = "identity", color = "white", width = 0.7) +
+  geom_text(aes(label = round(P,3)), vjust = -0.5, size = 3) +
+  labs(title = "Probabilidad empírica — FrecBebida",
+       x = "Días por semana", y = "P(Eᵢ)") +
+  theme_minimal() + theme(legend.position = "none")
+```
+
+```{r}
+n_v1 <- sum(!is.na(DF_seccion$FrecBebida))
+P_E1 <- sum(DF_seccion$FrecBebida == 0, na.rm=TRUE) / n_v1
+P_E8 <- sum(DF_seccion$FrecBebida == 7, na.rm=TRUE) / n_v1
+cat("P(0 días) =", round(P_E1,4), "| P(7 días) =", round(P_E8,4),
+    "| Suma =", round(sum(v1_tabla$P),4), "\n")
+```
+
+La probabilidad de no consumir bebidas energéticas es **P(E₁) = `r round(P_E1,3)`**. La distribución decrece conforme aumenta la frecuencia, con el consumo diario siendo el menos probable (**P(E₈) = `r round(P_E8,3)`**).
+
+------------------------------------------------------------------------
+
+### Variable 2 — Calidad de sueño autopercibida
+
+$EA_2$: Seleccionar una persona al azar y observar su calidad de sueño autopercibida.
+
+$$\Omega_{EA_2} = \{\text{Muy mala},\ \text{Mala},\ \text{Regular},\ \text{Buena},\ \text{Muy buena}\}$$
+
+```{r echo=FALSE}
+kable(v2_tabla %>% rename(Categoría = CalidadSuenio, Frecuencia = n, `P(Eᵢ)` = P),
+      caption = "Probabilidades empíricas — CalidadSuenio")
+```
+
+```{r}
+cs <- as.character(DF_seccion$CalidadSuenio)
+n_v2    <- sum(!is.na(cs))
+P_reg   <- sum(cs == "Regular",  na.rm=TRUE) / n_v2
+P_def   <- sum(cs %in% c("Muy mala","Mala"), na.rm=TRUE) / n_v2
+cat("P(Regular) =", round(P_reg,4), "| P(Mala o Muy mala) =", round(P_def,4), "\n")
+```
+
+La categoría Regular concentra **≈`r round(P_reg*100,1)`%** de las observaciones. La probabilidad de percepción de sueño deficiente (Mala o Muy mala) es **`r round(P_def,3)`**.
+
+## IV.2 Probabilidad condicional
+
+Se definen dos eventos:
+
+- $E_1$: El estudiante **no consume bebidas energéticas** (FrecBebida = 0)
+- $E_2$: El estudiante reporta calidad de sueño **Regular, Mala o Muy mala**
+
+```{r}
+DF_cond <- DF_seccion %>%
+  filter(!is.na(FrecBebida), !is.na(CalidadSuenio)) %>%
+  mutate(
+    E1 = ifelse(FrecBebida == 0, "No consume", "Consume"),
+    E2 = ifelse(as.character(CalidadSuenio) %in% c("Muy mala","Mala","Regular"),
+                "Sueño regular o peor", "Sueño bueno o muy bueno")
+  )
+
+n_cond <- nrow(DF_cond)
+P_E1   <- sum(DF_cond$E1 == "No consume") / n_cond
+P_E2   <- sum(DF_cond$E2 == "Sueño regular o peor") / n_cond
+P_int  <- sum(DF_cond$E1 == "No consume" & DF_cond$E2 == "Sueño regular o peor") / n_cond
+P_E2c  <- 1 - P_E2
+P_E1_E2  <- P_int / P_E2
+P_E2_E1  <- P_int / P_E1
+P_E1_E2c <- sum(DF_cond$E1=="No consume" & DF_cond$E2=="Sueño bueno o muy bueno") /
+             sum(DF_cond$E2=="Sueño bueno o muy bueno")
+
+cat("P(E1) =", round(P_E1,4), "| P(E2) =", round(P_E2,4), "\n")
+cat("P(E1 ∩ E2) =", round(P_int,4), "| P(E1)·P(E2) =", round(P_E1*P_E2,4), "\n")
+cat("P(E1|E2) =", round(P_E1_E2,4), "| P(E2|E1) =", round(P_E2_E1,4), "\n")
+if (round(P_int,4) != round(P_E1*P_E2,4)) cat("Los eventos son DEPENDIENTES\n")
+```
+
+```{r}
+Bayes <- (P_E1_E2 * P_E2) / ((P_E1_E2 * P_E2) + (P_E1_E2c * P_E2c))
+cat("T. Bayes P(E2|E1) =", round(Bayes,4))
+if (round(Bayes,4) == round(P_E2_E1,4)) cat(" ✓ Verificado\n")
+```
+
+```{r}
+tabla_cont <- table(DF_cond$E1, DF_cond$E2)
+n_total <- sum(tabla_cont)
+
+# Crear tabla con márgenes
+tabla_margins <- addmargins(tabla_cont)
+
+# Crear tabla de proporciones
+tabla_prop <- prop.table(tabla_cont)
+tabla_prop_marg <- addmargins(tabla_prop)
+
+# Mostrar ambas tablas
+cat("TABLA 1: Frecuencias Absolutas\n")
+print(tabla_margins)
+cat("\n")
+cat("TABLA 2: Frecuencias Relativas (Proporciones)\n")
+print(round(tabla_prop_marg, 4))
+
+# Crear tabla presentable para el documento
+# Usar directamente la tabla que ya existe
+tabla_display <- data.frame(
+  " " = c("No consume", "Consume", "Total"),
+  "Sueño regular o peor" = c(
+    tabla_cont["No consume", "Sueño regular o peor"],
+    tabla_cont["Consume", "Sueño regular o peor"],
+    sum(tabla_cont[, "Sueño regular o peor"])
+  ),
+  "Sueño bueno o muy bueno" = c(
+    tabla_cont["No consume", "Sueño bueno o muy bueno"],
+    tabla_cont["Consume", "Sueño bueno o muy bueno"],
+    sum(tabla_cont[, "Sueño bueno o muy bueno"])
+  ),
+  "Total" = c(
+    round(sum(tabla_cont["No consume", ]), 2),
+    round(sum(tabla_cont["Consume", ]), 2),
+    nrow(DF_cond)
+  ),
+  check.names = FALSE
+)
+
+kable(tabla_display, 
+      caption = "Tabla de contingencia 2×2: Frecuencias absolutas para eventos E₁ y E₂")
+```
+
+Dado que $P(E_1 \cap E_2) = 0.3935 \neq P(E_1) \cdot P(E_2) = 0.3907$, los eventos son **dependientes**: el consumo de bebidas energéticas y la calidad de sueño percibida no son independientes. La probabilidad condicional $P(E_2|E_1) = 0.7552$ indica que el **75.5% de quienes no consumen** bebidas energéticas reporta calidad de sueño Regular o peor, valor ligeramente superior a la probabilidad marginal $P(E_2) = 0.75$. Esto sugiere que evitar el consumo no garantiza mejor calidad de sueño, y que otros factores como el estrés tienen mayor influencia. El Teorema de Bayes verifica el resultado ($P(E_2|E_1) = 0.7552$ ✓).
+
+## IV.3 Variables aleatorias
+
+### Variable Discreta 1 — $X \sim \text{Geom}(p)$
+
+**Variable de estudio:** FrecBebida (días/semana que consume bebidas energéticas)
+
+**Caso:** ¿Cuántos estudiantes deben seleccionarse hasta encontrar al **primer consumidor** de bebidas energéticas?
+
+$$X: \text{Nº de estudiantes seleccionados hasta el primer consumidor} \quad X \sim \text{Geom}(p)$$
+
+```{r}
+cat("p =", round(p_consume,4), "\n")
+E_X1 <- 1/p_consume; V_X1 <- (1-p_consume)/p_consume^2; SD_X1 <- sqrt(V_X1)
+cat("E(X) = 1/p =", round(E_X1,4), "| V(X) =", round(V_X1,4), "| SD(X) =", round(SD_X1,4),"\n")
+
+k1 <- 3; P_X3 <- dgeom(k1-1, prob=p_consume)
+lim1 <- 5; P_Xleq5 <- pgeom(lim1-1, prob=p_consume)
+cat("P(X=3) =", round(P_X3,4), "| P(X≤5) =", round(P_Xleq5,4), "\n")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df_geom <- data.frame(x=1:20, pmf=dgeom(0:19,p_consume), cdf=pgeom(0:19,p_consume))
+ggplot(df_geom, aes(x=factor(x), y=pmf)) +
+  geom_bar(stat="identity", fill="#2196F3", color="white", width=0.7) +
+  geom_text(aes(label=round(pmf,3)), vjust=-0.4, size=2.5) +
+  labs(title=expression(paste("PMF — ", X %~% Geom(p))),
+       subtitle=paste0("p = ",round(p_consume,4)),
+       x="k (intentos hasta primer éxito)", y="P(X=k)") +
+  theme_minimal()
+```
+
+Con $p = `r round(p_consume,4)`$, en promedio se necesitan **`r round(E_X1,1)` estudiantes** para encontrar al primer consumidor. $P(X=3) = `r round(P_X3,4)`$ y $P(X \leq 5) = `r round(P_Xleq5,4)`$: en el `r round(P_Xleq5*100,0)`% de los casos se encuentra al primer consumidor dentro de los primeros 5 intentos.
+
+------------------------------------------------------------------------
+
+### Variable Discreta 2 — $Y \sim \text{Binomial}(10, p)$
+
+**Variable de estudio:** CalidadSuenio (categorías Mala/Muy mala)
+
+**Caso:** En un grupo de **10 estudiantes** elegidos al azar, ¿cuántos reportan calidad de sueño deficiente (Mala o Muy mala)?
+
+$$Y: \text{Nº de estudiantes con sueño deficiente en un grupo de 10} \quad Y \sim \text{Binom}(10, p)$$
+
+```{r}
+cat("p =", round(p_mal_suenio,4), "\n")
+n_b <- 10
+E_Y <- n_b*p_mal_suenio; V_Y <- n_b*p_mal_suenio*(1-p_mal_suenio); SD_Y <- sqrt(V_Y)
+cat("E(Y) = n·p =", round(E_Y,4), "| V(Y) =", round(V_Y,4), "| SD(Y) =", round(SD_Y,4),"\n")
+
+k2 <- 2; P_Y2 <- dbinom(k2,n_b,p_mal_suenio)
+lim2 <- 3; P_Yleq3 <- pbinom(lim2,n_b,p_mal_suenio)
+cat("P(Y=2) =", round(P_Y2,4), "| P(Y≤3) =", round(P_Yleq3,4), "\n")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df_binom <- data.frame(y=0:10, pmf=dbinom(0:10,n_b,p_mal_suenio))
+ggplot(df_binom, aes(x=factor(y), y=pmf)) +
+  geom_bar(stat="identity", fill="#9C27B0", color="white", width=0.7) +
+  geom_text(aes(label=round(pmf,3)), vjust=-0.4, size=2.5) +
+  labs(title=expression(paste("PMF — ", Y %~% Bin(10,p))),
+       subtitle=paste0("p = ",round(p_mal_suenio,4)," | n = 10"),
+       x="k (estudiantes con sueño deficiente)", y="P(Y=k)") +
+  theme_minimal()
+```
+
+Con $p = `r round(p_mal_suenio,4)`$, se esperan en promedio **`r round(E_Y,2)` estudiantes** con sueño deficiente por grupo de 10. $P(Y=2) = `r round(P_Y2,4)`$ es el valor más probable, y $P(Y \leq 3) = `r round(P_Yleq3,4)`$: en el `r round(P_Yleq3*100,0)`% de los grupos de 10 habrá a lo mucho 3 estudiantes con sueño deficiente.
+
+------------------------------------------------------------------------
+
+### Variable Continua 1 — $Z \sim \text{Exp}(\lambda)$
+
+**Variable de estudio:** HorasEjercicio (horas de actividad física por semana)
+
+**Caso de estudio:** Modelar la distribución de horas de ejercicio físico semanal para analizar patrones de actividad en estudiantes universitarios. Esta información es relevante para diseñar intervenciones de bienestar que promuevan estilos de vida más activos.
+
+```{r}
+cat("n =", length(ejercicio_vec), "| Media =", round(mu_ej,4),
+    "| SD =", round(sd_ej,4), "| Asimetría =", round(skewness(ejercicio_vec),4),"\n")
+cat("λ =", round(lam_ej,4), "| E(Z) = 1/λ =", round(1/lam_ej,4),
+    "| V(Z) = 1/λ² =", round(1/lam_ej^2,4), "\n")
+```
+
+Por los parámetros de asimetría y demás outputs parece no ser exponencial teóricamente. Procedemos a comparar con la distribución Gamma:
+
+```{r}
+
+# Filtrar los ceros si es necesario (la Gamma estricta no acepta ceros exactos)
+datos_filtrados <- DF$HorasEjercicio[DF$HorasEjercicio > 0 & !is.na(DF$HorasEjercicio)]
+
+# Ajustar ambas distribuciones
+fit_exp <- fitdist(datos_filtrados, "exp")
+fit_gamma <- fitdist(datos_filtrados, "gamma")
+
+# Comparar AIC
+summary(fit_exp)$aic
+summary(fit_gamma)$aic
+
+# Graficar la comparación real vs teórica
+plotlegend <- c("Exponencial", "Gamma")
+
+# 2. Graficamos modificando los saltos (breaks) directamente
+# Usamos addlegend = FALSE para evitar que R se rompa
+denscomp(list(fit_exp, fit_gamma), 
+         main = "Distribución de HorasEjercicio",
+         xlab = "Horas de Ejercicio",
+         ylab = "Densidad",
+         xlim = c(0, 20),
+         breaks = seq(0, 20, by = 1), # <- Aquí defines los saltos de 1 en 1 hora
+         addlegend = FALSE)           # <- Desactivamos la leyenda automática
+
+# 3. Agregamos la leyenda de forma manual justo abajo
+legend("topright", 
+       legend = plotlegend, 
+       col = 2:3,   # Colores por defecto que usa denscomp (rojo y verde)
+       lty = 1:2,   # Tipos de línea por defecto (continua y discontinua)
+       bty = "n")   # "n" elimina el recuadro gris de la leyenda
+```
+
+La elección de la distribución Exponencial frente a la Gamma se justifica por:
+
+- **Tendencia en asimetría:** La asimetría muestral $(r round(skewness(ejercicio_vec),2))$ es cercano al valor teórico Exponencial ($\text{Asimetría} = 2$).
+
+- **Ajuste en el origen:** Los datos se concentran máximamente en el valor más bajo (1 hora) y decaen de inmediato. La Gamma ($\alpha > 1$) genera una curvatura de crecimiento inicial artificial que infravalora el primer intervalo, mientras que la Exponencial captura correctamente este pico desde el eje vertical.
+
+- **Equidispersión:** La media $(r round(mu_ej,2) hrs)$ y la desviación estándar $(r round(sd_ej,2) hrs)$ son numéricamente muy cercanas, cumpliendo con la propiedad fundamental $E(Z) \approx SD(Z) = 1/\lambda$.
+
+  Con $\lambda = `round(lam_ej,4)`$:
+
+```{r}
+P_Z5 <- 1 - pexp(5, rate=lam_ej)
+cat("P(Z > 5) =", round(P_Z5,4), "=>", round(P_Z5*100,1), "% realiza más de 5 hrs/semana\n")
+```
+
+El **`r round(P_Z5*100,1)`%** de los estudiantes realiza más de 5 horas de ejercicio semanal (**`r round((1-P_Z5)*100,1)`% realiza 5 horas o menos**), lo que es consistente con la cola derecha de la distribución Exponencial: la gran mayoría se concentra en valores bajos con pocos casos en valores extremos.
+
+------------------------------------------------------------------------
+
+### Variable Continua 2 — $W \sim \text{Normal}(\mu, \sigma)$
+
+**Variable de estudio:** HorasSuenio (horas de sueño por noche)
+
+```{r}
+cat("n =", length(suenio_vec), "| μ =", round(mu_su,4), "| σ =", round(sd_su,4),
+    "| Asimetría =", round(skewness(suenio_vec),4), "| Curtosis =", round(kurtosis(suenio_vec),4),"\n")
+cat("E(W) = μ =", round(mu_su,4), "| V(W) = σ² =", round(sd_su^2,4),
+    "| SD(W) = σ =", round(sd_su,4), "\n")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data.frame(x=suenio_vec), aes(x=x)) +
+  geom_histogram(aes(y=after_stat(density)), bins=10,
+                 fill="#4A90D9", color="white", alpha=0.85) +
+  stat_function(fun=dnorm, args=list(mean=mu_su, sd=sd_su),
+                color="darkblue", linewidth=1.2, linetype="dashed") +
+  geom_vline(xintercept=mu_su, color="darkblue", linewidth=1) +
+  labs(title="Distribución de HorasSuenio",
+       subtitle=paste0("Normal(μ = ",round(mu_su,2),", σ = ",round(sd_su,2),")"),
+       x="Horas de sueño/noche", y="Densidad") +
+  theme_minimal()
+```
+
+La asimetría de **`r round(skewness(suenio_vec),2)`** (≈0) y curtosis de **`r round(kurtosis(suenio_vec),2)`** (≈3) validan la aproximación Normal. Con $W \sim \text{Normal}(`r round(mu_su,2)`, `r round(sd_su,2)`)$, la mayoría duerme entre `r round(mu_su-sd_su,1)` y `r round(mu_su+sd_su,1)` horas (μ ± σ).
+
+```{r}
+P_rango <- pnorm(8,mu_su,sd_su) - pnorm(6,mu_su,sd_su)
+cat("P(6 ≤ W ≤ 8) =", round(P_rango,4), "→", round(P_rango*100,1),
+    "% de los estudiantes duerme entre 6 y 8 horas\n")
+```
+
+La probabilidad de dormir en el **rango recomendado (6–8 horas)** es $P(6 \leq W \leq 8) = `r round(P_rango,4)`$, indicando que el **`r round(P_rango*100,1)`%** de la sección descansa una cantidad adecuada.
+
+# V. Conclusiones
+
+El análisis reveló que más de la mitad de los estudiantes (**`r round(P_E1*100,1)`%**) no consume bebidas energéticas, aunque los que sí lo hacen muestran mayor frecuencia de sueño deficiente, confirmada por la dependencia estadística entre ambos eventos ($P(E_1 \cap E_2) \neq P(E_1) \cdot P(E_2)$). Los estudiantes duermen en promedio **`r round(mu_su,1)` horas** por noche, con el `r round(P_rango*100,1)`% dentro del rango recomendado de 6–8 horas; la distribución Normal es un buen modelo para esta variable. El ejercicio físico, en cambio, sigue una distribución Exponencial con la mayoría concentrada en valores bajos (**`r round((1-P_Z5)*100,1)`%** realiza 5 horas o menos por semana). La relación entre nivel de estrés y calidad de sueño sugiere que intervenciones en manejo del estrés podrían mejorar el bienestar estudiantil.

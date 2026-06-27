@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Solución Q2 - Horario 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Solución Q2 - 2025-2_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Solución Q2 - 2025-2_files/libs/quarto-html/quarto.js"></script>
+<script src="Solución Q2 - 2025-2_files/libs/quarto-html/popper.min.js"></script>
+<script src="Solución Q2 - 2025-2_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Solución Q2 - 2025-2_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Solución Q2 - 2025-2_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Solución Q2 - 2025-2_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Solución Q2 - 2025-2_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Solución Q2 - 2025-2_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Solución Q2 - 2025-2_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Solución Q2 - Horario 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Adjuntando el paquete: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>DF <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"marketing_campaign_ULTIMO.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2205 Columns: 22
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (2): Education, Marital_Status
+dbl (20): ID, Year_Birth, Income, Kidhome, Teenhome, Dt_Customer, Recency, M...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(DF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 22
+     ID Year_Birth Education  Marital_Status Income Kidhome Teenhome Dt_Customer
+  &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;       &lt;dbl&gt;
+1  5524       1957 Graduation Single          58138       0        0       41156
+2  2174       1954 Graduation Single          46344       1        1       41706
+3  4141       1965 Graduation Together        71613       0        0       41507
+4  6182       1984 Graduation Together        26646       1        0       41680
+5  5324       1981 PhD        Married         58293       1        0       41658
+6  7446       1967 Master     Together        62513       0        1       41526
+# ℹ 14 more variables: Recency &lt;dbl&gt;, MntWines &lt;dbl&gt;, MntFruits &lt;dbl&gt;,
+#   MntMeatProducts &lt;dbl&gt;, MntFishProducts &lt;dbl&gt;, MntSweetProducts &lt;dbl&gt;,
+#   MntGoldProds &lt;dbl&gt;, NumDealsPurchases &lt;dbl&gt;, NumWebPurchases &lt;dbl&gt;,
+#   NumCatalogPurchases &lt;dbl&gt;, NumStorePurchases &lt;dbl&gt;,
+#   NumWebVisitsMonth &lt;dbl&gt;, Complain &lt;dbl&gt;, Response &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>((<span class="fu">is.na</span>(DF)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 ID          Year_Birth           Education      Marital_Status 
+                  0                   0                   0                   0 
+             Income             Kidhome            Teenhome         Dt_Customer 
+                  0                   0                   0                   0 
+            Recency            MntWines           MntFruits     MntMeatProducts 
+                  0                   0                   0                   0 
+    MntFishProducts    MntSweetProducts        MntGoldProds   NumDealsPurchases 
+                  0                   0                   0                   0 
+    NumWebPurchases NumCatalogPurchases   NumStorePurchases   NumWebVisitsMonth 
+                  0                   0                   0                   0 
+           Complain            Response 
+                  0                   0 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Tabla0 <span class="ot">&lt;-</span> <span class="fu">table</span>(DF<span class="sc">$</span>Education, DF<span class="sc">$</span>Marital_Status)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Tabla0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            
+             Absurd Alone Divorced Married Single Together Widow YOLO
+  2n Cycle        0     0       23      80     36       56     5    0
+  Basic           0     0        1      20     18       14     1    0
+  Graduation      1     1      117     428    246      283    35    0
+  Master          1     1       37     138     75      101    11    0
+  PhD             0     1       52     187     95      115    24    2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Tabla0_con_subtotal <span class="ot">&lt;-</span> <span class="fu">addmargins</span> (Tabla0)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Tabla0_con_subtotal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            
+             Absurd Alone Divorced Married Single Together Widow YOLO  Sum
+  2n Cycle        0     0       23      80     36       56     5    0  200
+  Basic           0     0        1      20     18       14     1    0   54
+  Graduation      1     1      117     428    246      283    35    0 1111
+  Master          1     1       37     138     75      101    11    0  364
+  PhD             0     1       52     187     95      115    24    2  476
+  Sum             2     3      230     853    470      569    76    2 2205</code></pre>
+</div>
+</div>
+<section id="pregunta-n1" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n1">Pregunta N°1</h3>
+<p>Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil soltero (“Single”) es __ <strong>0.21</strong></p>
+<p>Por otro lado, si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga nivel educativo graduado (“Graduation”) es __ <strong>0.5</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Prob_soltero1 <span class="ot">&lt;-</span> <span class="dv">470</span><span class="sc">/</span><span class="dv">2205</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Prob_soltero1,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.21</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Prob_soltero2 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(DF[DF<span class="sc">$</span>Marital_Status <span class="sc">==</span><span class="st">"Single"</span>,])<span class="sc">/</span><span class="fu">nrow</span>(DF)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Prob_soltero2,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.21</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Prob_graduado1 <span class="ot">&lt;-</span> <span class="dv">1111</span><span class="sc">/</span><span class="dv">2205</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Prob_graduado1,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Prob_graduado2 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(DF[DF<span class="sc">$</span>Education <span class="sc">==</span><span class="st">"Graduation"</span>,])<span class="sc">/</span><span class="fu">nrow</span>(DF)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(Prob_graduado2,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-n2" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n2">Pregunta N°2</h3>
+<p>Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil soltero (“Single”) <strong>y</strong> que tenga nivel educativo graduado (“Graduation”) es __ <strong>0.11</strong></p>
+<p>Por tanto, si se selecciona un cliente al azar entonces la probabilidad de que el cliente tenga estado civil soltero (“Single”) <strong>o</strong> que tenga nivel educativo graduado (“Graduation”) es __ <strong>0.61</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>prob_marital_y_education1 <span class="ot">&lt;-</span> <span class="dv">246</span><span class="sc">/</span><span class="dv">2205</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_marital_y_education1,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>prob_marital_y_education2 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(DF[DF<span class="sc">$</span>Marital_Status <span class="sc">==</span><span class="st">"Single"</span> <span class="sc">&amp;</span> DF<span class="sc">$</span>Education <span class="sc">==</span><span class="st">"Graduation"</span>,])<span class="sc">/</span><span class="fu">nrow</span>(DF)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_marital_y_education2,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>prob_marital_o_education <span class="ot">&lt;-</span>  Prob_soltero1 <span class="sc">+</span> Prob_graduado1 <span class="sc">-</span> prob_marital_y_education1</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_marital_o_education,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.61</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-n3" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n3">Pregunta N°3</h3>
+<p>Si se selecciona un cliente al azar y sabemos que tiene estado civil casado (“Married”), entonces, la probabilidad de que tenga nivel educativo Doctorado (“PhD”) es __ <strong>0.22</strong></p>
+<p>Mientras si se selecciona un cliente al azar y sabemos que tiene nivel educativo Doctorado (“PhD”), entonces, la probabilidad de que tenga estado civil casado (“Married”) es __ <strong>0.39</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>prob_Phd_dado_casado1 <span class="ot">&lt;-</span> <span class="dv">187</span><span class="sc">/</span><span class="dv">853</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_Phd_dado_casado1,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.22</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>prob_Phd_dado_casado2 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(DF[DF<span class="sc">$</span>Marital_Status <span class="sc">==</span><span class="st">"Married"</span> <span class="sc">&amp;</span> DF<span class="sc">$</span>Education <span class="sc">==</span><span class="st">"PhD"</span>,])<span class="sc">/</span><span class="fu">nrow</span>(DF[DF<span class="sc">$</span>Marital_Status <span class="sc">==</span><span class="st">"Married"</span>,])</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_Phd_dado_casado2,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.22</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>prob_casado_dado_PhD1 <span class="ot">&lt;-</span> <span class="dv">187</span><span class="sc">/</span><span class="dv">476</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_casado_dado_PhD1,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.39</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>prob_casado_dado_PhD2 <span class="ot">&lt;-</span> <span class="fu">nrow</span>(DF[DF<span class="sc">$</span>Marital_Status <span class="sc">==</span><span class="st">"Married"</span> <span class="sc">&amp;</span> DF<span class="sc">$</span>Education <span class="sc">==</span><span class="st">"PhD"</span>,])<span class="sc">/</span><span class="fu">nrow</span>(DF[DF<span class="sc">$</span>Education <span class="sc">==</span><span class="st">"PhD"</span>,])</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prob_casado_dado_PhD2,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.39</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-n4" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n4">Pregunta N°4</h3>
+<p>Si del total de clientes, se seleccionan al azar&nbsp;<strong>50</strong>, entonces la probabilidad que&nbsp;<strong>8</strong>&nbsp;de ellos tengan nivel educativo Maestría (“Master”) y los otros&nbsp;<strong>42</strong>&nbsp;cualquiera de los otros niveles educativos es__ <strong>0.15.</strong></p>
+<p>Por otro lado, si del total de clientes, se seleccionan al azar <strong>50</strong>, entonces la probabilidad que <strong>12</strong> de ellos tengan estado civil convivientes (“Together”) y los otros <strong>38</strong> cualquiera de los otros estados civiles es __ <strong>0.13 .</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">choose</span>(<span class="dv">364</span>,<span class="dv">8</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">1841</span>,<span class="dv">42</span>)<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">2205</span>,<span class="dv">50</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.15</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">choose</span>(<span class="dv">569</span>,<span class="dv">12</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">1636</span>,<span class="dv">38</span>)<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">2205</span>,<span class="dv">50</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.13</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-n5" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n5">Pregunta N°5</h3>
+<p>Resolver los siguientes casos de conteo:</p>
+<p>Para armar un producto se selecciona un <strong>motor</strong> que hay de 5 tipos, un <strong>panel de control</strong> que hay de 3 tipos y un <strong>color de carcasa</strong> que se cuenta con 6 opciones. Por tanto, se dispone de ___ <strong>90</strong> combinaciones posibles para armar el producto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Principio de multiplicación</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">*</span><span class="dv">3</span><span class="sc">*</span><span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 90</code></pre>
+</div>
+</div>
+<p>Un estudiante universitario puede elegir:</p>
+<ul>
+<li><p>2 cursos del bloque de Ciencias, que tiene 6 opciones, o</p></li>
+<li><p>2 cursos del bloque de Economía que tiene 5 opciones, pero no puede elegir de ambos bloques.</p>
+<p>La cantidad de formas distintas de elegir 2 cursos del mismo bloque es ___ <strong>25</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Principio de adición</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">6</span>,<span class="dv">2</span>)<span class="sc">+</span><span class="fu">choose</span>(<span class="dv">5</span>,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+</div></li>
+</ul>
+<p>Un investigador del área de Química diseña un experimento de laboratorio, para lo cual elige 3 reactivos distintos de 7 disponibles, y el orden en que los mezcla influye en el resultado. La cantidad de resultados diferentes que puede obtenerse es ___ <strong>210</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">7</span>,<span class="dv">3</span>)<span class="sc">*</span><span class="fu">factorial</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 210</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-6" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-6">Pregunta 6</h3>
+<p>Evaluar si es verdadero o falso cada uno de las afirmaciones siguientes:</p>
+<ul>
+<li><p>Dados 2 eventos mutuamente excluyentes, A, B definidos en un mismo espacio muestral, se cumple que P(A U B) = P(A) + P(B). ___ VERDADERO.</p></li>
+<li><p>Si dos eventos J y K son complementarios se cumplirá siempre que P(J) + P(K) = 1, y también se cumple que P (J Ⴖ K) = 0. ___ VERDADERO</p></li>
+<li><p>La probabilidad de que la <strong>suma</strong> de los resultados obtenidos al <strong>lanzar dos dados</strong> sea igual a <strong>dos</strong>, es igual a <strong>2/36</strong>. ___ FALSO</p></li>
+<li><p>Dados dos eventos A y B <strong>independientes</strong>, con probabilidad de ocurrencia de cada uno de ellos P(A) = 0.45 y P(B) = 0.35, entonces se cumple que la probabilidad P(A | B) = 0.45. ___ VERDADERO</p></li>
+<li><p>Dados dos eventos definidos en el mismo espacio muestral, J y K, <strong>mutuamente excluyentes</strong> con P(J) = 0.20 y P(K) = 0.10, se cumple que P(J U K) = 0.02. __ FALSO</p></li>
+</ul>
+<p>NO SE USAN EN EL QUIZ 2</p>
+<ul>
+<li><p>Se dice que dos eventos definidos en el mismo espacio muestral, A y B son independientes, si cumple la siguiene igualdad : P (A Ⴖ B) = P(A) + P(B). __ FALSO.</p></li>
+<li><p>Dados dos eventos A y B definidos en el mismo espacio muestral, si P(A | B)= 2/3 y P(Aᶜ) = 1/3 , entonces los eventos A y B son independientes. __ VERDADERO</p></li>
+</ul>
+</section>
+<section id="pregunta-7" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-7">Pregunta 7</h3>
+<p>En una planta de producción se instalaron <strong>dos</strong> sistemas automáticos de detección de fuego. La probabilidad de que la primera alarma falle es <strong>0.27</strong> y de que falle la segunda es <strong>0.18</strong>. Si sabemos que las dos alarmas trabajan de manera <strong>independiente</strong>, entonces:</p>
+<p>La probabilidad de que falle <strong>al menos una</strong> de las alarmas es __ <strong>0.4</strong></p>
+<p>La probabilidad de que <strong>ninguna</strong> de las alarmas falle es __ <strong>0.6</strong></p>
+<p>La probabilidad de que falle <strong>solo una</strong> de las alarmas es __ <strong>0.35</strong></p>
+<p>La probabilidad de que <strong>solo la primera</strong> alarma falle y la <strong>segunda no falle</strong> es __ <strong>0.22</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide P(A U B) = P(A) + P(B) - P(A ꓵ B)</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Por independencia:  P(A U B) = P(A) + P(B) - P(A)*P(B)</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>P_al_menos_uno_falla <span class="ot">&lt;-</span> <span class="fl">0.27</span> <span class="sc">+</span> <span class="fl">0.18</span> <span class="sc">-</span> <span class="fl">0.27</span><span class="sc">*</span><span class="fl">0.18</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(P_al_menos_uno_falla,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.4</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide 1 - P(A U B)</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>P_ninguno_falla <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> P_al_menos_uno_falla</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(P_ninguno_falla,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide P(A Δ B) = P(A) + P(B) - 2*P(A ꓵ B)</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Por independencia P(A Δ B) = P(A) + P(B) - 2*P(A)*P(B)</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>P_solo_una_falla <span class="ot">&lt;-</span> <span class="fl">0.27</span> <span class="sc">+</span> <span class="fl">0.18</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fl">0.27</span><span class="sc">*</span><span class="fl">0.18</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(P_solo_una_falla,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.35</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide P(A ꓵ Bᶜ) </span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Por independencia:  P(A ꓵ Bᶜ) = P(A) * P(Bᶜ)</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>P_solo_1ero_falla <span class="ot">&lt;-</span> <span class="fl">0.27</span><span class="sc">*</span>(<span class="dv">1</span><span class="fl">-0.18</span>)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(P_solo_1ero_falla,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.22</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-8" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-8">Pregunta 8</h3>
+<p>El área de Compras de una Compañía comercializadora se abastece de productos adquiridos a tres proveedores de China para llevar a cabo su campaña navideña , de tal manera que el <strong>30%</strong> de productos pueden venir del proveedor <strong>A</strong>, el <strong>50%</strong> pueden venir del proveedor <strong>B</strong> y el 2<strong>0%</strong> del proveedor <strong>C</strong>.</p>
+<p>Por otro lado, se conoce que el <strong>4%</strong> de los productos que provienen del proveedor <strong>A</strong> son defectuosos, el <strong>5%</strong> de los productos que provienen del proveedor <strong>B</strong> son defectuosos y el <strong>6%</strong> de los productos que provienen del proveedor <strong>C</strong> son defectuosos.</p>
+<p>Si se elige un producto al azar, la probabilidad de que <strong>no</strong> sea defectuoso es ___ <strong>0.95</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicación de probabilidad total</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prob. defectuoso = P(D|A)*P(A) + P(D|B)*P(B) + P(D|C)*P(C) </span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>Prob.defectuoso <span class="ot">&lt;-</span> <span class="fl">0.04</span><span class="sc">*</span><span class="fl">0.30</span> <span class="sc">+</span> <span class="fl">0.05</span><span class="sc">*</span><span class="fl">0.50</span> <span class="sc">+</span> <span class="fl">0.06</span><span class="sc">*</span><span class="fl">0.20</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>Prob.defectuoso</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.049</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide:  Prob. no sea defectuoso &lt;- 1 - Prob. defectuoso</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span><span class="sc">-</span>Prob.defectuoso,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.95</code></pre>
+</div>
+</div>
+<p>4 de probabilidad con base de datos</p>
+<p>1 de independencia</p>
+<p>1 de prob. total</p>
+<p>1 teoria V, F</p>
+<p>1 conteo (principio de suma, multiplicación, combinatorio, permutacion).</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,230 @@
+---
+title: "Ejercicios Probabilidad en R"
+format: html
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("Cuy_InicialYPiloto.csv")
+```
+
+```{r}
+colSums((is.na(DF)))
+```
+
+```{r}
+Tabla0 <- table(DF$Color, DF$Raza)
+Tabla0
+Tabla0_con_subtotal <- addmargins (Tabla0)
+Tabla0_con_subtotal
+```
+
+#### Pregunta N°1
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que el cuy sea de raza peruana?
+
+Se pide:
+
+P( cuy de raza peruana ) = conteo(cuyes de raza peruana) / conteo (total de cuyes)
+
+```{r}
+# CUATRO MANERAS DISTINTAS PARA CALCULAR LA PROBABILIDAD
+#  Usando la tabla de contingencia
+prob_cuy_peruano1 <- 4236/8755
+prob_cuy_peruano1
+
+#  Usando código de R base
+prob_cuy_peruano2 <- nrow(DF[DF$Raza =="peruano",])/nrow(DF)
+prob_cuy_peruano2
+
+#  Usando librería dplyr
+prob_cuy_peruano3 <- nrow(filter(DF, Raza == 'peruano'))/nrow(DF)
+prob_cuy_peruano3
+
+#  Usando código de R base
+prob_cuy_peruano4 <- sum(DF$Raza =="peruano")/nrow(DF)
+prob_cuy_peruano4
+```
+
+#### Pregunta N°2
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que el cuy sea de color pintado?
+
+Se pide:
+
+P( cuy de color pintado ) = conteo(cuyes de color pintado) / conteo (total de cuyes)
+
+```{r}
+# CUATRO MANERAS DISTINTAS PARA CALCULAR LA PROBABILIDAD
+#  Usando la tabla de contingencia
+prob_cuy_pintado1 <- 911/8755
+prob_cuy_pintado1
+
+#  Usando código de R base
+prob_cuy_pintado2 <- nrow(DF[DF$Color =="pintado",])/nrow(DF)
+prob_cuy_pintado2
+
+#  Usando librería dplyr
+prob_cuy_pintado3 <- nrow(filter(DF, Color =="pintado"))/nrow(DF)
+prob_cuy_pintado3
+
+#  Usando código de R base
+prob_cuy_pintado4 <- sum(DF$Color =="pintado")/nrow(DF)
+prob_cuy_pintado4
+```
+
+#### Pregunta N°3
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que el cuy sea de raza peruana y de color pintado?
+
+Se pide
+
+P( cuy de raza peruana $\cap$ cuy de color pintado ) = conteo(cuyes de raza peruana $\cap$ cuyes de color pintado ) / conteo (total de cuyes)
+
+```{r}
+# CUATRO MANERAS DISTINTAS PARA CALCULAR LA PROBABILIDAD
+#  Usando la tabla de contingencia
+prob_cuy_peruano_y_pintado1 <- 579/8755
+prob_cuy_peruano_y_pintado1
+
+#  Usando código de R base
+prob_cuy_peruano_y_pintado2 <- nrow(DF[DF$Color =="pintado" & DF$Raza =="peruano",])/nrow(DF)
+prob_cuy_peruano_y_pintado2
+
+#  Usando librería dplyr
+prob_cuy_peruano_y_pintado3 <- nrow(filter(DF, Color =="pintado" & Raza =="peruano"))/nrow(DF)
+prob_cuy_peruano_y_pintado3 
+
+#  Usando código de R base
+prob_cuy_peruano_y_pintado4 <- sum(DF$Color =="pintado" & DF$Raza =="peruano")/nrow(DF)
+prob_cuy_peruano_y_pintado4
+```
+
+#### Pregunta N°4
+
+#### Si se selecciona un cuy al azar y sabemos que es de color pintado, ¿cuál es la probabilidad de que el cuy sea de raza peruana?
+
+Se pide
+
+P( cuy de raza peruana \| cuy de color pintado ) = conteo(cuyes de raza peruana $\cap$ cuyes de color pintado ) / conteo (cuyes de color pintado)
+
+```{r}
+# CUATRO MANERAS DISTINTAS PARA CALCULAR LA PROBABILIDAD
+#  Usando la tabla de contingencia
+prob_cuy_peruano_dado_pintado1 <- 579/911
+prob_cuy_peruano_dado_pintado1
+
+#  Usando código de R base
+prob_cuy_peruano_dado_pintado2 <- nrow(DF[DF$Color =="pintado" & DF$Raza =="peruano",])/nrow(DF[DF$Color =="pintado",])
+prob_cuy_peruano_dado_pintado2
+
+#  Usando librería dplyr
+prob_cuy_peruano_dado_pintado3 <- nrow(filter(DF, Color =="pintado" & Raza =="peruano"))/nrow(filter(DF, Color =="pintado"))
+prob_cuy_peruano_dado_pintado3 
+
+#  Usando código de R base
+prob_cuy_peruano_dado_pintado4 <- sum(DF$Color =="pintado" & DF$Raza =="peruano")/sum(DF$Color =="pintado")
+prob_cuy_peruano_dado_pintado4
+```
+
+#### Pregunta N°5
+
+#### Si se selecciona un cuy al azar y sabemos que es de raza peruana, ¿cuál es la probabilidad de que el cuy sea de color pintado?
+
+Se pide
+
+P( cuy de color pintado \| cuy de raza peruana ) = conteo(cuyes de raza peruana $\cap$ cuyes de color pintado ) / conteo (cuyes de raza peruana)
+
+```{r}
+# CUATRO MANERAS DISTINTAS PARA CALCULAR LA PROBABILIDAD
+#  Usando la tabla de contingencia
+prob_cuy_pintado_dado_peruano1 <- 579/4236
+prob_cuy_pintado_dado_peruano1
+
+#  Usando código de R base
+prob_cuy_pintado_dado_peruano2 <- nrow(DF[DF$Color =="pintado" & DF$Raza =="peruano",])/nrow(DF[DF$Raza =="peruano",])
+prob_cuy_pintado_dado_peruano2
+
+#  Usando librería dplyr
+prob_cuy_pintado_dado_peruano3 <- nrow(filter(DF, Color =="pintado" & Raza =="peruano"))/nrow(filter(DF, Raza =="peruano"))
+prob_cuy_pintado_dado_peruano3 
+
+#  Usando código de R base
+prob_cuy_pintado_dado_peruano4 <- sum(DF$Color =="pintado" & DF$Raza =="peruano")/sum(DF$Raza =="peruano")
+prob_cuy_pintado_dado_peruano4
+```
+
+#### Pregunta N°6
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que el cuy sea de raza peruana o de color pintado?
+
+P( cuy de raza peruana U cuy de color pintado ) = P( cuy de raza peruana ) + P( cuy de color pintado ) - P( cuyes de raza peruana $\cap$ cuyes de color pintado )
+
+```{r}
+prob_cuy_peruano_o_pintado1 <- prob_cuy_peruano1 + prob_cuy_pintado1 - prob_cuy_peruano_y_pintado1
+
+prob_cuy_peruano_o_pintado1
+```
+
+#### Pregunta N°7
+
+**Si del total de cuyes, se seleccionan al azar 50, entonces la probabilidad de que 15 de ellos sean de la raza andino y los 35 de las otras razas es \_\_**
+
+```{r}
+choose(2769,15)*choose(5986,35)/choose(8755,50) 
+```
+
+**Si del total de cuyes, se seleccionan al azar 50, entonces la probabilidad de que 5 de ellos sean de color pintado y los 45 de los otros colores es \_\_**
+
+```{r}
+choose(911,5)*choose(7844,45)/choose(8755,50) 
+```
+
+## Cálculo de otras probabilidades
+
+#### Si se selecciona un cuy al azar , ¿cuál es la probabilidad de que un cuy tiene marrón en el pelaje?
+
+```{r}
+Prob_pelaje_marron <- sum(DF$Color == 'marrón' | DF$Color == 'tricolor' | DF$Color == 'pintado')/nrow(DF)
+Prob_pelaje_marron
+```
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que un cuy tiene negro en el pelaje
+
+```{r}
+Prob_pelaje_negro <-sum(DF$Color == 'negro' | DF$Color == 'tricolor')/nrow(DF)
+Prob_pelaje_negro
+```
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que un cuy tiene blanco en el pelaje?
+
+```{r}
+Prob_pelaje_blanco <- sum(DF$Color == 'blanco' | DF$Color == 'tricolor' | DF$Color == 'pintado')/nrow(DF)
+Prob_pelaje_blanco
+```
+
+#### Si se selecciona un cuy al azar, ¿cuál es la Probabilidad de que un cuy tiene más de un color en el pelaje
+
+```{r}
+Prob_mas_de_un_color <- sum(DF$Color == 'tricolor' | DF$Color == 'pintado')/nrow(DF)
+Prob_mas_de_un_color
+```
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que un cuy es de raza peruana o no es de color pintado?
+
+```{r}
+Probabilidad1 <- sum(DF$Raza == "peruano" | DF$Color !="pintado")/nrow(DF)
+Probabilidad1
+```
+
+#### Si se selecciona un cuy al azar, ¿cuál es la probabilidad de que un cuy no es de raza peruana ni es de color pintado?
+
+```{r}
+Probabilidad2 <- sum(DF$Raza != "peruano" & DF$Color != "pintado") / nrow(DF)
+Probabilidad2
+```

@@ -1,0 +1,53 @@
+---
+title: "Banking Dataset"
+format: html
+editor: visual
+---
+
+## Análisis de datos
+
+El conjunto de datos **Banking Dataset - Marketing** contiene información sobre campañas de marketing directo (llamadas telefónicas) realizadas por una institución bancaria portuguesa. El objetivo principal es predecir si un cliente suscribirá un depósito a plazo (variable objetivo y).
+
+### Libreta de códigos
+
+**Datos del cliente bancario**
+
+-   **age**: Edad del cliente.
+
+-   **job**: Tipo de trabajo del cliente. Ejemplos: 'admin.', 'blue-collar', 'technician', 'services', etc.
+
+-   **marital**: Estado civil: 'single', 'married', 'divorced'.
+
+-   **education**: Nivel educativo: 'primary', 'secondary', 'tertiary'.
+
+-   **default**: ¿Tiene crédito en mora? (binario): 'yes', 'no'.
+
+-   **balance**: Saldo promedio anual en euros.
+
+-   **housing**: ¿Tiene préstamo hipotecario? (binario): 'yes', 'no'.
+
+-   **loan**: ¿Tiene préstamo personal? (binario): 'yes', 'no'
+
+**Información del último contacto de la campaña actual**
+
+-   **contact**: Tipo de comunicación de contacto: 'cellular', 'telephone'.
+
+-   **day**: Día del mes en que se realizó el último contacto.
+
+-   **month**: Mes del año en que se realizó el último contacto: 'jan', 'feb', ..., 'dec'.
+
+-   **duration**: Duración del último contacto en segundos
+
+**Información sobre campañas anteriores**
+
+-   **campaign**: Número de contactos realizados durante esta campaña para este cliente.
+
+-   **previous**: Número de contactos realizados antes de esta campaña para este cliente.
+
+-   **y**: ¿El cliente suscribió un depósito a plazo?: 'yes', 'no'
+
+## Resultados
+
+El resultado principal es el documento ***Banking_Dataset_FINAL.csv***
+
+Su trabajo es analizar los datos y responder las preguntas que se hacen al respecto.

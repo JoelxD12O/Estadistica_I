@@ -1,0 +1,37 @@
+---
+title: "Enunciado"
+format: html
+editor: visual
+---
+
+### Cambio de trabajo de los científicos de datos
+
+Una empresa que se dedica al sector de Big Data y Data Science quiere contratar científicos de datos entre las personas que aprueben con éxito algunos cursos que imparte la empresa. Muchas personas se inscriben para recibir formación. La empresa quiere saber cuáles de estos candidatos realmente quieren trabajar para la empresa después de la formación o buscar un nuevo empleo porque ayuda a reducir el coste y el tiempo, así como la calidad de la formación o la planificación de los cursos y la categorización de los candidatos. Se cuenta con la información relacionada con la demografía, la educación y la experiencia desde el momento de la inscripción y la matriculación de los candidatos.
+
+#### Libreta de códigos
+
+-   `city`: Código de la ciudad.
+
+-   `city_ development_index` : Índice de desarrollo de la ciudad (escalado).
+
+-   `gender`: Género del candidato
+
+-   `relevent_experience`: Experiencia relevante del candidato
+
+-   `enrolled_university`: Tipo de curso universitario en el que está inscrito, si corresponde
+
+-   `education_level`: Nivel de educación del candidato
+
+-   `major_discipline` : Disciplina principal de educación del candidato
+
+-   `experience`: Experiencia total del candidato en años
+
+-   `company_size`: Número de empleados en la empresa del empleador actual
+
+-   `company_type` : Tipo de empleador actual
+
+-   `last_new_job`: Diferencia en años entre el trabajo anterior y el trabajo actual
+
+-   `training_hours`: Horas de capacitación completadas
+
+-   `target`: 0 – No busca un cambio de trabajo, 1 – Busca un cambio de trabajo

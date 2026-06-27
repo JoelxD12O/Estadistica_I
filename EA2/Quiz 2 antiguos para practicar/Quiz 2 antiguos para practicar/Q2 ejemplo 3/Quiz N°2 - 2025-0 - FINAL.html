@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Solución Q3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Quiz N°2 - 2025-0 - FINAL_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Quiz N°2 - 2025-0 - FINAL_files/libs/quarto-html/quarto.js"></script>
+<script src="Quiz N°2 - 2025-0 - FINAL_files/libs/quarto-html/popper.min.js"></script>
+<script src="Quiz N°2 - 2025-0 - FINAL_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Quiz N°2 - 2025-0 - FINAL_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Quiz N°2 - 2025-0 - FINAL_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Quiz N°2 - 2025-0 - FINAL_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Quiz N°2 - 2025-0 - FINAL_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Quiz N°2 - 2025-0 - FINAL_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Quiz N°2 - 2025-0 - FINAL_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Solución Q3</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="pregunta-n1" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n1">Pregunta N°1</h3>
+<p>El del comedor del piso 2 de la universidad ofrece como menú semanal: <strong>5</strong> entradas, <strong>6</strong> segundos, <strong>4</strong> postres, <strong>3</strong> bebidas. La cantidad de opciones posibles que un alumno UTEC puede escoger el menú es de ___ <strong>360</strong> formas distintas.</p>
+<p>Por otro lado, en la sección de Literatura de una Biblioteca se cuenta con diferentes obras literarias de tres tipos de estilos: <strong>10</strong> son del género narrativo, <strong>15</strong> del lírico y <strong>8</strong> del dramático. Un estudiante desea seleccionar <strong>un</strong> solo libro para leer el fin de semana. La cantidad de opciones diferentes que tiene el estudiante para escoger el libro es de ___ <strong>33</strong> opciones posibles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">*</span><span class="dv">6</span><span class="sc">*</span><span class="dv">4</span><span class="sc">*</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 360</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">+</span><span class="dv">15</span><span class="sc">+</span><span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 33</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-n2" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n2">Pregunta N°2</h3>
+<p>En una examen de Matemáticas, se cuenta con <strong>6</strong> preguntas de Geometría, <strong>6</strong> preguntas de Trigonometría y <strong>8</strong> preguntas de Aritmética.</p>
+<p>Un estudiante debe seleccionar <strong>14</strong> preguntas. La cantidad de maneras diferentes que puede escoger las preguntas es de ___ <strong>38670</strong>.</p>
+<p>La probabilidad que de las 14 preguntas, <strong>6</strong> sean de Aritmética y el resto de las otras 2 materias es de ___ <strong>0.36</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">20</span>,<span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 38760</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">choose</span>(<span class="dv">8</span>,<span class="dv">6</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">12</span>,<span class="dv">8</span>)<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">20</span>,<span class="dv">14</span>),<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.36</code></pre>
+</div>
+</div>
+<p>Se pide:</p>
+<p><span class="math display">\[ \frac {\binom{8}{6} * \binom{12}{8}} {\binom{20}{14}} \]</span></p>
+</section>
+<section id="pregunta-n3" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n3">Pregunta N°3</h3>
+<p>Basado en su experiencia y lo indicado por el área de Compras, el encargado del almacén de una planta de ensamblaje de laptops ha indicado que en un lote de procesadores, el 30% pueden venir del proveedor A, el 50% pueden venir del proveedor B y el resto del proveedor C.</p>
+<p>Por otro lado, se conoce que el 2% de los procesadores que provienen del proveedor A son defectuosos, el 3% de los procesadores que provienen del proveedor B son defectuosos y el 4% de los procesadores que provienen del proveedor C son defectuosos.</p>
+<p>Si se elige un procesador al azar, la probabilidad de que <strong>no</strong> sea defectuoso es ___ <strong>0.96</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicación de probabilidad total</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Prob. defectuoso = P(D|A)*P(A) + P(D|B)*P(B) + P(D|C)*P(C) </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Prob.defectuoso <span class="ot">&lt;-</span> <span class="fl">0.03</span><span class="sc">*</span><span class="fl">0.30</span> <span class="sc">+</span> <span class="fl">0.04</span><span class="sc">*</span><span class="fl">0.50</span> <span class="sc">+</span> <span class="fl">0.05</span><span class="sc">*</span><span class="fl">0.20</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Prob.defectuoso</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.039</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide:  Prob. no sea defectuoso &lt;- 1 - Prob. defectuoso</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span><span class="sc">-</span>Prob.defectuoso,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.96</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-n4" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n4">Pregunta N°4</h3>
+<p>En la fabricación de un producto se presenta dos tipos de defectos A1 y A2 , cada uno con probabilidad de 0.15 y 0.12 , respectivamente. Los defectos ocurren de manera independiente. Si se elige al azar un producto, la probabilidad de que se presente por lo menos un solo tipo de defecto es ___ y la probabilidad de que se presente solo un tipo de defecto es ___</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide P(A U B) = P(A) + P(B) - P(A ꓵ B)</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Por independencia:  P(A U B) = P(A) + P(B) - P(A)*P(B)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>P_al_menos_un_defecto <span class="ot">&lt;-</span> <span class="fl">0.15</span> <span class="sc">+</span> <span class="fl">0.12</span> <span class="sc">-</span> <span class="fl">0.15</span><span class="sc">*</span><span class="fl">0.12</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>P_al_menos_un_defecto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.252</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Se pide P(A Δ B) = P(A) + P(B) - 2*P(A ꓵ B)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Por independencia P(A Δ B) = P(A) + P(B) - 2*P(A)*P(B)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>P_solo_un_defecto <span class="ot">&lt;-</span> <span class="fl">0.15</span> <span class="sc">+</span> <span class="fl">0.12</span> <span class="sc">-</span> <span class="dv">2</span><span class="sc">*</span><span class="fl">0.15</span><span class="sc">*</span><span class="fl">0.12</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>P_solo_un_defecto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.234</code></pre>
+</div>
+</div>
+</section>
+<section id="pregunta-n5" class="level3">
+<h3 class="anchored" data-anchor-id="pregunta-n5">Pregunta N°5</h3>
+<p>El lanzamiento de tres dados justos de seis caras y <strong>anotar la suma</strong> se trata de un ___ `experimento aleatorio equiprobable`<strong>,</strong> asimismo puede obtenerse ___`16` resultados diferentes.</p>
+<p>Finalmente, la probabilidad de que la suma sea igual <strong>9</strong> es ___`0.12`.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dado1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dado2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>dado3 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(dado1, dado2, dado3)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>dados<span class="sc">$</span>suma<span class="ot">=</span> dados<span class="sc">$</span>Var1 <span class="sc">+</span> dados<span class="sc">$</span>Var2 <span class="sc">+</span> dados<span class="sc">$</span>Var3</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>dados</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Var1 Var2 Var3 suma
+1      1    1    1    3
+2      2    1    1    4
+3      3    1    1    5
+4      4    1    1    6
+5      5    1    1    7
+6      6    1    1    8
+7      1    2    1    4
+8      2    2    1    5
+9      3    2    1    6
+10     4    2    1    7
+11     5    2    1    8
+12     6    2    1    9
+13     1    3    1    5
+14     2    3    1    6
+15     3    3    1    7
+16     4    3    1    8
+17     5    3    1    9
+18     6    3    1   10
+19     1    4    1    6
+20     2    4    1    7
+21     3    4    1    8
+22     4    4    1    9
+23     5    4    1   10
+24     6    4    1   11
+25     1    5    1    7
+26     2    5    1    8
+27     3    5    1    9
+28     4    5    1   10
+29     5    5    1   11
+30     6    5    1   12
+31     1    6    1    8
+32     2    6    1    9
+33     3    6    1   10
+34     4    6    1   11
+35     5    6    1   12
+36     6    6    1   13
+37     1    1    2    4
+38     2    1    2    5
+39     3    1    2    6
+40     4    1    2    7
+41     5    1    2    8
+42     6    1    2    9
+43     1    2    2    5
+44     2    2    2    6
+45     3    2    2    7
+46     4    2    2    8
+47     5    2    2    9
+48     6    2    2   10
+49     1    3    2    6
+50     2    3    2    7
+51     3    3    2    8
+52     4    3    2    9
+53     5    3    2   10
+54     6    3    2   11
+55     1    4    2    7
+56     2    4    2    8
+57     3    4    2    9
+58     4    4    2   10
+59     5    4    2   11
+60     6    4    2   12
+61     1    5    2    8
+62     2    5    2    9
+63     3    5    2   10
+64     4    5    2   11
+65     5    5    2   12
+66     6    5    2   13
+67     1    6    2    9
+68     2    6    2   10
+69     3    6    2   11
+70     4    6    2   12
+71     5    6    2   13
+72     6    6    2   14
+73     1    1    3    5
+74     2    1    3    6
+75     3    1    3    7
+76     4    1    3    8
+77     5    1    3    9
+78     6    1    3   10
+79     1    2    3    6
+80     2    2    3    7
+81     3    2    3    8
+82     4    2    3    9
+83     5    2    3   10
+84     6    2    3   11
+85     1    3    3    7
+86     2    3    3    8
+87     3    3    3    9
+88     4    3    3   10
+89     5    3    3   11
+90     6    3    3   12
+91     1    4    3    8
+92     2    4    3    9
+93     3    4    3   10
+94     4    4    3   11
+95     5    4    3   12
+96     6    4    3   13
+97     1    5    3    9
+98     2    5    3   10
+99     3    5    3   11
+100    4    5    3   12
+101    5    5    3   13
+102    6    5    3   14
+103    1    6    3   10
+104    2    6    3   11
+105    3    6    3   12
+106    4    6    3   13
+107    5    6    3   14
+108    6    6    3   15
+109    1    1    4    6
+110    2    1    4    7
+111    3    1    4    8
+112    4    1    4    9
+113    5    1    4   10
+114    6    1    4   11
+115    1    2    4    7
+116    2    2    4    8
+117    3    2    4    9
+118    4    2    4   10
+119    5    2    4   11
+120    6    2    4   12
+121    1    3    4    8
+122    2    3    4    9
+123    3    3    4   10
+124    4    3    4   11
+125    5    3    4   12
+126    6    3    4   13
+127    1    4    4    9
+128    2    4    4   10
+129    3    4    4   11
+130    4    4    4   12
+131    5    4    4   13
+132    6    4    4   14
+133    1    5    4   10
+134    2    5    4   11
+135    3    5    4   12
+136    4    5    4   13
+137    5    5    4   14
+138    6    5    4   15
+139    1    6    4   11
+140    2    6    4   12
+141    3    6    4   13
+142    4    6    4   14
+143    5    6    4   15
+144    6    6    4   16
+145    1    1    5    7
+146    2    1    5    8
+147    3    1    5    9
+148    4    1    5   10
+149    5    1    5   11
+150    6    1    5   12
+151    1    2    5    8
+152    2    2    5    9
+153    3    2    5   10
+154    4    2    5   11
+155    5    2    5   12
+156    6    2    5   13
+157    1    3    5    9
+158    2    3    5   10
+159    3    3    5   11
+160    4    3    5   12
+161    5    3    5   13
+162    6    3    5   14
+163    1    4    5   10
+164    2    4    5   11
+165    3    4    5   12
+166    4    4    5   13
+167    5    4    5   14
+168    6    4    5   15
+169    1    5    5   11
+170    2    5    5   12
+171    3    5    5   13
+172    4    5    5   14
+173    5    5    5   15
+174    6    5    5   16
+175    1    6    5   12
+176    2    6    5   13
+177    3    6    5   14
+178    4    6    5   15
+179    5    6    5   16
+180    6    6    5   17
+181    1    1    6    8
+182    2    1    6    9
+183    3    1    6   10
+184    4    1    6   11
+185    5    1    6   12
+186    6    1    6   13
+187    1    2    6    9
+188    2    2    6   10
+189    3    2    6   11
+190    4    2    6   12
+191    5    2    6   13
+192    6    2    6   14
+193    1    3    6   10
+194    2    3    6   11
+195    3    3    6   12
+196    4    3    6   13
+197    5    3    6   14
+198    6    3    6   15
+199    1    4    6   11
+200    2    4    6   12
+201    3    4    6   13
+202    4    4    6   14
+203    5    4    6   15
+204    6    4    6   16
+205    1    5    6   12
+206    2    5    6   13
+207    3    5    6   14
+208    4    5    6   15
+209    5    5    6   16
+210    6    5    6   17
+211    1    6    6   13
+212    2    6    6   14
+213    3    6    6   15
+214    4    6    6   16
+215    5    6    6   17
+216    6    6    6   18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(dados<span class="sc">$</span>suma)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 
+ 1  3  6 10 15 21 25 27 27 25 21 15 10  6  3  1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Prob_suma_sea_9 <span class="ot">&lt;-</span> <span class="dv">25</span><span class="sc">/</span><span class="dv">216</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Prob_suma_sea_9</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1157407</code></pre>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

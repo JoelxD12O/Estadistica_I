@@ -1,0 +1,520 @@
+---
+title: "resumen_probabilidades"
+format: html
+editor: visual
+---
+
+## Libs
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+# Funciones
+
+```{r}
+
+r <- function(x) {
+  return (round(x, 2))
+}
+
+find_min <- function(df) {
+  return( which.min(df) )
+}
+
+total_size <- function(df) {
+  return( nrow(df) * ncol(df) )
+}
+
+perc_num_row <- function(n, df) {
+  return(r(n / nrow(df) * 100) )
+}
+
+missing_total <- function(df) {
+  return( sum(is.na(df)) )
+}
+
+missing_var <- function(df) {
+  return( colSums(is.na(df)) )
+}
+
+perc_missing_var <- function(df) {
+  return( r(missing_var(df) / nrow(df) * 100, 2) )
+}
+
+effective_var <- function(df) {
+  return( colSums(!is.na(df)) )
+}
+
+min_effective_var <- function(df) {
+  return( min( effective_var(df) ) )
+}
+
+min_effective_var_name <- function(df) {
+  eff <- effective_var(df)
+  return( names(eff)[eff == min(eff)] )
+}
+
+perc_effective_var <- function(df) {
+  return( r(effective_var(df) / nrow(df) * 100) )
+}
+
+perc_missing_total <- function(df) {
+  return(r(missing_total(df) / total_size(df) * 100))
+}
+
+incomplete_num <- function(df) {
+  return( sum(!complete.cases(df)) )
+}
+
+perc_incomplete_num <- function(df) {
+  return( r(incomplete_num(df) / nrow(df) * 100) )
+}
+
+complete_num <- function(df) {
+  return( sum(complete.cases(df)) )
+}
+
+perc_complete_num <- function(df) {
+  return( r(complete_num(df) / nrow(df) * 100) )
+}
+
+value_unique <- function(lst) {
+  return( length(unique(lst)) )
+}
+
+cv <- function(X){
+  return(sd(X)/mean(X))
+}
+
+rango <- function(X){
+  return(max(X)-min(X))
+}
+
+resumen_vn <- function(X, na.rm = TRUE) {
+  data.frame(
+    min      = min(X, na.rm = na.rm),
+    max      = max(X, na.rm = na.rm),
+    media    = r(mean(X, na.rm = na.rm)),
+    mediana  = median(X, na.rm = na.rm),
+    sd       = r(sd(X, na.rm = na.rm)),
+    cv       = r(cv(X)),
+    rango    = rango(X),
+    ric      = IQR(X, type = 3, na.rm = na.rm),
+    asimetria = asimetria(X)
+  )
+}
+
+correlacion <- function(X, Y) {
+  return( r(cor(X, Y, use = "complete.obs")) )
+}
+
+moda <- function(X) {
+  return( as.numeric(names(which.max(table(X)))) )
+}
+
+cv_label <- function(X) {
+  val <- abs(cv(X))
+  if (val <= 0.3) return("Dispersión baja")
+  if (val <= 0.6) return("Dispersión media")
+  return("Dispersión alta")
+}
+
+regresion <- function(Y, X) {
+  modelo <- lm(Y ~ X)
+  return( modelo )
+}
+
+coef_regresion <- function(Y, X) {
+  modelo <- lm(Y ~ X)
+  return( data.frame(
+    intercepto = r(coef(modelo)[1]),
+    pendiente  = r(coef(modelo)[2])
+  ))
+}
+
+cor_label <- function(X, Y) {
+  val <- abs(correlacion(X, Y))
+  if (val <= 0.3) return("Relación baja")
+  if (val <= 0.6) return("Relación media")
+  return("Relación alta")
+}
+
+show_prob <- function(c1, c2) {
+  Tabla0 <- table(c1, c2)
+  return(addmargins (Tabla0))
+}
+
+```
+
+# Abreviaciones
+
+\- **EA** : Experimento aleatorio - **Ω** : Espacio de resultados - **VA** : Variable aleatoria
+
+# Operaciones con conjuntos
+
+```{r}
+# Sean A y B dos vectores
+A <- c(1, 2, 3, 4)
+B <- c(3, 4, 5, 6)
+
+union(A, B)        # A ∪ B
+intersect(A, B)    # A ∩ B
+setdiff(A, B)      # A - B
+setdiff(B, A)      # B - A
+setequal(A, B)     # ¿A = B?
+```
+
+------------------------------------------------------------------------
+
+# Conteo
+
+```{r}
+library(gtools)
+
+n <- 5
+r <- 3
+
+# Permutación de n elementos (n!)
+factorial(n)
+nrow(permutations(n = n, r = n))
+
+# Variación de n tomados de r en r (n! / (n-r)!)
+choose(n, r) * factorial(r)
+nrow(permutations(n = n, r = r))
+
+# Combinación (n! / r!(n-r)!)
+choose(n, r)
+nrow(combinations(n = n, r = r))
+```
+
+------------------------------------------------------------------------
+
+# Probabilidad
+
+## Propiedades generales
+
+Sean A y B dos eventos de Ω:
+
+| Propiedad            | Fórmula                            |
+|----------------------|------------------------------------|
+| Imposible            | P(∅) = 0                           |
+| Siempre cierto       | P(Ω) = 1                           |
+| Complemento          | P(Aᶜ) = 1 - P(A)                   |
+| Unión                | P(A ∪ B) = P(A) + P(B) - P(A ∩ B)  |
+| Diferencia           | P(A - B) = P(A) - P(A ∩ B)         |
+| Probabilidad total   | P(A) = P(A ∩ B) + P(A ∩ Bᶜ)        |
+| Diferencia simétrica | P(A △ B) = P(A) + P(B) - 2P(A ∩ B) |
+
+------------------------------------------------------------------------
+
+## Probabilidad condicional
+
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0$$
+
+**Regla del producto:**
+
+$$P(A \cap B) = P(A) \cdot P(B|A) = P(B) \cdot P(A|B)$$
+
+## Independencia de eventos
+
+A y B son independientes si:
+
+$$P(A|B) = P(A) \iff P(A \cap B) = P(A) \cdot P(B)$$
+
+```{r}
+# Prueba de independencia (comparar al segundo decimal)
+round(P_A_inter_B, 2) == round(P_A * P_B, 2)
+```
+
+## Teorema de Bayes
+
+Con A y B eventos de Ω, P(B) \> 0:
+
+$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B|A) \cdot P(A) + P(B|A^c) \cdot P(A^c)}$$
+
+```{r}
+# Teorema de Bayes
+Bayes <- (P_B_dado_A * P_A) /
+         (P_B_dado_A * P_A + P_B_dado_Ac * P_Ac)
+round(Bayes, 4)
+```
+
+------------------------------------------------------------------------
+
+## Modelos discretos
+
+| Modelo            | Notación          | Esperanza | Varianza                 |
+|-------------------|-------------------|-----------|--------------------------|
+| Bernoulli         | X \~ Bernoulli(p) | p         | p(1-p)                   |
+| Binomial          | X \~ B(n, p)      | np        | np(1-p)                  |
+| Geométrica        | X \~ G(p)         | 1/p       | (1-p)/p²                 |
+| Binomial Negativa | X \~ BN(p, r)     | r/p       | r(1-p)/p²                |
+| Hipergeométrica   | X \~ H(N, r, n)   | nr/N      | n(r/N)(1-r/N)(N-n)/(N-1) |
+| Poisson           | X \~ P(μ), μ=λt   | μ         | μ                        |
+
+------------------------------------------------------------------------
+
+## Códigos R — Distribuciones discretas
+
+### Bernoulli — X \~ Bernoulli(p)
+
+**Cuándo usar:**
+
+- Un **solo ensayo** con dos resultados posibles: éxito o fracaso
+- Caso particular de la Binomial con n = 1
+- Ejemplos: lanzar una moneda una vez, si una persona compra o no
+
+### Binomial — X \~ B(n, p)
+
+**Cuándo usar:**
+
+- **n ensayos independientes** de Bernoulli
+- Cada ensayo tiene la **misma probabilidad de éxito p**
+- X cuenta el **número de éxitos** en los n ensayos
+- El muestreo es **con reemplazo** (o la población es muy grande)
+- Ejemplos: número de clientes que compran de 100 visitantes, número de respuestas correctas en un examen de 20 preguntas
+
+```{r}
+n <- 10   # número de ensayos
+p <- 0.3  # probabilidad de éxito por ensayo
+a <- 4    # valor a evaluar
+
+dbinom(a, size = n, prob = p)                        # P(X = a)
+pbinom(a, size = n, prob = p)                        # P(X ≤ a)
+pbinom(a, size = n, prob = p, lower.tail = FALSE)    # P(X > a)
+
+# Cuantil: valor x tal que P(X ≤ x) = p
+qbinom(0.95, size = n, prob = p)
+```
+
+------------------------------------------------------------------------
+
+### Geométrica — X \~ G(p)
+
+**Cuándo usar:**
+
+- Ensayos de Bernoulli **repetidos hasta obtener el primer éxito**
+- X cuenta el **número de ensayos necesarios** para el primer éxito
+- Los ensayos son **independientes** con la misma p
+- **No tiene memoria**: lo que pasó antes no afecta el siguiente ensayo
+- Ejemplos: número de intentos hasta vender por primera vez, número de llamadas hasta conseguir respuesta
+
+```{r}
+p <- 0.25
+a <- 5    # número de ensayo en el que ocurre el 1er éxito
+
+dgeom(a - 1, prob = p)                         # P(X = a)
+pgeom(a - 1, prob = p)                         # P(X ≤ a)
+pgeom(a - 1, prob = p, lower.tail = FALSE)     # P(X > a)
+qgeom(0.95, prob = p)
+```
+
+------------------------------------------------------------------------
+
+### Binomial Negativa — X \~ BN(p, r)
+
+**Cuándo usar:**
+
+- Ensayos de Bernoulli **repetidos hasta obtener r éxitos**
+- X cuenta el **número total de ensayos** hasta conseguir el r-ésimo éxito
+- Generalización de la Geométrica (cuando r = 1 es Geométrica)
+- Ejemplos: número de pacientes a examinar hasta encontrar 3 con cierta enfermedad, número de llamadas hasta cerrar 5 ventas
+
+```{r}
+r <- 3   # número de éxitos buscados
+p <- 0.4
+a <- 7   # total de ensayos hasta el r-ésimo éxito
+
+dnbinom(a - r, r, p)                           # P(X = a)
+pnbinom(a - r, r, p)                           # P(X ≤ a)
+pnbinom(a - r, r, p, lower.tail = FALSE)       # P(X > a)
+qnbinom(0.95, r, p)
+```
+
+------------------------------------------------------------------------
+
+### Hipergeométrica — X \~ H(N, r, n)
+
+**Cuándo usar:**
+
+- Muestreo **sin reemplazo** de una población finita N
+- La población tiene **r éxitos** y **N-r fracasos**
+- Se extraen **n elementos** y X cuenta los éxitos obtenidos
+- Diferencia clave con Binomial: la probabilidad **cambia en cada extracción**
+- Ejemplos: número de mujeres en un comité de 5 elegido de 20 personas (12 mujeres, 8 hombres), número de productos defectuosos en una muestra sin reemplazo
+
+```{r}
+N <- 50   # tamaño de la población total
+r <- 20   # cantidad de éxitos en la población
+n <- 10   # tamaño de la muestra extraída
+a <- 4    # valor a evaluar
+
+dhyper(a, r, N - r, n)                         # P(X = a)
+phyper(a, r, N - r, n)                         # P(X ≤ a)
+phyper(a, r, N - r, n, lower.tail = FALSE)     # P(X > a)
+qhyper(0.95, r, N - r, n)
+```
+
+------------------------------------------------------------------------
+
+### Poisson — X \~ P(μ), μ = λt
+
+**Cuándo usar:**
+
+- Contar **eventos raros** en un intervalo fijo de tiempo, espacio o área
+- Los eventos ocurren a una **tasa constante λ** (ocurrencias por unidad)
+- Los eventos son **independientes** entre sí
+- **No hay límite** en la cantidad de eventos posibles
+- Ejemplos: número de llamadas a un call center por hora, número de accidentes en una autopista por mes, número de errores en una página
+
+```{r}
+lambda <- 3   # tasa de ocurrencia por unidad de tiempo/espacio
+t      <- 2   # tamaño del intervalo
+mu     <- lambda * t   # μ = λ * t
+a      <- 5
+
+dpois(a, mu)                                   # P(X = a)
+ppois(a, mu)                                   # P(X ≤ a)
+ppois(a, mu, lower.tail = FALSE)               # P(X > a)
+qpois(0.95, mu)
+```
+
+------------------------------------------------------------------------
+
+## Resumen para elegir el modelo correcto
+
+| Pregunta clave                                      | Modelo                |
+|-------------------------------------------------|-----------------------|
+| ¿Un solo ensayo, éxito o fracaso?                   | **Bernoulli**         |
+| ¿n ensayos fijos, contar éxitos, **con reemplazo**? | **Binomial**          |
+| ¿n ensayos fijos, contar éxitos, **sin reemplazo**? | **Hipergeométrica**   |
+| ¿Cuántos ensayos hasta el **primer** éxito?         | **Geométrica**        |
+| ¿Cuántos ensayos hasta el **r-ésimo** éxito?        | **Binomial Negativa** |
+| ¿Contar eventos en un intervalo a tasa constante?   | **Poisson**           |
+
+# Variables aleatorias continuas
+
+## Función de densidad
+
+Para una variable continua X con función de densidad f(x):
+
+$$P(a < X \leq b) = \int_a^b f(x) \, dx = F(b) - F(a)$$
+
+> ![](images/clipboard-3137973316.png)
+>
+> Para variables continuas: P(X = a) = 0, por lo que P(X \< a) = P(X ≤ a)
+
+## Valor esperado y varianza
+
+$$E[X] = \int_{-\infty}^{+\infty} x \, f_X(x) \, dx$$
+
+$$V(X) = E[X^2] - (E[X])^2 \quad \text{donde} \quad E[X^2] = \int_{-\infty}^{+\infty} x^2 \, f_X(x) \, dx$$
+
+## Cálculo de integrales en R
+
+```{r}
+# P(X > 10000) con f(x) = (1/8000)*exp(-x/8000)
+
+# Opción 1: complemento
+resultado1 <- integrate(function(x) (1/8000) * exp(-x/8000), lower = 0, upper = 10000)
+1 - resultado1$value
+
+# Opción 2: directa
+resultado2 <- integrate(function(x) (1/8000) * exp(-x/8000), lower = 10000, upper = Inf)
+resultado2$value
+```
+
+------------------------------------------------------------------------
+
+## Modelos continuos
+
+| Modelo      | Notación   | Esperanza | Varianza           |
+|-------------|------------|-----------|--------------------|
+| Exponencial | Exp(λ)     | 1/λ       | 1/λ²               |
+| Uniforme    | Unif(a, b) | (a+b)/2   | (b-a)²/12          |
+| Normal      | N(μ, σ²)   | μ         | σ²                 |
+| Gama        | Gama(α, λ) | α/λ       | α/λ²               |
+| Beta        | Beta(α, β) | α/(α+β)   | αβ/((α+β)²(α+β+1)) |
+
+------------------------------------------------------------------------
+
+## Códigos R — Distribuciones continuas
+
+### Uniforme — X \~ Unif(a, b)
+
+```{r}
+a   <- 2    # mínimo
+b   <- 8    # máximo
+val <- 5
+
+punif(val, min = a, max = b)                         # P(X ≤ val)
+punif(val, min = a, max = b, lower.tail = FALSE)     # P(X > val)
+
+# P(c ≤ X ≤ d)
+c <- 3; d <- 6
+punif(d, a, b) - punif(c, a, b)
+
+# Cuantil
+qunif(0.95, min = a, max = b)
+```
+
+### Exponencial — X \~ Exp(λ)
+
+```{r}
+lambda <- 0.5
+val    <- 3
+
+pexp(val, rate = lambda)                             # P(X ≤ val)
+pexp(val, rate = lambda, lower.tail = FALSE)         # P(X > val)
+
+# P(c ≤ X ≤ d)
+c <- 1; d <- 4
+pexp(d, lambda) - pexp(c, lambda)
+
+# Cuantil
+qexp(0.95, rate = lambda)
+```
+
+### Normal — X \~ N(μ, σ²)
+
+```{r}
+mu    <- 170   # media
+sigma <- 10    # desviación estándar
+val   <- 180
+
+pnorm(val, mean = mu, sd = sigma)                    # P(X ≤ val)
+pnorm(val, mean = mu, sd = sigma, lower.tail = FALSE) # P(X > val)
+
+# P(c ≤ X ≤ d)
+c <- 160; d <- 185
+pnorm(d, mu, sigma) - pnorm(c, mu, sigma)
+
+# Cuantil
+qnorm(0.95, mean = mu, sd = sigma)
+```
+
+------------------------------------------------------------------------
+
+## Ajuste de distribución y gráficos
+
+```{r}
+library(fitdistrplus)
+
+# Ajuste exponencial
+fit_exp  <- fitdist(DF$variable[!is.na(DF$variable)], "exp")
+plot(fit_exp)
+
+# Ajuste normal
+fit_norm <- fitdist(DF$variable[!is.na(DF$variable)], "norm")
+plot(fit_norm)
+
+# Ver parámetros estimados
+fit_norm$estimate   # media y sd estimadas
+fit_exp$estimate    # lambda estimada
+```
+
+> Los gráficos de `fitdist` muestran 4 paneles: histograma vs densidad teórica, Q-Q plot, CDF empírica vs teórica, y P-P plot. Si los puntos del Q-Q y P-P plot se alinean sobre la diagonal, el ajuste es bueno.
+
+![](images/clipboard-940928579.png)

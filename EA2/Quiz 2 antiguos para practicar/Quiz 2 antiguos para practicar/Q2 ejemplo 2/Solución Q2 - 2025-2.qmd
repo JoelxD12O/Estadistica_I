@@ -1,0 +1,216 @@
+---
+title: "Solución Q2 - Horario 1"
+format: html
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("marketing_campaign_ULTIMO.csv")
+head(DF)
+```
+
+```{r}
+colSums((is.na(DF)))
+```
+
+```{r}
+Tabla0 <- table(DF$Education, DF$Marital_Status)
+Tabla0
+```
+
+```{r}
+Tabla0_con_subtotal <- addmargins (Tabla0)
+Tabla0_con_subtotal
+```
+
+### Pregunta N°1
+
+Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil soltero ("Single") es \_\_ **0.21**
+
+Por otro lado, si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga nivel educativo graduado ("Graduation") es \_\_ **0.5**
+
+```{r}
+Prob_soltero1 <- 470/2205
+round(Prob_soltero1,2)
+  
+Prob_soltero2 <- nrow(DF[DF$Marital_Status =="Single",])/nrow(DF)
+round(Prob_soltero2,2)
+
+Prob_graduado1 <- 1111/2205
+round(Prob_graduado1,2)
+  
+Prob_graduado2 <- nrow(DF[DF$Education =="Graduation",])/nrow(DF)
+round(Prob_graduado2,2)
+```
+
+### Pregunta N°2
+
+Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil soltero ("Single") **y** que tenga nivel educativo graduado ("Graduation") es \_\_ **0.11**
+
+Por tanto, si se selecciona un cliente al azar entonces la probabilidad de que el cliente tenga estado civil soltero ("Single") **o** que tenga nivel educativo graduado ("Graduation") es \_\_ **0.61**
+
+```{r}
+prob_marital_y_education1 <- 246/2205
+round(prob_marital_y_education1,2)
+
+prob_marital_y_education2 <- nrow(DF[DF$Marital_Status =="Single" & DF$Education =="Graduation",])/nrow(DF)
+round(prob_marital_y_education2,2)
+
+prob_marital_o_education <-  Prob_soltero1 + Prob_graduado1 - prob_marital_y_education1
+round(prob_marital_o_education,2)
+```
+
+### Pregunta N°3
+
+Si se selecciona un cliente al azar y sabemos que tiene estado civil casado ("Married"), entonces, la probabilidad de que tenga nivel educativo Doctorado ("PhD") es \_\_ **0.22**
+
+Mientras si se selecciona un cliente al azar y sabemos que tiene nivel educativo Doctorado ("PhD"), entonces, la probabilidad de que tenga estado civil casado ("Married") es \_\_ **0.39**
+
+```{r}
+prob_Phd_dado_casado1 <- 187/853
+round(prob_Phd_dado_casado1,2)
+
+prob_Phd_dado_casado2 <- nrow(DF[DF$Marital_Status =="Married" & DF$Education =="PhD",])/nrow(DF[DF$Marital_Status =="Married",])
+round(prob_Phd_dado_casado2,2)
+
+prob_casado_dado_PhD1 <- 187/476
+round(prob_casado_dado_PhD1,2)
+
+prob_casado_dado_PhD2 <- nrow(DF[DF$Marital_Status =="Married" & DF$Education =="PhD",])/nrow(DF[DF$Education =="PhD",])
+round(prob_casado_dado_PhD2,2)
+```
+
+### Pregunta N°4
+
+Si del total de clientes, se seleccionan al azar **50**, entonces la probabilidad que **8** de ellos tengan nivel educativo Maestría (“Master”) y los otros **42** cualquiera de los otros niveles educativos es\_\_ **0.15.**
+
+Por otro lado, si del total de clientes, se seleccionan al azar **50**, entonces la probabilidad que **12** de ellos tengan estado civil convivientes ("Together") y los otros **38** cualquiera de los otros estados civiles es \_\_ **0.13 .**
+
+```{r}
+round(choose(364,8)*choose(1841,42)/choose(2205,50),2)
+round(choose(569,12)*choose(1636,38)/choose(2205,50),2)
+```
+
+### Pregunta N°5
+
+Resolver los siguientes casos de conteo:
+
+Para armar un producto se selecciona un **motor** que hay de 5 tipos, un **panel de control** que hay de 3 tipos y un **color de carcasa** que se cuenta con 6 opciones. Por tanto, se dispone de \_\_\_ **90** combinaciones posibles para armar el producto.
+
+```{r}
+# Principio de multiplicación
+5*3*6
+```
+
+Un estudiante universitario puede elegir:
+
+-   2 cursos del bloque de Ciencias, que tiene 6 opciones, o
+
+-   2 cursos del bloque de Economía que tiene 5 opciones, pero no puede elegir de ambos bloques.
+
+    La cantidad de formas distintas de elegir 2 cursos del mismo bloque es \_\_\_ **25**
+
+    ```{r}
+    # Principio de adición
+    choose(6,2)+choose(5,2)
+    ```
+
+Un investigador del área de Química diseña un experimento de laboratorio, para lo cual elige 3 reactivos distintos de 7 disponibles, y el orden en que los mezcla influye en el resultado. La cantidad de resultados diferentes que puede obtenerse es \_\_\_ **210**
+
+```{r}
+choose(7,3)*factorial(3)
+```
+
+### Pregunta 6
+
+Evaluar si es verdadero o falso cada uno de las afirmaciones siguientes:
+
+-   Dados 2 eventos mutuamente excluyentes, A, B definidos en un mismo espacio muestral, se cumple que P(A U B) = P(A) + P(B). \_\_\_ VERDADERO.
+
+-   Si dos eventos J y K son complementarios se cumplirá siempre que P(J) + P(K) = 1, y también se cumple que P (J Ⴖ K) = 0. \_\_\_ VERDADERO
+
+-   La probabilidad de que la **suma** de los resultados obtenidos al **lanzar dos dados** sea igual a **dos**, es igual a **2/36**. \_\_\_ FALSO
+
+-   Dados dos eventos A y B **independientes**, con probabilidad de ocurrencia de cada uno de ellos P(A) = 0.45 y P(B) = 0.35, entonces se cumple que la probabilidad P(A \| B) = 0.45. \_\_\_ VERDADERO
+
+-   Dados dos eventos definidos en el mismo espacio muestral, J y K, **mutuamente excluyentes** con P(J) = 0.20 y P(K) = 0.10, se cumple que P(J U K) = 0.02. \_\_ FALSO
+
+NO SE USAN EN EL QUIZ 2
+
+-   Se dice que dos eventos definidos en el mismo espacio muestral, A y B son independientes, si cumple la siguiene igualdad : P (A Ⴖ B) = P(A) + P(B). \_\_ FALSO.
+
+-   Dados dos eventos A y B definidos en el mismo espacio muestral, si P(A \| B)= 2/3 y P(Aᶜ) = 1/3 , entonces los eventos A y B son independientes. \_\_ VERDADERO
+
+### Pregunta 7
+
+En una planta de producción se instalaron **dos** sistemas automáticos de detección de fuego. La probabilidad de que la primera alarma falle es **0.27** y de que falle la segunda es **0.18**. Si sabemos que las dos alarmas trabajan de manera **independiente**, entonces:
+
+La probabilidad de que falle **al menos una** de las alarmas es \_\_ **0.4**
+
+La probabilidad de que **ninguna** de las alarmas falle es \_\_ **0.6**
+
+La probabilidad de que falle **solo una** de las alarmas es \_\_ **0.35**
+
+La probabilidad de que **solo la primera** alarma falle y la **segunda no falle** es \_\_ **0.22**
+
+```{r}
+# Se pide P(A U B) = P(A) + P(B) - P(A ꓵ B)
+# Por independencia:  P(A U B) = P(A) + P(B) - P(A)*P(B)
+P_al_menos_uno_falla <- 0.27 + 0.18 - 0.27*0.18
+round(P_al_menos_uno_falla,2)
+```
+
+```{r}
+# Se pide 1 - P(A U B)
+P_ninguno_falla <- 1 - P_al_menos_uno_falla
+round(P_ninguno_falla,2)
+```
+
+```{r}
+# Se pide P(A Δ B) = P(A) + P(B) - 2*P(A ꓵ B)
+# Por independencia P(A Δ B) = P(A) + P(B) - 2*P(A)*P(B)
+P_solo_una_falla <- 0.27 + 0.18 - 2*0.27*0.18
+round(P_solo_una_falla,2)
+```
+
+```{r}
+# Se pide P(A ꓵ Bᶜ) 
+# Por independencia:  P(A ꓵ Bᶜ) = P(A) * P(Bᶜ)
+P_solo_1ero_falla <- 0.27*(1-0.18)
+round(P_solo_1ero_falla,2)
+```
+
+### Pregunta 8
+
+El área de Compras de una Compañía comercializadora se abastece de productos adquiridos a tres proveedores de China para llevar a cabo su campaña navideña , de tal manera que el **30%** de productos pueden venir del proveedor **A**, el **50%** pueden venir del proveedor **B** y el 2**0%** del proveedor **C**.
+
+Por otro lado, se conoce que el **4%** de los productos que provienen del proveedor **A** son defectuosos, el **5%** de los productos que provienen del proveedor **B** son defectuosos y el **6%** de los productos que provienen del proveedor **C** son defectuosos.
+
+Si se elige un producto al azar, la probabilidad de que **no** sea defectuoso es \_\_\_ **0.95**
+
+```{r}
+# Aplicación de probabilidad total
+# Prob. defectuoso = P(D|A)*P(A) + P(D|B)*P(B) + P(D|C)*P(C) 
+Prob.defectuoso <- 0.04*0.30 + 0.05*0.50 + 0.06*0.20
+Prob.defectuoso
+```
+
+```{r}
+# Se pide:  Prob. no sea defectuoso <- 1 - Prob. defectuoso
+round(1-Prob.defectuoso,2)
+```
+
+4 de probabilidad con base de datos
+
+1 de independencia
+
+1 de prob. total
+
+1 teoria V, F
+
+1 conteo (principio de suma, multiplicación, combinatorio, permutacion).

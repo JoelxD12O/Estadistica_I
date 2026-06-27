@@ -1,0 +1,198 @@
+---
+title: "Solución Q2 - Horario 2"
+format: html
+editor: visual
+---
+
+```{r}
+library(readr)
+library(dplyr)
+```
+
+```{r}
+DF <- read_csv("Banking_Dataset_FINAL.csv")
+head(DF)
+```
+
+```{r}
+colSums((is.na(DF)))
+```
+
+```{r}
+Tabla0 <- table(DF$job, DF$marital)
+Tabla0
+```
+
+```{r}
+Tabla0_con_subtotal <- addmargins (Tabla0)
+Tabla0_con_subtotal
+```
+
+### Pregunta N°1
+
+Completar los espacios en blanco con la alternativa correcta:
+
+Tres de los datos necesarios para construir un **diagrama de cajas** son el primer cuartil, la mediana y el percentil setenta y cinco.
+
+**Datos extremos** son aquellos que se encuentran por encima del tercer cuartil y por debajo del primer cuartil más allá de 1.5 veces el rango intercuartil.
+
+**Coeficiente de variación** permite comparar la dispersión o variabilidad de los conjuntos de datos diferentes, incluso medido en unidades diferentes.
+
+**Rango** es una medida pobre de la variabilidad, en particular si el tamaño de la muestra es grande, considera sólo los valores extremos y no nos dice nada acerca de la distribución de los valores intermedios.
+
+Sí la **unidad de medida** de la desviación estándar de una variable se expresa en metros, la varianza lo estará en metros cuadrados.
+
+Se denomina **espacio muestral** , al conjunto de todos los resultados posibles de un experimento aleatorio.
+
+**Evento o suceso** es cualquier subconjunto del espacio muestral asociado a un experimento aleatorio, que representa uno o varios resultados de interés.
+
+Dados dos **eventos complementarios**, D y E, se cumple siempre que P(D) + P(E) = 1.
+
+### Pregunta N°2
+
+Para cada una de los siguientes enunciados indicar si es verdadero o falso:
+
+Si la desviación estándar del caudal del Río X es de 45 m3/s y la desviación estándar del caudal del Río Y es de 180 m3/s, se debe concluir que los caudales del Río Y están más dispersos que los del Río X. **VERDADERO**
+
+Si el tercer cuartil de un conjunto de datos observados es igual a 35, entonces el 25% de los datos del conjunto es mayor que 35. **VERDADERO**
+
+Si la desviación estándar de la estatura de los alumnos de la Universidad es igual a 9 centimetros y la desviación estándar del promedio de calificaciones de los mismos alumnos es de 3 puntos, se debe concluir que la dispersión de las calificaciones es menor que la dispersión de las estaturas. **FALSO**
+
+En el boxplot, la caja siempre encierra exactamente el 50% de las observaciones. **VERDADERO**
+
+La media aritmética o promedio es la medida que mejor describe la posición central del siguiente conjunto de datos { 1, 2, 3, 3, 1, 2, 2, 1, 312 } **FALSO**
+
+La intersección de dos eventos G y H da por resultado un evento que contiene a todos los elementos que pertenecen a G, que pertenecen a H, o que pertenecen a ambos. **FALSO**
+
+Si se cumple que: P(M) + P(N) = 1, se debe concluir entonces que los eventos M y N son complementarios. **FALSO**
+
+Dados tres eventos mutuamente escluyentes, A, B y C, definidos en un mismo espacio muestral, se cumple que P(A U B U C) = P(A) + P(B) + P(C). **VERDADERO**
+
+### Pregunta N°3
+
+Un estudiante crea una contraseña para acceder a su laptop con 3 caracteres, y lo elige de la siguiente manera:
+
+-   la primera una letra (26 opciones),
+
+-   el segundo un dígito impar,
+
+-   y el tercero un símbolo entre estos 4 disponibles (\$,%,&,#).
+
+    Por tanto el estudiante puede formar \_\_ **520** contraseñas diferentes
+
+    ```{r}
+    26*5*4
+    ```
+
+Por otro lado, otro estudiante participa en un concurso la cual permite elegir **un solo premio** entre:
+
+-   10 libros de los más vendidos y populares en Ciencias Matemáticas,
+
+-   6 audífonos inalámbricos,
+
+-   o 9 camisetas de clubs famosos y exitosos de fútbol en Europa.
+
+    Por tanto, el estudiante puede elegir \_\_ **25** opciones distintas de premio.
+
+### Pregunta 4
+
+Un examen de Estadística tiene **9 preguntas**. El estudiante debe responder **7**, y dentro de estas obligatoriamente las preguntas 1 y 2, Por tanto, el estudiante tiene \_\_ **21** formas distintas de elegir las preguntas.
+
+```{r}
+choose(7,5)
+```
+
+Por otro lado, en las competencias olímpicas de 100 metros planos se cuenta siempre con **8** atletas para disputar la gran final. Por tanto, la cantidad de formas distintas que se pueden asignar los **3** primeros lugares (oro, plata y bronce) es de \_\_ **336**
+
+```{r}
+choose(8,3)*factorial(3)
+```
+
+Finalmente, **6** libros distintos de Ciencias se pueden colocar \_\_ **720** formas distintas en un estante.
+
+```{r}
+factorial(6)
+```
+
+### Pregunta N°5
+
+Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil ("marital") casado ("married") es **0.62**.
+
+Por otro lado, si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga trabajo ("job") en gestión ("management") es **0.22**.
+
+```{r}
+Prob_casado1 <- 2797/4521
+Prob_casado1
+  
+Prob_casado2 <- nrow(DF[DF$marital =="married",])/nrow(DF)
+Prob_casado2
+
+Prob_manag1 <- 975/4521
+Prob_manag1
+  
+Prob_manag2 <- nrow(DF[DF$job =="management",])/nrow(DF)
+Prob_manag2
+```
+
+### Pregunta N°6
+
+Si se selecciona un cliente al azar, entonces la probabilidad de que el cliente tenga estado civil ("marital") casado ("married") **y** que tenga trabajo ("job") en gestión ("management") es **0.12**
+
+Por tanto, si se selecciona un cliente al azar entonces la probabilidad de que el cliente tenga estado civil ("marital") casado ("married") **o** que tenga trabajo ("job") en gestión ("management") es **0.71**
+
+```{r}
+prob_marital_y_job1 <- 563/4521
+prob_marital_y_job1
+
+prob_marital_y_job2 <- nrow(DF[DF$marital =="married" & DF$job =="management",])/nrow(DF)
+prob_marital_y_job2
+
+prob_marital_o_job <-  Prob_casado1 + Prob_manag1 - prob_marital_y_job1
+prob_marital_o_job
+```
+
+### Pregunta 7
+
+Para los siguientes análisis bivariados responder acerca de la variabilidad (considerando el rango intercuartil RIC) y también acerca de los datos extremos.
+
+Nota: Construir gráficos que muestren el RIC.
+
+En el caso de “balance” y “default”, puede notarse que los clientes que **si tienen mora** tienen menor variabilidad en el saldo promedio anual, mientras que los clientes que **no tienen mora** tienen una mayor cantidad de valores extremos o atípicos.
+
+En el caso de “balance” y “loan”, puede notarse que los clientes que **si tienen préstamo personal** tienen menor variabilidad en el saldo promedio anual, mientras que los clientes que **no tienen préstamo personal** parecen tenen una mayor cantidad de valores extremos o atípicos concentrados.
+
+En el caso de “duration” e “y”, puede notarse que los clientes que **no tienen depósito a plazo** presentan muchos valores atípicos concentrados, mientras que los clientes que **si tienen depósito a plazo** presentan una mayor variabilidad en el tiempo del último contacto y muy pocos valores extremos o atípicos.
+
+```{r}
+boxplot(DF$balance ~ DF$default)
+```
+
+```{r}
+boxplot(DF$balance ~ DF$loan)
+```
+
+```{r}
+boxplot(DF$duration ~ DF$y)
+```
+
+### Pregunta 8
+
+Analizando las variables categóricas **marital** (estado civil) y **education** (nivel de estudios) se tiene que **1427** clientes son casados (“married”) y tienen educación secundaria (“secondary”).
+
+En el caso de que se analice solo a los clientes casados (“married”), se observa que el **19.63%** de ellos tienen educación primaria (“primary”).
+
+Mientras, que en el caso de que se analice solo a los clientes con educación terciaria (“tertiary”), se observa que el **11.48%** de ellos tienen estado civil divorciado (“divorced”).
+
+Nota: Construir tablas de contigencia bivariadas.
+
+```{r}
+table(DF$marital, DF$education)
+```
+
+```{r}
+round(prop.table(table(DF$marital, DF$education), 1)*100,2)
+```
+
+```{r}
+round(prop.table(table(DF$marital, DF$education), 2)*100,2)
+```

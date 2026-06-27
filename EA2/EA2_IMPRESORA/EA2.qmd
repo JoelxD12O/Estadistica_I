@@ -1,0 +1,102 @@
+---
+title: "EA2"
+format: html
+editor: visual
+---
+
+Joel Modesto Cayllahua Hilario
+
+```{r}
+library(readr)
+library(dplyr)
+
+DF <- read_csv("mental_health_FINAL.csv")
+```
+
+**pregunta 1**
+
+```{r}
+
+codigos <- 26 * 25 * 10 * 9
+codigos
+
+premios <- 3 + 5 + 10 + 12
+premios
+
+```
+
+**pregunta 3**
+
+```{r}
+pA <- 0.18
+pB <- 0.22
+
+round(pA + pB - pA*pB, 2)
+
+round((1-pA)*(1-pB), 2)
+
+round(pA*(1-pB) + (1-pA)*pB, 2)
+
+round(pA*(1-pB), 2)
+
+
+
+```
+
+```{r}
+
+# Probabilidad total de que no cumpla
+p_total <- 0.40*0.03 + 0.35*0.05 + 0.25*0.09
+
+round(p_total,2)
+
+#Probabilidad de que provenga de B dado que no cumple
+p_B_dado_no <- (0.35*0.05)/p_total
+
+round(p_B_dado_no, 2)
+
+```
+
+```{r}
+
+round(dhyper(5, 14, 6, 7),2)
+
+round(phyper(5, 14, 6, 7, lower.tail = FALSE),2)
+
+```
+
+```{r}
+
+round(mean(DF$Actividad_fisica == "Bajo"), 2)
+
+round(mean(DF$Ocupacion == "Empleado"), 2)
+```
+
+**pregunta 7**
+
+```{r}
+# Intersec
+pAB <- sum(DF$Actividad_fisica == "Bajo" & DF$Ocupacion == "Empleado") / nrow(DF)
+round(pAB, 2)
+
+# Unioon
+pA <- sum(DF$Actividad_fisica == "Bajo") / nrow(DF)
+pB <- sum(DF$Ocupacion == "Empleado") / nrow(DF)
+
+round(pA + pB - pAB, 2)
+
+```
+
+\
+**pregunta 8**
+
+```{r}
+pAB <- sum(DF$Actividad_fisica=="Bajo" & DF$Ocupacion=="Empleado") / nrow(DF)
+pA <- sum(DF$Actividad_fisica=="Bajo") / nrow(DF)
+pB <- sum(DF$Ocupacion=="Empleado") / nrow(DF)
+
+round(pAB/pB,2)
+
+round(pAB/pA,2)
+
+```
